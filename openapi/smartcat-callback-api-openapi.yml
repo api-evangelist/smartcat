@@ -1,0 +1,157 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account Callback API
+  version: v1
+servers:
+- url: /
+tags:
+- name: Callback
+paths:
+  /api/integration/v1/callback:
+    get:
+      tags:
+      - Callback
+      summary: Fetch the notifications settings for the account
+      responses:
+        '200':
+          description: Notifications settings have been successfully fetched
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallbackPropertyModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallbackPropertyModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallbackPropertyModel'
+        '404':
+          description: Notifications settings are not configured
+    post:
+      tags:
+      - Callback
+      summary: Create or update the notifications settings
+      requestBody:
+        description: Notifications settings
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CallbackPropertyModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CallbackPropertyModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CallbackPropertyModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CallbackPropertyModel'
+        required: true
+      responses:
+        '200':
+          description: Notifications settings have been successfully updated
+        '400':
+          description: "Returns if:\r\n- URI is invalid\r\n- a header Smartcat.AppIntegrations.Contracts.AdditionalHeaderModel.Name is empty or null, or consists of space characters only\r\n- a header Smartcat.AppIntegrations.Contracts.AdditionalHeaderModel.Value is null\r\n- a header is formatted incorrectly, that is requires coding or does not conform to special requirements (such as the authorization header)"
+    delete:
+      tags:
+      - Callback
+      summary: Delete notifications settings
+      responses:
+        '204':
+          description: Notifications settings have been successfully deleted
+  /api/integration/v1/callback/lastErrors:
+    get:
+      tags:
+      - Callback
+      summary: Fetch the latest delivery errors
+      parameters:
+      - name: limit
+        in: query
+        description: Maximum returned errors (no more than 100)
+        schema:
+          type: integer
+          format: int32
+          default: 100
+      responses:
+        '200':
+          description: The latest errors have been successfully fetched
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CallbackErrorModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CallbackErrorModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CallbackErrorModel'
+        '400':
+          description: The provided limit exceeds the maximum
+components:
+  schemas:
+    AdditionalHeaderModel:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Header name
+          nullable: true
+        value:
+          type: string
+          description: Value
+          nullable: true
+      additionalProperties: false
+      description: User header model
+    CallbackErrorModel:
+      type: object
+      properties:
+        created:
+          type: string
+          description: Callback send time
+          format: date-time
+        url:
+          type: string
+          description: Request URL
+          nullable: true
+        reason:
+          type: string
+          description: Request failure reason
+          nullable: true
+        code:
+          type: integer
+          description: Server response code
+          format: int32
+          nullable: true
+        content:
+          type: string
+          description: Server response content
+          nullable: true
+        sourceIds:
+          type: array
+          items:
+            type: string
+          description: List of event source IDs
+          nullable: true
+      additionalProperties: false
+      description: Callback error description
+    CallbackPropertyModel:
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL for receiving notifications
+          nullable: true
+        additionalHeaders:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalHeaderModel'
+          description: Additional headers array
+          nullable: true
+      additionalProperties: false
+      description: Notification properties change model

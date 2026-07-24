@@ -1,0 +1,53 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account Template API
+  version: v1
+servers:
+- url: /
+tags:
+- name: Template
+paths:
+  /api/integration/v1/template:
+    get:
+      tags:
+      - Template
+      summary: Get all templates available in the workspace
+      responses:
+        '200':
+          description: List of templates
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TemplateListModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateListModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TemplateListModel'
+components:
+  schemas:
+    TemplateInfoModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Template ID
+          format: uuid
+        name:
+          type: string
+          description: Template name
+          nullable: true
+      additionalProperties: false
+      description: Template information model
+    TemplateListModel:
+      type: object
+      properties:
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/TemplateInfoModel'
+          description: List of templates
+          nullable: true
+      additionalProperties: false
+      description: Template list model

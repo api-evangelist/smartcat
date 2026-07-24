@@ -1,0 +1,85 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account Vendor API
+  version: v1
+servers:
+- url: /
+tags:
+- name: Vendor
+paths:
+  /api/integration/v1/vendor/list:
+    get:
+      tags:
+      - Vendor
+      summary: Fetch the list of vendors
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VendorModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VendorModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VendorModel'
+  /api/integration/v1/vendor/{vendorAccountId}:
+    get:
+      tags:
+      - Vendor
+      summary: Fetch a vendor by ID
+      parameters:
+      - name: vendorAccountId
+        in: path
+        description: Vendor IDVendor ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorModel'
+        '400':
+          description: The specified vendor ID's format is incorrect
+        '404':
+          description: The provided vendor ID does not exist or the vendor is not associated with the account
+components:
+  schemas:
+    VendorModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        name:
+          type: string
+          description: Company name
+          nullable: true
+        customFields:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: Custom fields
+          nullable: true
+      additionalProperties: false
+      description: Vendor model

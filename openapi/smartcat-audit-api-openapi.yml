@@ -1,0 +1,196 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account Audit API
+  version: v1
+servers:
+- url: /
+tags:
+- name: Audit
+paths:
+  /api/integration/v1/audit/logs:
+    get:
+      tags:
+      - Audit
+      summary: Fetch audit logs with given filter parameters
+      parameters:
+      - name: startTime
+        in: query
+        description: Fetch audit logs starting from this date and time
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        description: Fetch audit logs until this date and time
+        schema:
+          type: string
+          format: date-time
+      - name: pageNumber
+        in: query
+        description: Number of the page. Starts from 1
+        schema:
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: 'Size of the page. Available range: 1 - 5000'
+        schema:
+          maximum: 5000
+          minimum: 1
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuditLogModel'
+        '400':
+          description: Returns if one or several parameters are incorrect
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    HttpStatusCode:
+      enum:
+      - continue
+      - switchingProtocols
+      - processing
+      - earlyHints
+      - oK
+      - created
+      - accepted
+      - nonAuthoritativeInformation
+      - noContent
+      - resetContent
+      - partialContent
+      - multiStatus
+      - alreadyReported
+      - iMUsed
+      - multipleChoices
+      - ambiguous
+      - movedPermanently
+      - moved
+      - found
+      - redirect
+      - seeOther
+      - redirectMethod
+      - notModified
+      - useProxy
+      - unused
+      - temporaryRedirect
+      - redirectKeepVerb
+      - permanentRedirect
+      - badRequest
+      - unauthorized
+      - paymentRequired
+      - forbidden
+      - notFound
+      - methodNotAllowed
+      - notAcceptable
+      - proxyAuthenticationRequired
+      - requestTimeout
+      - conflict
+      - gone
+      - lengthRequired
+      - preconditionFailed
+      - requestEntityTooLarge
+      - requestUriTooLong
+      - unsupportedMediaType
+      - requestedRangeNotSatisfiable
+      - expectationFailed
+      - misdirectedRequest
+      - unprocessableEntity
+      - unprocessableContent
+      - locked
+      - failedDependency
+      - upgradeRequired
+      - preconditionRequired
+      - tooManyRequests
+      - requestHeaderFieldsTooLarge
+      - unavailableForLegalReasons
+      - internalServerError
+      - notImplemented
+      - badGateway
+      - serviceUnavailable
+      - gatewayTimeout
+      - httpVersionNotSupported
+      - variantAlsoNegotiates
+      - insufficientStorage
+      - loopDetected
+      - notExtended
+      - networkAuthenticationRequired
+      type: string
+      format: int32
+    ErrorType:
+      enum:
+      - sender
+      - receiver
+      - unknown
+      type: string
+      format: int32
+    ErrorResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ErrorType'
+        code:
+          type: string
+          nullable: true
+        message:
+          type: string
+          nullable: true
+        requestId:
+          type: string
+          nullable: true
+        innerException:
+          nullable: true
+        statusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+      additionalProperties: false
+    AuditLogModel:
+      type: object
+      properties:
+        time:
+          type: string
+          description: Event time
+          format: date-time
+        type:
+          type: string
+          description: Event type
+          nullable: true
+        userId:
+          type: string
+          description: User ID
+          format: uuid
+          nullable: true
+        userEmail:
+          type: string
+          description: User E-mail
+          nullable: true
+        userNickName:
+          type: string
+          description: User nickname
+          nullable: true
+        payload:
+          type: object
+          additionalProperties:
+            nullable: true
+          description: Payload data
+          nullable: true
+      additionalProperties: false
+      description: Audit log model

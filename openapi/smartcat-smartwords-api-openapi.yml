@@ -1,0 +1,38 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account Smartwords API
+  version: v1
+servers:
+- url: /
+tags:
+- name: Smartwords
+paths:
+  /api/integration/v1/smartwords/balance:
+    get:
+      tags:
+      - Smartwords
+      summary: Fetch the current Smartwords balance of the workspace
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SmartwordsBalanceModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmartwordsBalanceModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SmartwordsBalanceModel'
+components:
+  schemas:
+    SmartwordsBalanceModel:
+      type: object
+      properties:
+        balance:
+          type: integer
+          description: Current Smartwords balance available to the workspace
+          format: int32
+      additionalProperties: false
+      description: Smartwords balance of the workspace

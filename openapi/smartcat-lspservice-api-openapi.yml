@@ -1,0 +1,419 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account LspService API
+  version: v1
+servers:
+- url: /
+tags:
+- name: LspService
+paths:
+  /api/integration/v1/lsp/services/{serviceId}:
+    delete:
+      tags:
+      - LspService
+      summary: Delete an LSP service
+      parameters:
+      - name: serviceId
+        in: path
+        description: Service ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+  /api/integration/v2/lsp/services:
+    get:
+      tags:
+      - LspService
+      summary: Fetch LSP services by ID
+      parameters:
+      - name: serviceIds
+        in: query
+        description: List of service IDs
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LspServiceModelV2'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LspServiceModelV2'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LspServiceModelV2'
+    post:
+      tags:
+      - LspService
+      summary: Create a new LSP service
+      requestBody:
+        description: An array of service creation requests
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/LspUpdateServiceModelV2'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LspUpdateServiceModelV2'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/LspUpdateServiceModelV2'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/LspUpdateServiceModelV2'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+  /api/integration/v2/lsp/services/batch:
+    get:
+      tags:
+      - LspService
+      summary: Fetch LSP services
+      parameters:
+      - name: lastServiceId
+        in: query
+        description: Fetch the list of services starting from the ID that follows the specified ID
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: The required number of results (the default is 100)
+        required: true
+        schema:
+          type: integer
+          format: int32
+          default: 100
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LspServiceModelV2'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LspServiceModelV2'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LspServiceModelV2'
+    post:
+      tags:
+      - LspService
+      summary: Create new LSP services
+      requestBody:
+        description: An array of service creation requests
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/LspUpdateServiceModelV2'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/LspUpdateServiceModelV2'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/LspUpdateServiceModelV2'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/LspUpdateServiceModelV2'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddBatchResult'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddBatchResult'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddBatchResult'
+  /api/integration/v2/lsp/services/{serviceId}:
+    put:
+      tags:
+      - LspService
+      summary: Update an existing LSP service
+      parameters:
+      - name: serviceId
+        in: path
+        description: Service ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Service update request
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/LspUpdateServiceModelV2'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LspUpdateServiceModelV2'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/LspUpdateServiceModelV2'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/LspUpdateServiceModelV2'
+        required: true
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    AddBatchResult:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of a created entity
+          nullable: true
+        index:
+          type: integer
+          description: ID of an entity assigned upon its addition to a batch
+          format: int32
+        success:
+          type: boolean
+          description: Entity was successfully created
+      additionalProperties: false
+      description: Entity creation result model for batch addition
+    Specialization:
+      enum:
+      - education
+      - productsAndCatalogs
+      - documentsAndCertificates
+      - marketing
+      - correspondence
+      - software
+      - fiction
+      - scienceAndPatents
+      - contractsAndReports
+      - gaming
+      - manuals
+      - website
+      - annualReport
+      - corporateAndSocialResponsibility
+      - technicalAndEngineering
+      - cryptocurrencies
+      - biochemistry
+      - computingScience
+      - electronics
+      - metallurgy
+      - nuclear
+      - optics
+      - printing
+      - telecommunication
+      - textile
+      - patent
+      - military
+      - ecologyAndEnvironment
+      - agriculture
+      - artsAndCulture
+      - aviationAndSpace
+      - biology
+      - cartography
+      - chemistry
+      - cosmetics
+      - construction
+      - architecture
+      - economics
+      - accounting
+      - bankingAndInvestment
+      - insurance
+      - energy
+      - thermalPowerEngineering
+      - mechanicalEngineering
+      - finance
+      - general
+      - geography
+      - geology
+      - mining
+      - history
+      - linguistics
+      - philosophy
+      - psychology
+      - sociology
+      - industry
+      - industrialAutomation
+      - electricalEngineering
+      - iT
+      - eRP
+      - law
+      - hR
+      - mathematics
+      - medicine
+      - medicalEquipment
+      - pharmaceutics
+      - veterinaryMedicine
+      - oilAndGas
+      - physics
+      - politicsAndSociety
+      - realEstate
+      - recreation
+      - fashion
+      - luxuryItems
+      - tourismAndTravel
+      - religion
+      - socialScience
+      - sport
+      - transport
+      - automotiveBusiness
+      - foodAndDrinks
+      - biotechnology
+      - business
+      - lifeSciences
+      type: string
+      description: Text specialization
+      format: int32
+    LspServiceType:
+      enum:
+      - translation
+      - editing
+      - proofreading
+      - postediting
+      - pageProof
+      - notarization
+      - glossaryCreation
+      - apostille
+      - simultaneousTranslation
+      - consecutiveTranslation
+      - mediaTranslation
+      - expertReview
+      - projectManagement
+      - translationMemoryCreation
+      - copywriting
+      - training
+      - transcription
+      - certifiedTranslation
+      - transcreation
+      - legalization
+      - machineTranslation
+      - interpretationService
+      - otherTranslationRelatedServices
+      - translationForSubtitling
+      - subtitlesTranslation
+      - editingTranslationOfSubtitles
+      - lQAReview
+      - subtitleReview
+      - voiceOverReview
+      - sourceReview
+      type: string
+      description: LSP service type
+      format: int32
+    LspServiceModelV2:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Service ID
+          nullable: true
+        name:
+          type: string
+          description: Service name
+          nullable: true
+        description:
+          type: string
+          description: Service description
+          nullable: true
+        serviceTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/LspServiceType'
+          description: Provided service types
+          nullable: true
+        specializations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Specialization'
+          description: Specializations
+          nullable: true
+        workUnitType:
+          $ref: '#/components/schemas/WorkUnitType'
+      additionalProperties: false
+      description: LSP service model
+    WorkUnitType:
+      enum:
+      - char
+      - word
+      - page
+      - hour
+      - minute
+      - document
+      - service
+      - day
+      - month
+      type: string
+      description: Linguist's work unit
+      format: int32
+    LspUpdateServiceModelV2:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Service name
+          nullable: true
+        description:
+          type: string
+          description: Service description
+          nullable: true
+        serviceTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/LspServiceType'
+          description: Provided service types
+          nullable: true
+        specializations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Specialization'
+          description: Specializations
+          nullable: true
+        workUnitType:
+          $ref: '#/components/schemas/WorkUnitType'
+      additionalProperties: false
+      description: LSP service creation and update model

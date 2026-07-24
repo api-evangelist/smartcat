@@ -1,0 +1,235 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account Job API
+  version: v1
+servers:
+- url: /
+tags:
+- name: Job
+paths:
+  /api/integration/v3/job/verifiedForProject:
+    get:
+      tags:
+      - Job
+      summary: Fetch an array of jobs whose status is VERIFIED
+      parameters:
+      - name: projectId
+        in: query
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: skip
+        in: query
+        description: 'Number of jobs to be skipped (default: 0)'
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        description: 'Number of jobs to fetch (default: 100)'
+        schema:
+          type: integer
+          format: int32
+          default: 100
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModelV2Extended'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModelV2Extended'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModelV2Extended'
+  /api/integration/v3/job:
+    get:
+      tags:
+      - Job
+      summary: Fetch an array of jobs
+      parameters:
+      - name: projectId
+        in: query
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: skip
+        in: query
+        description: 'Number of jobs to be skipped (default: 0)'
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        description: 'Number of jobs to fetch (default: 100)'
+        schema:
+          type: integer
+          format: int32
+          default: 100
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModelV2Extended'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModelV2Extended'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModelV2Extended'
+components:
+  schemas:
+    JobModelV2Extended:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task ID
+          nullable: true
+        invoiceNumber:
+          type: string
+          description: Bank account number
+          nullable: true
+        supplierEmail:
+          type: string
+          description: Vendor email address
+          nullable: true
+        supplierName:
+          type: string
+          description: Vendor name
+          nullable: true
+        supplierType:
+          $ref: '#/components/schemas/SupplierType'
+        serviceType:
+          type: string
+          description: Service type
+          nullable: true
+        jobDescription:
+          type: string
+          description: 'Description: the name of a document or project'
+          nullable: true
+        unitsType:
+          type: string
+          description: Job unit type
+          nullable: true
+        unitsAmount:
+          type: number
+          description: Job unit count
+          format: double
+        customerPricePerUnit:
+          type: number
+          description: Job unit price
+          format: double
+        executivePricePerUnit:
+          type: number
+          description: Job unit price without commission
+          format: double
+        customerCurrency:
+          type: string
+          description: Price and cost currency
+          nullable: true
+        executiveCurrency:
+          type: string
+          description: Linguist's price and cost currency
+          nullable: true
+        customerCost:
+          type: number
+          description: Total job cost
+          format: double
+        executiveCost:
+          type: number
+          description: Total job cost without commission
+          format: double
+        externalNumber:
+          type: string
+          description: External payment ID
+          nullable: true
+        supplierId:
+          type: string
+          description: Supplier ID
+          format: uuid
+          nullable: true
+        status:
+          $ref: '#/components/schemas/JobStatus'
+        projectId:
+          type: string
+          description: Project ID
+          format: uuid
+          nullable: true
+        deadline:
+          type: string
+          description: Project deadline
+          format: date-time
+          nullable: true
+        sourceLanguage:
+          type: integer
+          description: Source language
+          format: int32
+          nullable: true
+        targetLanguage:
+          type: integer
+          description: Target language
+          format: int32
+          nullable: true
+        isPaidExternally:
+          type: boolean
+          description: Paid externally
+        documentId:
+          type: string
+          description: Document ID
+          nullable: true
+        stageId:
+          type: string
+          description: Workflow stage ID
+          nullable: true
+        verifiedDate:
+          type: string
+          description: The date the job status was set to VERIFIED.
+          format: date-time
+          nullable: true
+      additionalProperties: false
+      description: Payment model
+    JobStatus:
+      enum:
+      - inProgress
+      - invitationPending
+      - waitingForAssignment
+      - waitingForPayment
+      - verified
+      - paidByCustomer
+      - paidToFreelancer
+      - markedAsPaid
+      - invitationCanceled
+      - invitationDeclined
+      type: string
+      description: Payment status
+      format: int32
+    SupplierType:
+      enum:
+      - freelancer
+      - company
+      type: string
+      description: Supplier type
+      format: int32

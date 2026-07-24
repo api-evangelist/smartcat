@@ -1,0 +1,131 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account ClientIndustry API
+  version: v1
+servers:
+- url: /
+tags:
+- name: ClientIndustry
+paths:
+  /api/integration/v1/clientIndustry/{id}:
+    get:
+      tags:
+      - ClientIndustry
+      summary: Fetch a directory entry by ID
+      parameters:
+      - name: id
+        in: path
+        description: Directory entry ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ClientIndustryModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientIndustryModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ClientIndustryModel'
+    put:
+      tags:
+      - ClientIndustry
+      summary: Update the name of an entry by ID
+      parameters:
+      - name: id
+        in: path
+        description: Entry ID
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: query
+        description: New entry name
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+    delete:
+      tags:
+      - ClientIndustry
+      summary: Delete a list entry
+      parameters:
+      - name: id
+        in: path
+        description: Entry ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+  /api/integration/v1/clientIndustry:
+    get:
+      tags:
+      - ClientIndustry
+      summary: Fetch all the available directory values
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientIndustryModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientIndustryModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientIndustryModel'
+  /api/integration/v1/clientIndustry/{name}:
+    post:
+      tags:
+      - ClientIndustry
+      summary: Add a directory entry
+      parameters:
+      - name: name
+        in: path
+        description: Entry name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+components:
+  schemas:
+    ClientIndustryModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Directory entry ID
+          nullable: true
+        name:
+          type: string
+          description: List entry value
+          nullable: true
+      additionalProperties: false
+      description: Model of an entry in a client's specializations list

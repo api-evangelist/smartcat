@@ -1,0 +1,1523 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account Document API
+  version: v1
+servers:
+- url: /
+tags:
+- name: Document
+paths:
+  /api/integration/v1/document:
+    get:
+      tags:
+      - Document
+      summary: Fetch the document details
+      description: "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+      parameters:
+      - name: documentId
+        in: query
+        description: Document ID
+        required: true
+        schema:
+          type: string
+          description: ID of the document translation
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DocumentModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentModel'
+        '404':
+          description: The provided document ID or language ID does not exist
+        '403':
+          description: The document is not associated with the account
+    delete:
+      tags:
+      - Document
+      summary: Delete one or several documents
+      description: "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+      parameters:
+      - name: documentIds
+        in: query
+        description: Array of document IDs
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+            description: ID of the document translation
+      responses:
+        '204':
+          description: Documents have been successfully deleted
+        '400':
+          description: The provided array of document IDs is empty
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: "Returns if:\n\r\n- At least one document is not associated with the account\r\n- The document is assigned to a vendor who is not allowed to update documents in the assigned projects"
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/document/translate/status:
+    get:
+      tags:
+      - Document
+      summary: Fetch the status of adding document translation
+      description: "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+      parameters:
+      - name: documentId
+        in: query
+        description: Document ID
+        required: true
+        schema:
+          type: string
+          description: ID of the document translation
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TranslationTaskStatus'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranslationTaskStatus'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TranslationTaskStatus'
+        '403':
+          description: At least one document is not associated with the account
+        '404':
+          description: The provided document ID does not exist
+  /api/integration/v1/document/translate/result:
+    get:
+      tags:
+      - Document
+      summary: Fetch a detailed report on translation import results
+      description: "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+      parameters:
+      - name: documentId
+        in: query
+        description: Document ID
+        required: true
+        schema:
+          type: string
+          description: ID of the document translation
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/document/statistics:
+    get:
+      tags:
+      - Document
+      summary: Fetch statistics
+      description: "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+      parameters:
+      - name: documentId
+        in: query
+        description: Document ID
+        required: true
+        schema:
+          type: string
+          description: ID of the document translation
+      - name: onlyExactMatches
+        in: query
+        description: Specifies whether returning 100% and higher matches will suffice
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DocumentStatisticsModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentStatisticsModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentStatisticsModel'
+        '202':
+          description: Statistics creation is in progress
+        '403':
+          description: The document is not associated with the account
+        '422':
+          description: A provided document could not be disassembled
+  /api/integration/v1/document/assignFreelancers:
+    post:
+      tags:
+      - Document
+      summary: Divide the document into equal blocks by the number of words and assign one block to each specified freelancer
+      description: "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+      parameters:
+      - name: documentId
+        in: query
+        description: Document ID
+        schema:
+          type: string
+          description: ID of the document translation
+      - name: stageNumber
+        in: query
+        description: Workflow stage number
+        schema:
+          type: string
+      requestBody:
+        description: Assigned freelancers' user IDs
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+          text/json:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+          application/*+json:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+      responses:
+        '204':
+          description: Freelancer has been successfully assigned to the document
+        '400':
+          description: " Returns if:\n\r\n- The document was not disassembled or was disassembled, but contains 0 words\r\n- The provided workflow stage number does not exist in the project\r\n- An assignment has been already made to the specified workflow stage\r\n- A freelancer ID was not found in CAT"
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: The document is not associated with the account
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: The provided document ID does not exist
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/document/assignVendors:
+    post:
+      tags:
+      - Document
+      summary: Assign a vendor to a document workflow stage
+      description: "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+      parameters:
+      - name: documentId
+        in: query
+        description: Document ID
+        schema:
+          type: string
+          description: ID of the document translation
+      - name: stageNumber
+        in: query
+        description: Workflow stage number
+        schema:
+          type: string
+      - name: vendorAccountId
+        in: query
+        description: Vendor account ID
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: Vendor has been successfully assigned to the document
+        '400':
+          description: Document disassembly failed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: "Returns if:\n\r\n- The document is not associated with the account\r\n- The account is a vendor"
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: "Returns if:\n\r\n- The provided document ID does not exist\r\n- The provided workflow stage number does not exist in the project\r\n- A vendor ID was not found in CAT\r\n- The client-to-vendor connection does not exist"
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '409':
+          description: An assignment has been already made to the specified workflow stage
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/document/setStageUnitCount:
+    post:
+      tags:
+      - Document
+      summary: Specify the unit count for a document workflow stage
+      parameters:
+      - name: projectId
+        in: query
+        description: Project ID
+        schema:
+          type: string
+          format: uuid
+      - name: stageNumber
+        in: query
+        description: Workflow stage number
+        schema:
+          type: string
+      - name: targetLanguageId
+        in: query
+        description: Document target language ID
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        description: Document unit count setup model
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SetStageUnitsCountModel'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SetStageUnitsCountModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SetStageUnitsCountModel'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SetStageUnitsCountModel'
+      responses:
+        '204':
+          description: Unit count has been successfully applied to a document workflow stage
+        '400':
+          description: "Returns if:\n\r\n- The documents are not associated with the project\r\n- The stage is internal\r\n- The unit count is already set for the stage"
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: " Returns if:\n\r\n- The project is not associated with the account and the account is not a project vendor\r\n- The document is not associated with the account and the vendor is not assigned to the stage"
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: " Returns if:\n\r\n- The provided project ID does not exist\r\n- The provided workflow stage number does not exist in the project"
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/document/assign:
+    post:
+      tags:
+      - Document
+      summary: Specify the linguist assignment and segment distribution model
+      description: "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format. \n\r\nAssignmentMode option descriptions:\n\r\n- AssignmentMode.DistributeAmongAll: Distribute segments among all the assigned linguists\n\r\n- AssignmentMode.Rocket: Send invitations and assign all unassigned segments to the first linguist who accepts\n\r\n- AssignmentMode.InviteOnly: Only invite linguists, segments will be assigned later manually\n\r\nNote: If the segment count is not specified, the task will be equally divided among all linguists\n"
+      parameters:
+      - name: documentId
+        in: query
+        description: Document ID
+        schema:
+          type: string
+          description: ID of the document translation
+      - name: stageNumber
+        in: query
+        description: Workflow stage number
+        schema:
+          type: string
+      requestBody:
+        description: Assignment request - list of assigned executors
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/AssignExecutivesRequestModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignExecutivesRequestModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AssignExecutivesRequestModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AssignExecutivesRequestModel'
+      responses:
+        '204':
+          description: Linguist has been successfully assigned to the document
+        '400':
+          description: "Returns if:\n\r\n- The document was not disassembled or was disassembled, but contains 0 words\r\n- The provided workflow stage number does not exist in the project\r\n- An assignment has been already made to the specified workflow stage\r\n- A freelancer ID was not found in CAT\r\n- The specified assignment type is unknown\r\n- Internal account users (not freelancers) were assigned to AssignmentMode.Rocket or AssignmentMode.InviteOnly\r\n- The workflow stage is accomplished outside of Smartcat and its word count/cost are not set (exception: for an in-house freelancer setting word count/cost is not mandatory)"
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: "Returns if:\n\r\n- The project is not associated with the account\r\n- The project is associated with the account, but was assigned to a vendor"
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: The provided document ID does not exist
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/document/unassign:
+    post:
+      tags:
+      - Document
+      summary: Unassign a linguist
+      description: "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+      parameters:
+      - name: documentId
+        in: query
+        description: Document ID
+        schema:
+          type: string
+          description: ID of the document translation
+      - name: stageNumber
+        in: query
+        description: Workflow stage number
+        schema:
+          type: string
+      requestBody:
+        description: Unassigned executor ID
+        content:
+          application/json-patch+json:
+            schema:
+              type: string
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          application/*+json:
+            schema:
+              type: string
+      responses:
+        '204':
+          description: Linguist has been successfully unassigned
+        '400':
+          description: "Returns if:\n\r\n- The provided workflow stage number does not exist in the project\r\n- The linguist with the specified ID is not assigned to the document workflow stage"
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: "Returns if:\n\r\n- The project is not associated with the account\r\n- The project is associated with the account, but was assigned to a vendor"
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: The provided document ID does not exist
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/document/assignFromMyTeam:
+    post:
+      tags:
+      - Document
+      summary: "Send Rocket invitations to MyTeam linguists:\r\nsend invitations, assign the first one to accept the job to every unassigned document segment"
+      description: "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+      requestBody:
+        description: MyTeam linguists assignment model
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/AssignMyTeamExecutivesRequestModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignMyTeamExecutivesRequestModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AssignMyTeamExecutivesRequestModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AssignMyTeamExecutivesRequestModel'
+      responses:
+        '200':
+          description: The operation has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+        '403':
+          description: "Returns if:\n\r\n- The project is not associated with the account\r\n- The project is associated with the account, but was assigned to a vendor"
+        '400':
+          description: "Returns if:\n\r\n- The input model is not provided\r\n- No document is specified\r\n- The specified documents have different target languages\r\n- The specified documents are associated with different projects\r\n- The document was not disassembled or was disassembled, but contains 0 words\r\n- The provided workflow stage number does not exist in the project\r\n- An assignment has been already made to the specified workflow stage\r\n- The workflow stage is accomplished outside of Smartcat and its word count/cost are not set (exception: for an in-house freelancer setting word count/cost is not mandatory)"
+        '404':
+          description: The provided document ID does not exist
+  /api/integration/v1/document/complete:
+    post:
+      tags:
+      - Document
+      summary: Change the document status to Completed
+      description: "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+      parameters:
+      - name: documentId
+        in: query
+        description: Document ID
+        schema:
+          type: string
+          description: ID of the document translation
+      responses:
+        '200':
+          description: The operation has been successfully completed
+        '204':
+          description: The document is already in Completed status
+        '400':
+          description: The document status is not "Manager Review"
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: The specified document ID does not exist
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v2/document/update:
+    put:
+      tags:
+      - Document
+      summary: Update the specified document
+      description: "UpdateDocumentModel must have exactly one file. All other fields in model are optional. \n"
+      parameters:
+      - name: documentId
+        in: query
+        description: Document ID
+        required: true
+        schema:
+          type: string
+      - name: disassembleAlgorithmName
+        in: query
+        description: Optional algorithm for file disassembly
+        schema:
+          type: string
+      - name: presetDisassembleAlgorithm
+        in: query
+        description: Optional preset for the file disassembly algorithm
+        schema:
+          type: string
+      requestBody:
+        description: Document with a file update model
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                value:
+                  $ref: '#/components/schemas/UploadDocumentPropertiesModel'
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+        required: true
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DocumentModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DocumentModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DocumentModel'
+        '400':
+          description: The specified file is empty
+        '403':
+          description: " Returns if:\n\r\n- At least one document is not associated with the account\r\n- The document update functionality is not enabled in the account\r\n- The document is assigned to a vendor who is not allowed to update documents in the assigned projects"
+        '404':
+          description: The provided document ID does not exist
+  /api/integration/v1/document/rename:
+    put:
+      tags:
+      - Document
+      summary: Rename the assigned document
+      description: "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+      parameters:
+      - name: documentId
+        in: query
+        description: Document ID
+        required: true
+        schema:
+          type: string
+          description: ID of the document translation
+      - name: name
+        in: query
+        description: New name
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The document has been successfully renamed
+        '403':
+          description: At least one document is not associated with the account
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: The provided document ID does not exist
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '409':
+          description: The new name will not be unique in the project
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/document/updateMetaInfo:
+    put:
+      tags:
+      - Document
+      summary: Update document meta info
+      description: "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+      parameters:
+      - name: documentId
+        in: query
+        description: Document ID
+        required: true
+        schema:
+          type: string
+          description: ID of the document translation
+      requestBody:
+        description: New value
+        content:
+          application/json-patch+json:
+            schema:
+              type: string
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          application/*+json:
+            schema:
+              type: string
+        required: true
+      responses:
+        '202':
+          description: Accepted
+        '403':
+          description: At least one document is not associated with the account
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: The provided document ID does not exist
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '204':
+          description: Document meta info has been successfully updated
+  /api/integration/v1/document/translate:
+    put:
+      tags:
+      - Document
+      summary: Translate the specified document using the specified translation file
+      description: "Available only for the file formats that support true updates (currently these are resource files with unique resource IDs) \n\r\nSets a task to processing. When the API call is completed, the translation might be not finished yet \n\r\nDocument ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+      parameters:
+      - name: documentId
+        in: query
+        description: Document ID
+        required: true
+        schema:
+          type: string
+          description: ID of the document translation
+      - name: overwrite
+        in: query
+        description: Specifies whether to overwrite the available translations
+        schema:
+          type: boolean
+          default: false
+      - name: confirmTranslation
+        in: query
+        description: Confirm updated segments
+        schema:
+          type: boolean
+          default: false
+      requestBody:
+        description: Translation file
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                translationFile:
+                  type: string
+                  format: binary
+      responses:
+        '202':
+          description: The operation has been successfully completed
+        '403':
+          description: At least one document is not associated with the account
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: The provided document ID does not exist
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/document/translateWithXliff:
+    put:
+      tags:
+      - Document
+      summary: Import an XLIFF file with document translations
+      description: "This method is available only for modified XLIFF files that were exported using the POST /api/integration/v1/document/export method. \n\r\nThe API call body can include one XLIFF file only. \n\r\nDocument ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+      parameters:
+      - name: documentId
+        in: query
+        description: ID of the document to update
+        required: true
+        schema:
+          type: string
+          description: ID of the document translation
+      - name: confirmTranslation
+        in: query
+        description: Confirm updated segments
+        schema:
+          type: boolean
+      - name: overwriteUpdatedSegments
+        in: query
+        description: Specifies whether to overwrite the segments that have been updated since the last export of the XLIFF file
+        schema:
+          type: boolean
+      requestBody:
+        description: XLIFF file with segment translations
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                translationFile:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+      responses:
+        '202':
+          description: Request has been successfully completed
+        '403':
+          description: The document is not associated with the account
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: The provided document ID does not exist
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    DocumentPackageModel:
+      type: object
+      properties:
+        isRoot:
+          type: boolean
+          description: Indicates whether the document is the root of the package
+        packageId:
+          type: string
+          description: Identifier of the package the document belongs to
+          format: uuid
+        parentPackageId:
+          type: string
+          description: Identifier of the parent package in the hierarchy, if any
+          format: uuid
+          nullable: true
+      additionalProperties: false
+      description: Package information for a document that belongs to a file package
+    BilingualFileImportSetingsModel:
+      type: object
+      properties:
+        targetSubstitutionMode:
+          $ref: '#/components/schemas/TargetSubstitutionMode'
+        targetLanguageUsageMode:
+          $ref: '#/components/schemas/TargetLanguageUsageMode'
+        lockMode:
+          $ref: '#/components/schemas/LockMode'
+        confirmMode:
+          $ref: '#/components/schemas/ConfirmMode'
+        saveType:
+          $ref: '#/components/schemas/SaveType'
+      additionalProperties: false
+      description: Bilingual document upload settings model
+    ConfirmMode:
+      enum:
+      - none
+      - byStates
+      - atFirstStage
+      - atLastStage
+      type: string
+      description: Mode of segment confirmation at file upload
+      format: int32
+    AssignExecutivesRequestModel+Executive:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Identifier (UserId for freelancers, AccountUserId for linguists)
+          format: uuid
+        wordsCount:
+          type: integer
+          description: Word count assigned to the linguist. Optional
+          format: int32
+          nullable: true
+      additionalProperties: false
+      description: Model for the assignment of a freelancer or account user to a document
+    AssignExecutivesRequestModel:
+      type: object
+      properties:
+        executives:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssignExecutivesRequestModel+Executive'
+          description: Linguists
+          nullable: true
+        minWordsCountForExecutive:
+          type: integer
+          description: "Minimal word count per linguist. Optional parameter applicable if the word count for the linguist is not explicitly defined\r\nThe remaining document portion assigned to the last linguist might be smaller than the minimum"
+          format: int32
+          nullable: true
+        assignmentMode:
+          $ref: '#/components/schemas/AssignmentMode'
+      additionalProperties: false
+      description: Input model of a request for assigning account freelancers or users to a document
+    TranslationTaskStatus:
+      enum:
+      - inProgress
+      - faulted
+      - completed
+      type: string
+      description: Status of a document translation addition task
+      format: int32
+    AssignMyTeamExecutivesRequestModel:
+      type: object
+      properties:
+        documentIds:
+          type: array
+          items:
+            type: string
+          description: Document identifiers
+          nullable: true
+        stageNumber:
+          type: string
+          description: Workflow stage number
+        specializations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Specialization'
+          description: Specializations
+          nullable: true
+        matchProjectClient:
+          type: boolean
+          description: Consider the project client
+      additionalProperties: false
+      description: Model for assigning documents to MyTeam executors
+    DocumentWorkflowStageModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        progress:
+          type: number
+          description: Completion percentage
+          format: double
+        wordsTranslated:
+          type: integer
+          description: Translated words count
+          format: int32
+        unassignedWordsCount:
+          type: integer
+          description: Unassigned words count
+          format: int32
+        status:
+          $ref: '#/components/schemas/WorkflowStageStatus'
+        statusModificationDate:
+          type: string
+          description: Status change date
+          format: date-time
+          nullable: true
+        executives:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssignedExecutiveModel'
+          description: Assigned linguists
+          nullable: true
+        vendor:
+          $ref: '#/components/schemas/VendorModel'
+      additionalProperties: false
+      description: Document workflow stage model
+    AssignedExecutiveModel:
+      type: object
+      properties:
+        assignedWordsCount:
+          type: integer
+          description: Assigned word count
+          format: int32
+        progress:
+          type: number
+          description: Completion percentage
+          format: double
+        id:
+          type: string
+          description: User ID
+          format: uuid
+        supplierType:
+          $ref: '#/components/schemas/SupplierType'
+      additionalProperties: false
+      description: Model of a linguist assigned to a document workflow stage
+    DocumentStatus:
+      enum:
+      - created
+      - inProgress
+      - completed
+      - updated
+      - targetUpdated
+      type: string
+      description: Document status
+      format: int32
+    TargetSubstitutionMode:
+      enum:
+      - all
+      - none
+      type: string
+      description: Target substitution mode
+      format: int32
+    Specialization:
+      enum:
+      - education
+      - productsAndCatalogs
+      - documentsAndCertificates
+      - marketing
+      - correspondence
+      - software
+      - fiction
+      - scienceAndPatents
+      - contractsAndReports
+      - gaming
+      - manuals
+      - website
+      - annualReport
+      - corporateAndSocialResponsibility
+      - technicalAndEngineering
+      - cryptocurrencies
+      - biochemistry
+      - computingScience
+      - electronics
+      - metallurgy
+      - nuclear
+      - optics
+      - printing
+      - telecommunication
+      - textile
+      - patent
+      - military
+      - ecologyAndEnvironment
+      - agriculture
+      - artsAndCulture
+      - aviationAndSpace
+      - biology
+      - cartography
+      - chemistry
+      - cosmetics
+      - construction
+      - architecture
+      - economics
+      - accounting
+      - bankingAndInvestment
+      - insurance
+      - energy
+      - thermalPowerEngineering
+      - mechanicalEngineering
+      - finance
+      - general
+      - geography
+      - geology
+      - mining
+      - history
+      - linguistics
+      - philosophy
+      - psychology
+      - sociology
+      - industry
+      - industrialAutomation
+      - electricalEngineering
+      - iT
+      - eRP
+      - law
+      - hR
+      - mathematics
+      - medicine
+      - medicalEquipment
+      - pharmaceutics
+      - veterinaryMedicine
+      - oilAndGas
+      - physics
+      - politicsAndSociety
+      - realEstate
+      - recreation
+      - fashion
+      - luxuryItems
+      - tourismAndTravel
+      - religion
+      - socialScience
+      - sport
+      - transport
+      - automotiveBusiness
+      - foodAndDrinks
+      - biotechnology
+      - business
+      - lifeSciences
+      type: string
+      description: Text specialization
+      format: int32
+    StatisticsFieldName:
+      enum:
+      - perfect
+      - crossFileRepeated
+      - total
+      - repetitions
+      - newWords
+      - match_50_74
+      - match_75_84
+      - match_85_94
+      - match_95_99
+      - match_100
+      - contextMatch_101
+      - contextMatch_102
+      type: string
+      description: Statistics field names
+      format: int32
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
+    UploadDocumentPropertiesModel:
+      type: object
+      properties:
+        bilingualFileImportSetings:
+          $ref: '#/components/schemas/BilingualFileImportSetingsModel'
+        enablePlaceholders:
+          type: boolean
+          description: Specifies whether to enable placeholders in the document body
+          nullable: true
+      additionalProperties: false
+      description: Document upload properties model
+    SupplierType:
+      enum:
+      - freelancer
+      - company
+      type: string
+      description: Supplier type
+      format: int32
+    WorkflowStageStatus:
+      enum:
+      - notAssigned
+      - assigned
+      - inProgress
+      - completed
+      type: string
+      description: Workflow stage status
+      format: int32
+    StatisticsRowModel:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/StatisticsFieldName'
+        words:
+          type: integer
+          description: Words
+          format: int64
+        percent:
+          type: number
+          description: Percent
+          format: double
+        segments:
+          type: integer
+          description: Segments
+          format: int32
+        pages:
+          type: number
+          description: Pages
+          format: double
+        charsWithoutSpaces:
+          type: integer
+          description: Chars Without Spaces
+          format: int64
+        charsWithSpaces:
+          type: integer
+          description: Chars With Spaces
+          format: int64
+        effectiveWordsForBilling:
+          type: number
+          description: Effective word count
+          format: double
+          nullable: true
+      additionalProperties: false
+      description: Document Statistics Model
+    LockMode:
+      enum:
+      - none
+      - byStates
+      - confirmed
+      type: string
+      description: Mode of locking segments at import
+      format: int32
+    DocumentStatisticsModel:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the document for which statistics are collected
+          nullable: true
+        statistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatisticsRowModel'
+          description: Statistics regarding the work done for the project
+          nullable: true
+      additionalProperties: false
+      description: Document statistics
+    VendorModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        name:
+          type: string
+          description: Company name
+          nullable: true
+        customFields:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: Custom fields
+          nullable: true
+      additionalProperties: false
+      description: Vendor model
+    SaveType:
+      enum:
+      - autoSaved
+      - insertTM
+      - insertMT
+      - insertTB
+      - translatedInSourceFile
+      - repetitionInsert
+      - rollback
+      - replacement
+      - copyFromSource
+      - numberConversion
+      - crossDocumentRepetitionInsert
+      - joinSegments
+      - splitSegment
+      - updateSourceText
+      - documentCompletion
+      - updateFromExternalSystem
+      - reconnect
+      - cleanTarget
+      - autoCopyFromSource
+      - copyProject
+      - aiAction
+      - aligner
+      - confirmation
+      - glossaryImprovement
+      - agentReview
+      type: string
+      description: Revision type
+      format: int32
+    SetStageUnitsCountModel:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: Document ID
+        unitCount:
+          type: integer
+          description: Unit count
+          format: int32
+      additionalProperties: false
+      description: Document unit count setup model
+    TargetLanguageUsageMode:
+      enum:
+      - selected
+      - fromFile
+      type: string
+      description: Target language selection mode for translation
+      format: int32
+    AssignmentMode:
+      enum:
+      - distributeAmongAll
+      - rocket
+      - inviteOnly
+      type: string
+      description: Linguist assignment mode
+      format: int32
+    DocumentDisassemblingStatus:
+      enum:
+      - inProgress
+      - error
+      - success
+      type: string
+      description: Document disassembly status
+      format: int32
+    DocumentModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Document ID
+          nullable: true
+        name:
+          type: string
+          description: Document name
+          nullable: true
+        fullPath:
+          type: string
+          description: Full path to the document in the project
+          nullable: true
+        filename:
+          type: string
+          description: Source file name, including the extension
+          nullable: true
+        originalFilename:
+          type: string
+          description: Name of the original file uploaded by the user (before any pre-processing such as OCR), including the extension.
+          nullable: true
+        creationDate:
+          type: string
+          description: Creation date
+          format: date-time
+        deadline:
+          type: string
+          description: Document translation deadline
+          format: date-time
+          nullable: true
+        sourceLanguage:
+          type: string
+          description: Source language
+          nullable: true
+        documentDisassemblingStatus:
+          $ref: '#/components/schemas/DocumentDisassemblingStatus'
+        targetLanguage:
+          type: string
+          description: Target language
+          nullable: true
+        status:
+          $ref: '#/components/schemas/DocumentStatus'
+        wordsCount:
+          type: integer
+          description: Word count in the source text
+          format: int32
+        statusModificationDate:
+          type: string
+          description: Late of the last status change
+          format: date-time
+          nullable: true
+        pretranslateCompleted:
+          type: boolean
+          description: Specifies whether pretranslation has completed, if ordered
+        workflowStages:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentWorkflowStageModel'
+          description: Workflow stages for the document
+          nullable: true
+        externalId:
+          type: string
+          description: External identifier assigned by the client upon the document creation
+          nullable: true
+        projectId:
+          type: string
+          description: ID of the project associated with the document
+          format: uuid
+        metaInfo:
+          type: string
+          description: Additional user information about the document
+          nullable: true
+        placeholdersAreEnabled:
+          type: boolean
+          description: Specifies whether placeholders are enabled for the document
+        revisionLabel:
+          type: string
+          description: Document version ID label
+          nullable: true
+        readyForCompletion:
+          type: boolean
+          description: Indicates whether the document is ready to be completed
+        package:
+          $ref: '#/components/schemas/DocumentPackageModel'
+      additionalProperties: false
+      description: Document model

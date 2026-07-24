@@ -1,0 +1,88 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account PlaceholderFormatApi API
+  version: v1
+servers:
+- url: /
+tags:
+- name: PlaceholderFormatApi
+paths:
+  /api/integration/v1/placeholders:
+    get:
+      tags:
+      - PlaceholderFormatApi
+      summary: Fetch all placeholder formats available in the current account
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlaceholderFormatModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlaceholderFormatModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlaceholderFormatModel'
+    put:
+      tags:
+      - PlaceholderFormatApi
+      summary: Save placeholder formats set for the specified account
+      requestBody:
+        description: Placeholder formats list
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PlaceholderFormatModel'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PlaceholderFormatModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PlaceholderFormatModel'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PlaceholderFormatModel'
+      responses:
+        '204':
+          description: No Content
+  /api/integration/v1/placeholders/validate:
+    get:
+      tags:
+      - PlaceholderFormatApi
+      summary: Validate the provided placeholder format
+      parameters:
+      - name: format
+        in: query
+        description: Placeholder format regular expression
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+components:
+  schemas:
+    PlaceholderFormatModel:
+      type: object
+      properties:
+        regex:
+          type: string
+          description: Placeholder format regular expression
+          nullable: true
+      additionalProperties: false
+      description: Model for applying a placeholder format to a client

@@ -1,0 +1,220 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account FileDisassemblingAlgorithmPresets API
+  version: v1
+servers:
+- url: /
+tags:
+- name: FileDisassemblingAlgorithmPresets
+paths:
+  /api/integration/v1/fileDisassemblingAlgorithmPresets/{id}:
+    get:
+      tags:
+      - FileDisassemblingAlgorithmPresets
+      summary: Fetch a disassembly algorithm preset
+      parameters:
+      - name: id
+        in: path
+        description: Preset ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FileDisassemblingAlgorithmPresetViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileDisassemblingAlgorithmPresetViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FileDisassemblingAlgorithmPresetViewModel'
+        '400':
+          description: The provided ID format is incorrect
+        '404':
+          description: The provided preset ID does not exist
+    put:
+      tags:
+      - FileDisassemblingAlgorithmPresets
+      summary: Update a disassembly algorithm preset
+      parameters:
+      - name: id
+        in: path
+        description: ID of the preset to be updated
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Update preset model
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/FileDisassemblingAlgorithmPresetEditModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileDisassemblingAlgorithmPresetEditModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FileDisassemblingAlgorithmPresetEditModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/FileDisassemblingAlgorithmPresetEditModel'
+        required: true
+      responses:
+        '204':
+          description: Request has been successfully completed
+        '400':
+          description: Incorrect parameter format
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+      - FileDisassemblingAlgorithmPresets
+      summary: Delete a preset
+      parameters:
+      - name: id
+        in: path
+        description: ID of the preset to be deleted
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Request has been successfully completed
+  /api/integration/v1/fileDisassemblingAlgorithmPresets:
+    get:
+      tags:
+      - FileDisassemblingAlgorithmPresets
+      summary: Fetch all presets for the account
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FileDisassemblingAlgorithmPresetViewModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FileDisassemblingAlgorithmPresetViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FileDisassemblingAlgorithmPresetViewModel'
+    post:
+      tags:
+      - FileDisassemblingAlgorithmPresets
+      summary: Create a disassembly algorithm preset
+      requestBody:
+        description: Creation preset model
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/FileDisassemblingAlgorithmPresetEditModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileDisassemblingAlgorithmPresetEditModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FileDisassemblingAlgorithmPresetEditModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/FileDisassemblingAlgorithmPresetEditModel'
+        required: true
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FileDisassemblingAlgorithmPresetCreatedModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileDisassemblingAlgorithmPresetCreatedModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FileDisassemblingAlgorithmPresetCreatedModel'
+        '400':
+          description: Incorrect parameter format
+components:
+  schemas:
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
+    FileDisassemblingAlgorithmPresetEditModel:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Preset name
+          nullable: true
+        algorithmName:
+          type: string
+          description: Preset algorithm
+          nullable: true
+        settings:
+          description: Settings
+          nullable: true
+      additionalProperties: false
+      description: Preset edit model
+    FileDisassemblingAlgorithmPresetViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        name:
+          type: string
+          description: Name
+          nullable: true
+        algorithmName:
+          type: string
+          description: Algorithm
+          nullable: true
+        settings:
+          description: Settings
+          nullable: true
+      additionalProperties: false
+      description: Preset view model
+    FileDisassemblingAlgorithmPresetCreatedModel:
+      type: object
+      properties:
+        presetId:
+          type: string
+          description: Preset ID
+          format: uuid
+      additionalProperties: false
+      description: Created preset details

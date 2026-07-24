@@ -1,0 +1,126 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account SmartTranslation API
+  version: v1
+servers:
+- url: /
+tags:
+- name: SmartTranslation
+paths:
+  /api/integration/v1/smartTranslation/translate:
+    post:
+      tags:
+      - SmartTranslation
+      summary: "Fetch translation\r\nSee the Smart Translation API guide [here](https://developers.smartcat.com/api-guides/#instant-translations-via-the-real-time-api)"
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SmartTranslationRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SmartTranslationRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SmartTranslationRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SmartTranslationRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SmartTranslationResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmartTranslationResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SmartTranslationResponse'
+components:
+  schemas:
+    SmartTranslationResponse:
+      type: object
+      properties:
+        translations:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/SmartTranslationResult'
+            nullable: true
+          description: Translation results grouped by the target language
+          nullable: true
+      additionalProperties: false
+      description: Successful response to a translation request
+    SmartTranslationResult:
+      type: object
+      properties:
+        translation:
+          type: string
+          description: Translation.
+          nullable: true
+        error:
+          type: boolean
+          description: Error flag.
+        segmentMetadata:
+          type: string
+          description: Optional opaque per-segment metadata associated with the translated text. Null when absent.
+          nullable: true
+      additionalProperties: false
+      description: Translation result.
+    SmartTranslationRequest:
+      required:
+      - sourceLanguage
+      - targetLanguages
+      - texts
+      type: object
+      properties:
+        sourceLanguage:
+          minLength: 1
+          type: string
+          description: Source language
+        targetLanguages:
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+          items:
+            type: string
+          description: Target languages
+        profile:
+          type: string
+          description: Translation profile ID
+          nullable: true
+        isHtml:
+          type: boolean
+          description: Indicates whether the source text is in HTML format
+        texts:
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/SmartTranslationText'
+          description: Translation text entry
+        externalTag:
+          type: string
+          description: External system tag
+          nullable: true
+      additionalProperties: false
+      description: Translation request
+    SmartTranslationText:
+      required:
+      - text
+      type: object
+      properties:
+        text:
+          minLength: 1
+          type: string
+          description: Text
+        context:
+          type: string
+          description: Translation context
+          nullable: true
+      additionalProperties: false
+      description: Translation text

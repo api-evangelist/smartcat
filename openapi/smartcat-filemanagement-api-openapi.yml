@@ -1,0 +1,316 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account FileManagement API
+  version: v1
+servers:
+- url: /
+tags:
+- name: FileManagement
+paths:
+  /api/integration/v1/file-management/file/{path}:
+    get:
+      tags:
+      - FileManagement
+      summary: Download a file by path
+      parameters:
+      - name: path
+        in: path
+        description: Path of file
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Models.ErrorResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Models.ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Models.ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Models.ErrorResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Models.ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Models.ErrorResponse'
+    put:
+      tags:
+      - FileManagement
+      summary: Upload file to a specified path in storage
+      parameters:
+      - name: path
+        in: path
+        description: Path of file
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - file
+              type: object
+              properties:
+                file:
+                  type: string
+                  description: New file
+                  format: binary
+            encoding:
+              file:
+                style: form
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileInfoModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Models.ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Models.ErrorResponse'
+        '402':
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Models.ErrorResponse'
+    delete:
+      tags:
+      - FileManagement
+      summary: Delete a file by path
+      parameters:
+      - name: path
+        in: path
+        description: Path of file
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Models.ErrorResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Models.ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Models.ErrorResponse'
+  /api/integration/v1/file-management/files/{path}:
+    put:
+      tags:
+      - FileManagement
+      summary: Upload multiple files to a specified path in storage
+      description: Original file names will be used for uploaded files
+      parameters:
+      - name: path
+        in: path
+        description: Prefix for uploaded files
+        required: true
+        schema:
+          type: string
+      - name: unzip
+        in: query
+        description: Extract files from uploaded zip file(-s) instead of saving zip as-is
+        schema:
+          type: boolean
+          default: false
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - files
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                  description: New files
+            encoding:
+              files:
+                style: form
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FileInfoModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Models.ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Models.ErrorResponse'
+        '402':
+          description: Payment Required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Models.ErrorResponse'
+  /api/integration/v1/file-management/file-info/{path}:
+    get:
+      tags:
+      - FileManagement
+      summary: Get single file info by path
+      parameters:
+      - name: path
+        in: path
+        description: Path of file
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileInfoModel'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Models.ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Models.ErrorResponse'
+  /api/integration/v1/file-management/file-info-list/{prefix}:
+    get:
+      tags:
+      - FileManagement
+      summary: Get list of files whose path starts with given prefix
+      parameters:
+      - name: prefix
+        in: path
+        description: Prefix for searching files
+        required: true
+        schema:
+          type: string
+      - name: batchKey
+        in: query
+        description: Key to request the next batch of files
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchResult<FileInfoModel>'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Models.ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Models.ErrorResponse'
+components:
+  schemas:
+    BatchResult<FileInfoModel>:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileInfoModel'
+          nullable: true
+        nextBatchKey:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Models.ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          nullable: true
+        details:
+          type: string
+          nullable: true
+        correlationId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    FileInfoModel:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Original name of the file
+          nullable: true
+        mime:
+          type: string
+          description: Mime type of the file
+          nullable: true
+        path:
+          type: string
+          description: Path of file in storage
+          nullable: true
+        size:
+          type: integer
+          description: Size of file in bytes
+          format: int64
+        createdAt:
+          type: string
+          description: Date when file was uploaded
+          format: date-time
+        lastAccessTime:
+          type: string
+          description: Date when file was last time accessed
+          format: date-time
+          nullable: true
+        expirationTime:
+          type: string
+          description: Date when file will be deleted if not used
+          format: date-time
+      additionalProperties: false
+      description: Information about file uploaded to storage

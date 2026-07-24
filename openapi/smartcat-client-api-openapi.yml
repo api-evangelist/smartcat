@@ -1,0 +1,447 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account Client API
+  version: v1
+servers:
+- url: /
+tags:
+- name: Client
+paths:
+  /api/integration/v1/client/create:
+    post:
+      tags:
+      - Client
+      summary: "Create a new client with the specified name and return their ID\r\nSimply return the ID if a client with that name already exists"
+      requestBody:
+        description: Client name
+        content:
+          application/json-patch+json:
+            schema:
+              type: string
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          application/*+json:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: string
+                format: uuid
+            application/json:
+              schema:
+                type: string
+                format: uuid
+            text/json:
+              schema:
+                type: string
+                format: uuid
+  /api/integration/v1/client/{clientId}/set:
+    put:
+      tags:
+      - Client
+      summary: Apply the specified net rate to the specified client
+      parameters:
+      - name: clientId
+        in: path
+        description: Client ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: netRateId
+        in: query
+        description: Net rate ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ClientModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ClientModel'
+        '404':
+          description: The specified client or net rate were not found in the current account
+  /api/integration/v1/client/{clientId}/contact:
+    put:
+      tags:
+      - Client
+      summary: Sets contact details for the specified client
+      parameters:
+      - name: clientId
+        in: path
+        description: Client ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: Contact details
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ContactModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ContactModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ContactModel'
+        required: true
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ClientModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ClientModel'
+        '400':
+          description: Contact details are incorrect
+        '404':
+          description: The specified client not found
+  /api/integration/v2/client/{clientId}:
+    put:
+      tags:
+      - Client
+      summary: Update client details
+      parameters:
+      - name: clientId
+        in: path
+        description: Client ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: Client update model
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UpdateClientModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateClientModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateClientModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateClientModel'
+        required: true
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ClientModelV2'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientModelV2'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ClientModelV2'
+        '400':
+          description: "Returns if:\r\n- contact details are invalid\r\n- the provided manager ID is invalid"
+        '404':
+          description: The specified client not found
+    get:
+      tags:
+      - Client
+      summary: Fetch the client account information
+      parameters:
+      - name: clientId
+        in: path
+        description: Client ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ClientModelV2'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientModelV2'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ClientModelV2'
+        '404':
+          description: The specified client was not found in the current account
+  /api/integration/v1/client/{clientId}:
+    get:
+      tags:
+      - Client
+      summary: Fetch the client account information
+      parameters:
+      - name: clientId
+        in: path
+        description: Client ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ClientModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ClientModel'
+        '404':
+          description: The specified client was not found in the current account
+components:
+  schemas:
+    NetRateModel+TMRangeRateModel:
+      type: object
+      properties:
+        fromQuality:
+          type: integer
+          description: The lowest value in a TM match quality range
+          format: int32
+        toQuality:
+          type: integer
+          description: The highest value in a TM match quality range
+          format: int32
+        value:
+          type: number
+          description: TM range rate model
+          format: double
+      additionalProperties: false
+      description: TM matches rate model
+    ClientModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Client ID
+          format: uuid
+        name:
+          type: string
+          description: Name
+          nullable: true
+        netRate:
+          $ref: '#/components/schemas/NetRateModel'
+        contact:
+          $ref: '#/components/schemas/ContactModel'
+      additionalProperties: false
+      description: Client model
+    ContactModel:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Client email
+          nullable: true
+        fullName:
+          type: string
+          description: Client name
+          nullable: true
+        phoneNumber:
+          type: string
+          description: Contact phone number
+          nullable: true
+        position:
+          type: string
+          description: Position
+          nullable: true
+        comment:
+          type: string
+          description: Commentary
+          nullable: true
+      additionalProperties: false
+      description: Contact information model
+    UpdateClientModel:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name
+          nullable: true
+        netRateId:
+          type: string
+          description: ID of discount rates applicable to client
+          nullable: true
+        mainContact:
+          $ref: '#/components/schemas/ContactModel'
+        additionalContacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactModel'
+          description: Additional contacts
+          nullable: true
+        vat:
+          type: string
+          description: VAT
+          nullable: true
+        countryCode:
+          type: string
+          description: Country code
+          nullable: true
+        comment:
+          type: string
+          description: Commentary
+          nullable: true
+        website:
+          type: string
+          description: Website
+          nullable: true
+        industryId:
+          type: string
+          description: Entry ID in the client specializations list
+          nullable: true
+        legalName:
+          type: string
+          description: Legal name
+          nullable: true
+        address:
+          type: string
+          description: Address
+          nullable: true
+        languageId:
+          type: integer
+          description: Language
+          format: int32
+          nullable: true
+        vendorManager:
+          type: string
+          description: Manager
+          nullable: true
+        customFieldValues:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: Customized field values
+          nullable: true
+      additionalProperties: false
+      description: Client update model
+    NetRateModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Net rate ID
+          nullable: true
+        name:
+          type: string
+          description: Net rate name
+          nullable: true
+        newWordsRate:
+          type: number
+          description: New words rate
+          format: double
+        repetitionsRate:
+          type: number
+          description: Repetitions rate
+          format: double
+        tmMatchRates:
+          type: array
+          items:
+            $ref: '#/components/schemas/NetRateModel+TMRangeRateModel'
+          description: TM matches rate
+          nullable: true
+      additionalProperties: false
+      description: Rate discounts model
+    ClientModelV2:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Client ID
+          format: uuid
+        name:
+          type: string
+          description: Name
+          nullable: true
+        netRate:
+          $ref: '#/components/schemas/NetRateModel'
+        mainContact:
+          $ref: '#/components/schemas/ContactModel'
+        additionalContacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactModel'
+          description: Additional contacts
+          nullable: true
+        vat:
+          type: string
+          description: VAT
+          nullable: true
+        countryCode:
+          type: string
+          description: Country code
+          nullable: true
+        comment:
+          type: string
+          description: Commentary
+          nullable: true
+        website:
+          type: string
+          description: Website
+          nullable: true
+        industryId:
+          type: string
+          description: Specialization
+          nullable: true
+        legalName:
+          type: string
+          description: Legal name
+          nullable: true
+        address:
+          type: string
+          description: Address
+          nullable: true
+        languageId:
+          type: integer
+          description: Language
+          format: int32
+          nullable: true
+        vendorManager:
+          type: string
+          description: Manager
+          nullable: true
+        customFields:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: Custom fields
+          nullable: true
+      additionalProperties: false
+      description: Client model

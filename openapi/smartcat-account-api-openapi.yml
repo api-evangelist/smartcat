@@ -1,0 +1,128 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account API
+  version: v1
+servers:
+- url: /
+tags:
+- name: Account
+paths:
+  /api/integration/v1/account:
+    get:
+      tags:
+      - Account
+      summary: Fetch the account details
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AccountModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AccountModel'
+        '404':
+          description: Unable to find an account connected to the integration API
+  /api/integration/v1/account/mtengines:
+    get:
+      tags:
+      - Account
+      summary: Fetch the list of MT services available for the account
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MTEngineModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MTEngineModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MTEngineModel'
+components:
+  schemas:
+    MTEngineModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        name:
+          type: string
+          description: MT engine name
+          nullable: true
+      additionalProperties: false
+      description: MT (Machine Translation) engine model
+    AccountModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        name:
+          type: string
+          description: Name
+          nullable: true
+        description:
+          type: string
+          description: Description
+          nullable: true
+        isPersonal:
+          type: boolean
+          description: Specifies whether it is the user's personal account
+        type:
+          type: string
+          description: Account type
+          nullable: true
+        endCustomerValue:
+          $ref: '#/components/schemas/EndCustomerValue'
+        dateCreated:
+          type: string
+          description: Creation date
+          format: date-time
+        interInstallationAccountId:
+          type: string
+          description: Account ID for interacting with resources shared between installations
+          format: uuid
+        createdByUserId:
+          type: string
+          description: User ID who created the account
+          nullable: true
+        organizationId:
+          type: string
+          description: Organization ID to which the account belongs
+          format: uuid
+          nullable: true
+        isDisabled:
+          type: boolean
+          description: Attribute of "disabled" personal account
+      additionalProperties: false
+      description: Account information for external systems
+    EndCustomerValue:
+      enum:
+      - lowValue
+      - enterprise
+      - sMB
+      - corporate
+      - university
+      - government
+      - strategic
+      - smallBusiness
+      - midmarket
+      - anonymous
+      type: string
+      format: int32

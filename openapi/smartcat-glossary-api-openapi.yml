@@ -1,0 +1,266 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account Glossary API
+  version: v1
+servers:
+- url: /
+tags:
+- name: Glossary
+paths:
+  /api/integration/v1/glossaries:
+    get:
+      tags:
+      - Glossary
+      summary: Fetch glossaries from the current account
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GlossaryModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GlossaryModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GlossaryModel'
+  /api/integration/v1/glossaries/default:
+    get:
+      tags:
+      - Glossary
+      summary: Fetch default glossary from the current account
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GlossaryModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlossaryModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GlossaryModel'
+        '404':
+          description: Default glossary is not found
+  /api/integration/v1/glossary/import:
+    post:
+      tags:
+      - Glossary
+      summary: Create a task for importing concepts from a glossary file
+      parameters:
+      - name: glossaryId
+        in: query
+        description: Glossary ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: clearBeforeImport
+        in: query
+        description: Specifies whether to delete all glossary concepts before the import
+        required: true
+        schema:
+          type: boolean
+      requestBody:
+        description: File containing imported concepts
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+        required: true
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: string
+                format: uuid
+            application/json:
+              schema:
+                type: string
+                format: uuid
+            text/json:
+              schema:
+                type: string
+                format: uuid
+        '404':
+          description: The glossary with the specified ID was not found
+  /api/integration/v1/glossary/importTaskState/{taskId}:
+    get:
+      tags:
+      - Glossary
+      summary: Fetch the status of a concept import task
+      parameters:
+      - name: taskId
+        in: path
+        description: Concept import task ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '404':
+          description: The task with the specified ID was not found
+  /api/integration/v1/glossary/export:
+    post:
+      tags:
+      - Glossary
+      summary: Create a task for export the glossary
+      parameters:
+      - name: glossaryId
+        in: query
+        description: Glossary ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: string
+                format: uuid
+            application/json:
+              schema:
+                type: string
+                format: uuid
+            text/json:
+              schema:
+                type: string
+                format: uuid
+        '404':
+          description: The glossary with the specified ID was not found
+  /api/integration/v1/glossary/export/pendingTasks:
+    get:
+      tags:
+      - Glossary
+      summary: Get the list of pending export glossary tasks
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GlossaryExportPendingTaskInfo'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GlossaryExportPendingTaskInfo'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GlossaryExportPendingTaskInfo'
+  /api/integration/v1/glossary/export/{taskId}:
+    get:
+      tags:
+      - Glossary
+      summary: Download the glossary export task result
+      parameters:
+      - name: taskId
+        in: path
+        description: Export task ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Request has been successfully completed
+        '400':
+          description: The results are not ready to download
+        '404':
+          description: The export task with the specified ID was not found
+        '500':
+          description: Some problem has happended during export
+components:
+  schemas:
+    GlossaryModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Glossary ID
+          format: uuid
+        name:
+          type: string
+          description: Glossary name
+          nullable: true
+        description:
+          type: string
+          description: Glossary description
+          nullable: true
+        clientId:
+          type: string
+          description: Client ID, if a glossary client is specified
+          format: uuid
+          nullable: true
+        languages:
+          type: array
+          items:
+            type: string
+          description: Glossary language codes
+          nullable: true
+        units:
+          type: integer
+          description: Glossary unit count
+          format: int32
+        unitsPending:
+          type: integer
+          description: Pending unit count
+          format: int32
+        isDefault:
+          type: boolean
+          description: Default glossary flag
+      additionalProperties: false
+      description: Glossary
+    GlossaryExportPendingTaskInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task ID
+          format: uuid
+          readOnly: true
+        glossaryId:
+          type: string
+          description: Glossary ID
+          format: uuid
+          readOnly: true
+        completed:
+          type: boolean
+          description: Whether the task is completed
+          readOnly: true
+      additionalProperties: false
+      description: Information about the glossary export task

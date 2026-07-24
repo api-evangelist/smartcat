@@ -1,0 +1,180 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account DocumentExport API
+  version: v1
+servers:
+- url: /
+tags:
+- name: DocumentExport
+paths:
+  /api/integration/v1/document/export/{taskId}:
+    get:
+      tags:
+      - DocumentExport
+      summary: Download the export results
+      parameters:
+      - name: taskId
+        in: path
+        description: Export task ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Request has been successfully completed
+        '204':
+          description: The task is not ready yet
+        '404':
+          description: The provided task ID does not exist
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '422':
+          description: Export failed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/document/export:
+    post:
+      tags:
+      - DocumentExport
+      summary: Request the documents export
+      parameters:
+      - name: documentIds
+        in: query
+        description: "Target language IDs (the syntax is documentId_languageId), where documentId_languageId is a document ID\r\nand languageId is a target language ID"
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+            description: ID of the document translation
+      - name: mode
+        in: query
+        description: "Segment export mode:\r\nCurrent - The current translation, the segment status notwithstanding (what is shown in the editor)\r\nConfirmed - Confirmed segments at the specific stage, as defined by the StageNumber parameter. If the stage is not specified, export all segments confirmed at any stage (this behavior is similar to exporting files using the Smartcat interface)\r\nComplete - Only completed segments, that is the segments that have passed all the stages and were confirmed at the last one"
+        schema:
+          $ref: '#/components/schemas/SegmentExportMode'
+      - name: type
+        in: query
+        description: Export document type, by default Smartcat.AppIntegrations.Contracts.ExportDocumentRequestType.Target
+        schema:
+          $ref: '#/components/schemas/ExportDocumentRequestType'
+      - name: stageNumber
+        in: query
+        description: Workflow stage number when downloading an intermediate result
+        schema:
+          type: string
+      - name: exportingDocumentFormat
+        in: query
+        description: Exporting file format for export without using source file
+        schema:
+          $ref: '#/components/schemas/SoftwareLocalizationDocumentFormat'
+      - name: structuringDelimiter
+        in: query
+        description: Delimiter for structuring keys when exporting without using the source file
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ExportDocumentTaskModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportDocumentTaskModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ExportDocumentTaskModel'
+        '400':
+          description: "Returns if:\n\r\n- the provided array of document IDs is empty\r\n- the provided workflow stage number is incorrect\r\n- the type of the provided document to be exported to the project is incorrect (for example, Smartcat.AppIntegrations.Contracts.ExportDocumentRequestType.DocumentWithMetadata for a docx-based project)"
+        '403':
+          description: At least one document is not associated with the account
+components:
+  schemas:
+    ExportDocumentTaskModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task ID
+          format: uuid
+        documentIds:
+          type: array
+          items:
+            type: string
+          description: Documents for export
+          nullable: true
+      additionalProperties: false
+      description: Export document task model
+    SegmentExportMode:
+      enum:
+      - current
+      - confirmed
+      - complete
+      type: string
+      description: Document export mode
+      format: int32
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
+    ExportDocumentRequestType:
+      enum:
+      - source
+      - target
+      - xliff
+      - multilangCsv
+      - documentWithMetadata
+      - sourceInNewFormat
+      - subtitlesBurningSource
+      - subtitlesBurningTarget
+      - imageSourceText
+      - imageTargetText
+      type: string
+      description: Document download request type
+      format: int32
+    SoftwareLocalizationDocumentFormat:
+      enum:
+      - json
+      - ios-strings
+      - android-xml
+      - yaml
+      - structured-json
+      - structured-yaml
+      - qt-ts
+      type: string
+      description: Software localization document format
+      format: int32

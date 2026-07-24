@@ -1,0 +1,1046 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account ProjectTask API
+  version: v1
+servers:
+- url: /
+tags:
+- name: ProjectTask
+paths:
+  /api/integration/v1/projectTask/{projectId}/list:
+    get:
+      tags:
+      - ProjectTask
+      summary: Get a list of project tasks
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: currency
+        in: query
+        description: Code of the currency used to recalculate supplier rates and the cost of work  AbbyyLS.Web.Currency
+        required: true
+        schema:
+          $ref: '#/components/schemas/Currency'
+      - name: documentId
+        in: query
+        description: Document id filter. If present - returns only tasks with this specific document
+        schema:
+          type: string
+      - name: skip
+        in: query
+        description: Number of skipped items
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        description: Maximum number of tasks in the response (no more than 50)
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectTaskModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectTaskModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectTaskModel'
+  /api/integration/v1/projectTask/{projectId}/{projectTaskId}:
+    get:
+      tags:
+      - ProjectTask
+      summary: Get information regarding task projectTaskId for project projectId
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: projectTaskId
+        in: path
+        description: Task ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: currency
+        in: query
+        description: Code of the currency used to recalculate supplier rates and the cost of work AbbyyLS.Web.Currency
+        required: true
+        schema:
+          $ref: '#/components/schemas/Currency'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProjectTaskModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectTaskModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProjectTaskModel'
+  /api/integration/v1/projectTask/{projectId}/{projectTaskId}/scope:
+    get:
+      tags:
+      - ProjectTask
+      summary: Get information about the scope of work, regarding task  projectTaskId for project projectId
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: projectTaskId
+        in: path
+        description: Task ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: currency
+        in: query
+        description: Code of the currency used to calculate the cost of work
+        required: true
+        schema:
+          $ref: '#/components/schemas/Currency'
+      - name: skip
+        in: query
+        description: Number of skipped items
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        description: Maximum number of elements in the response (no more than 100)
+        schema:
+          type: integer
+          format: int32
+          default: 100
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectTaskScopeModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectTaskScopeModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectTaskScopeModel'
+  /api/integration/v1/projectTask/{projectId}/{projectTaskId}/set-invitation-strategy-type:
+    put:
+      tags:
+      - ProjectTask
+      summary: Set the mode of access to perform the work for those who accepted the invitation
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: projectTaskId
+        in: path
+        description: Task ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: invitationStrategyType
+        in: query
+        description: Mode of access to the work for those who accepted the invitation
+        required: true
+        schema:
+          $ref: '#/components/schemas/ProjectTaskIndividualInvitationStrategyType'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+  /api/integration/v1/projectTask/{projectId}/{projectTaskId}/individual-assignment:
+    put:
+      tags:
+      - ProjectTask
+      summary: Assign individual suppliers to perform task projectTaskId
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: projectTaskId
+        in: path
+        description: Task ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: Request for assignment of individual suppliers
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/IndividualAssignmentRequestModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndividualAssignmentRequestModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/IndividualAssignmentRequestModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/IndividualAssignmentRequestModel'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+    delete:
+      tags:
+      - ProjectTask
+      summary: Delete individual assignment
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: projectTaskId
+        in: path
+        description: Task ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: userId
+        in: query
+        description: ID of the user whose assignment is to be removed
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+  /api/integration/v1/projectTask/{projectId}/{projectTaskId}/vendor-assignment:
+    put:
+      tags:
+      - ProjectTask
+      summary: Assign a supplier to perform task  projectTaskId
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: projectTaskId
+        in: path
+        description: Task ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: Request for assignment of a supplier
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/VendorAssignmentRequestModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VendorAssignmentRequestModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/VendorAssignmentRequestModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/VendorAssignmentRequestModel'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+    delete:
+      tags:
+      - ProjectTask
+      summary: Remove supplier assignment
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: projectTaskId
+        in: path
+        description: Task ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: vendorAccountId
+        in: query
+        description: Identifier of the supplier account whose assignment is to be removed
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+  /api/integration/v1/projectTask/{projectId}/{projectTaskId}/payables:
+    get:
+      tags:
+      - ProjectTask
+      summary: Get information about payments to suppliers for the work on task projectTaskId
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: projectTaskId
+        in: path
+        description: Task ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: currency
+        in: query
+        description: Code of the currency used to calculate the cost of work
+        required: true
+        schema:
+          $ref: '#/components/schemas/Currency'
+      - name: skip
+        in: query
+        description: Number of skipped items
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        description: Maximum number of elements in the response (no more than 100)
+        schema:
+          type: integer
+          format: int32
+          default: 100
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectTaskJobModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectTaskJobModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectTaskJobModel'
+  /api/integration/v1/projectTask/{projectId}/{projectTaskId}/deadline:
+    put:
+      tags:
+      - ProjectTask
+      summary: Set a deadline for the task
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: projectTaskId
+        in: path
+        description: Task ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: deadline
+        in: query
+        description: Task deadline
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+  /api/integration/v1/projectTask/{projectId}/{projectTaskId}/split:
+    post:
+      tags:
+      - ProjectTask
+      summary: Move the task volume to another task
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: projectTaskId
+        in: path
+        description: Task ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: Data required to move the task volume
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/SplitProjectTaskRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SplitProjectTaskRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/SplitProjectTaskRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/SplitProjectTaskRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SplitProjectTaskResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SplitProjectTaskResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SplitProjectTaskResponse'
+  /api/integration/v1/projectTask/{projectId}/{projectTaskId}/splitByParts/{partsCount}:
+    post:
+      tags:
+      - ProjectTask
+      summary: Split task into partsCount parts
+      description: Available for accounts with subscription
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: projectTaskId
+        in: path
+        description: Task ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: partsCount
+        in: path
+        description: Number of parts to divide the task into
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: preserveAssignments
+        in: query
+        description: Specifies whether assignments should be moved from the parent task
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SplitProjectTaskByPartsResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SplitProjectTaskByPartsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SplitProjectTaskByPartsResponse'
+  /api/integration/v1/projectTask/{projectId}/{projectTaskId}/merge:
+    post:
+      tags:
+      - ProjectTask
+      summary: "Merge task projectTaskId with tasks request\r\nAll merged tasks must belong to the same stage Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel.StageId,\r\nhave the same target language Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel.TargetLanguage and have no agencies/companies assigned to the task\r\nDuring the merge process, existing supplier assignments will be removed. Tasks will be merged and become inaccessible.\r\nAs a result of the operation, a new task is created, which includes all the scope of work from the merged tasks."
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: projectTaskId
+        in: path
+        description: Task ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: Data required to merge tasks
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ProjectTaskMergeRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectTaskMergeRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProjectTaskMergeRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProjectTaskMergeRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MergeProjectTasksResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MergeProjectTasksResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MergeProjectTasksResponse'
+components:
+  schemas:
+    ProjectTaskStatus:
+      enum:
+      - created
+      - suppliersShortlisted
+      - suppliersInvited
+      - inProgress
+      - completed
+      type: string
+      description: Task status
+      format: int32
+    StageType:
+      enum:
+      - translation
+      - editing
+      - proofreading
+      - postediting
+      - finalPageProof
+      - notarization
+      - certifiedTranslation
+      - transcreation
+      - legalization
+      - preliminaryPageProof
+      - lQAReview
+      - subtitleReview
+      - voiceOverReview
+      - sourceReview
+      type: string
+      description: Workflow stage type
+      format: int32
+    Currency:
+      enum:
+      - uSD
+      - eUR
+      - rUB
+      - tRY
+      - jPY
+      - sGD
+      - mYR
+      - hKD
+      - aRS
+      - uAH
+      - cNY
+      - aED
+      - aUD
+      - bRL
+      - cAD
+      - cLP
+      - eGP
+      - gBP
+      - iDR
+      - iLS
+      - iNR
+      - kES
+      - kRW
+      - lKR
+      - mAD
+      - mXN
+      - nPR
+      - pEN
+      - pHP
+      - pLN
+      - tHB
+      - vND
+      - sEK
+      - tWD
+      - pKR
+      - nZD
+      - tTD
+      - zAR
+      - cHF
+      - kZT
+      - dKK
+      - iSK
+      type: string
+      format: int32
+    SplitProjectTaskByPartsResponse:
+      type: object
+      properties:
+        projectTaskIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Target task IDs
+          nullable: true
+      additionalProperties: false
+      description: Result of splitting the task volume
+    IndividualAssignmentStatus:
+      enum:
+      - shortlisted
+      - invited
+      - inProgress
+      type: string
+      description: Status of the invitation to the user to perform the task
+      format: int32
+    ProjectTaskJobStatus:
+      enum:
+      - doNotNeedToPay
+      - forming
+      - pendingToPay
+      - paid
+      type: string
+      description: Status of the work performed by the supplier
+      format: int32
+    ProjectTaskIndividualInvitationStrategyType:
+      enum:
+      - crowd
+      - rocket
+      type: string
+      description: Mode of access to the work for those who accepted the invitation
+      format: int32
+    MergeProjectTasksResponse:
+      type: object
+      properties:
+        projectTaskId:
+          type: string
+          description: ID of the task created as a result of merging
+          format: uuid
+      additionalProperties: false
+      description: Result of merging tasks
+    VendorAssignmentStatus:
+      enum:
+      - shortlisted
+      - inProgress
+      type: string
+      description: Vendor assignment status
+      format: int32
+    VendorAssignmentRequestModel:
+      type: object
+      properties:
+        shouldAssignInShortlistStatus:
+          type: boolean
+          description: Specifies whether the vendor must be assigned with the Smartcat.AppIntegrations.Contracts.ProjectTask.Enums.VendorAssignmentStatus.Shortlisted status
+        vendorAccountId:
+          type: string
+          description: Vendor account ID
+          format: uuid
+      additionalProperties: false
+      description: Model for inviting a vendor to the task
+    VendorAssignmentModel:
+      type: object
+      properties:
+        accountId:
+          type: string
+          description: Account ID
+          nullable: true
+        name:
+          type: string
+          description: Agency/company name
+          nullable: true
+        canUnassign:
+          type: boolean
+          description: Specifies whether the assignment can be removed
+        rate:
+          type: number
+          description: Rate per word
+          format: double
+          nullable: true
+        status:
+          $ref: '#/components/schemas/VendorAssignmentStatus'
+      additionalProperties: false
+      description: Information about the agency/company assigned to the task Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel
+    IndividualAssignmentModel:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: User ID
+        rate:
+          type: number
+          description: Supplier rate per word
+          format: double
+          nullable: true
+        currency:
+          type: string
+          description: Rate currency
+          nullable: true
+        status:
+          $ref: '#/components/schemas/IndividualAssignmentStatus'
+      additionalProperties: false
+      description: Information about the user assigned to the task Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel
+    SplitProjectTaskResponse:
+      type: object
+      properties:
+        projectTaskId:
+          type: string
+          description: ID of the task to which the documents were moved
+          format: uuid
+      additionalProperties: false
+      description: Result of splitting the task volume
+    IndividualAssignmentRequestModel:
+      type: object
+      properties:
+        shouldAssignInShortlistStatus:
+          type: boolean
+          description: Specifies whether shortlisted suppliers should be assigned
+        userIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Individual supplier IDs
+          nullable: true
+      additionalProperties: false
+      description: Model for inviting individual suppliers to the task
+    ProjectTaskJobModel:
+      type: object
+      properties:
+        jobId:
+          type: string
+          description: Job ID Smartcat.AppIntegrations.Contracts.JobModel.Id
+          nullable: true
+        userId:
+          type: string
+          description: Supplier ID
+          format: uuid
+          nullable: true
+        userName:
+          type: string
+          description: Supplier name
+          nullable: true
+        documentId:
+          type: string
+          description: Document ID
+          nullable: true
+        documentName:
+          type: string
+          description: Document name
+          nullable: true
+        documentExtension:
+          type: string
+          description: Document extension
+          nullable: true
+        unitsCount:
+          type: number
+          description: Number of units of work performed
+          format: double
+          nullable: true
+        cost:
+          type: number
+          description: Cost of work
+          format: double
+          nullable: true
+        status:
+          $ref: '#/components/schemas/ProjectTaskJobStatus'
+        vendorAccountId:
+          type: string
+          description: Vendor account id
+          format: uuid
+          nullable: true
+        vendorAccountName:
+          type: string
+          description: Vendor account name
+          nullable: true
+        vendorImageUrl:
+          type: string
+          description: Vendor image URL
+          nullable: true
+      additionalProperties: false
+      description: Job information for a specific task
+    ProjectTaskModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task ID
+          format: uuid
+        number:
+          type: string
+          description: Task number
+          nullable: true
+        status:
+          $ref: '#/components/schemas/ProjectTaskStatus'
+        progressPercentage:
+          type: number
+          description: Task progress (in percent)
+          format: double
+          nullable: true
+        sourceLanguage:
+          type: string
+          description: Source language of the task
+          nullable: true
+        targetLanguage:
+          type: string
+          description: Target language of the task
+          nullable: true
+        stageType:
+          $ref: '#/components/schemas/StageType'
+        stageId:
+          type: string
+          description: Stage ID
+          format: uuid
+        deadline:
+          type: string
+          description: Task deadline
+          format: date-time
+          nullable: true
+        cost:
+          type: number
+          description: Actual cost of the work performed within the task
+          format: double
+          nullable: true
+        approximateCost:
+          type: number
+          description: Estimated cost of the work, taking into account the assigned suppliers
+          format: double
+          nullable: true
+        documentIds:
+          type: array
+          items:
+            type: string
+          description: IDs of the documents included in the task
+          nullable: true
+        createDate:
+          type: string
+          description: Creation date
+          format: date-time
+        lastUpdateScopeDate:
+          type: string
+          description: Last volume modification date (documents updated/added)
+          format: date-time
+          nullable: true
+        individualAssignments:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndividualAssignmentModel'
+          description: User assignments to the task
+          nullable: true
+        vendorAssignments:
+          type: array
+          items:
+            $ref: '#/components/schemas/VendorAssignmentModel'
+          description: Agency assignments to the task
+          nullable: true
+        invitationStrategyType:
+          $ref: '#/components/schemas/ProjectTaskIndividualInvitationStrategyType'
+      additionalProperties: false
+      description: Project task
+    WorkUnitType:
+      enum:
+      - char
+      - word
+      - page
+      - hour
+      - minute
+      - document
+      - service
+      - day
+      - month
+      type: string
+      description: Linguist's work unit
+      format: int32
+    SplitProjectTaskRequest:
+      type: object
+      properties:
+        documentIds:
+          type: array
+          items:
+            type: string
+          description: "IDs of the documents to be moved to the task Smartcat.AppIntegrations.Contracts.ProjectTask.Split.SplitProjectTaskRequest.TargetProjectTaskId\r\nOnly documents whose progress Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskScopeModel.Progress is less than 100 percent can be moved"
+          nullable: true
+        targetProjectTaskId:
+          type: string
+          description: "ID of the target task to which the documents are to be moved\r\nTarget task must belong to the same stage and target language as the original task\r\nThe parameter can be set to `null`. In this case a new task will be created and the documents will be moved to it"
+          format: uuid
+          nullable: true
+      additionalProperties: false
+      description: Data required to split the task volume
+    ProjectTaskScopeModel:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: Document ID
+        progress:
+          type: number
+          description: Document progress in percent from 0 to 100
+          format: double
+        name:
+          type: string
+          description: Document name
+          nullable: true
+        extension:
+          type: string
+          description: File extension
+          nullable: true
+        lastModified:
+          type: string
+          description: Last document modification date (date the file was uploaded or updated)
+          format: date-time
+        approximateCost:
+          type: number
+          description: "Preliminary cost of the work on a particular document\r\nCalculated based on the document volume and the rates of suppliers assigned to the task"
+          format: double
+          nullable: true
+        cost:
+          type: number
+          description: Amount spent on the work performed on the document
+          format: double
+          nullable: true
+        isExternal:
+          type: boolean
+          description: "The document at the stage will be processed without the use of CAT tools\r\n(work on the document is not performed in the editor)"
+        unitType:
+          $ref: '#/components/schemas/WorkUnitType'
+        volumeSize:
+          type: integer
+          description: Work volume in units Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskScopeModel.UnitType
+          format: int32
+          nullable: true
+      additionalProperties: false
+      description: Model containing information about one work item included in the task
+    ProjectTaskMergeRequest:
+      type: object
+      properties:
+        projectTaskIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: IDs of the tasks to be merged
+          nullable: true
+      additionalProperties: false
+      description: "IDs of the tasks to be merged\r\nAll merged tasks must belong to the same stage Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel.StageId\r\nand have the same target language Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel.TargetLanguage"

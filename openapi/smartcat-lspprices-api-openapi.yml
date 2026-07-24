@@ -1,0 +1,293 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account LspPrices API
+  version: v1
+servers:
+- url: /
+tags:
+- name: LspPrices
+paths:
+  /api/integration/v1/lsp/prices/{priceId}:
+    delete:
+      tags:
+      - LspPrices
+      summary: Delete an LSP service price
+      parameters:
+      - name: priceId
+        in: path
+        description: Service price ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+  /api/integration/v2/lsp/prices:
+    get:
+      tags:
+      - LspPrices
+      summary: Fetch LSP service prices by ID
+      parameters:
+      - name: priceIds
+        in: query
+        description: The list of service price IDs
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LspPriceModelV2'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LspPriceModelV2'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LspPriceModelV2'
+    post:
+      tags:
+      - LspPrices
+      summary: Create a new LSP service price
+      requestBody:
+        description: Service price creation request
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/LspUpdatePriceModelV2'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LspUpdatePriceModelV2'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/LspUpdatePriceModelV2'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/LspUpdatePriceModelV2'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+  /api/integration/v2/lsp/prices/batch:
+    get:
+      tags:
+      - LspPrices
+      summary: Fetch LSP service prices
+      parameters:
+      - name: lastPriceId
+        in: query
+        description: Fetch the list of service prices starting from the ID that follows the specified ID
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: The required number of results (the default is 100)
+        schema:
+          type: integer
+          format: int32
+          default: 100
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LspPriceModelV2'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LspPriceModelV2'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LspPriceModelV2'
+    post:
+      tags:
+      - LspPrices
+      summary: Create new LSP service prices
+      requestBody:
+        description: An array of service price creation requests
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/LspUpdatePriceModelV2'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/LspUpdatePriceModelV2'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/LspUpdatePriceModelV2'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/LspUpdatePriceModelV2'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddBatchResult'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddBatchResult'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddBatchResult'
+  /api/integration/v2/lsp/prices/{priceId}:
+    put:
+      tags:
+      - LspPrices
+      summary: Update an existing LSP service price
+      parameters:
+      - name: priceId
+        in: path
+        description: Service price ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Service price update request
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/LspUpdatePriceModelV2'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LspUpdatePriceModelV2'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/LspUpdatePriceModelV2'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/LspUpdatePriceModelV2'
+        required: true
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    AddBatchResult:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of a created entity
+          nullable: true
+        index:
+          type: integer
+          description: ID of an entity assigned upon its addition to a batch
+          format: int32
+        success:
+          type: boolean
+          description: Entity was successfully created
+      additionalProperties: false
+      description: Entity creation result model for batch addition
+    LspUpdatePriceModelV2:
+      type: object
+      properties:
+        serviceId:
+          type: string
+          description: Service ID
+          nullable: true
+        clientId:
+          type: string
+          description: Client ID
+          format: uuid
+          nullable: true
+        sourceLanguage:
+          type: string
+          description: Source language
+          nullable: true
+        targetLanguages:
+          type: array
+          items:
+            type: string
+          description: Target languages
+          nullable: true
+        pricePerUnit:
+          type: number
+          description: Price per unit
+          format: double
+          nullable: true
+        pricePerUnitCurrency:
+          type: string
+          description: Price currency
+          nullable: true
+      additionalProperties: false
+      description: LSP service price creation and update model
+    LspPriceModelV2:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Price ID
+          nullable: true
+        serviceId:
+          type: string
+          description: Service ID
+          nullable: true
+        clientId:
+          type: string
+          description: Client ID
+          format: uuid
+          nullable: true
+        sourceLanguage:
+          type: string
+          description: Source language
+          nullable: true
+        targetLanguages:
+          type: array
+          items:
+            type: string
+          description: Target languages
+          nullable: true
+        pricePerUnit:
+          type: number
+          description: Price per unit
+          format: double
+          nullable: true
+        pricePerUnitCurrency:
+          type: string
+          description: Price currency
+          nullable: true
+      additionalProperties: false
+      description: LSP service price model

@@ -1,0 +1,717 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account TranslationMemories API
+  version: v1
+servers:
+- url: /
+tags:
+- name: TranslationMemories
+paths:
+  /api/integration/v1/translationmemory/{tmId}:
+    get:
+      tags:
+      - TranslationMemories
+      summary: Fetch information about the TM
+      parameters:
+      - name: tmId
+        in: path
+        description: TM ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TranslationMemoryModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranslationMemoryModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TranslationMemoryModel'
+        '403':
+          description: The account cannot access the TM with the specified ID
+        '404':
+          description: TM with the specified was not found
+    post:
+      tags:
+      - TranslationMemories
+      summary: Import TMX files to a TM
+      parameters:
+      - name: tmId
+        in: path
+        description: TM ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: replaceAllContent
+        in: query
+        description: Complete replacement of the TM contents is required
+        required: true
+        schema:
+          type: boolean
+      - name: assuranceLevel
+        in: query
+        description: Translation assurance level. Calculated based on the document editing stage at which the TM unit was saved.
+        schema:
+          $ref: '#/components/schemas/IntegrationApiTMTranslationAssuranceLevel'
+      requestBody:
+        description: TMX file to be uploaded
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                tmxFile:
+                  type: string
+                  format: binary
+        required: true
+      responses:
+        '204':
+          description: TMX file has been successfully imported
+        '400':
+          description: Imported file is not a TMX file
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: The account cannot access the TM with the specified ID
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: TM with the specified ID was not found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+      - TranslationMemories
+      summary: Delete a TM
+      parameters:
+      - name: tmId
+        in: path
+        description: TM ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: TM has been successfully deleted
+        '400':
+          description: The TM has Write permissions in the account
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: TM with the specified ID was not found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/translationmemory:
+    get:
+      tags:
+      - TranslationMemories
+      summary: Fetch the available TMs filtered per account
+      parameters:
+      - name: lastProcessedId
+        in: query
+        description: The latest ID fetched by the previous query
+        schema:
+          type: string
+          format: uuid
+      - name: batchSize
+        in: query
+        description: Required size of the returned batch
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: sourceLanguage
+        in: query
+        description: Source language (optional)
+        schema:
+          type: string
+      - name: targetLanguage
+        in: query
+        description: Target language (optional)
+        schema:
+          type: string
+      - name: clientId
+        in: query
+        description: Client ID (optional)
+        schema:
+          type: string
+          format: uuid
+      - name: searchName
+        in: query
+        description: TM partial name (optional)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TranslationMemoryModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TranslationMemoryModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TranslationMemoryModel'
+        '204':
+          description: TM collection is empty
+        '400':
+          description: The required TM collection size is larger than 100
+    post:
+      tags:
+      - TranslationMemories
+      summary: Create an empty TM
+      requestBody:
+        description: TM creation model
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CreateTranslationMemoryModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTranslationMemoryModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateTranslationMemoryModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateTranslationMemoryModel'
+        required: true
+      responses:
+        '201':
+          description: TM has been successfully created
+        '400':
+          description: "Returns if:\n\r\n- TM creation model is empty\r\n- TM with this name already exists in the account\r\n- TM name is not specified\r\n- TM source language is defined as a translation target language\r\n- An error occurred when creating the TM"
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/translationmemory/task:
+    get:
+      tags:
+      - TranslationMemories
+      summary: Fetch a collection of TMX file import tasks
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TMImportTaskModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TMImportTaskModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TMImportTaskModel'
+        '404':
+          description: There are no unprocessed import tasks in the account
+  /api/integration/v1/translationmemory/{tmId}/file:
+    get:
+      tags:
+      - TranslationMemories
+      summary: Export TMX files from the TM database
+      parameters:
+      - name: tmId
+        in: path
+        description: TM ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: exportMode
+        in: query
+        description: Export mode
+        required: true
+        schema:
+          $ref: '#/components/schemas/TMExportMode'
+      - name: withTags
+        in: query
+        description: Specifies whether to include tags into export results
+        required: true
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Request has been successfully completed
+        '403':
+          description: The account cannot access the TM with the specified ID
+        '404':
+          description: TM with the specified was not found
+  /api/integration/v1/translationmemory/matches:
+    post:
+      tags:
+      - TranslationMemories
+      summary: Fetch matches from the specified TM
+      parameters:
+      - name: tmId
+        in: query
+        description: ID of the TM for the match search
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: TM match segments request
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/TMMatchesRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TMMatchesRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TMMatchesRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TMMatchesRequest'
+        required: true
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SegmentWithMatchesModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentWithMatchesModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SegmentWithMatchesModel'
+        '400':
+          description: "Returns if:\n\r\n- Request model is empty\r\n- No segment model is specified in the request model\r\n- Either source or target is not specified\r\n- The tag type is not \"Start\", \"End\" or \"Placeholder\""
+        '403':
+          description: The account cannot access the TM with the specified ID
+        '404':
+          description: TM with the specified ID was not found
+  /api/integration/v1/translationmemory/{tmId}/targets:
+    put:
+      tags:
+      - TranslationMemories
+      summary: Add an array of target languages to a TM
+      parameters:
+      - name: tmId
+        in: path
+        description: TM ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: Array of the required target languages
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+          text/json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/*+json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: true
+      responses:
+        '204':
+          description: Request has been successfully completed
+        '400':
+          description: "Returns if:\n\r\n- Target languages are not specified\r\n- Target languages contain duplicates\r\n- Target languages contain the source language\r\n- Target language cannot be deleted\r\n- Target languages cannot be updated using the specified parameters"
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: The account cannot access the TM with the specified ID
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: TM with the specified ID was not found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/translationmemory/task/{taskId}:
+    delete:
+      tags:
+      - TranslationMemories
+      summary: Removes the specified import task
+      parameters:
+      - name: taskId
+        in: path
+        description: ID of a task to be imported to the TM
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: The import task has been successfully deleted
+        '403':
+          description: The account cannot access the TM with the specified ID
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: TM import task with the specified ID was not found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    SegmentModel:
+      type: object
+      properties:
+        text:
+          type: string
+          description: Segment text
+          nullable: true
+        prevContext:
+          type: string
+          description: Previous segment text
+          nullable: true
+        nextContext:
+          type: string
+          description: Next segment text
+          nullable: true
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentTagModel'
+          description: Segment tags
+          nullable: true
+      additionalProperties: false
+      description: Segment model
+    TagsFromUnit:
+      type: object
+      properties:
+        position:
+          type: integer
+          description: Tag insertion position in the target
+          format: int32
+        order:
+          type: integer
+          description: Tag order number in the target. Important if two tags have an identical position
+          format: int32
+      additionalProperties: false
+      description: Unit tags data serialization class
+    TMImportTaskModel:
+      type: object
+      properties:
+        accountId:
+          type: string
+          description: Account ID
+          format: uuid
+        id:
+          type: string
+          description: Task ID
+          format: uuid
+        translationMemoryId:
+          type: string
+          description: TM database ID
+          format: uuid
+        state:
+          type: string
+          description: Task status
+          nullable: true
+        insertedUnitCount:
+          type: integer
+          description: Inserted unit count
+          format: int32
+      additionalProperties: false
+      description: TM import task model
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
+    TMMatchesRequest:
+      type: object
+      properties:
+        sourceLanguage:
+          type: string
+          description: Source language
+          nullable: true
+        targetLanguage:
+          type: string
+          description: Target language
+          nullable: true
+        segmentModel:
+          $ref: '#/components/schemas/SegmentModel'
+        matchThreshold:
+          type: integer
+          description: Match threshold
+          format: int32
+          nullable: true
+      additionalProperties: false
+      description: TM match query model
+    CreateTranslationMemoryModel:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name
+          nullable: true
+        sourceLanguage:
+          type: string
+          description: Source language
+          nullable: true
+        targetLanguages:
+          type: array
+          items:
+            type: string
+          description: Target languages
+          nullable: true
+        description:
+          type: string
+          description: Description
+          nullable: true
+        clientId:
+          type: string
+          description: Client ID
+          format: uuid
+          nullable: true
+      additionalProperties: false
+      description: TM creation model
+    TMExportMode:
+      enum:
+      - tmxDefault
+      - tmxWithTrados2009PlusCompatibility
+      - tmxWithTrados2007Compatibility
+      - excel
+      type: string
+      format: int32
+    SegmentTagModel:
+      type: object
+      properties:
+        tagNumber:
+          type: integer
+          description: Tag number
+          format: int32
+        tagType:
+          type: string
+          description: Tag type
+          nullable: true
+        position:
+          type: integer
+          description: Tag position
+          format: int32
+        isVirtual:
+          type: boolean
+          description: Specifies whether the tag is virtual
+        isInvisible:
+          type: boolean
+          description: Specifies whether the tag is invisible
+      additionalProperties: false
+      description: Segment tag mandatory information model
+    SegmentWithMatchesModel:
+      type: object
+      properties:
+        sourceText:
+          type: string
+          description: Source segment of a found record
+          nullable: true
+        targetText:
+          type: string
+          description: Target segment of a found record
+          nullable: true
+        segmentMatch:
+          type: integer
+          description: Segment match value
+          format: int32
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagsFromUnit'
+          description: Record tags set
+          nullable: true
+        assuranceLevel:
+          $ref: '#/components/schemas/IntegrationApiTMTranslationAssuranceLevel'
+      additionalProperties: false
+      description: Segment with matches send model
+    IntegrationApiTMTranslationAssuranceLevel:
+      enum:
+      - mT
+      - questionable
+      - regular
+      - qualified
+      type: string
+      description: Minimum TM segment quality
+      format: int32
+    TranslationMemoryModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: TM ID
+          format: uuid
+        accountId:
+          type: string
+          description: Corporate account ID
+          format: uuid
+        clientId:
+          type: string
+          description: Client ID
+          format: uuid
+          nullable: true
+        name:
+          type: string
+          description: TM name
+          nullable: true
+        description:
+          type: string
+          description: Description
+          nullable: true
+        sourceLanguage:
+          type: string
+          description: Source language ID
+          nullable: true
+        targetLanguages:
+          type: array
+          items:
+            type: string
+          description: Target languages
+          nullable: true
+        createdDate:
+          type: string
+          description: TM creation date and time
+          format: date-time
+        isAutomaticallyCreated:
+          type: boolean
+          description: Specifies whether the TM was created automatically
+        unitCountByLanguageId:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int32
+          description: Unit count by language
+          nullable: true
+      additionalProperties: false
+      description: TM model

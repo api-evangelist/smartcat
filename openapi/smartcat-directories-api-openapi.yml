@@ -1,0 +1,133 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account Directories API
+  version: v1
+servers:
+- url: /
+tags:
+- name: Directories
+paths:
+  /api/integration/v2/directory:
+    get:
+      tags:
+      - Directories
+      summary: Fetch the specified directory
+      parameters:
+      - name: type
+        in: query
+        description: Directory type
+        required: true
+        schema:
+          $ref: '#/components/schemas/DirectoryType'
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DirectoryModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryModel'
+        '400':
+          description: Returns if an incorrect directory type is provided
+  /api/integration/v1/directory/formats:
+    get:
+      tags:
+      - Directories
+      summary: Fetch parsing formats supported by the account
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FileFormatModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FileFormatModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FileFormatModel'
+        '404':
+          description: Unable to find an account connected to the integration API
+components:
+  schemas:
+    DirectoryType:
+      enum:
+      - language
+      - vendor
+      - domain
+      - client
+      - group
+      - projectStatus
+      - documentStatus
+      - netRate
+      - currency
+      - freelancerServiceType
+      - specialization
+      - specializationKnowledgeLevel
+      - lspServiceType
+      - jobStatus
+      - country
+      - supplierType
+      - workUnitType
+      - translationAssuranceLevel
+      type: string
+      description: Directory type
+      format: int32
+    FileFormatModel:
+      type: object
+      properties:
+        name:
+          type: string
+          description: File formats supported by the account
+          nullable: true
+        ocr:
+          type: boolean
+          description: Specifies whether the OCR format is supported
+        mime-type:
+          type: string
+          description: Data type (MIME)
+          nullable: true
+        disassembleAlgorithmName:
+          type: string
+          description: Disassemble algorithm name
+          nullable: true
+      additionalProperties: false
+      description: Model of file formats supported by the account
+    DirectoryItemModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          nullable: true
+        name:
+          type: string
+          description: Name
+          nullable: true
+      additionalProperties: false
+      description: Directory entry model
+    DirectoryModel:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/DirectoryType'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DirectoryItemModel'
+          description: Elements
+          nullable: true
+      additionalProperties: false
+      description: Directory model

@@ -1,0 +1,3696 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account Project API
+  version: v1
+servers:
+- url: /
+tags:
+- name: Project
+paths:
+  /api/integration/v1/document:
+    post:
+      tags:
+      - Project
+      summary: Add a document to the project
+      description: "This method uses special structure for multipart/form-data content\r\nPlease read this article in order to create a proper request\r\nhttps://developers.smartcat.com/api-guides/#multipart-requests"
+      parameters:
+      - name: projectId
+        in: query
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: disassembleAlgorithmName
+        in: query
+        description: Optional algorithm of file disassembly
+        schema:
+          type: string
+      - name: externalId
+        in: query
+        description: External identifier assigned by the client upon the document creation
+        schema:
+          type: string
+      - name: metaInfo
+        in: query
+        description: Additional user information about the document
+        schema:
+          type: string
+      - name: targetLanguages
+        in: query
+        description: Comma-separated target languages of all documents. Optional parameter. Can be modified per document in the request body. By default, lists the project target languages.
+        schema:
+          type: string
+      - name: presetDisassembleAlgorithm
+        in: query
+        description: Optional preset for the file disassembly algorithm
+        schema:
+          type: string
+      - name: enableOcr
+        in: query
+        description: Optional parameter for disabling OCR (the default is true)
+        schema:
+          type: boolean
+          default: true
+      requestBody:
+        description: Document file upload model
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/CreateDocumentPropertyModel'
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+            examples:
+              MultilingualExcelDisassembleSettingsModel:
+                summary: Value property for Multilingual Excel Disassemble Settings Model
+                value:
+                  externalId: null
+                  metaInfo: null
+                  disassembleAlgorithmName: null
+                  presetDisassembleAlgorithm: null
+                  disassembleSettings:
+                    startingRow: 1
+                    columns:
+                      context: C
+                      comments:
+                      - E
+                      lengthLimit: D
+                      language:
+                        en: A
+                        ru: B
+                  bilingualFileImportSetings: null
+                  targetLanguages: null
+                  enablePlaceholders: null
+                  enableOcr: null
+        required: true
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DocumentModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DocumentModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DocumentModel'
+        '400':
+          description: The specified file is empty
+        '403':
+          description: The project is not associated with the account or the specified account is personal
+        '404':
+          description: The provided project ID does not exist
+        '409':
+          description: The document name is not unique
+  /api/integration/v1/project/{projectId}:
+    get:
+      tags:
+      - Project
+      summary: Receive the project model
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProjectModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProjectModel'
+        '400':
+          description: The specified project ID's format is incorrect
+        '403':
+          description: The project is not associated with the account
+        '404':
+          description: The provided project ID does not exist
+    put:
+      tags:
+      - Project
+      summary: Update a project by ID
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: Project changes model
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ProjectChangesModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectChangesModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProjectChangesModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProjectChangesModel'
+        required: true
+      responses:
+        '204':
+          description: The project has been successfully updated
+        '400':
+          description: The provided project model is empty
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: The project is not associated with the account or an attempt is made to modify the vendor when the work on the project has already started
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: The provided project ID does not exist
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '409':
+          description: The new name will not be unique in the project
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+      - Project
+      summary: Delete the project
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: The project has been successfully deleted
+        '400':
+          description: The specified project ID's format is incorrect
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: The project is not associated with the account
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v2/project/list:
+    get:
+      tags:
+      - Project
+      summary: Fetch the list of account projects
+      parameters:
+      - name: createdByUserId
+        in: query
+        description: ID of the user who created the project
+        schema:
+          type: string
+          format: uuid
+      - name: assignedToUserId
+        in: query
+        description: User ID for filtering by assignment
+        schema:
+          type: string
+          format: uuid
+      - name: projectName
+        in: query
+        description: Partial project name
+        schema:
+          type: string
+      - name: externalTag
+        in: query
+        description: Partial external tag of the project
+        schema:
+          type: string
+      - name: clientIds
+        in: query
+        description: Comma-separated client ID
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+      - name: offset
+        in: query
+        description: Number of skipped items
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        description: Maximum returned items (not more than 100)
+        schema:
+          type: integer
+          format: int32
+          default: 100
+      responses:
+        '200':
+          description: Request completed successfully
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectModel'
+        '400':
+          description: Incorrect parameter format
+        '403':
+          description: Some of the provided clients do not exist in the account
+  /api/integration/v1/project/list:
+    get:
+      tags:
+      - Project
+      summary: Fetch the list of account projects
+      parameters:
+      - name: createdByUserId
+        in: query
+        description: ID of the user who created the project
+        schema:
+          type: string
+          format: uuid
+      - name: assignedToUserId
+        in: query
+        description: User ID for filtering by assignment
+        schema:
+          type: string
+          format: uuid
+      - name: projectName
+        in: query
+        description: Partial project name
+        schema:
+          type: string
+      - name: externalTag
+        in: query
+        description: Partial external tag of the project
+        schema:
+          type: string
+      - name: projectType
+        in: query
+        description: Type of the project
+        schema:
+          $ref: '#/components/schemas/ProjectTypeFilter'
+      - name: clientIds
+        in: query
+        description: Comma-separated client IDs
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+      - name: includeDocuments
+        in: query
+        description: Include project documents in response
+        schema:
+          type: boolean
+          default: true
+      - name: includeQuotes
+        in: query
+        description: Include project related quotes in response
+        schema:
+          type: boolean
+          default: true
+      - name: includeCustomFields
+        in: query
+        description: Include project related custom fields in response
+        schema:
+          type: boolean
+          default: true
+      - name: includeClients
+        in: query
+        description: Include project clients in response
+        schema:
+          type: boolean
+          default: true
+      - name: offset
+        in: query
+        description: Number of skipped items
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        description: Maximum returned items (not more than 100)
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Request completed successfully
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectModel'
+        '400':
+          description: Incorrect parameter format
+        '403':
+          description: Some of the provided clients do not exist in the account
+  /api/integration/v1/project/{projectId}/statistics:
+    get:
+      tags:
+      - Project
+      summary: "(This method is obsolete and has been replaced with /api/integration/v2/project/{projectId}/statistics)\r\nFetch project statistics"
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: onlyExactMatches
+        in: query
+        description: Specifies whether returning 100% and higher matches will suffice
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: object
+                additionalProperties:
+                  $ref: '#/components/schemas/ProjectStatisticsObsoleteModel'
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  $ref: '#/components/schemas/ProjectStatisticsObsoleteModel'
+            text/json:
+              schema:
+                type: object
+                additionalProperties:
+                  $ref: '#/components/schemas/ProjectStatisticsObsoleteModel'
+        '403':
+          description: The project is not associated with the account
+        '404':
+          description: The provided project ID does not exist
+  /api/integration/v2/project/{projectId}/statistics:
+    get:
+      tags:
+      - Project
+      summary: Fetch project statistics
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: onlyExactMatches
+        in: query
+        description: Specifies whether returning 100% and higher matches will suffice (the default is false)
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '403':
+          description: The project is not associated with the account
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '422':
+          description: One or multiple project documents could not be disassembled
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '200':
+          description: Request has been successfully completed
+        '202':
+          description: Statistics creation is in progress
+        '404':
+          description: The provided project ID does not exist
+  /api/integration/v1/project/{projectId}/fuzzyRepetitions:
+    put:
+      tags:
+      - Project
+      summary: Enable or disable calculating fuzzy repetitions in the project statistics
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: withFuzzyMatches
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/project/{projectId}/completedWorkStatistics:
+    get:
+      tags:
+      - Project
+      summary: Receive statistics for the completed parts of the project
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExecutiveStatisticsModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExecutiveStatisticsModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExecutiveStatisticsModel'
+        '403':
+          description: The project is not associated with the account
+        '404':
+          description: The provided project ID does not exist
+  /api/integration/v1/project/{projectId}/translationmemories:
+    get:
+      tags:
+      - Project
+      summary: Receive a list of the TMs plugged into the project
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: TM IDs collection is empty
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectTranslationMemoryModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectTranslationMemoryModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectTranslationMemoryModel'
+        '404':
+          description: The project with the specified ID was not found
+    post:
+      tags:
+      - Project
+      summary: "Recreate the set of TMs plugged into the project.\r\nThe set of TMs is identical for all target languages of the project."
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: onlyExactSourceLanguageMatch
+        in: query
+        description: Specifies whether exact matches in the source language are required (the default is false)
+        schema:
+          type: boolean
+          default: false
+      - name: onlyExactTargetLanguageMatch
+        in: query
+        description: Specifies whether exact matches in the target language are required (the default is false)
+        schema:
+          type: boolean
+          default: false
+      requestBody:
+        description: Collection of TMs
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/TranslationMemoryForProjectModel'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/TranslationMemoryForProjectModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/TranslationMemoryForProjectModel'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/TranslationMemoryForProjectModel'
+        required: true
+      responses:
+        '200':
+          description: Request has been successfully completed
+        '400':
+          description: "Returns if:\n\r\n- The provided model with TM IDs to be added to the project is empty\r\n- More than one TM has been provided\r\n- The match threshold in the TM is smaller than the allowed minimum (50)\r\n- A TM appears in the settings multiple times\r\n- The Write TM does not include all the project's target languages\r\n- The project's source language does not match any source language in the provided TM\r\n- None of the project's target languages appears among the target languages in the provided Read TM"
+  /api/integration/v1/project/{projectId}/glossaries:
+    get:
+      tags:
+      - Project
+      summary: Fetch the list of glossaries plugged into the project
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GlossaryModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GlossaryModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GlossaryModel'
+        '403':
+          description: The project is associated with another account
+        '404':
+          description: Project not found
+    put:
+      tags:
+      - Project
+      summary: Set a collection of glossaries plugged into the project
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: Array of glossary IDs
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+          text/json:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+          application/*+json:
+            schema:
+              type: array
+              items:
+                type: string
+                format: uuid
+        required: true
+      responses:
+        '204':
+          description: Request has been successfully completed
+        '400':
+          description: A provided glossary does not match any language pair in the project
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: The project is associated with another account
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: The provided IDs do not match any project or glossary
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/project/{projectId}/glossaries/default:
+    get:
+      tags:
+      - Project
+      summary: Fetch default glossary for the project
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: fallbackToAccount
+        in: query
+        description: By default, if a project does not have a default glossary, a 404 error will be returned. Set this flag to true to attempt to get a default glossary from the entire account.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GlossaryModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlossaryModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GlossaryModel'
+        '403':
+          description: The project is associated with another account
+        '404':
+          description: Project or default glossary is not found
+  /api/integration/v1/project/{projectId}/mt:
+    get:
+      tags:
+      - Project
+      summary: Fetch the project's MT configuration
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Returns if the operation has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectMTEngineModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectMTEngineModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectMTEngineModel'
+        '403':
+          description: The project is associated with another account
+        '404':
+          description: Project not found
+    post:
+      tags:
+      - Project
+      summary: Set an MT configuration in the project
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: Required MT settings
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProjectMTEngineModel'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProjectMTEngineModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProjectMTEngineModel'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProjectMTEngineModel'
+        required: true
+      responses:
+        '204':
+          description: Returns if the operation has been successfully completed
+        '400':
+          description: Incorrect parameters
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: The project is associated with another account
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Project not found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/project/{projectId}/mt/available:
+    get:
+      tags:
+      - Project
+      summary: Fetch all the MT engines and profiles that can be used in the specified project
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Returns if the operation has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectMTEngineSupportedLanguagesModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectMTEngineSupportedLanguagesModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectMTEngineSupportedLanguagesModel'
+        '403':
+          description: The project is associated with another account
+        '404':
+          description: Project not found
+  /api/integration/v1/project/{projectId}/pretranslation-rules:
+    get:
+      tags:
+      - Project
+      summary: Fetch the project pre-processing rules
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PretranslateRuleModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PretranslateRuleModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PretranslateRuleModel'
+        '403':
+          description: The project is not associated with the account
+        '404':
+          description: The provided project ID does not exist
+    post:
+      tags:
+      - Project
+      summary: Define project pre-processing rules
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: startPretranslate
+        in: query
+        schema:
+          type: boolean
+          default: true
+      requestBody:
+        description: Project pre-processing rules
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PretranslateRuleModel'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PretranslateRuleModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PretranslateRuleModel'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PretranslateRuleModel'
+        required: true
+      responses:
+        '200':
+          description: Request has been successfully completed
+        '403':
+          description: The project is not associated with the account
+        '404':
+          description: The provided project ID does not exist
+    put:
+      tags:
+      - Project
+      summary: Define project pre-processing rules
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: startPretranslate
+        in: query
+        schema:
+          type: boolean
+          default: true
+      requestBody:
+        description: Project pre-processing rules
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PretranslateRuleModel'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PretranslateRuleModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PretranslateRuleModel'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/PretranslateRuleModel'
+        required: true
+      responses:
+        '200':
+          description: Request has been successfully completed
+        '403':
+          description: The project is not associated with the account
+        '404':
+          description: The provided project ID does not exist
+  /api/integration/v1/project/{projectId}/empty-folders-removing-status:
+    get:
+      tags:
+      - Project
+      summary: Fetch the status of removing empty project folders
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EmptyProjectFoldersRemoveTaskStatus'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyProjectFoldersRemoveTaskStatus'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EmptyProjectFoldersRemoveTaskStatus'
+        '403':
+          description: The project is not associated with the account
+  /api/integration/v1/project/import-result/{importId}:
+    get:
+      tags:
+      - Project
+      summary: Fetch the result of import into the Localization Project
+      parameters:
+      - name: importId
+        in: path
+        description: Import task identifier
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/StringsTableImportResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringsTableImportResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/StringsTableImportResult'
+  /api/integration/v1/project/cancel:
+    post:
+      tags:
+      - Project
+      summary: Cancel the project
+      parameters:
+      - name: projectId
+        in: query
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: The project has been canceled
+        '403':
+          description: The project is not associated with the account
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: The provided project ID does not exist
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/project/restore:
+    post:
+      tags:
+      - Project
+      summary: Restore the project
+      parameters:
+      - name: projectId
+        in: query
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: The project has been restored
+        '403':
+          description: The project is not associated with the account
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: The provided project ID does not exist
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/project/complete:
+    post:
+      tags:
+      - Project
+      summary: Complete the workflow for all project documents. As a result, the project status will change to Completed.
+      parameters:
+      - name: projectId
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: Request has been successfully completed
+        '403':
+          description: The project is not associated with the account
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: The provided project ID does not exist
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '409':
+          description: Conflict
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/project/create:
+    post:
+      tags:
+      - Project
+      summary: Create the project
+      description: "This method uses special structure for multipart/form-data content\r\nPlease read this article in order to create a proper request\r\nhttps://developers.smartcat.com/api-guides/#multipart-requests\r\nIf you need more comprehensive overview of the project creation process\r\nyou can find this series of articles with detailed explanations and examples\r\nhttps://developers.smartcat.com/api-guides/#creating-a-project"
+      requestBody:
+        description: Project with files creation model
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                value:
+                  $ref: '#/components/schemas/CreateProjectModel'
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+        required: true
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProjectModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProjectModel'
+        '400':
+          description: "Returns if:\n\r\n- The project model is empty\r\n- The project description length exceeds the allowed maximum\r\n- The user ID was not found in the specified account\r\n- The domain ID is incorrect\r\n- The client ID is incorrect\r\n- The vendor ID is incorrect\r\n- The account does not support the test project creation"
+        '403':
+          description: The specified account is personal
+        '404':
+          description: Account not found
+        '409':
+          description: Several documents with identical names are being added to the project
+  /api/integration/v2/project/{projectId}/import:
+    post:
+      tags:
+      - Project
+      summary: Import keys and values from files into the Software Localization Project
+      parameters:
+      - name: projectId
+        in: path
+        description: Project identifier
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collection
+        in: query
+        description: Target collection (optional, "main" as default)
+        schema:
+          type: string
+      - name: language
+        in: query
+        description: Language of the imported files
+        schema:
+          type: string
+      - name: target-languages
+        in: query
+        description: "Comma separated list of target languages\r\n(optional, all target languages of the project by default, can only be specified when importing the source).\r\n- Empty list of languages produces a 400 bad request error with an appropriate reason text\r\n- An incorrect language code produces a 400 bad request error with an appropriate reason text\r\n- If any language didn't exist in the project, it will be created (but not added as a target to any existing collections)\r\n- If any language didn't exist in the collection (the target collection existed before), it will be added as a target to the collection"
+        schema:
+          type: string
+      - name: format
+        in: query
+        description: "Specifies the file format used to import the file (optional).\r\nSmartcat will try to identify the file format from its extension."
+        schema:
+          $ref: '#/components/schemas/SoftwareLocalizationDocumentFormat'
+      - name: completion-state
+        in: query
+        description: "Imported translation confirmation mode\r\ndraft — translation must be imported but not confirmed on any stage (default)\r\nintermediate — the translation must be imported and automatically confirmed at the first project stage\r\nfinal — the translation must be imported and confirmed on all project stages"
+        schema:
+          $ref: '#/components/schemas/SegmentCompletionState'
+      - name: labels
+        in: query
+        description: Comma-separated labels that will be attached to the created/updated segments (even if the text is not changed)
+        schema:
+          type: string
+      - name: path-separator
+        in: query
+        description: Path separator string (optional)
+        schema:
+          type: string
+      - name: skip-conflicting-values
+        in: query
+        description: "Specifies how to deal with situations when the same key has a different\r\nvalue in the imported file and in Smartcat - keeps the value in Smartcat by default"
+        schema:
+          type: boolean
+      - name: overwrite-conflicting-values
+        in: query
+        description: When the same key has a different value in the imported file and in Smartcat - use the value from the file
+        schema:
+          type: boolean
+      - name: auto-file-labels
+        in: query
+        description: Should Smartcat automatically create labels after file names?
+        schema:
+          type: boolean
+      - name: delete-missing-keys
+        in: query
+        description: Delete keys that are not present in the imported files
+        schema:
+          type: boolean
+      requestBody:
+        description: Files for import
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+                format: uuid
+            application/json:
+              schema:
+                type: string
+                format: uuid
+            text/json:
+              schema:
+                type: string
+                format: uuid
+  /api/integration/v1/project/document:
+    post:
+      tags:
+      - Project
+      summary: Add a document to the project
+      description: "This method uses special structure for multipart/form-data content\r\nPlease read this article in order to create a proper request\r\nhttps://developers.smartcat.com/api-guides/#multipart-requests"
+      parameters:
+      - name: projectId
+        in: query
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: disassembleAlgorithmName
+        in: query
+        description: Optional algorithm of file disassembly
+        schema:
+          type: string
+      - name: externalId
+        in: query
+        description: External identifier assigned by the client upon the document creation
+        schema:
+          type: string
+      - name: metaInfo
+        in: query
+        description: Additional user information about the document
+        schema:
+          type: string
+      - name: targetLanguages
+        in: query
+        description: Comma-separated target languages of all documents. Optional parameter. Can be modified per document in the request body. By default, lists the project target languages.
+        schema:
+          type: string
+      - name: presetDisassembleAlgorithm
+        in: query
+        description: Optional preset for the file disassembly algorithm
+        schema:
+          type: string
+      - name: enableOcr
+        in: query
+        description: Optional parameter for disabling OCR (the default is true)
+        schema:
+          type: boolean
+          default: true
+      requestBody:
+        description: Document file upload model
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/CreateDocumentPropertyModel'
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+            examples:
+              MultilingualExcelDisassembleSettingsModel:
+                summary: Value property for Multilingual Excel Disassemble Settings Model
+                value:
+                  externalId: null
+                  metaInfo: null
+                  disassembleAlgorithmName: null
+                  presetDisassembleAlgorithm: null
+                  disassembleSettings:
+                    startingRow: 1
+                    columns:
+                      context: C
+                      comments:
+                      - E
+                      lengthLimit: D
+                      language:
+                        en: A
+                        ru: B
+                  bilingualFileImportSetings: null
+                  targetLanguages: null
+                  enablePlaceholders: null
+                  enableOcr: null
+        required: true
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DocumentModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DocumentModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DocumentModel'
+        '400':
+          description: The specified file is empty
+        '403':
+          description: The project is not associated with the account or the specified account is personal
+        '404':
+          description: The provided project ID does not exist
+        '409':
+          description: The document name is not unique
+  /api/integration/v1/project/language:
+    post:
+      tags:
+      - Project
+      summary: Add a new target language to the project
+      parameters:
+      - name: projectId
+        in: query
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: targetLanguage
+        in: query
+        description: Target language
+        required: true
+        schema:
+          type: string
+      - name: addLanguageToDocuments
+        in: query
+        description: An optional parameter that can be used to disable the addition of a language for all project documents (by default - true)
+        schema:
+          type: boolean
+          default: true
+      responses:
+        '204':
+          description: A new target language was added to the projec
+        '400':
+          description: The provided target language is identical with the source language
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: The project is not associated with the account
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: The provided project ID does not exist
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+      - Project
+      summary: Remove a target language from the project
+      parameters:
+      - name: projectId
+        in: query
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: targetLanguage
+        in: query
+        description: Target language
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: The target language has been successfully removed from the project
+        '400':
+          description: An attempt to remove the latest target language
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: The project is not associated with the account
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: The provided project ID does not exist
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/project/{projectId}/translationmemories/bylanguages:
+    post:
+      tags:
+      - Project
+      summary: "Recreate the set of TMs plugged into the project.\r\nA separate set of TMs is created for each target language."
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: Collections of languages and their respective TMs
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/TranslationMemoriesForLanguageModel'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/TranslationMemoriesForLanguageModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/TranslationMemoriesForLanguageModel'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/TranslationMemoriesForLanguageModel'
+        required: true
+      responses:
+        '200':
+          description: Request has been successfully completed
+        '400':
+          description: "Returns if:\n\r\n- TM settings are not defined\r\n- The provided model with TM IDs to be added to the project for one of the languages is empty\r\n- More than one TM was provided for one of the languages\r\n- The match threshold in the TM is smaller than the allowed minimum (50)\r\n- A TM appears in language settings multiple times\r\n- The target language associated with the TM does not appear in the Write TM's target languages\r\n- The project's source language does not match any source language in the provided TM\r\n- The target language associated with the TM does not appear in the Read TM's target languages"
+  /api/integration/v1/project/{projectId}/statistics/build:
+    post:
+      tags:
+      - Project
+      summary: Start processing the project statistics
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: onlyExactMatches
+        in: query
+        description: Specifies whether returning 100% and higher matches will suffice (the default is false)
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Request has been successfully completed
+        '202':
+          description: Statistics creation is in progress
+        '400':
+          description: One or multiple parameters are formatted incorrectly
+        '403':
+          description: The project is not associated with the account
+        '404':
+          description: The provided project ID does not exist
+        '422':
+          description: One or multiple project documents could not be disassembled
+  /api/integration/v1/project/{projectId}/managers:
+    post:
+      tags:
+      - Project
+      summary: Add managers to the specified project
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: User IDs list
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+          text/json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/*+json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: true
+      responses:
+        '200':
+          description: Request has been successfully completed
+        '400':
+          description: One or multiple parameters are formatted incorrectly
+        '403':
+          description: The project is not associated with the account
+        '404':
+          description: The provided project ID does not exist
+    delete:
+      tags:
+      - Project
+      summary: Delete managers from the project
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: List of IDs of users labeled as managers
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+          text/json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/*+json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: true
+      responses:
+        '204':
+          description: Managers have been successfully deleted
+        '400':
+          description: The specified project ID's format is incorrect
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: The project is not associated with the account
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/project/{projectId}/assign:
+    post:
+      tags:
+      - Project
+      summary: Automatically assign all new documents/segments to current linguists
+      description: "Current limitations:\r\n1. Assignments are made to the following stages only: Translation, Editing, Proofreading, Postediting\r\n2. Assignments are made only to documents with an ID"
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: mode
+        in: query
+        description: Auto-assignment mode
+        schema:
+          $ref: '#/components/schemas/AutoAssignmentMode'
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkflowStageInDocumentModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkflowStageInDocumentModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkflowStageInDocumentModel'
+        '400':
+          description: One or multiple parameters are formatted incorrectly
+        '403':
+          description: The project is not associated with the account
+        '404':
+          description: The provided project ID does not exist
+  /api/integration/v1/project/{projectId}/ReferenceFiles:
+    post:
+      tags:
+      - Project
+      summary: Add reference files to a project
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: Files to be uploaded
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+        required: true
+      responses:
+        '204':
+          description: Returns if the operation has been successfully completed
+        '400':
+          description: Incorrect parameters
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: The project is associated with another account
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Project not found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/project/{projectId}/run-empty-folders-removing:
+    post:
+      tags:
+      - Project
+      summary: Run the empty project folders deletion task
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+        '403':
+          description: The project is not associated with the account
+  /api/integration/v2/project/{projectId}/export:
+    post:
+      tags:
+      - Project
+      summary: Run export from Software Localization Project
+      description: "Examples and detailed explanation can be found in this article:\r\nhttps://developers.smartcat.com/#extended-import-export-functionality"
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: collections
+        in: query
+        description: Comma-separated collections list to export (optional, "main" as default)
+        schema:
+          type: string
+      - name: languages
+        in: query
+        description: Comma-separated list of languages to export (optional, all target languages by default)
+        schema:
+          type: string
+      - name: format
+        in: query
+        description: Export format (optional, JSON by default)
+        schema:
+          $ref: '#/components/schemas/SoftwareLocalizationDocumentFormat'
+      - name: path-separator
+        in: query
+        description: "Path separator string (optional)\r\nWhen exporting \"structured-json\" and \"structured-yaml\" file formats,\r\nthis separator string will be used to split the key into multiple parts and construct the tree structure."
+        schema:
+          type: string
+      - name: completion-state
+        in: query
+        description: "Minimal key completion state (optional)\r\nSpecifies the state in which any key (segment) must be in order to be exported.\r\ndraft — download any translations, even unconfirmed ones (default)\r\nintermediate — download segments at the last confirmed stage\r\nfinal — download segments that passed through all translation stages"
+        schema:
+          $ref: '#/components/schemas/SegmentCompletionState'
+      - name: fallback-to-default-language
+        in: query
+        description: Return default language values instead of incomplete translations (default)
+        schema:
+          type: boolean
+      - name: export-incomplete-as-blank
+        in: query
+        description: Export blank values when no translation is ready
+        schema:
+          type: boolean
+      - name: skip-incomplete-keys
+        in: query
+        description: Do not export keys that have no translations (will be used as a default for the "android-xml" export file type)
+        schema:
+          type: boolean
+      - name: output-file-path-template
+        in: query
+        description: "Output file path template (Optional)\r\nSpecifies how the output files should be named and located.\r\nYou can use the {LANGUAGE} and {LABEL:PREFIX} placeholders to customize the output.\r\nThe {LOCALE:IOS} and {LOCALE:ANDROID} placeholders are also available for platform specific exports.\r\nThe ability to specify {LABEL:PREFIX} placeholder allows you to export keys that have the PREFIX value\r\nof label prefix and use the label suffix to determine the file name.\r\nSee examples [here](http://developers.sc.local/software-localization/#file-path-template)"
+        schema:
+          type: string
+      - name: include-default-language
+        in: query
+        description: Specify if the default language should be included in the export
+        schema:
+          type: boolean
+      - name: zip
+        in: query
+        description: Force export to a ZIP archive, even for a single file
+        schema:
+          type: boolean
+      - name: modified-since
+        in: query
+        description: Export keys that were changed after the datetime
+        schema:
+          type: string
+          format: date-time
+      - name: labels
+        in: query
+        description: Comma-separated list of labels to export keys that are marked with labels
+        schema:
+          type: string
+      - name: indent
+        in: query
+        description: Indent for formatting the exporting file (optional, 2 spaces by default)
+        schema:
+          type: string
+      requestBody:
+        description: Export keys model
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ExportKeysFromSoftwareLocalizationProjectModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportKeysFromSoftwareLocalizationProjectModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ExportKeysFromSoftwareLocalizationProjectModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ExportKeysFromSoftwareLocalizationProjectModel'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+                format: uuid
+            application/json:
+              schema:
+                type: string
+                format: uuid
+            text/json:
+              schema:
+                type: string
+                format: uuid
+        '400':
+          description: The provided model is invalid
+        '403':
+          description: The project is not associated with the account
+        '404':
+          description: The provided IDs do not match any project
+  /api/integration/v1/project/{projectId}/copying:
+    post:
+      tags:
+      - Project
+      summary: Run copying a project
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ProjectCopyModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectCopyModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProjectCopyModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProjectCopyModel'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+                format: uuid
+            application/json:
+              schema:
+                type: string
+                format: uuid
+            text/json:
+              schema:
+                type: string
+                format: uuid
+  /api/integration/v1/project/copying/{taskId}:
+    get:
+      tags:
+      - Project
+      summary: Get project copy state
+      parameters:
+      - name: taskId
+        in: path
+        description: Copy task ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProjectCopyStateModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectCopyStateModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProjectCopyStateModel'
+components:
+  schemas:
+    SubtitleSegmentationMode:
+      enum:
+      - by-cue
+      - by-sentence
+      type: string
+      description: Subtitle auto-segmentation mode for project creation.
+      format: int32
+    CreateProjectNumberModel:
+      type: object
+      properties:
+        useTemplate:
+          type: boolean
+          description: Use a number generation template
+        number:
+          type: string
+          description: Project number (the value is ignored if a template generated number is applied)
+          nullable: true
+      additionalProperties: false
+      description: Data class for project number creation
+    TranslationMemoriesForLanguageModel:
+      type: object
+      properties:
+        language:
+          type: string
+          description: Language associated with TM list
+          nullable: true
+        translationMemories:
+          type: array
+          items:
+            $ref: '#/components/schemas/TranslationMemoryForProjectModel'
+          description: TM list
+          nullable: true
+        onlyExactSourceLanguageMatch:
+          type: boolean
+          description: Specifies whether exact match with the source language is required
+          nullable: true
+        onlyExactTargetLanguageMatch:
+          type: boolean
+          description: Specifies whether exact match with the target language is required
+          nullable: true
+      additionalProperties: false
+      description: Project language TMs model
+    DocumentPackageModel:
+      type: object
+      properties:
+        isRoot:
+          type: boolean
+          description: Indicates whether the document is the root of the package
+        packageId:
+          type: string
+          description: Identifier of the package the document belongs to
+          format: uuid
+        parentPackageId:
+          type: string
+          description: Identifier of the parent package in the hierarchy, if any
+          format: uuid
+          nullable: true
+      additionalProperties: false
+      description: Package information for a document that belongs to a file package
+    ProjectWorkflowStageModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        progress:
+          type: number
+          description: Completion percentage
+          format: double
+        stageType:
+          $ref: '#/components/schemas/StageType'
+      additionalProperties: false
+      description: Project workflow stage model
+    BilingualFileImportSetingsModel:
+      type: object
+      properties:
+        targetSubstitutionMode:
+          $ref: '#/components/schemas/TargetSubstitutionMode'
+        targetLanguageUsageMode:
+          $ref: '#/components/schemas/TargetLanguageUsageMode'
+        lockMode:
+          $ref: '#/components/schemas/LockMode'
+        confirmMode:
+          $ref: '#/components/schemas/ConfirmMode'
+        saveType:
+          $ref: '#/components/schemas/SaveType'
+      additionalProperties: false
+      description: Bilingual document upload settings model
+    ConfirmMode:
+      enum:
+      - none
+      - byStates
+      - atFirstStage
+      - atLastStage
+      type: string
+      description: Mode of segment confirmation at file upload
+      format: int32
+    PretranslateRuleModel:
+      required:
+      - order
+      - ruleType
+      type: object
+      properties:
+        ruleType:
+          $ref: '#/components/schemas/PretranslateRuleType'
+        order:
+          type: integer
+          description: Ordering number of the rule (starting with 1)
+          format: int32
+        confirmAtWorkflowStep:
+          type: string
+          description: "Specify at which workflow stage pretranslation segments must be confirmed\r\n(null if confirmation is not required)"
+          format: uuid
+          nullable: true
+        translationMemoryId:
+          type: string
+          description: Translation memory (TM) ID, if the rule involves the use of TM matches
+          format: uuid
+          nullable: true
+        minThreshold:
+          type: integer
+          description: Minimum match threshold, if the rule involves the use of TM matches
+          format: int32
+          nullable: true
+        minTQSQualityThreshold:
+          type: integer
+          description: Minimum threshold score for TQS
+          format: int32
+          nullable: true
+        minSegmentWordsCount:
+          type: integer
+          description: Minimum segment length, if the rule involves the use of TM matches
+          format: int32
+          nullable: true
+        minAssuranceLevel:
+          $ref: '#/components/schemas/TMTranslationAssuranceLevel'
+        lqaProfileId:
+          type: string
+          description: LQA profile which is used by the LQA automation rule
+          nullable: true
+        blockingSeverityIds:
+          type: array
+          items:
+            type: string
+          description: LQA severity ids whose presence on a segment prevents auto-confirmation by the LQA automation rule
+          nullable: true
+      additionalProperties: false
+      description: Pretranslation rule model
+    StringsTableImportResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/StringsTableImportStatus'
+        failedFileNames:
+          type: array
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+        keysCreated:
+          type: integer
+          format: int32
+          readOnly: true
+        keysUpdated:
+          type: integer
+          format: int32
+          readOnly: true
+        keysDeleted:
+          type: integer
+          format: int32
+          readOnly: true
+        keyValuesNotChanged:
+          type: integer
+          format: int32
+          readOnly: true
+        keysWithoutSource:
+          type: integer
+          format: int32
+          readOnly: true
+        conflictingKeyValues:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+            nullable: true
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    StageType:
+      enum:
+      - translation
+      - editing
+      - proofreading
+      - postediting
+      - finalPageProof
+      - notarization
+      - certifiedTranslation
+      - transcreation
+      - legalization
+      - preliminaryPageProof
+      - lQAReview
+      - subtitleReview
+      - voiceOverReview
+      - sourceReview
+      type: string
+      description: Workflow stage type
+      format: int32
+    ExecutiveStatisticsModel:
+      type: object
+      properties:
+        executive:
+          $ref: '#/components/schemas/ExecutiveModel'
+        stageType:
+          type: string
+          description: Stage name
+          nullable: true
+        stageNumber:
+          type: integer
+          description: Stage number
+          format: int32
+        targetLanguage:
+          type: string
+          description: Target language
+          nullable: true
+        total:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatisticsRowModel'
+          description: Statistics summary for all documents
+          nullable: true
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentStatisticsModel'
+          description: Statistics per document
+          nullable: true
+      additionalProperties: false
+      description: Statistics model covering the work accomplished for the project by a specific user, the workflow stage, and the target language
+    ProjectCopyStatus:
+      enum:
+      - error
+      - inProgress
+      - success
+      type: string
+      description: Project copy status
+      format: int32
+    ProjectMTEngineSupportedLanguagesModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: MT engine or profile ID
+          nullable: true
+        name:
+          type: string
+          description: The name of the MT engine of profile
+          nullable: true
+        languages:
+          type: array
+          items:
+            type: string
+          description: The languages supported by the MT engine or profile
+          nullable: true
+      additionalProperties: false
+      description: The model represents the supported MT engines or profiles
+    SegmentCompletionState:
+      enum:
+      - draft
+      - intermediate
+      - final
+      type: string
+      description: Segment completion state
+      format: int32
+    ExecutiveModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: User ID
+          format: uuid
+        supplierType:
+          $ref: '#/components/schemas/SupplierType'
+      additionalProperties: false
+      description: Linguist details
+    AutoAssignmentMode:
+      enum:
+      - currentAssignees
+      type: string
+      description: Auto-assignment mode
+      format: int32
+    ProjectCopyModel:
+      required:
+      - options
+      type: object
+      properties:
+        newProjectName:
+          type: string
+          description: New project name. If it is not filled, then it will be generated as "{ORIGINAL_PROJECT_NAME} — {YYYY-MM-DD HH:MM}"
+          nullable: true
+        options:
+          $ref: '#/components/schemas/ProjectCopyOptions'
+        copyTargetLanguageId:
+          type: integer
+          description: Target language ID for copying to source (if not specified, will take the first available target)
+          format: int32
+          nullable: true
+        targetLanguagesToRemove:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: Target languages to remove from the copied project
+          nullable: true
+        targetLanguagesToAdd:
+          type: array
+          items:
+            type: integer
+            format: int32
+          description: Target languages to add to the copied project
+          nullable: true
+        disableNotifications:
+          type: boolean
+          description: Disable notifications about the project copying progress
+      additionalProperties: false
+      description: Model for project copy
+    ProjectMTEngineModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: MT engine or profile ID
+          nullable: true
+        name:
+          type: string
+          description: The name of the MT engine of profile
+          nullable: true
+        languages:
+          type: array
+          items:
+            type: string
+          description: The languages for which the MT engine of profile is added to the project
+          nullable: true
+      additionalProperties: false
+      description: The model represents the addition of an MT engine or profile to the project
+    ProjectType:
+      enum:
+      - default
+      - softwareLocalization
+      type: string
+      description: Project type
+      format: int32
+    CreateProjectSegmentationDefaultRuleModel:
+      required:
+      - segmentationMode
+      type: object
+      properties:
+        segmentationMode:
+          $ref: '#/components/schemas/SubtitleSegmentationMode'
+        maxCps:
+          type: integer
+          description: Subtitle cue's characters per second limit (1-100). Enables CPS normalization when set.
+          format: int32
+          nullable: true
+        maxLineSize:
+          type: integer
+          description: Maximum line size in characters (1-1000).
+          format: int32
+          nullable: true
+        maxLinesPerCue:
+          type: integer
+          description: Maximum number of lines per subtitle cue (1-10).
+          format: int32
+          nullable: true
+      additionalProperties: false
+      description: Default subtitle segmentation rule.
+    DocumentWorkflowStageModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        progress:
+          type: number
+          description: Completion percentage
+          format: double
+        wordsTranslated:
+          type: integer
+          description: Translated words count
+          format: int32
+        unassignedWordsCount:
+          type: integer
+          description: Unassigned words count
+          format: int32
+        status:
+          $ref: '#/components/schemas/WorkflowStageStatus'
+        statusModificationDate:
+          type: string
+          description: Status change date
+          format: date-time
+          nullable: true
+        executives:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssignedExecutiveModel'
+          description: Assigned linguists
+          nullable: true
+        vendor:
+          $ref: '#/components/schemas/VendorModel'
+      additionalProperties: false
+      description: Document workflow stage model
+    StringsTableImportStatus:
+      enum:
+      - pending
+      - inProgress
+      - completed
+      - failed
+      type: string
+      format: int32
+    WorkflowStageInDocumentModel:
+      type: object
+      properties:
+        documentId:
+          type: string
+          nullable: true
+        languageId:
+          type: integer
+          format: int32
+        workflowStageId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    GlossaryModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Glossary ID
+          format: uuid
+        name:
+          type: string
+          description: Glossary name
+          nullable: true
+        description:
+          type: string
+          description: Glossary description
+          nullable: true
+        clientId:
+          type: string
+          description: Client ID, if a glossary client is specified
+          format: uuid
+          nullable: true
+        languages:
+          type: array
+          items:
+            type: string
+          description: Glossary language codes
+          nullable: true
+        units:
+          type: integer
+          description: Glossary unit count
+          format: int32
+        unitsPending:
+          type: integer
+          description: Pending unit count
+          format: int32
+        isDefault:
+          type: boolean
+          description: Default glossary flag
+      additionalProperties: false
+      description: Glossary
+    CreateDocumentPropertyModel:
+      type: object
+      properties:
+        externalId:
+          type: string
+          description: Optional external ID provided by a client
+          nullable: true
+        metaInfo:
+          type: string
+          description: Additional document-related user information (for integration)
+          nullable: true
+        disassembleAlgorithmName:
+          type: string
+          description: Optional algorithm of file disassembling
+          nullable: true
+        presetDisassembleAlgorithm:
+          type: string
+          description: Optional preset for the file disassembling algorithm
+          nullable: true
+        disassembleSettings:
+          description: "Additional disassemble settings\r\nIf you want to configure disassemble settings,\r\nplease read this section\r\nhttps://developers.smartcat.com/api-guides/#custom-document-segmentation-experimental-feature"
+          nullable: true
+        bilingualFileImportSetings:
+          $ref: '#/components/schemas/BilingualFileImportSetingsModel'
+        targetLanguages:
+          type: array
+          items:
+            type: string
+          description: Optional array of target languages. Project languages are applied by default
+          nullable: true
+        enablePlaceholders:
+          type: boolean
+          description: Specifies whether to enable placeholders in the document body
+          nullable: true
+        enableOcr:
+          type: boolean
+          description: Optional parameter for enabling OCR
+          nullable: true
+      additionalProperties: false
+      description: Created document properties
+    QuotePaymentStatus:
+      enum:
+      - notPaid
+      - paid
+      - awaitingPayment
+      type: string
+      format: int32
+    AssignedExecutiveModel:
+      type: object
+      properties:
+        assignedWordsCount:
+          type: integer
+          description: Assigned word count
+          format: int32
+        progress:
+          type: number
+          description: Completion percentage
+          format: double
+        id:
+          type: string
+          description: User ID
+          format: uuid
+        supplierType:
+          $ref: '#/components/schemas/SupplierType'
+      additionalProperties: false
+      description: Model of a linguist assigned to a document workflow stage
+    DocumentStatus:
+      enum:
+      - created
+      - inProgress
+      - completed
+      - updated
+      - targetUpdated
+      type: string
+      description: Document status
+      format: int32
+    ExportKeysFromSoftwareLocalizationProjectModel:
+      type: object
+      properties:
+        keys:
+          type: array
+          items:
+            type: string
+          description: Exporting keys
+          nullable: true
+      additionalProperties: false
+      description: Model for keys exported from
+    ProjectCopyStateModel:
+      type: object
+      properties:
+        destinationProjectId:
+          type: string
+          description: Destination project ID
+          format: uuid
+        percent:
+          type: number
+          description: Percentage how much the project is copied
+          format: double
+        copiedDocumentCount:
+          type: integer
+          description: Number of documents copied
+          format: int32
+        totalDocumentCount:
+          type: integer
+          description: The total number of documents to be copied
+          format: int32
+        status:
+          $ref: '#/components/schemas/ProjectCopyStatus'
+      additionalProperties: false
+      description: Project copy state
+    TargetSubstitutionMode:
+      enum:
+      - all
+      - none
+      type: string
+      description: Target substitution mode
+      format: int32
+    ProjectVendorModel:
+      type: object
+      properties:
+        vendorAccountId:
+          type: string
+          description: Vendor account ID
+          format: uuid
+        removedFromProject:
+          type: boolean
+          description: Removed from the project
+        cost:
+          $ref: '#/components/schemas/ProjectCostModel'
+        costDetailsFileId:
+          type: string
+          description: Quote ID
+          format: uuid
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+      description: Vendor-to-project connection model
+    Specialization:
+      enum:
+      - education
+      - productsAndCatalogs
+      - documentsAndCertificates
+      - marketing
+      - correspondence
+      - software
+      - fiction
+      - scienceAndPatents
+      - contractsAndReports
+      - gaming
+      - manuals
+      - website
+      - annualReport
+      - corporateAndSocialResponsibility
+      - technicalAndEngineering
+      - cryptocurrencies
+      - biochemistry
+      - computingScience
+      - electronics
+      - metallurgy
+      - nuclear
+      - optics
+      - printing
+      - telecommunication
+      - textile
+      - patent
+      - military
+      - ecologyAndEnvironment
+      - agriculture
+      - artsAndCulture
+      - aviationAndSpace
+      - biology
+      - cartography
+      - chemistry
+      - cosmetics
+      - construction
+      - architecture
+      - economics
+      - accounting
+      - bankingAndInvestment
+      - insurance
+      - energy
+      - thermalPowerEngineering
+      - mechanicalEngineering
+      - finance
+      - general
+      - geography
+      - geology
+      - mining
+      - history
+      - linguistics
+      - philosophy
+      - psychology
+      - sociology
+      - industry
+      - industrialAutomation
+      - electricalEngineering
+      - iT
+      - eRP
+      - law
+      - hR
+      - mathematics
+      - medicine
+      - medicalEquipment
+      - pharmaceutics
+      - veterinaryMedicine
+      - oilAndGas
+      - physics
+      - politicsAndSociety
+      - realEstate
+      - recreation
+      - fashion
+      - luxuryItems
+      - tourismAndTravel
+      - religion
+      - socialScience
+      - sport
+      - transport
+      - automotiveBusiness
+      - foodAndDrinks
+      - biotechnology
+      - business
+      - lifeSciences
+      type: string
+      description: Text specialization
+      format: int32
+    StatisticsFieldName:
+      enum:
+      - perfect
+      - crossFileRepeated
+      - total
+      - repetitions
+      - newWords
+      - match_50_74
+      - match_75_84
+      - match_85_94
+      - match_95_99
+      - match_100
+      - contextMatch_101
+      - contextMatch_102
+      type: string
+      description: Statistics field names
+      format: int32
+    CreateProjectSegmentationExceptionRuleModel:
+      required:
+      - languages
+      - segmentationMode
+      type: object
+      properties:
+        languages:
+          type: array
+          items:
+            type: string
+          description: "Target language culture names this exception applies to (e.g. \"en-US\", \"ru\").\r\nRequired, must contain at least one element."
+          nullable: true
+        segmentationMode:
+          $ref: '#/components/schemas/SubtitleSegmentationMode'
+        maxCps:
+          type: integer
+          description: Subtitle cue's characters per second limit (1-100). Enables CPS normalization when set.
+          format: int32
+          nullable: true
+        maxLineSize:
+          type: integer
+          description: Maximum line size in characters (1-1000).
+          format: int32
+          nullable: true
+        maxLinesPerCue:
+          type: integer
+          description: Maximum number of lines per subtitle cue (1-10).
+          format: int32
+          nullable: true
+      additionalProperties: false
+      description: Per-language subtitle segmentation rule override.
+    ProjectTypeFilter:
+      enum:
+      - all
+      - softwareLocalization
+      - nonSoftwareLocalization
+      type: string
+      description: Project type
+      format: int32
+    ProjectAssignmentMode:
+      enum:
+      - document
+      - projectTask
+      type: string
+      description: Indicates the mode in which performers are assigned to the tasks in the project.
+      format: int32
+    ProjectChangesModel:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Project name
+          nullable: true
+        description:
+          type: string
+          description: Project description
+          nullable: true
+        deadline:
+          type: string
+          description: Project deadline
+          format: date-time
+          nullable: true
+        clientId:
+          type: string
+          description: Client ID
+          format: uuid
+          nullable: true
+        domainId:
+          type: integer
+          description: Project group ID
+          format: int32
+          nullable: true
+        vendorAccountIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Vendor account IDs (supports a list containing maximum 1 entry)
+          nullable: true
+        externalTag:
+          type: string
+          description: External system tag
+          nullable: true
+        specializations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Specialization'
+          description: Specializations
+          nullable: true
+        workflowStages:
+          type: array
+          items:
+            $ref: '#/components/schemas/StageType'
+          description: Translation level workflow stages to be applied to the project. This parameter is optional
+          nullable: true
+        customFieldValues:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: Custom field values
+          nullable: true
+      additionalProperties: false
+      description: Project changes model
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
+    ProjectCostModel:
+      type: object
+      properties:
+        value:
+          type: number
+          description: Cost
+          format: double
+          nullable: true
+          readOnly: true
+        currency:
+          type: string
+          description: Currency
+          nullable: true
+          readOnly: true
+        accuracyDegree:
+          $ref: '#/components/schemas/ProjectQuoteAccuracyDegree'
+        detailsFileName:
+          type: string
+          description: Quote file name
+          nullable: true
+          readOnly: true
+        paymentStatus:
+          $ref: '#/components/schemas/QuotePaymentStatus'
+      additionalProperties: false
+      description: Project cost model
+    PretranslateRuleType:
+      enum:
+      - tM
+      - mT
+      - numberConversion
+      - tQS
+      - lQA
+      type: string
+      description: Pretranslation rule type
+      format: int32
+    WizardType:
+      enum:
+      - smartcatAutomaticProject
+      - smartcatCustomProject
+      - smartcatWebsiteProject
+      - smartcatIntegrationProject
+      - smartcatForDevelopersProject
+      - smartcatLqaProject
+      - smartcatCourseProject
+      - smartcatVideoAndSubtitles
+      - smartcatCourseGeneration
+      - smartcatImages
+      - projectTemplate
+      - serviceTemplate
+      - integrationConnection
+      - articulateCourseProject
+      - tikTokVideoTranslator
+      type: string
+      description: Wizard types
+      format: int32
+    SupplierType:
+      enum:
+      - freelancer
+      - company
+      type: string
+      description: Supplier type
+      format: int32
+    SoftwareLocalizationDocumentFormat:
+      enum:
+      - json
+      - ios-strings
+      - android-xml
+      - yaml
+      - structured-json
+      - structured-yaml
+      - qt-ts
+      type: string
+      description: Software localization document format
+      format: int32
+    CreateProjectModel:
+      required:
+      - name
+      - sourceLanguage
+      - targetLanguages
+      type: object
+      properties:
+        name:
+          type: string
+          description: Project name
+          nullable: true
+        type:
+          $ref: '#/components/schemas/ProjectType'
+        number:
+          $ref: '#/components/schemas/CreateProjectNumberModel'
+        description:
+          type: string
+          description: Project description
+          nullable: true
+        deadline:
+          type: string
+          description: Project deadline
+          format: date-time
+          nullable: true
+        sourceLanguage:
+          type: string
+          description: Project source language
+          nullable: true
+        targetLanguages:
+          type: array
+          items:
+            type: string
+          description: Project target languages
+          nullable: true
+        creatorUserId:
+          type: string
+          description: User identifier who creates the project
+          nullable: true
+        domainId:
+          type: integer
+          description: Project group ID
+          format: int32
+          nullable: true
+        clientId:
+          type: string
+          description: Client ID
+          format: uuid
+          nullable: true
+        vendorAccountIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Vendor accounts IDs
+          nullable: true
+        assignToVendor:
+          type: boolean
+          description: Project assigned to a vendor
+        useMT:
+          type: boolean
+          description: Specifies whether the project uses MT
+        pretranslate:
+          type: boolean
+          description: "Specifies whether to enable the automatic pretranslation. If yes, two pretranslation rules are applied:\r\n1. For the TM with the Write permission\r\n2. For the MT, if enabled"
+        translationMemoryName:
+          type: string
+          description: The name of the account TM that will have both Write and Read permissions
+          nullable: true
+        useTranslationMemory:
+          type: boolean
+          description: Specifies whether to enable read and write TM for the project
+          nullable: true
+        minTranslationAssuranceLevel:
+          $ref: '#/components/schemas/IntegrationApiTMTranslationAssuranceLevel'
+        autoPropagateRepetitions:
+          type: boolean
+          description: Specifies whether to enable auto-propagation of repeated segments at the project level (default is True)
+          nullable: true
+        documentProperties:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateDocumentPropertyModel'
+          description: Document properties as they are ordered in a request. This parameter is optional
+          nullable: true
+        workflowStages:
+          type: array
+          items:
+            $ref: '#/components/schemas/StageType'
+          description: Project workflow stages for the created project. This parameter is optional
+          nullable: true
+        isForTesting:
+          type: boolean
+          description: Specifies whether the project is used for testing
+        externalTag:
+          type: string
+          description: External system tag
+          nullable: true
+        specializations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Specialization'
+          description: Specializations
+          nullable: true
+        customFieldValues:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: Custom field values
+          nullable: true
+        createdWithWizardType:
+          $ref: '#/components/schemas/WizardType'
+        useSubtitleEditor:
+          type: boolean
+          description: If media should be processed via the subtitle editor for this project
+          nullable: true
+        subtitlesSegmentationRules:
+          $ref: '#/components/schemas/CreateProjectSegmentationRulesModel'
+        isSkillBasedProject:
+          type: boolean
+          description: Indicates whether the project is skill-based.
+          nullable: true
+        templateId:
+          type: string
+          description: Project template ID for creating project from template
+          format: uuid
+          nullable: true
+        aiTranslationProfileId:
+          type: string
+          description: User's AI translation profile id
+          nullable: true
+      additionalProperties: false
+      description: Project creation model
+    TranslationMemoryForProjectModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: TM database ID
+          format: uuid
+        matchThreshold:
+          type: integer
+          description: Minimum percentage of full matches for the TM
+          format: int32
+        isWritable:
+          type: boolean
+          description: TM is writable for confirmed segments
+      additionalProperties: false
+      description: TM for project model
+    WorkflowStageStatus:
+      enum:
+      - notAssigned
+      - assigned
+      - inProgress
+      - completed
+      type: string
+      description: Workflow stage status
+      format: int32
+    StatisticsRowModel:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/StatisticsFieldName'
+        words:
+          type: integer
+          description: Words
+          format: int64
+        percent:
+          type: number
+          description: Percent
+          format: double
+        segments:
+          type: integer
+          description: Segments
+          format: int32
+        pages:
+          type: number
+          description: Pages
+          format: double
+        charsWithoutSpaces:
+          type: integer
+          description: Chars Without Spaces
+          format: int64
+        charsWithSpaces:
+          type: integer
+          description: Chars With Spaces
+          format: int64
+        effectiveWordsForBilling:
+          type: number
+          description: Effective word count
+          format: double
+          nullable: true
+      additionalProperties: false
+      description: Document Statistics Model
+    LockMode:
+      enum:
+      - none
+      - byStates
+      - confirmed
+      type: string
+      description: Mode of locking segments at import
+      format: int32
+    ProjectTranslationMemoryModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: TM ID
+          format: uuid
+        matchThreshold:
+          type: integer
+          description: Match threshold
+          format: int32
+        targetLanguageId:
+          type: integer
+          description: TM language (null, if the TM is applied to the entire project)
+          format: int32
+          nullable: true
+        isWritable:
+          type: boolean
+          description: TM is writable for confirmed segments
+      additionalProperties: false
+      description: Project TM creation model
+    EmptyProjectFoldersRemoveTaskStatus:
+      enum:
+      - done
+      - failed
+      - inProgress
+      type: string
+      format: int32
+    ProjectCopyOptions:
+      enum:
+      - projectOnly
+      - projectSettings
+      - documents
+      - segmentTranslations
+      - segmentRevisions
+      - comments
+      - segmentCopyTargetToSource
+      type: string
+      description: Data to be copied when copying a project
+      format: int32
+    DocumentStatisticsModel:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the document for which statistics are collected
+          nullable: true
+        statistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatisticsRowModel'
+          description: Statistics regarding the work done for the project
+          nullable: true
+      additionalProperties: false
+      description: Document statistics
+    ProjectStatisticsObsoleteModel:
+      type: object
+      properties:
+        statistics:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatisticsRowModel'
+          description: Detailed statistics
+          nullable: true
+      additionalProperties: false
+      description: Project statistics model for a specific target language
+    VendorModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        name:
+          type: string
+          description: Company name
+          nullable: true
+        customFields:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: Custom fields
+          nullable: true
+      additionalProperties: false
+      description: Vendor model
+    ProjectQuoteAccuracyDegree:
+      enum:
+      - estimatedByWordsCount
+      - estimatedByTmMatches
+      - autoCalculatedExact
+      - manuallyEntered
+      type: string
+      format: int32
+    SaveType:
+      enum:
+      - autoSaved
+      - insertTM
+      - insertMT
+      - insertTB
+      - translatedInSourceFile
+      - repetitionInsert
+      - rollback
+      - replacement
+      - copyFromSource
+      - numberConversion
+      - crossDocumentRepetitionInsert
+      - joinSegments
+      - splitSegment
+      - updateSourceText
+      - documentCompletion
+      - updateFromExternalSystem
+      - reconnect
+      - cleanTarget
+      - autoCopyFromSource
+      - copyProject
+      - aiAction
+      - aligner
+      - confirmation
+      - glossaryImprovement
+      - agentReview
+      type: string
+      description: Revision type
+      format: int32
+    Contracts.ProjectStatus:
+      enum:
+      - created
+      - inProgress
+      - completed
+      - canceled
+      type: string
+      description: Project Status
+      format: int32
+    TargetLanguageUsageMode:
+      enum:
+      - selected
+      - fromFile
+      type: string
+      description: Target language selection mode for translation
+      format: int32
+    CreateProjectSegmentationRulesModel:
+      required:
+      - default
+      type: object
+      properties:
+        default:
+          $ref: '#/components/schemas/CreateProjectSegmentationDefaultRuleModel'
+        exceptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateProjectSegmentationExceptionRuleModel'
+          description: Per-language overrides. Optional.
+          nullable: true
+      additionalProperties: false
+      description: Subtitle segmentation rules for project creation.
+    ProjectModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Project ID
+          format: uuid
+        accountId:
+          type: string
+          description: Account ID
+          format: uuid
+        name:
+          type: string
+          description: Project name
+          nullable: true
+        description:
+          type: string
+          description: Project description
+          nullable: true
+        deadline:
+          type: string
+          description: Project deadline
+          format: date-time
+          nullable: true
+        creationDate:
+          type: string
+          description: Creation date
+          format: date-time
+        createdByUserId:
+          type: string
+          description: User ID of the project creator
+          format: uuid
+          nullable: true
+        createdByUserEmail:
+          type: string
+          description: Email of the project creator
+          nullable: true
+        modificationDate:
+          type: string
+          description: Last modification date
+          format: date-time
+        sourceLanguageId:
+          type: integer
+          description: Project source language code
+          format: int32
+        sourceLanguage:
+          type: string
+          description: Project source language
+          nullable: true
+        targetLanguages:
+          type: array
+          items:
+            type: string
+          description: Project target languages
+          nullable: true
+        status:
+          $ref: '#/components/schemas/Contracts.ProjectStatus'
+        statusModificationDate:
+          type: string
+          description: Last status change date (including the status of the OnApproval and CancelledBy attributes)
+          format: date-time
+          nullable: true
+        domainId:
+          type: integer
+          description: Project group ID
+          format: int32
+          nullable: true
+        clientId:
+          type: string
+          description: Client ID
+          format: uuid
+          nullable: true
+        vendors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectVendorModel'
+          description: Project vendors
+          nullable: true
+        workflowStages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectWorkflowStageModel'
+          description: Project workflow stages
+          nullable: true
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentModel'
+          description: Project task
+          nullable: true
+        externalTag:
+          type: string
+          description: External system tag
+          nullable: true
+        specializations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Specialization'
+          description: Specializations
+          nullable: true
+        managers:
+          type: array
+          items:
+            type: string
+          description: Managers
+          nullable: true
+        number:
+          type: string
+          description: Project number
+          nullable: true
+        assignmentMode:
+          $ref: '#/components/schemas/ProjectAssignmentMode'
+        aiTranslationProfileId:
+          type: string
+          description: AI translation Profile ID.
+          nullable: true
+        customFields:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: Custom fields
+          nullable: true
+      additionalProperties: false
+      description: Project model
+    DocumentDisassemblingStatus:
+      enum:
+      - inProgress
+      - error
+      - success
+      type: string
+      description: Document disassembly status
+      format: int32
+    IntegrationApiTMTranslationAssuranceLevel:
+      enum:
+      - mT
+      - questionable
+      - regular
+      - qualified
+      type: string
+      description: Minimum TM segment quality
+      format: int32
+    DocumentModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Document ID
+          nullable: true
+        name:
+          type: string
+          description: Document name
+          nullable: true
+        fullPath:
+          type: string
+          description: Full path to the document in the project
+          nullable: true
+        filename:
+          type: string
+          description: Source file name, including the extension
+          nullable: true
+        originalFilename:
+          type: string
+          description: Name of the original file uploaded by the user (before any pre-processing such as OCR), including the extension.
+          nullable: true
+        creationDate:
+          type: string
+          description: Creation date
+          format: date-time
+        deadline:
+          type: string
+          description: Document translation deadline
+          format: date-time
+          nullable: true
+        sourceLanguage:
+          type: string
+          description: Source language
+          nullable: true
+        documentDisassemblingStatus:
+          $ref: '#/components/schemas/DocumentDisassemblingStatus'
+        targetLanguage:
+          type: string
+          description: Target language
+          nullable: true
+        status:
+          $ref: '#/components/schemas/DocumentStatus'
+        wordsCount:
+          type: integer
+          description: Word count in the source text
+          format: int32
+        statusModificationDate:
+          type: string
+          description: Late of the last status change
+          format: date-time
+          nullable: true
+        pretranslateCompleted:
+          type: boolean
+          description: Specifies whether pretranslation has completed, if ordered
+        workflowStages:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentWorkflowStageModel'
+          description: Workflow stages for the document
+          nullable: true
+        externalId:
+          type: string
+          description: External identifier assigned by the client upon the document creation
+          nullable: true
+        projectId:
+          type: string
+          description: ID of the project associated with the document
+          format: uuid
+        metaInfo:
+          type: string
+          description: Additional user information about the document
+          nullable: true
+        placeholdersAreEnabled:
+          type: boolean
+          description: Specifies whether placeholders are enabled for the document
+        revisionLabel:
+          type: string
+          description: Document version ID label
+          nullable: true
+        readyForCompletion:
+          type: boolean
+          description: Indicates whether the document is ready to be completed
+        package:
+          $ref: '#/components/schemas/DocumentPackageModel'
+      additionalProperties: false
+      description: Document model
+    TMTranslationAssuranceLevel:
+      enum:
+      - mT
+      - questionable
+      - regular
+      - qualified
+      type: string
+      format: int32

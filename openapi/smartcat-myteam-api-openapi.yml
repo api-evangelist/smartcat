@@ -1,0 +1,639 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account MyTeam API
+  version: v1
+servers:
+- url: /
+tags:
+- name: MyTeam
+paths:
+  /api/integration/v1/account/myTeam/{userId}:
+    get:
+      tags:
+      - MyTeam
+      summary: Fetch a MyTeam member model by ID
+      parameters:
+      - name: userId
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MyTeamMemberModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyTeamMemberModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MyTeamMemberModel'
+        '404':
+          description: User not found
+    delete:
+      tags:
+      - MyTeam
+      summary: Delete the user from MyTeam
+      parameters:
+      - name: userId
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Request has been successfully completed
+  /api/integration/v1/account/myTeam:
+    get:
+      tags:
+      - MyTeam
+      summary: Fetch a MyTeam member model by external ID
+      parameters:
+      - name: externalId
+        in: query
+        description: User external ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MyTeamMemberModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyTeamMemberModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MyTeamMemberModel'
+        '404':
+          description: User not found
+    post:
+      tags:
+      - MyTeam
+      summary: Add an in-house translator to MyTeam as a linguist
+      requestBody:
+        description: Model of adding an in-house translator as a linguist
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/InhouseTranslatorCreationModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InhouseTranslatorCreationModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/InhouseTranslatorCreationModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/InhouseTranslatorCreationModel'
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MyTeamMemberModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyTeamMemberModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MyTeamMemberModel'
+        '400':
+          description: Provided information is incorrect
+        '404':
+          description: Unable to find an account connected to the integration API
+        '409':
+          description: A linguist with the provided email or external ID is already added to the team
+  /api/integration/v1/account/searchMyTeam:
+    post:
+      tags:
+      - MyTeam
+      summary: Search for linguists in MyTeam
+      requestBody:
+        description: Linguist search model
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/MyTeamSearchRequestModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MyTeamSearchRequestModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MyTeamSearchRequestModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MyTeamSearchRequestModel'
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MyTeamMemberModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MyTeamMemberModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MyTeamMemberModel'
+        '400':
+          description: "Returns if:\n\r\n- Maximum required number of results is greater than 500\r\n- Specified language is unknown\r\n- Specified service type is unknown\r\n- Specified subject expertise (specialization) is unknown\r\n- Specified currency is unknown\r\n- Specified level of subject expertise (specialization) is unknown"
+        '404':
+          description: Unable to find an account connected to the integration API
+  /api/integration/v1/account/myTeam/{userId}/services/replace:
+    post:
+      tags:
+      - MyTeam
+      summary: Replace all services in a MyTeam profile
+      parameters:
+      - name: userId
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: All service replacement model
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ReplaceServicesModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplaceServicesModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ReplaceServicesModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ReplaceServicesModel'
+      responses:
+        '204':
+          description: Request has been successfully completed
+        '400':
+          description: Provided information is incorrect
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: User not found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/account/myTeam/{userId}/phone:
+    put:
+      tags:
+      - MyTeam
+      summary: Add a MyTeam member's phone number
+      parameters:
+      - name: userId
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Phone number
+        content:
+          application/json-patch+json:
+            schema:
+              type: string
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          application/*+json:
+            schema:
+              type: string
+      responses:
+        '204':
+          description: Request has been successfully completed
+        '404':
+          description: User not found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/account/myTeam/{userId}/comment:
+    put:
+      tags:
+      - MyTeam
+      summary: Add a comment to a MyTeam member profile
+      parameters:
+      - name: userId
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Commentary
+        content:
+          application/json-patch+json:
+            schema:
+              type: string
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          application/*+json:
+            schema:
+              type: string
+      responses:
+        '204':
+          description: Request has been successfully completed
+        '400':
+          description: Comment length exceeds 500 characters
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: User not found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    Specialization:
+      enum:
+      - education
+      - productsAndCatalogs
+      - documentsAndCertificates
+      - marketing
+      - correspondence
+      - software
+      - fiction
+      - scienceAndPatents
+      - contractsAndReports
+      - gaming
+      - manuals
+      - website
+      - annualReport
+      - corporateAndSocialResponsibility
+      - technicalAndEngineering
+      - cryptocurrencies
+      - biochemistry
+      - computingScience
+      - electronics
+      - metallurgy
+      - nuclear
+      - optics
+      - printing
+      - telecommunication
+      - textile
+      - patent
+      - military
+      - ecologyAndEnvironment
+      - agriculture
+      - artsAndCulture
+      - aviationAndSpace
+      - biology
+      - cartography
+      - chemistry
+      - cosmetics
+      - construction
+      - architecture
+      - economics
+      - accounting
+      - bankingAndInvestment
+      - insurance
+      - energy
+      - thermalPowerEngineering
+      - mechanicalEngineering
+      - finance
+      - general
+      - geography
+      - geology
+      - mining
+      - history
+      - linguistics
+      - philosophy
+      - psychology
+      - sociology
+      - industry
+      - industrialAutomation
+      - electricalEngineering
+      - iT
+      - eRP
+      - law
+      - hR
+      - mathematics
+      - medicine
+      - medicalEquipment
+      - pharmaceutics
+      - veterinaryMedicine
+      - oilAndGas
+      - physics
+      - politicsAndSociety
+      - realEstate
+      - recreation
+      - fashion
+      - luxuryItems
+      - tourismAndTravel
+      - religion
+      - socialScience
+      - sport
+      - transport
+      - automotiveBusiness
+      - foodAndDrinks
+      - biotechnology
+      - business
+      - lifeSciences
+      type: string
+      description: Text specialization
+      format: int32
+    SpecializationKnowledgeLevel:
+      enum:
+      - tested
+      - certified
+      - coursePassed
+      type: string
+      description: Level of specialization expertise
+      format: int32
+    ServiceModel:
+      type: object
+      properties:
+        serviceType:
+          $ref: '#/components/schemas/FreelancerServiceType'
+        sourceLanguage:
+          type: string
+          description: Source language
+          nullable: true
+        targetLanguage:
+          type: string
+          description: Target language
+          nullable: true
+        pricePerUnit:
+          type: number
+          description: Price per unit
+          format: double
+          nullable: true
+        performancePerDay:
+          type: number
+          description: User's daily performance per service
+          format: double
+          nullable: true
+        currency:
+          type: string
+          description: Currency
+          nullable: true
+        specializations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Specialization'
+          description: Specializations for a written service
+          nullable: true
+      additionalProperties: false
+      description: Service model
+    ReplaceServicesModel:
+      type: object
+      properties:
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceModel'
+          description: Services
+          nullable: true
+      additionalProperties: false
+      description: MyTeam member services replacement model
+    InhouseTranslatorCreationModel:
+      type: object
+      properties:
+        email:
+          type: string
+          description: In-house translator email
+          nullable: true
+        firstName:
+          type: string
+          description: In-house translator first name
+          nullable: true
+        lastName:
+          type: string
+          description: In-house translator last name
+          nullable: true
+        externalId:
+          type: string
+          description: In-house translator ID in an external system
+          nullable: true
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceModel'
+          description: Services
+          nullable: true
+        clientIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Client IDs associated with the user
+          nullable: true
+      additionalProperties: false
+      description: In-house translator creation model
+    FreelancerServiceType:
+      enum:
+      - translation
+      - editing
+      - proofreading
+      - postediting
+      - pageProof
+      - glossaryCreation
+      - simultaneousTranslation
+      - consecutiveTranslation
+      - mediaTranslation
+      - expertReview
+      - projectManagement
+      - translationMemoryCreation
+      - copywriting
+      - training
+      - transcription
+      - notarization
+      - certifiedTranslation
+      - transcreation
+      - legalization
+      - lQAReview
+      type: string
+      description: Freelancer service type
+      format: int32
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
+    MyTeamMemberModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        email:
+          type: string
+          description: Email
+          nullable: true
+        firstName:
+          type: string
+          description: Name
+          nullable: true
+        lastName:
+          type: string
+          description: Last name
+          nullable: true
+        externalId:
+          type: string
+          description: MyTeam member ID in an external system
+          nullable: true
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceModel'
+          description: MyTeam member services
+          nullable: true
+        clientIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Client IDs associated with the user
+          nullable: true
+        customFields:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: Custom fields
+          nullable: true
+      additionalProperties: false
+      description: MyTeam member model
+    MyTeamSearchRequestModel:
+      type: object
+      properties:
+        skip:
+          type: integer
+          description: Number of search request results to be skipped (mandatory parameter)
+          format: int32
+          nullable: true
+        limit:
+          type: integer
+          description: Maximum number of search request results (mandatory parameter, cannot exceed 500)
+          format: int32
+          nullable: true
+        serviceType:
+          $ref: '#/components/schemas/FreelancerServiceType'
+        sourceLanguage:
+          type: string
+          description: Source language
+          nullable: true
+        targetLanguage:
+          type: string
+          description: Target language
+          nullable: true
+        onlyNativeSpeakers:
+          type: boolean
+          description: Linguist's native language
+        allDialects:
+          type: boolean
+          description: Search linguists in all dialects for the language pair
+        minRate:
+          type: number
+          description: Minimum translation unit rate
+          format: double
+          nullable: true
+        maxRate:
+          type: number
+          description: Maximum translation unit rate
+          format: double
+          nullable: true
+        rateRangeCurrency:
+          type: string
+          description: Rate range currency
+          nullable: true
+        specializations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Specialization'
+          description: Specializations
+          nullable: true
+        specializationKnowledgeLevel:
+          type: array
+          items:
+            $ref: '#/components/schemas/SpecializationKnowledgeLevel'
+          description: Required level of expertise in the specified (or any other if undefined) specialization
+          nullable: true
+        searchString:
+          type: string
+          description: Full-text search string
+          nullable: true
+        daytime:
+          type: boolean
+          description: It is daytime now in the linguist's time zone
+      additionalProperties: false
+      description: MyTeam member search request

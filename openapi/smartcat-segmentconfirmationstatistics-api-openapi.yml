@@ -1,0 +1,300 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account SegmentConfirmationStatistics API
+  version: v1
+servers:
+- url: /
+tags:
+- name: SegmentConfirmationStatistics
+paths:
+  /api/integration/v1/segment-confirmation-statistics/{projectId}:
+    get:
+      tags:
+      - SegmentConfirmationStatistics
+      summary: Fetch segment confirmation statistics
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: from
+        in: query
+        description: The period starting date (inclusive) for which statistics are requested. If not specified, this argument is not applicable
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: The period end date (inclusive) for which statistics are requested. If not specified, this argument is not applicable
+        schema:
+          type: string
+          format: date-time
+      - name: documentId
+        in: query
+        description: Document ID
+        schema:
+          type: string
+      - name: targetLanguage
+        in: query
+        description: Target language code
+        schema:
+          type: string
+      - name: accountUserId
+        in: query
+        description: ID of the supplier (user) in the account. If not specified, include all suppliers
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SegmentConfirmationStatisticsModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SegmentConfirmationStatisticsModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SegmentConfirmationStatisticsModel'
+  /api/integration/v2/segment-confirmation-statistics/{projectId}:
+    get:
+      tags:
+      - SegmentConfirmationStatistics
+      summary: Fetch segment confirmation statistics
+      parameters:
+      - name: projectId
+        in: path
+        description: Project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: from
+        in: query
+        description: The period starting date for which statistics are requested. If not specified, this argument is not applicable
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: The period end date for which statistics are requested. If not specified, this argument is not applicable
+        schema:
+          type: string
+          format: date-time
+      - name: documentId
+        in: query
+        description: Document ID
+        schema:
+          type: string
+      - name: targetLanguage
+        in: query
+        description: Target language code
+        schema:
+          type: string
+      - name: userId
+        in: query
+        description: ID of the supplier (user). If not specified, include all suppliers
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserSegmentConfirmationStatisticsModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserSegmentConfirmationStatisticsModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserSegmentConfirmationStatisticsModel'
+components:
+  schemas:
+    UserSegmentConfirmationStatisticsModel:
+      required:
+      - accountId
+      - date
+      - documentId
+      - language
+      - projectId
+      - userId
+      - wordcounts
+      type: object
+      properties:
+        date:
+          type: string
+          description: The date for which statistics were collected
+          format: date-time
+        userId:
+          type: string
+          description: User ID
+        accountId:
+          type: string
+          description: The account in which the project was created
+          format: uuid
+        vendorAccountId:
+          type: string
+          description: Vendor account, if the vendor is assigned and the translation was performed by the user of their account
+          format: uuid
+          nullable: true
+        externalTag:
+          type: string
+          description: External system tag
+          nullable: true
+        stageType:
+          $ref: '#/components/schemas/StageType'
+        projectId:
+          type: string
+          description: Project ID
+          format: uuid
+        documentId:
+          minLength: 1
+          type: string
+          description: Document ID
+        language:
+          minLength: 1
+          type: string
+          description: Target language
+        jobId:
+          type: string
+          description: Job ID, if a job was created
+          nullable: true
+        wordcounts:
+          $ref: '#/components/schemas/SegmentConfirmationStatisticsWordcountsModel'
+        changeStamp:
+          type: string
+          description: Change stamp
+          format: uuid
+        isConfirmedByPretranslate:
+          type: boolean
+          description: Statistics for segments confirmed by pre-translation
+      additionalProperties: false
+      description: Item (record) model of segment acknowledgment statistics
+    StageType:
+      enum:
+      - translation
+      - editing
+      - proofreading
+      - postediting
+      - finalPageProof
+      - notarization
+      - certifiedTranslation
+      - transcreation
+      - legalization
+      - preliminaryPageProof
+      - lQAReview
+      - subtitleReview
+      - voiceOverReview
+      - sourceReview
+      type: string
+      description: Workflow stage type
+      format: int32
+    SegmentConfirmationStatisticsWordcountsModel:
+      type: object
+      properties:
+        repetitions:
+          type: integer
+          description: Number of repeated words in a document
+          format: int32
+        crossDocumentRepetitions:
+          type: integer
+          description: Number of repeated words in other project documents
+          format: int32
+        mt:
+          type: integer
+          description: MT words count
+          format: int32
+        externalSource:
+          type: integer
+          description: External sources word count
+          format: int32
+        confirmedWithoutAnySource:
+          type: integer
+          description: Word count from the editor without using MT or TM
+          format: int32
+        tmMatches:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int32
+          description: TM word count
+          nullable: true
+      additionalProperties: false
+      description: Word count model for segment confirmation statistics
+    SegmentConfirmationStatisticsModel:
+      required:
+      - accountId
+      - accountUserId
+      - date
+      - documentId
+      - language
+      - projectId
+      - wordcounts
+      type: object
+      properties:
+        date:
+          type: string
+          description: The date for which statistics were collected
+          format: date-time
+        accountUserId:
+          type: string
+          description: ID of the account-user link in which the user worked
+        accountId:
+          type: string
+          description: The account in which the project was created
+          format: uuid
+        vendorAccountId:
+          type: string
+          description: Vendor account, if the vendor is assigned and the translation was performed by the user of their account
+          format: uuid
+          nullable: true
+        externalTag:
+          type: string
+          description: External system tag
+          nullable: true
+        stageType:
+          $ref: '#/components/schemas/StageType'
+        projectId:
+          type: string
+          description: Project ID
+          format: uuid
+        documentId:
+          minLength: 1
+          type: string
+          description: Document ID
+        language:
+          minLength: 1
+          type: string
+          description: Target language
+        jobId:
+          type: string
+          description: Job ID, if a job was created
+          nullable: true
+        wordcounts:
+          $ref: '#/components/schemas/SegmentConfirmationStatisticsWordcountsModel'
+        changeStamp:
+          type: string
+          description: Change stamp
+          format: uuid
+        isConfirmedByPretranslate:
+          type: boolean
+          description: Statistics for segments confirmed by pre-translation
+      additionalProperties: false
+      description: Item (record) model of segment acknowledgment statistics

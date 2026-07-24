@@ -1,0 +1,192 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account AssignmentTemplates API
+  version: v1
+servers:
+- url: /
+tags:
+- name: AssignmentTemplates
+paths:
+  /api/integration/v1/assignment-templates/project/{projectId}:
+    get:
+      tags:
+      - AssignmentTemplates
+      summary: Get a list of available assignment templates
+      parameters:
+      - name: projectId
+        in: path
+        description: project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AssignmentTemplateModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AssignmentTemplateModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AssignmentTemplateModel'
+        '403':
+          description: Project tasks are not available for this project
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: Project not found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/integration/v1/assignment-templates/{assignmentTemplateId}/project/{projectId}:
+    post:
+      tags:
+      - AssignmentTemplates
+      summary: Apply an assignment template to the project
+      parameters:
+      - name: assignmentTemplateId
+        in: path
+        description: assignment template ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: projectId
+        in: path
+        description: project ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: deadlineHours
+        in: query
+        description: set a deadline in hours
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AssignmentTemplateApplicationResultModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssignmentTemplateApplicationResultModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AssignmentTemplateApplicationResultModel'
+        '402':
+          description: Assignment is not completed due to enabled prepayment mode
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: "Returns if:\n\r\n- Project tasks are not available for this project\r\n- There is an incomplete 'Source layout check' stage for some project documents\r\n- Documents are being added to project tasks"
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '404':
+          description: "Returns if:\n\r\n- Project not found\r\n- Assignment template not found"
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
+    AssignmentTemplateApplicationResultModel:
+      type: object
+      properties:
+        assignedCount:
+          type: integer
+          description: Number of assigned project tasks
+          format: int32
+        unassignedCount:
+          type: integer
+          description: Number of unassigned project tasks
+          format: int32
+      additionalProperties: false
+      description: Assignment template application result information for external systems
+    AssignmentTemplateModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        name:
+          type: string
+          description: Name
+          nullable: true
+        projectTasksCoveragePercent:
+          type: number
+          description: The percentage of tasks without assignments and invitations in the project to which the template will be applied
+          format: double
+      additionalProperties: false
+      description: Assignment template information for external systems

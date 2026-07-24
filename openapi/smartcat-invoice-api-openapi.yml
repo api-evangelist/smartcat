@@ -1,0 +1,907 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account Invoice API
+  version: v1
+servers:
+- url: /
+tags:
+- name: Invoice
+paths:
+  /api/integration/v1/invoice/job:
+    post:
+      tags:
+      - Invoice
+      summary: Create payment to freelancer
+      requestBody:
+        description: Freelancer payment creation parameters
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ImportJobModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportJobModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ImportJobModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ImportJobModel'
+        required: true
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '400':
+          description: One or several query parameters are incorrect
+  /api/integration/v2/invoice/job:
+    post:
+      tags:
+      - Invoice
+      summary: Create a payment
+      requestBody:
+        description: Payment creation parameters
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ImportJobModelV2'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportJobModelV2'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ImportJobModelV2'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ImportJobModelV2'
+        required: true
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '400':
+          description: One or several query parameters are incorrect
+  /api/integration/v1/invoice/jobs:
+    post:
+      tags:
+      - Invoice
+      summary: Create an array of freelancer payments
+      requestBody:
+        description: Freelancer payment creation parameters
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ImportJobModel'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ImportJobModel'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ImportJobModel'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ImportJobModel'
+        required: true
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModel'
+        '400':
+          description: Returns if one or several parameters in a provided job are incorrect
+  /api/integration/v2/invoice/jobs:
+    post:
+      tags:
+      - Invoice
+      summary: Create a payments array
+      requestBody:
+        description: Payment creation parameters
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ImportJobModelV2'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ImportJobModelV2'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ImportJobModelV2'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ImportJobModelV2'
+        required: true
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModelV2'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModelV2'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModelV2'
+        '400':
+          description: Returns if one or several parameters in a provided job are incorrect
+  /api/integration/v1/invoice/job/list:
+    get:
+      tags:
+      - Invoice
+      summary: Fetch an array of freelancer payments by ID
+      parameters:
+      - name: externalIds
+        in: query
+        description: External payment IDs
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModel'
+  /api/integration/v2/invoice/job/listByExternalId:
+    get:
+      tags:
+      - Invoice
+      summary: Fetch an array of payments by ID
+      parameters:
+      - name: externalIds
+        in: query
+        description: External payment ID
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModelV2'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModelV2'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModelV2'
+  /api/integration/v2/invoice/job/listByCreatedDate:
+    get:
+      tags:
+      - Invoice
+      summary: Fetch an array of jobs by creation date
+      parameters:
+      - name: dateCreatedFrom
+        in: query
+        description: Fetch the jobs created after the specified date
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: dateCreatedTo
+        in: query
+        description: Fetch the jobs created before the specified date
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: skip
+        in: query
+        description: Number of skipped items
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        description: Maximum returned items (not more than 500)
+        schema:
+          type: integer
+          format: int32
+          default: 100
+      responses:
+        '200':
+          description: Request has been successfully completed
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModelV2'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModelV2'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JobModelV2'
+  /api/integration/v2/invoice/list:
+    get:
+      tags:
+      - Invoice
+      summary: Fetch a list of invoices created within the specified period
+      parameters:
+      - name: dateCreatedFrom
+        in: query
+        description: Period start (inclusive)
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: dateCreatedTo
+        in: query
+        description: Period end (inclusive)
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: limit
+        in: query
+        description: Maximum returned items (not more than 10)
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: skip
+        in: query
+        description: Number of skipped items
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InvoiceModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InvoiceModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InvoiceModel'
+  /api/integration/v2/client-agent-invoice/list:
+    get:
+      tags:
+      - Invoice
+      summary: Fetch a list of agent invoices
+      parameters:
+      - name: dateFrom
+        in: query
+        description: Period start (inclusive)
+        schema:
+          type: string
+          format: date-time
+      - name: dateTo
+        in: query
+        description: Period end (inclusive)
+        schema:
+          type: string
+          format: date-time
+      - name: limit
+        in: query
+        description: Limit
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientAgentInvoiceModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientAgentInvoiceModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientAgentInvoiceModel'
+components:
+  schemas:
+    InvoiceModel:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Bank account number
+          nullable: true
+        currency:
+          type: string
+          description: Invoice currency
+          nullable: true
+        cost:
+          type: number
+          description: Invoice total
+          format: double
+        date:
+          type: string
+          description: Invoice issue date
+          format: date-time
+        status:
+          $ref: '#/components/schemas/InvoiceStatus'
+        payerRequisites:
+          $ref: '#/components/schemas/LegalEntityModel'
+        payeeRequisites:
+          $ref: '#/components/schemas/SmartCatLegalEntityModel'
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobModelV2'
+          description: Payments included in the invoice
+          nullable: true
+      additionalProperties: false
+      description: Invoice model
+    InvoicePaymentReceiveDestination:
+      enum:
+      - balance
+      - externalBankAccount
+      type: string
+      format: int32
+    ImportJobModelV2:
+      type: object
+      properties:
+        supplierEmail:
+          type: string
+          description: Vendor email address
+          nullable: true
+        supplierName:
+          type: string
+          description: Vendor name
+          nullable: true
+        supplierType:
+          $ref: '#/components/schemas/SupplierType'
+        serviceType:
+          type: string
+          description: Service type
+          nullable: true
+        jobDescription:
+          type: string
+          description: 'Description: the name of a document or project'
+          nullable: true
+        unitsType:
+          type: string
+          description: Job unit type
+          nullable: true
+        unitsAmount:
+          type: number
+          description: Job unit count
+          format: double
+        pricePerUnit:
+          type: number
+          description: Job unit price
+          format: double
+        currency:
+          type: string
+          description: Price and cost currency
+          nullable: true
+        externalNumber:
+          type: string
+          description: External payment ID
+          nullable: true
+        payUntilDate:
+          type: string
+          description: Pay until date (not mandatory)
+          format: date-time
+          nullable: true
+      additionalProperties: false
+      description: Basic class of payment models
+    JobModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task ID
+          nullable: true
+        status:
+          $ref: '#/components/schemas/JobStatus'
+        freelancerId:
+          type: string
+          description: Linguist ID
+          format: uuid
+        serviceType:
+          type: string
+          description: Service type
+          nullable: true
+        jobDescription:
+          type: string
+          description: 'Description: the name of a document or project'
+          nullable: true
+        unitsType:
+          type: string
+          description: Job unit type
+          nullable: true
+        unitsAmount:
+          type: number
+          description: Job unit count
+          format: double
+        pricePerUnit:
+          type: number
+          description: Job unit price
+          format: double
+        currency:
+          type: string
+          description: Price and cost currency
+          nullable: true
+        externalNumber:
+          type: string
+          description: External payment ID
+          nullable: true
+      additionalProperties: false
+      description: Linguist payment model
+    ClientAgentInvoiceModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        number:
+          type: string
+          nullable: true
+        externalNumber:
+          type: string
+          nullable: true
+        payerLegalName:
+          type: string
+          nullable: true
+        payerVat:
+          type: string
+          nullable: true
+        payerKpp:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        dateCreated:
+          type: string
+          format: date-time
+        datePaid:
+          type: string
+          format: date-time
+          nullable: true
+        dueDate:
+          type: string
+          format: date-time
+          nullable: true
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClientAgentInvoiceJobModel'
+          nullable: true
+        currency:
+          type: string
+          nullable: true
+        totalCost:
+          type: number
+          format: double
+        isInternalClient:
+          type: boolean
+        paymentDestination:
+          $ref: '#/components/schemas/InvoicePaymentReceiveDestination'
+        bankRequisites:
+          $ref: '#/components/schemas/BankRequisitesModel'
+      additionalProperties: false
+    LegalEntityModel:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Legal entity name
+          nullable: true
+        contactPerson:
+          type: string
+          description: Contact person
+          nullable: true
+        vat:
+          type: string
+          description: VAT
+          nullable: true
+        legalAddress:
+          type: string
+          description: Legal address
+          nullable: true
+        country:
+          type: string
+          description: Country
+          nullable: true
+      additionalProperties: false
+      description: Legal entity details model
+    ImportJobModel:
+      type: object
+      properties:
+        freelancerId:
+          type: string
+          description: Linguist ID
+          format: uuid
+        serviceType:
+          type: string
+          description: Service type
+          nullable: true
+        jobDescription:
+          type: string
+          description: 'Description: the name of a document or project'
+          nullable: true
+        unitsType:
+          type: string
+          description: Job unit type
+          nullable: true
+        unitsAmount:
+          type: number
+          description: Job unit count
+          format: double
+        pricePerUnit:
+          type: number
+          description: Job unit price
+          format: double
+        currency:
+          type: string
+          description: Price and cost currency
+          nullable: true
+        externalNumber:
+          type: string
+          description: External payment ID
+          nullable: true
+      additionalProperties: false
+      description: Basic class of linguist payment models
+    InvoiceStatus:
+      enum:
+      - sent
+      - paid
+      - paymentInProcess
+      - cancelled
+      type: string
+      description: Invoice status
+      format: int32
+    JobModelV2:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task ID
+          nullable: true
+        invoiceNumber:
+          type: string
+          description: Bank account number
+          nullable: true
+        supplierEmail:
+          type: string
+          description: Vendor email address
+          nullable: true
+        supplierName:
+          type: string
+          description: Vendor name
+          nullable: true
+        supplierType:
+          $ref: '#/components/schemas/SupplierType'
+        serviceType:
+          type: string
+          description: Service type
+          nullable: true
+        jobDescription:
+          type: string
+          description: 'Description: the name of a document or project'
+          nullable: true
+        unitsType:
+          type: string
+          description: Job unit type
+          nullable: true
+        unitsAmount:
+          type: number
+          description: Job unit count (zero if the job is paid externally)
+          format: double
+        pricePerUnit:
+          type: number
+          description: Job unit price (zero if the job is paid externally)
+          format: double
+        currency:
+          type: string
+          description: Price and cost currency (null if the job is paid externally)
+          nullable: true
+        cost:
+          type: number
+          description: Total job cost (zero if the job is paid externally)
+          format: double
+        externalNumber:
+          type: string
+          description: External payment ID
+          nullable: true
+        supplierId:
+          type: string
+          description: Supplier ID
+          format: uuid
+          nullable: true
+        status:
+          $ref: '#/components/schemas/JobStatus'
+        projectId:
+          type: string
+          description: Project ID (optional)
+          format: uuid
+          nullable: true
+        sourceLanguage:
+          type: string
+          description: Source language code
+          nullable: true
+        targetLanguage:
+          type: string
+          description: Target language code
+          nullable: true
+        customFields:
+          type: object
+          additionalProperties:
+            type: string
+            nullable: true
+          description: Custom fields (project tags)
+          nullable: true
+      additionalProperties: false
+      description: Payment model
+    SupplierType:
+      enum:
+      - freelancer
+      - company
+      type: string
+      description: Supplier type
+      format: int32
+    SmartCatLegalEntityModel:
+      type: object
+      properties:
+        registrationNumber:
+          type: string
+          description: Registration number
+          nullable: true
+        beneficiary:
+          type: string
+          description: Beneficiary
+          nullable: true
+        bankName:
+          type: string
+          description: Bank name
+          nullable: true
+        bankAddress:
+          type: string
+          description: Bank address
+          nullable: true
+        bankCode:
+          type: string
+          description: Bank code
+          nullable: true
+        swift:
+          type: string
+          description: SWIFT
+          nullable: true
+        bankAccount:
+          type: string
+          description: Bank account number
+          nullable: true
+        achRoutingNumber:
+          type: string
+          description: ACH routing number
+          nullable: true
+        wireRoutingNumber:
+          type: string
+          description: Wire routing number
+          nullable: true
+        transitNumber:
+          type: string
+          description: Transit number
+          nullable: true
+        bankCorrAccount:
+          type: string
+          description: Correspondent account
+          nullable: true
+        bankCorrBankEn:
+          type: string
+          description: Correspondent bank name (in English)
+          nullable: true
+        bankCorrBankRu:
+          type: string
+          description: Correspondent bank name (in Russian)
+          nullable: true
+        iban:
+          type: string
+          description: IBAN
+          nullable: true
+        kpp:
+          type: string
+          description: KPP
+          nullable: true
+        bic:
+          type: string
+          description: BIC
+          nullable: true
+        name:
+          type: string
+          description: Legal entity name
+          nullable: true
+        contactPerson:
+          type: string
+          description: Contact person
+          nullable: true
+        vat:
+          type: string
+          description: VAT
+          nullable: true
+        legalAddress:
+          type: string
+          description: Legal address
+          nullable: true
+        country:
+          type: string
+          description: Country
+          nullable: true
+      additionalProperties: false
+      description: Smartcat legal entity details model
+    ClientAgentInvoiceJobModel:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        projectId:
+          type: string
+          format: uuid
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        originalCost:
+          type: number
+          format: double
+        convertedCost:
+          type: number
+          format: double
+        originalCurrency:
+          type: string
+          nullable: true
+          readOnly: true
+        sourceLanguage:
+          type: string
+          nullable: true
+        targetLanguage:
+          type: string
+          nullable: true
+      additionalProperties: false
+    JobStatus:
+      enum:
+      - inProgress
+      - invitationPending
+      - waitingForAssignment
+      - waitingForPayment
+      - verified
+      - paidByCustomer
+      - paidToFreelancer
+      - markedAsPaid
+      - invitationCanceled
+      - invitationDeclined
+      type: string
+      description: Payment status
+      format: int32
+    BankRequisitesModel:
+      type: object
+      properties:
+        bankName:
+          type: string
+          nullable: true
+          readOnly: true
+        bankAddress:
+          type: string
+          nullable: true
+          readOnly: true
+        bic:
+          type: string
+          nullable: true
+          readOnly: true
+        swift:
+          type: string
+          nullable: true
+          readOnly: true
+        bankCorrAccount:
+          type: string
+          nullable: true
+          readOnly: true
+        bankAccount:
+          type: string
+          nullable: true
+          readOnly: true
+        currency:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false

@@ -1,0 +1,38 @@
+openapi: 3.0.1
+info:
+  title: Smartcat Account UserDeletionRequests API
+  version: v1
+servers:
+- url: /
+tags:
+- name: UserDeletionRequests
+paths:
+  /api/integration/v1/user-deletion-requests:
+    post:
+      tags:
+      - UserDeletionRequests
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+  /api/integration/v1/user-deletion-requests/confirm:
+    post:
+      tags:
+      - UserDeletionRequests
+      parameters:
+      - name: token
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
