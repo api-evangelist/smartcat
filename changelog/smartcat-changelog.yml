@@ -1,0 +1,32 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.smartcat.com/changelog/
+scheme: dated
+url: https://developers.smartcat.com/changelog/
+release_notes: https://www.smartcat.com/release-notes/
+entries:
+  - date: '2024-03-18'
+    type: addition
+    highlight: New glossary export methods — request export (returns task id), monitor, and download the glossary as XLS.
+  - date: '2023-03-06'
+    type: addition
+    highlight: Added "unzip" parameter to the multi-file storage upload method to extract files from uploaded zip archives.
+  - date: '2022-11-11'
+    type: addition
+    highlight: Configurable settings for multilingual Excel document uploads (disassembleAlgorithmName = MultilingualExcel_v2).
+  - date: '2022-10-20'
+    type: addition
+    highlight: New project statistics calculation method supporting internal fuzzy-match accounting (PUT /project/{projectId}/fuzzyRepetitions).
+  - date: '2022-10-04'
+    type: addition
+    highlight: New set of API methods for working with project tasks.
+  - date: '2022-03-03'
+    type: deprecation
+    breaking: true
+    highlight: GET /v1/project/list deprecated (ended September 2022); migrate to GET /v2/project/list with pagination.
+  - date: '2022-02-22'
+    type: change
+    highlight: POST /v1/glossary/import now limits uploaded files to 10MB.
+  - date: '2021-10-22'
+    type: addition
+    highlight: GET /v2/project/list introduced, adding pagination to project listings.

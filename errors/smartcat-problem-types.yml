@@ -1,0 +1,44 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/smartcat-openapi.json
+format: problem-details   # RFC 7807-style ProblemDetails (application/json), not problem+json
+envelopes:
+  - name: ProblemDetails
+    fields: [type, title, status, detail, instance]
+    media_type: application/json
+  - name: ErrorResponse
+    fields: [type, code, message, requestId, innerException, statusCode]
+    note: Carries a requestId for support correlation.
+problems:
+  - status: 400
+    title: "Bad Request"
+    remediation: "The request was malformed or failed validation. Check required parameters and body shape."
+    example_operation: "GET /api/integration/v1/audit/logs"
+  - status: 401
+    title: "Unauthorized"
+    remediation: "Missing or invalid credentials. Provide Basic auth (Account ID + API key)."
+    example_operation: "GET /api/integration/v1/audit/logs"
+  - status: 402
+    title: "Payment Required"
+    remediation: "The account balance or subscription does not permit this action; top up or upgrade."
+    example_operation: "POST /api/integration/v1/assignment-templates/{assignmentTemplateId}/project/{projectId}"
+  - status: 403
+    title: "Forbidden"
+    remediation: "The authenticated account lacks permission for this resource."
+    example_operation: "GET /api/integration/v1/assignment-templates/project/{projectId}"
+  - status: 404
+    title: "Not Found"
+    remediation: "The referenced resource does not exist."
+    example_operation: "GET /api/integration/v1/account"
+  - status: 409
+    title: "Conflict"
+    remediation: "The request conflicts with the current state of the resource."
+    example_operation: "POST /api/integration/v1/document"
+  - status: 422
+    title: "Unprocessable Entity"
+    remediation: "The request was well-formed but semantically invalid."
+    example_operation: "GET /api/integration/v1/document/statistics"
+  - status: 500
+    title: "Internal Server Error"
+    remediation: "Unexpected server-side error; retry with backoff and contact support if it persists."
+    example_operation: "GET /api/integration/v1/glossary/export/{taskId}"

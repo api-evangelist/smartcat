@@ -1,0 +1,32 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.smartcat.com/cli/
+name: Smartcat CLI
+description: >-
+  Cross-platform command-line tool for uploading/downloading content and driving
+  localization workflows from scripts and CI automation.
+install:
+  method: binary-download
+  platforms: [linux, macos, windows]
+  source: Pre-compiled binaries distributed via AWS S3; place on PATH.
+configuration:
+  sources: [global settings, local .smartcat file, environment variables, command-line flags]
+commands:
+  - name: login
+    description: Authorize against Smartcat.
+  - name: init
+    description: Initialize local project configuration.
+  - name: import
+    description: Import a keys collection.
+  - name: export
+    description: Export a keys collection.
+  - name: upload
+    description: Upload files to Smartcat.
+  - name: download
+    description: Download files from Smartcat.
+  - name: project
+    description: Project manipulation commands.
+  - name: pull
+    description: Pull step of the synchronization workflow.
+  - name: push
+    description: Push step of the synchronization workflow.

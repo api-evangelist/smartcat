@@ -1,0 +1,20 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/smartcat-openapi.json
+standards:
+  - id: openapi-3.0
+    conforms: true
+    evidence: OpenAPI 3.0.1 document published at https://smartcat.com/api/swagger/docs/v1
+  - id: http-basic-auth
+    conforms: true
+    evidence: Basic authentication documented for every method
+  - id: rfc7807-problem-details
+    conforms: partial
+    evidence: ProblemDetails schema used on some responses; media type application/json, not application/problem+json
+  - id: oauth2
+    conforms: false
+  - id: soc2
+    conforms: true
+    evidence: SOC 1/2/3 compliance published at https://www.smartcat.com/security/
+  - id: rfc9457
+    conforms: false

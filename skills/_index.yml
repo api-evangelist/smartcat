@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/smartcat-openapi.json
+skills:
+  - file: smartcat-translate-a-document.md
+    name: Translate a document with Smartcat
+    api: openapi/smartcat-openapi.json
+    operations:
+      - POST /api/integration/v1/project/create
+      - POST /api/integration/v1/project/document
+      - GET /api/integration/v1/document
+      - POST /api/integration/v1/document/export
+      - GET /api/integration/v1/document/export/{taskId}
+  - file: smartcat-receive-status-callbacks.md
+    name: Receive Smartcat status callbacks
+    api: openapi/smartcat-openapi.json
+    operations:
+      - POST /api/integration/v1/callback
+      - GET /api/integration/v1/callback
+      - GET /api/integration/v1/callback/lastErrors
+      - DELETE /api/integration/v1/callback

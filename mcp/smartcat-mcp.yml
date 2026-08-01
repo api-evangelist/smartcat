@@ -1,0 +1,726 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+note: >-
+  No official first-party Smartcat MCP server was found (only third-party bridges such as
+  viaSocket and community Glama listings). Tools below are candidates derived from the OpenAPI
+  operations, one per operation.
+source: openapi/smartcat-openapi.json
+server:
+  name: smartcat
+  transport: http
+tools:
+  - name: get_v1_account
+    description: "Fetch the account details"
+    source_operation: "GET /api/integration/v1/account"
+    tag: Account
+  - name: get_account_mtengines
+    description: "Fetch the list of MT services available for the account"
+    source_operation: "GET /api/integration/v1/account/mtengines"
+    tag: Account
+  - name: get_assignment_templates_project
+    description: "Get a list of available assignment templates"
+    source_operation: "GET /api/integration/v1/assignment-templates/project/{projectId}"
+    tag: AssignmentTemplates
+  - name: create_assignment_templates_project
+    description: "Apply an assignment template to the project"
+    source_operation: "POST /api/integration/v1/assignment-templates/{assignmentTemplateId}/project/{projectId}"
+    tag: AssignmentTemplates
+  - name: get_audit_logs
+    description: "Fetch audit logs with given filter parameters"
+    source_operation: "GET /api/integration/v1/audit/logs"
+    tag: Audit
+  - name: get_v1_callback
+    description: "Fetch the notifications settings for the account"
+    source_operation: "GET /api/integration/v1/callback"
+    tag: Callback
+  - name: create_v1_callback
+    description: "Create or update the notifications settings"
+    source_operation: "POST /api/integration/v1/callback"
+    tag: Callback
+  - name: delete_v1_callback
+    description: "Delete notifications settings"
+    source_operation: "DELETE /api/integration/v1/callback"
+    tag: Callback
+  - name: get_callback_lasterrors
+    description: "Fetch the latest delivery errors"
+    source_operation: "GET /api/integration/v1/callback/lastErrors"
+    tag: Callback
+  - name: create_client_create
+    description: "Create a new client with the specified name and return their ID
+Simply return the ID if a client with that name already exists"
+    source_operation: "POST /api/integration/v1/client/create"
+    tag: Client
+  - name: update_client_set
+    description: "Apply the specified net rate to the specified client"
+    source_operation: "PUT /api/integration/v1/client/{clientId}/set"
+    tag: Client
+  - name: update_client_contact
+    description: "Sets contact details for the specified client"
+    source_operation: "PUT /api/integration/v1/client/{clientId}/contact"
+    tag: Client
+  - name: update_v2_client
+    description: "Update client details"
+    source_operation: "PUT /api/integration/v2/client/{clientId}"
+    tag: Client
+  - name: get_v2_client
+    description: "Fetch the client account information"
+    source_operation: "GET /api/integration/v2/client/{clientId}"
+    tag: Client
+  - name: get_v1_client
+    description: "Fetch the client account information"
+    source_operation: "GET /api/integration/v1/client/{clientId}"
+    tag: Client
+  - name: get_v1_clientindustry
+    description: "Fetch a directory entry by ID"
+    source_operation: "GET /api/integration/v1/clientIndustry/{id}"
+    tag: ClientIndustry
+  - name: update_v1_clientindustry
+    description: "Update the name of an entry by ID"
+    source_operation: "PUT /api/integration/v1/clientIndustry/{id}"
+    tag: ClientIndustry
+  - name: delete_v1_clientindustry
+    description: "Delete a list entry"
+    source_operation: "DELETE /api/integration/v1/clientIndustry/{id}"
+    tag: ClientIndustry
+  - name: get_v1_clientindustry_2
+    description: "Fetch all the available directory values"
+    source_operation: "GET /api/integration/v1/clientIndustry"
+    tag: ClientIndustry
+  - name: create_v1_clientindustry
+    description: "Add a directory entry"
+    source_operation: "POST /api/integration/v1/clientIndustry/{name}"
+    tag: ClientIndustry
+  - name: get_v1_custom_fields
+    description: "Retrieves all custom fields defined for the current account."
+    source_operation: "GET /api/integration/v1/custom-fields"
+    tag: CustomFields
+  - name: get_v2_directory
+    description: "Fetch the specified directory"
+    source_operation: "GET /api/integration/v2/directory"
+    tag: Directories
+  - name: get_directory_formats
+    description: "Fetch parsing formats supported by the account"
+    source_operation: "GET /api/integration/v1/directory/formats"
+    tag: Directories
+  - name: get_v1_document
+    description: "Fetch the document details"
+    source_operation: "GET /api/integration/v1/document"
+    tag: Document
+  - name: delete_v1_document
+    description: "Delete one or several documents"
+    source_operation: "DELETE /api/integration/v1/document"
+    tag: Document
+  - name: create_v1_document
+    description: "Add a document to the project"
+    source_operation: "POST /api/integration/v1/document"
+    tag: Project
+  - name: get_translate_status
+    description: "Fetch the status of adding document translation"
+    source_operation: "GET /api/integration/v1/document/translate/status"
+    tag: Document
+  - name: get_translate_result
+    description: "Fetch a detailed report on translation import results"
+    source_operation: "GET /api/integration/v1/document/translate/result"
+    tag: Document
+  - name: get_document_statistics
+    description: "Fetch statistics"
+    source_operation: "GET /api/integration/v1/document/statistics"
+    tag: Document
+  - name: create_document_assignfreelancers
+    description: "Divide the document into equal blocks by the number of words and assign one block to each specified freelancer"
+    source_operation: "POST /api/integration/v1/document/assignFreelancers"
+    tag: Document
+  - name: create_document_assignvendors
+    description: "Assign a vendor to a document workflow stage"
+    source_operation: "POST /api/integration/v1/document/assignVendors"
+    tag: Document
+  - name: create_document_setstageunitcount
+    description: "Specify the unit count for a document workflow stage"
+    source_operation: "POST /api/integration/v1/document/setStageUnitCount"
+    tag: Document
+  - name: create_document_assign
+    description: "Specify the linguist assignment and segment distribution model"
+    source_operation: "POST /api/integration/v1/document/assign"
+    tag: Document
+  - name: create_document_unassign
+    description: "Unassign a linguist"
+    source_operation: "POST /api/integration/v1/document/unassign"
+    tag: Document
+  - name: create_document_assignfrommyteam
+    description: "Send Rocket invitations to MyTeam linguists:
+send invitations, assign the first one to accept the job to every unassigned document segment"
+    source_operation: "POST /api/integration/v1/document/assignFromMyTeam"
+    tag: Document
+  - name: create_document_complete
+    description: "Change the document status to Completed"
+    source_operation: "POST /api/integration/v1/document/complete"
+    tag: Document
+  - name: update_document_update
+    description: "Update the specified document"
+    source_operation: "PUT /api/integration/v2/document/update"
+    tag: Document
+  - name: update_document_rename
+    description: "Rename the assigned document"
+    source_operation: "PUT /api/integration/v1/document/rename"
+    tag: Document
+  - name: update_document_updatemetainfo
+    description: "Update document meta info"
+    source_operation: "PUT /api/integration/v1/document/updateMetaInfo"
+    tag: Document
+  - name: update_document_translate
+    description: "Translate the specified document using the specified translation file"
+    source_operation: "PUT /api/integration/v1/document/translate"
+    tag: Document
+  - name: update_document_translatewithxliff
+    description: "Import an XLIFF file with document translations"
+    source_operation: "PUT /api/integration/v1/document/translateWithXliff"
+    tag: Document
+  - name: get_document_export
+    description: "Download the export results"
+    source_operation: "GET /api/integration/v1/document/export/{taskId}"
+    tag: DocumentExport
+  - name: create_document_export
+    description: "Request the documents export"
+    source_operation: "POST /api/integration/v1/document/export"
+    tag: DocumentExport
+  - name: get_v1_filedisassemblingalgorithmpresets
+    description: "Fetch a disassembly algorithm preset"
+    source_operation: "GET /api/integration/v1/fileDisassemblingAlgorithmPresets/{id}"
+    tag: FileDisassemblingAlgorithmPresets
+  - name: update_v1_filedisassemblingalgorithmpresets
+    description: "Update a disassembly algorithm preset"
+    source_operation: "PUT /api/integration/v1/fileDisassemblingAlgorithmPresets/{id}"
+    tag: FileDisassemblingAlgorithmPresets
+  - name: delete_v1_filedisassemblingalgorithmpresets
+    description: "Delete a preset"
+    source_operation: "DELETE /api/integration/v1/fileDisassemblingAlgorithmPresets/{id}"
+    tag: FileDisassemblingAlgorithmPresets
+  - name: get_v1_filedisassemblingalgorithmpresets_2
+    description: "Fetch all presets for the account"
+    source_operation: "GET /api/integration/v1/fileDisassemblingAlgorithmPresets"
+    tag: FileDisassemblingAlgorithmPresets
+  - name: create_v1_filedisassemblingalgorithmpresets
+    description: "Create a disassembly algorithm preset"
+    source_operation: "POST /api/integration/v1/fileDisassemblingAlgorithmPresets"
+    tag: FileDisassemblingAlgorithmPresets
+  - name: get_file_management_file
+    description: "Download a file by path"
+    source_operation: "GET /api/integration/v1/file-management/file/{path}"
+    tag: FileManagement
+  - name: update_file_management_file
+    description: "Upload file to a specified path in storage"
+    source_operation: "PUT /api/integration/v1/file-management/file/{path}"
+    tag: FileManagement
+  - name: delete_file_management_file
+    description: "Delete a file by path"
+    source_operation: "DELETE /api/integration/v1/file-management/file/{path}"
+    tag: FileManagement
+  - name: update_file_management_files
+    description: "Upload multiple files to a specified path in storage"
+    source_operation: "PUT /api/integration/v1/file-management/files/{path}"
+    tag: FileManagement
+  - name: get_file_management_file_info
+    description: "Get single file info by path"
+    source_operation: "GET /api/integration/v1/file-management/file-info/{path}"
+    tag: FileManagement
+  - name: get_file_management_file_info_list
+    description: "Get list of files whose path starts with given prefix"
+    source_operation: "GET /api/integration/v1/file-management/file-info-list/{prefix}"
+    tag: FileManagement
+  - name: get_v1_glossaries
+    description: "Fetch glossaries from the current account"
+    source_operation: "GET /api/integration/v1/glossaries"
+    tag: Glossary
+  - name: get_glossaries_default
+    description: "Fetch default glossary from the current account"
+    source_operation: "GET /api/integration/v1/glossaries/default"
+    tag: Glossary
+  - name: create_glossary_import
+    description: "Create a task for importing concepts from a glossary file"
+    source_operation: "POST /api/integration/v1/glossary/import"
+    tag: Glossary
+  - name: get_glossary_importtaskstate
+    description: "Fetch the status of a concept import task"
+    source_operation: "GET /api/integration/v1/glossary/importTaskState/{taskId}"
+    tag: Glossary
+  - name: create_glossary_export
+    description: "Create a task for export the glossary"
+    source_operation: "POST /api/integration/v1/glossary/export"
+    tag: Glossary
+  - name: get_export_pendingtasks
+    description: "Get the list of pending export glossary tasks"
+    source_operation: "GET /api/integration/v1/glossary/export/pendingTasks"
+    tag: Glossary
+  - name: get_glossary_export
+    description: "Download the glossary export task result"
+    source_operation: "GET /api/integration/v1/glossary/export/{taskId}"
+    tag: Glossary
+  - name: create_invoice_job
+    description: "Create payment to freelancer"
+    source_operation: "POST /api/integration/v1/invoice/job"
+    tag: Invoice
+  - name: create_invoice_job_2
+    description: "Create a payment"
+    source_operation: "POST /api/integration/v2/invoice/job"
+    tag: Invoice
+  - name: create_invoice_jobs
+    description: "Create an array of freelancer payments"
+    source_operation: "POST /api/integration/v1/invoice/jobs"
+    tag: Invoice
+  - name: create_invoice_jobs_2
+    description: "Create a payments array"
+    source_operation: "POST /api/integration/v2/invoice/jobs"
+    tag: Invoice
+  - name: get_job_list
+    description: "Fetch an array of freelancer payments by ID"
+    source_operation: "GET /api/integration/v1/invoice/job/list"
+    tag: Invoice
+  - name: get_job_listbyexternalid
+    description: "Fetch an array of payments by ID"
+    source_operation: "GET /api/integration/v2/invoice/job/listByExternalId"
+    tag: Invoice
+  - name: get_job_listbycreateddate
+    description: "Fetch an array of jobs by creation date"
+    source_operation: "GET /api/integration/v2/invoice/job/listByCreatedDate"
+    tag: Invoice
+  - name: get_invoice_list
+    description: "Fetch a list of invoices created within the specified period"
+    source_operation: "GET /api/integration/v2/invoice/list"
+    tag: Invoice
+  - name: get_client_agent_invoice_list
+    description: "Fetch a list of agent invoices"
+    source_operation: "GET /api/integration/v2/client-agent-invoice/list"
+    tag: Invoice
+  - name: get_job_verifiedforproject
+    description: "Fetch an array of jobs whose status is VERIFIED"
+    source_operation: "GET /api/integration/v3/job/verifiedForProject"
+    tag: Job
+  - name: get_v3_job
+    description: "Fetch an array of jobs"
+    source_operation: "GET /api/integration/v3/job"
+    tag: Job
+  - name: delete_lsp_prices
+    description: "Delete an LSP service price"
+    source_operation: "DELETE /api/integration/v1/lsp/prices/{priceId}"
+    tag: LspPrices
+  - name: get_lsp_prices
+    description: "Fetch LSP service prices by ID"
+    source_operation: "GET /api/integration/v2/lsp/prices"
+    tag: LspPrices
+  - name: create_lsp_prices
+    description: "Create a new LSP service price"
+    source_operation: "POST /api/integration/v2/lsp/prices"
+    tag: LspPrices
+  - name: get_prices_batch
+    description: "Fetch LSP service prices"
+    source_operation: "GET /api/integration/v2/lsp/prices/batch"
+    tag: LspPrices
+  - name: create_prices_batch
+    description: "Create new LSP service prices"
+    source_operation: "POST /api/integration/v2/lsp/prices/batch"
+    tag: LspPrices
+  - name: update_lsp_prices
+    description: "Update an existing LSP service price"
+    source_operation: "PUT /api/integration/v2/lsp/prices/{priceId}"
+    tag: LspPrices
+  - name: delete_lsp_services
+    description: "Delete an LSP service"
+    source_operation: "DELETE /api/integration/v1/lsp/services/{serviceId}"
+    tag: LspService
+  - name: get_lsp_services
+    description: "Fetch LSP services by ID"
+    source_operation: "GET /api/integration/v2/lsp/services"
+    tag: LspService
+  - name: create_lsp_services
+    description: "Create a new LSP service"
+    source_operation: "POST /api/integration/v2/lsp/services"
+    tag: LspService
+  - name: get_services_batch
+    description: "Fetch LSP services"
+    source_operation: "GET /api/integration/v2/lsp/services/batch"
+    tag: LspService
+  - name: create_services_batch
+    description: "Create new LSP services"
+    source_operation: "POST /api/integration/v2/lsp/services/batch"
+    tag: LspService
+  - name: update_lsp_services
+    description: "Update an existing LSP service"
+    source_operation: "PUT /api/integration/v2/lsp/services/{serviceId}"
+    tag: LspService
+  - name: get_account_myteam
+    description: "Fetch a MyTeam member model by ID"
+    source_operation: "GET /api/integration/v1/account/myTeam/{userId}"
+    tag: MyTeam
+  - name: delete_account_myteam
+    description: "Delete the user from MyTeam"
+    source_operation: "DELETE /api/integration/v1/account/myTeam/{userId}"
+    tag: MyTeam
+  - name: get_account_myteam_2
+    description: "Fetch a MyTeam member model by external ID"
+    source_operation: "GET /api/integration/v1/account/myTeam"
+    tag: MyTeam
+  - name: create_account_myteam
+    description: "Add an in-house translator to MyTeam as a linguist"
+    source_operation: "POST /api/integration/v1/account/myTeam"
+    tag: MyTeam
+  - name: create_account_searchmyteam
+    description: "Search for linguists in MyTeam"
+    source_operation: "POST /api/integration/v1/account/searchMyTeam"
+    tag: MyTeam
+  - name: create_services_replace
+    description: "Replace all services in a MyTeam profile"
+    source_operation: "POST /api/integration/v1/account/myTeam/{userId}/services/replace"
+    tag: MyTeam
+  - name: update_myteam_phone
+    description: "Add a MyTeam member's phone number"
+    source_operation: "PUT /api/integration/v1/account/myTeam/{userId}/phone"
+    tag: MyTeam
+  - name: update_myteam_comment
+    description: "Add a comment to a MyTeam member profile"
+    source_operation: "PUT /api/integration/v1/account/myTeam/{userId}/comment"
+    tag: MyTeam
+  - name: get_v1_placeholders
+    description: "Fetch all placeholder formats available in the current account"
+    source_operation: "GET /api/integration/v1/placeholders"
+    tag: PlaceholderFormatApi
+  - name: update_v1_placeholders
+    description: "Save placeholder formats set for the specified account"
+    source_operation: "PUT /api/integration/v1/placeholders"
+    tag: PlaceholderFormatApi
+  - name: get_placeholders_validate
+    description: "Validate the provided placeholder format"
+    source_operation: "GET /api/integration/v1/placeholders/validate"
+    tag: PlaceholderFormatApi
+  - name: get_v1_project
+    description: "Receive the project model"
+    source_operation: "GET /api/integration/v1/project/{projectId}"
+    tag: Project
+  - name: update_v1_project
+    description: "Update a project by ID"
+    source_operation: "PUT /api/integration/v1/project/{projectId}"
+    tag: Project
+  - name: delete_v1_project
+    description: "Delete the project"
+    source_operation: "DELETE /api/integration/v1/project/{projectId}"
+    tag: Project
+  - name: get_project_list
+    description: "Fetch the list of account projects"
+    source_operation: "GET /api/integration/v2/project/list"
+    tag: Project
+  - name: get_project_list_2
+    description: "Fetch the list of account projects"
+    source_operation: "GET /api/integration/v1/project/list"
+    tag: Project
+  - name: get_project_statistics
+    description: "(This method is obsolete and has been replaced with /api/integration/v2/project/{projectId}/statistics)
+Fetch project statistics"
+    source_operation: "GET /api/integration/v1/project/{projectId}/statistics"
+    tag: Project
+  - name: get_project_statistics_2
+    description: "Fetch project statistics"
+    source_operation: "GET /api/integration/v2/project/{projectId}/statistics"
+    tag: Project
+  - name: update_project_fuzzyrepetitions
+    description: "Enable or disable calculating fuzzy repetitions in the project statistics"
+    source_operation: "PUT /api/integration/v1/project/{projectId}/fuzzyRepetitions"
+    tag: Project
+  - name: get_project_completedworkstatistics
+    description: "Receive statistics for the completed parts of the project"
+    source_operation: "GET /api/integration/v1/project/{projectId}/completedWorkStatistics"
+    tag: Project
+  - name: get_project_translationmemories
+    description: "Receive a list of the TMs plugged into the project"
+    source_operation: "GET /api/integration/v1/project/{projectId}/translationmemories"
+    tag: Project
+  - name: create_project_translationmemories
+    description: "Recreate the set of TMs plugged into the project.
+The set of TMs is identical for all target languages of the project."
+    source_operation: "POST /api/integration/v1/project/{projectId}/translationmemories"
+    tag: Project
+  - name: get_project_glossaries
+    description: "Fetch the list of glossaries plugged into the project"
+    source_operation: "GET /api/integration/v1/project/{projectId}/glossaries"
+    tag: Project
+  - name: update_project_glossaries
+    description: "Set a collection of glossaries plugged into the project"
+    source_operation: "PUT /api/integration/v1/project/{projectId}/glossaries"
+    tag: Project
+  - name: get_glossaries_default_2
+    description: "Fetch default glossary for the project"
+    source_operation: "GET /api/integration/v1/project/{projectId}/glossaries/default"
+    tag: Project
+  - name: get_project_mt
+    description: "Fetch the project's MT configuration"
+    source_operation: "GET /api/integration/v1/project/{projectId}/mt"
+    tag: Project
+  - name: create_project_mt
+    description: "Set an MT configuration in the project"
+    source_operation: "POST /api/integration/v1/project/{projectId}/mt"
+    tag: Project
+  - name: get_mt_available
+    description: "Fetch all the MT engines and profiles that can be used in the specified project"
+    source_operation: "GET /api/integration/v1/project/{projectId}/mt/available"
+    tag: Project
+  - name: get_project_pretranslation_rules
+    description: "Fetch the project pre-processing rules"
+    source_operation: "GET /api/integration/v1/project/{projectId}/pretranslation-rules"
+    tag: Project
+  - name: create_project_pretranslation_rules
+    description: "Define project pre-processing rules"
+    source_operation: "POST /api/integration/v1/project/{projectId}/pretranslation-rules"
+    tag: Project
+  - name: update_project_pretranslation_rules
+    description: "Define project pre-processing rules"
+    source_operation: "PUT /api/integration/v1/project/{projectId}/pretranslation-rules"
+    tag: Project
+  - name: get_project_empty_folders_removing_status
+    description: "Fetch the status of removing empty project folders"
+    source_operation: "GET /api/integration/v1/project/{projectId}/empty-folders-removing-status"
+    tag: Project
+  - name: get_project_import_result
+    description: "Fetch the result of import into the Localization Project"
+    source_operation: "GET /api/integration/v1/project/import-result/{importId}"
+    tag: Project
+  - name: create_project_cancel
+    description: "Cancel the project"
+    source_operation: "POST /api/integration/v1/project/cancel"
+    tag: Project
+  - name: create_project_restore
+    description: "Restore the project"
+    source_operation: "POST /api/integration/v1/project/restore"
+    tag: Project
+  - name: create_project_complete
+    description: "Complete the workflow for all project documents. As a result, the project status will change to Completed."
+    source_operation: "POST /api/integration/v1/project/complete"
+    tag: Project
+  - name: create_project_create
+    description: "Create the project"
+    source_operation: "POST /api/integration/v1/project/create"
+    tag: Project
+  - name: create_project_import
+    description: "Import keys and values from files into the Software Localization Project"
+    source_operation: "POST /api/integration/v2/project/{projectId}/import"
+    tag: Project
+  - name: create_project_document
+    description: "Add a document to the project"
+    source_operation: "POST /api/integration/v1/project/document"
+    tag: Project
+  - name: create_project_language
+    description: "Add a new target language to the project"
+    source_operation: "POST /api/integration/v1/project/language"
+    tag: Project
+  - name: delete_project_language
+    description: "Remove a target language from the project"
+    source_operation: "DELETE /api/integration/v1/project/language"
+    tag: Project
+  - name: create_translationmemories_bylanguages
+    description: "Recreate the set of TMs plugged into the project.
+A separate set of TMs is created for each target language."
+    source_operation: "POST /api/integration/v1/project/{projectId}/translationmemories/bylanguages"
+    tag: Project
+  - name: create_statistics_build
+    description: "Start processing the project statistics"
+    source_operation: "POST /api/integration/v1/project/{projectId}/statistics/build"
+    tag: Project
+  - name: create_project_managers
+    description: "Add managers to the specified project"
+    source_operation: "POST /api/integration/v1/project/{projectId}/managers"
+    tag: Project
+  - name: delete_project_managers
+    description: "Delete managers from the project"
+    source_operation: "DELETE /api/integration/v1/project/{projectId}/managers"
+    tag: Project
+  - name: create_project_assign
+    description: "Automatically assign all new documents/segments to current linguists"
+    source_operation: "POST /api/integration/v1/project/{projectId}/assign"
+    tag: Project
+  - name: create_project_referencefiles
+    description: "Add reference files to a project"
+    source_operation: "POST /api/integration/v1/project/{projectId}/ReferenceFiles"
+    tag: Project
+  - name: create_project_run_empty_folders_removing
+    description: "Run the empty project folders deletion task"
+    source_operation: "POST /api/integration/v1/project/{projectId}/run-empty-folders-removing"
+    tag: Project
+  - name: create_project_export
+    description: "Run export from Software Localization Project"
+    source_operation: "POST /api/integration/v2/project/{projectId}/export"
+    tag: Project
+  - name: create_project_copying
+    description: "Run copying a project"
+    source_operation: "POST /api/integration/v1/project/{projectId}/copying"
+    tag: Project
+  - name: get_project_copying
+    description: "Get project copy state"
+    source_operation: "GET /api/integration/v1/project/copying/{taskId}"
+    tag: Project
+  - name: get_projecttask_list
+    description: "Get a list of project tasks"
+    source_operation: "GET /api/integration/v1/projectTask/{projectId}/list"
+    tag: ProjectTask
+  - name: get_v1_projecttask
+    description: "Get information regarding task projectTaskId for project projectId"
+    source_operation: "GET /api/integration/v1/projectTask/{projectId}/{projectTaskId}"
+    tag: ProjectTask
+  - name: get_projecttask_scope
+    description: "Get information about the scope of work, regarding task  projectTaskId for project projectId"
+    source_operation: "GET /api/integration/v1/projectTask/{projectId}/{projectTaskId}/scope"
+    tag: ProjectTask
+  - name: update_projecttask_set_invitation_strategy_type
+    description: "Set the mode of access to perform the work for those who accepted the invitation"
+    source_operation: "PUT /api/integration/v1/projectTask/{projectId}/{projectTaskId}/set-invitation-strategy-type"
+    tag: ProjectTask
+  - name: update_projecttask_individual_assignment
+    description: "Assign individual suppliers to perform task projectTaskId"
+    source_operation: "PUT /api/integration/v1/projectTask/{projectId}/{projectTaskId}/individual-assignment"
+    tag: ProjectTask
+  - name: delete_projecttask_individual_assignment
+    description: "Delete individual assignment"
+    source_operation: "DELETE /api/integration/v1/projectTask/{projectId}/{projectTaskId}/individual-assignment"
+    tag: ProjectTask
+  - name: update_projecttask_vendor_assignment
+    description: "Assign a supplier to perform task  projectTaskId"
+    source_operation: "PUT /api/integration/v1/projectTask/{projectId}/{projectTaskId}/vendor-assignment"
+    tag: ProjectTask
+  - name: delete_projecttask_vendor_assignment
+    description: "Remove supplier assignment"
+    source_operation: "DELETE /api/integration/v1/projectTask/{projectId}/{projectTaskId}/vendor-assignment"
+    tag: ProjectTask
+  - name: get_projecttask_payables
+    description: "Get information about payments to suppliers for the work on task projectTaskId"
+    source_operation: "GET /api/integration/v1/projectTask/{projectId}/{projectTaskId}/payables"
+    tag: ProjectTask
+  - name: update_projecttask_deadline
+    description: "Set a deadline for the task"
+    source_operation: "PUT /api/integration/v1/projectTask/{projectId}/{projectTaskId}/deadline"
+    tag: ProjectTask
+  - name: create_projecttask_split
+    description: "Move the task volume to another task"
+    source_operation: "POST /api/integration/v1/projectTask/{projectId}/{projectTaskId}/split"
+    tag: ProjectTask
+  - name: create_projecttask_splitbyparts
+    description: "Split task into partsCount parts"
+    source_operation: "POST /api/integration/v1/projectTask/{projectId}/{projectTaskId}/splitByParts/{partsCount}"
+    tag: ProjectTask
+  - name: create_projecttask_merge
+    description: "Merge task projectTaskId with tasks request
+All merged tasks must belong to the same stage Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel.StageId,
+have the same target language Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel.TargetLanguage and have no agencies/companies assigned to the task
+During the merge process, existing supplier assignments will be removed. Tasks will be merged and become inaccessible.
+As a result of the operation, a new task is created, which includes all the scope of work from the merged tasks."
+    source_operation: "POST /api/integration/v1/projectTask/{projectId}/{projectTaskId}/merge"
+    tag: ProjectTask
+  - name: get_v1_quote
+    description: "Fetch information about the project quote"
+    source_operation: "GET /api/integration/v1/Quote/{projectId}"
+    tag: Quote
+  - name: get_quote_byvendor
+    description: "Fetch information about the project quote"
+    source_operation: "GET /api/integration/v1/Quote/ByVendor/{projectId}"
+    tag: Quote
+  - name: get_quote_listbyprojectids
+    description: "Fetch a list of quotes by a list of projects"
+    source_operation: "GET /api/integration/v1/Quote/ListByProjectIds"
+    tag: Quote
+  - name: get_quote_list
+    description: "Fetch the list of quotes for the current account"
+    source_operation: "GET /api/integration/v1/Quote/List"
+    tag: Quote
+  - name: update_quote_update
+    description: "Update information on the project quote"
+    source_operation: "PUT /api/integration/v1/Quote/Update"
+    tag: Quote
+  - name: create_quote_upload
+    description: "Upload a project quote details file"
+    source_operation: "POST /api/integration/v1/Quote/{id}/Upload"
+    tag: Quote
+  - name: create_quote_approve
+    description: "Approve a quote"
+    source_operation: "POST /api/integration/v1/Quote/{id}/Approve"
+    tag: Quote
+  - name: create_quote_markaspaid
+    description: "Mark the quote as paid"
+    source_operation: "POST /api/integration/v1/Quote/{id}/MarkAsPaid"
+    tag: Quote
+  - name: get_quote_file
+    description: "Download a cost calculation file"
+    source_operation: "GET /api/integration/v1/Quote/{id}/File"
+    tag: Quote
+  - name: get_v1_segment_confirmation_statistics
+    description: "Fetch segment confirmation statistics"
+    source_operation: "GET /api/integration/v1/segment-confirmation-statistics/{projectId}"
+    tag: SegmentConfirmationStatistics
+  - name: get_v2_segment_confirmation_statistics
+    description: "Fetch segment confirmation statistics"
+    source_operation: "GET /api/integration/v2/segment-confirmation-statistics/{projectId}"
+    tag: SegmentConfirmationStatistics
+  - name: create_smarttranslation_translate
+    description: "Fetch translation
+See the Smart Translation API guide [here](https://developers.smartcat.com/api-guides/#instant-translations-via-the-real-time-api)"
+    source_operation: "POST /api/integration/v1/smartTranslation/translate"
+    tag: SmartTranslation
+  - name: get_smartwords_balance
+    description: "Fetch the current Smartwords balance of the workspace"
+    source_operation: "GET /api/integration/v1/smartwords/balance"
+    tag: Smartwords
+  - name: get_v1_template
+    description: "Get all templates available in the workspace"
+    source_operation: "GET /api/integration/v1/template"
+    tag: Template
+  - name: get_v1_translationmemory
+    description: "Fetch information about the TM"
+    source_operation: "GET /api/integration/v1/translationmemory/{tmId}"
+    tag: TranslationMemories
+  - name: create_v1_translationmemory
+    description: "Import TMX files to a TM"
+    source_operation: "POST /api/integration/v1/translationmemory/{tmId}"
+    tag: TranslationMemories
+  - name: delete_v1_translationmemory
+    description: "Delete a TM"
+    source_operation: "DELETE /api/integration/v1/translationmemory/{tmId}"
+    tag: TranslationMemories
+  - name: get_v1_translationmemory_2
+    description: "Fetch the available TMs filtered per account"
+    source_operation: "GET /api/integration/v1/translationmemory"
+    tag: TranslationMemories
+  - name: create_v1_translationmemory_2
+    description: "Create an empty TM"
+    source_operation: "POST /api/integration/v1/translationmemory"
+    tag: TranslationMemories
+  - name: get_translationmemory_task
+    description: "Fetch a collection of TMX file import tasks"
+    source_operation: "GET /api/integration/v1/translationmemory/task"
+    tag: TranslationMemories
+  - name: get_translationmemory_file
+    description: "Export TMX files from the TM database"
+    source_operation: "GET /api/integration/v1/translationmemory/{tmId}/file"
+    tag: TranslationMemories
+  - name: create_translationmemory_matches
+    description: "Fetch matches from the specified TM"
+    source_operation: "POST /api/integration/v1/translationmemory/matches"
+    tag: TranslationMemories
+  - name: update_translationmemory_targets
+    description: "Add an array of target languages to a TM"
+    source_operation: "PUT /api/integration/v1/translationmemory/{tmId}/targets"
+    tag: TranslationMemories
+  - name: delete_translationmemory_task
+    description: "Removes the specified import task"
+    source_operation: "DELETE /api/integration/v1/translationmemory/task/{taskId}"
+    tag: TranslationMemories
+  - name: create_v1_user_deletion_requests
+    description: "POST /api/integration/v1/user-deletion-requests"
+    source_operation: "POST /api/integration/v1/user-deletion-requests"
+    tag: UserDeletionRequests
+  - name: create_user_deletion_requests_confirm
+    description: "POST /api/integration/v1/user-deletion-requests/confirm"
+    source_operation: "POST /api/integration/v1/user-deletion-requests/confirm"
+    tag: UserDeletionRequests
+  - name: get_vendor_list
+    description: "Fetch the list of vendors"
+    source_operation: "GET /api/integration/v1/vendor/list"
+    tag: Vendor
+  - name: get_v1_vendor
+    description: "Fetch a vendor by ID"
+    source_operation: "GET /api/integration/v1/vendor/{vendorAccountId}"
+    tag: Vendor

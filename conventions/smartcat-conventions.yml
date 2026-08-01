@@ -1,0 +1,41 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.smartcat.com/api-guides/
+authentication:
+  style: http-basic
+  detail: >-
+    Basic authentication on every method. The Authorization header carries a Base64-encoded
+    "AccountId":"ApiKey" pair. Credentials are created under Settings > API in the Smartcat UI.
+  see: authentication/smartcat-authentication.yml
+regional_hosts:
+  europe: https://smartcat.com        # also smartcat.ai
+  americas: https://us.smartcat.com    # also us.smartcat.ai
+  asia: https://ea.smartcat.com        # also ea.smartcat.ai
+base_path: /api/integration/v1
+idempotency:
+  supported: false
+  note: >-
+    Smartcat does not document a client-supplied idempotency-key header. Writes are keyed by
+    resource id; treat non-GET retries with care.
+pagination:
+  style: page-number   # v2 list endpoints
+  params: [pageNumber, pageSize, limit, offset, skip]
+  note: v2 list endpoints added pagination; the deprecated v1 list returned unpaginated results.
+rate_limiting:
+  limit: 4 requests per second (all methods)
+  source: https://developers.smartcat.com/api-guides/
+request_tracing:
+  field: requestId
+  note: The ErrorResponse envelope includes a requestId for support correlation.
+versioning:
+  scheme: uri-path
+  current: v1 (integration), with v2 list endpoints
+  see: lifecycle/smartcat-lifecycle.yml
+webhooks:
+  supported: true
+  mechanism: account-level callback URL (project/status and document/status)
+  see: asyncapi/smartcat-callbacks-webhooks.yml
+error_envelope:
+  primary: ProblemDetails (type/title/status/detail/instance)
+  alternate: ErrorResponse (type/code/message/requestId/statusCode)
+  see: errors/smartcat-problem-types.yml

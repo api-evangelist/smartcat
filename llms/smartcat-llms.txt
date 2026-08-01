@@ -1,0 +1,32 @@
+# Smartcat
+
+> Smartcat is an AI-powered platform for translation and localization of global content across 280+ languages, combining machine translation, AI agents, human linguist workflows, translation memories, and glossaries. Its integration API (`/api/integration/v1`) exposes projects, documents, translation memories, glossaries, quotes, invoices, vendors, and status callbacks over HTTP with Basic authentication.
+
+## APIs
+- [Smartcat API v1 reference](https://developers.smartcat.com/api/): 176 operations across 27 resource groups (Project, Document, ProjectTask, TranslationMemories, Glossary, Quote, Invoice, Client, Vendor, Callback, and more).
+- [API guides](https://developers.smartcat.com/api-guides/): authentication, rate limits (4 req/s), regional hosts, callbacks.
+
+## Specs
+- [OpenAPI 3.0.1 (verbatim)](openapi/smartcat-openapi-original.json)
+- [OpenAPI 3.0.1 (working copy)](openapi/smartcat-openapi.json)
+- [OpenAPI Overlay (AE enhancements)](overlays/smartcat-openapi-overlay.yaml)
+
+## Docs
+- [Developer portal](https://developers.smartcat.com/)
+- [Getting started](https://developers.smartcat.com/api-guides/)
+- [Changelog](https://developers.smartcat.com/changelog/)
+- [CLI](https://developers.smartcat.com/cli/)
+- [Help center](https://help.smartcat.com/)
+- [Security & compliance (SOC 1/2/3)](https://www.smartcat.com/security/)
+- [Status page](https://status.smartcat.com/)
+
+## Artifacts
+- [Authentication](authentication/smartcat-authentication.yml) — HTTP Basic (AccountId:ApiKey)
+- [Conventions](conventions/smartcat-conventions.yml) — pagination, rate limits, error envelopes
+- [Error catalog](errors/smartcat-problem-types.yml) — ProblemDetails / ErrorResponse
+- [Lifecycle](lifecycle/smartcat-lifecycle.yml) — versioning, deprecation, status page
+- [Webhooks](asyncapi/smartcat-callbacks-webhooks.yml) — project.status / document.status callbacks
+- [Packages/SDKs](packages/smartcat-packages.yml) — official PHP client
+- [MCP (candidate)](mcp/smartcat-mcp.yml)
+- [Agent Skills](skills/_index.yml)
+- [Data model](data-model/smartcat-data-model.yml)

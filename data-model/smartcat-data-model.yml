@@ -1,0 +1,70 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/smartcat-openapi.json
+note: Entities derived from OpenAPI tags/resource paths; relationships from path nesting and id references.
+entities:
+  - name: Account
+    operations: 2
+  - name: AssignmentTemplates
+    operations: 2
+  - name: Audit
+    operations: 1
+  - name: Callback
+    operations: 4
+  - name: Client
+    operations: 6
+  - name: ClientIndustry
+    operations: 5
+  - name: CustomFields
+    operations: 1
+  - name: Directories
+    operations: 2
+  - name: Document
+    operations: 17
+  - name: Project
+    operations: 41
+  - name: DocumentExport
+    operations: 2
+  - name: FileDisassemblingAlgorithmPresets
+    operations: 5
+  - name: FileManagement
+    operations: 6
+  - name: Glossary
+    operations: 7
+  - name: Invoice
+    operations: 9
+  - name: Job
+    operations: 2
+  - name: LspPrices
+    operations: 6
+  - name: LspService
+    operations: 6
+  - name: MyTeam
+    operations: 8
+  - name: PlaceholderFormatApi
+    operations: 3
+  - name: ProjectTask
+    operations: 13
+  - name: Quote
+    operations: 9
+  - name: SegmentConfirmationStatistics
+    operations: 2
+  - name: SmartTranslation
+    operations: 1
+  - name: Smartwords
+    operations: 1
+  - name: Template
+    operations: 1
+  - name: TranslationMemories
+    operations: 10
+  - name: UserDeletionRequests
+    operations: 2
+  - name: Vendor
+    operations: 2
+relationships:
+  - {from: Document, to: Project, type: belongs_to, via: projectId}
+  - {from: ProjectTask, to: Project, type: belongs_to, via: projectId}
+  - {from: Job, to: Document, type: belongs_to, via: documentId}
+  - {from: Project, to: Document, type: has_many, via: documentId}
+  - {from: AssignmentTemplate, to: Project, type: applies_to, via: projectId}
+  - {from: Quote, to: Project, type: belongs_to, via: projectId}

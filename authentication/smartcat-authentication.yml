@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.smartcat.com/api-guides/
+docs: https://developers.smartcat.com/api-guides/
+summary:
+  types: [http-basic]
+  api_key_in: [header]
+  oauth2_flows: []
+schemes:
+  - name: basicAuth
+    type: http
+    scheme: basic
+    description: >-
+      Every Smartcat API method uses HTTP Basic authentication. The Authorization
+      header carries a Base64-encoded "AccountId":"ApiKey" pair. The username is the
+      Account ID (Settings > API), the password is an API key generated with
+      CREATE NEW KEY in the API Keys pane.
+    credential_source: Settings > API (admin account)
+    sources: [https://developers.smartcat.com/api-guides/]
+notes: >-
+  Basic auth is documented in the developer guides but is NOT declared as a
+  securityScheme in the published OpenAPI (components.securitySchemes is empty);
+  captured here from the docs (method: searched). Requests are rate limited to
+  4 req/s. Regional hosts: smartcat.com (EU), us.smartcat.com (US), ea.smartcat.com (Asia).

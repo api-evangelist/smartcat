@@ -1,0 +1,26 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Smartcat API
+  version: 1.0.0
+extends: openapi/smartcat-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: true
+      x-apievangelist-regional-hosts: [smartcat.com, us.smartcat.com, ea.smartcat.com]
+      x-apievangelist-base-path: /api/integration/v1
+  - target: $.servers
+    update:
+      - url: https://smartcat.com
+        description: Europe region
+      - url: https://us.smartcat.com
+        description: Americas region
+      - url: https://ea.smartcat.com
+        description: Asia-Pacific region
+  - target: $.components
+    update:
+      securitySchemes:
+        basicAuth:
+          type: http
+          scheme: basic
+          description: Base64-encoded AccountId:ApiKey (Settings > API)

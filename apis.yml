@@ -1,27 +1,756 @@
 aid: smartcat
 name: Smartcat
-description: 'Smartcat is a company surfaced as a portfolio company of matrix-partners and added to the
-  API Evangelist network as a stub for enrichment. Sector: ai. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  Smartcat is an AI-powered translation and localization platform that lets teams translate
+  content instantly and at scale across 280+ languages, combining machine translation, AI
+  agents, human linguist workflows, translation memories, and glossaries. Its integration API
+  (/api/integration/v1) provides programmatic access to projects, documents, translation
+  memories, glossaries, quotes, invoices, vendors, teams, and status callbacks, and is designed
+  as a full-fledged equivalent and extension of the Smartcat web UI. The API spans 176
+  operations across 27 resource groups, uses HTTP Basic authentication (Account ID + API key),
+  is rate limited to four requests per second, and is served from regional hosts for Europe
+  (smartcat.com), the Americas (us.smartcat.com) and Asia (ea.smartcat.com). The company was
+  surfaced as a portfolio company of Matrix Partners and has been enriched from its public
+  developer surface.
 url: https://raw.githubusercontent.com/api-evangelist/smartcat/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - matrix-partners
-x-tier: stub
+x-tier: enriched
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+image: https://smartcat.com/favicon.ico
 tags:
 - Company
 - Ai
-apis: []
+- Translation
+- Localization
+- Language
+- Machine Translation
+- Content
+- Translation Management
+apis:
+- aid: smartcat:smartcat-account-api
+  name: Smartcat Account API
+  description: The Account API from Smartcat — 2 operation(s) for account.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-account-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-assignmenttemplates-api
+  name: Smartcat AssignmentTemplates API
+  description: The AssignmentTemplates API from Smartcat — 2 operation(s) for assignmenttemplates.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - AssignmentTemplates
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-assignmenttemplates-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-audit-api
+  name: Smartcat Audit API
+  description: The Audit API from Smartcat — 1 operation(s) for audit.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - Audit
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-audit-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-callback-api
+  name: Smartcat Callback API
+  description: The Callback API from Smartcat — 2 operation(s) for callback.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - Callback
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-callback-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-client-api
+  name: Smartcat Client API
+  description: The Client API from Smartcat — 5 operation(s) for client.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - Client
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-client-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-clientindustry-api
+  name: Smartcat ClientIndustry API
+  description: The ClientIndustry API from Smartcat — 3 operation(s) for clientindustry.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - ClientIndustry
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-clientindustry-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-customfields-api
+  name: Smartcat CustomFields API
+  description: The CustomFields API from Smartcat — 1 operation(s) for customfields.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - CustomFields
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-customfields-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-directories-api
+  name: Smartcat Directories API
+  description: The Directories API from Smartcat — 2 operation(s) for directories.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - Directories
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-directories-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-document-api
+  name: Smartcat Document API
+  description: The Document API from Smartcat — 16 operation(s) for document.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - Document
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-document-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-documentexport-api
+  name: Smartcat DocumentExport API
+  description: The DocumentExport API from Smartcat — 2 operation(s) for documentexport.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - DocumentExport
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-documentexport-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-filedisassemblingalgorithmpresets-api
+  name: Smartcat FileDisassemblingAlgorithmPresets API
+  description: >-
+    The FileDisassemblingAlgorithmPresets API from Smartcat — 2 operation(s) for filedisassemblingalgorithmpresets.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - FileDisassemblingAlgorithmPresets
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-filedisassemblingalgorithmpresets-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-filemanagement-api
+  name: Smartcat FileManagement API
+  description: The FileManagement API from Smartcat — 4 operation(s) for filemanagement.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - FileManagement
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-filemanagement-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-glossary-api
+  name: Smartcat Glossary API
+  description: The Glossary API from Smartcat — 7 operation(s) for glossary.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - Glossary
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-glossary-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-invoice-api
+  name: Smartcat Invoice API
+  description: The Invoice API from Smartcat — 9 operation(s) for invoice.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - Invoice
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-invoice-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-job-api
+  name: Smartcat Job API
+  description: The Job API from Smartcat — 2 operation(s) for job.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - Job
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-job-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-lspprices-api
+  name: Smartcat LspPrices API
+  description: The LspPrices API from Smartcat — 4 operation(s) for lspprices.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - LspPrices
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-lspprices-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-lspservice-api
+  name: Smartcat LspService API
+  description: The LspService API from Smartcat — 4 operation(s) for lspservice.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - LspService
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-lspservice-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-myteam-api
+  name: Smartcat MyTeam API
+  description: The MyTeam API from Smartcat — 6 operation(s) for myteam.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - MyTeam
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-myteam-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-placeholderformatapi-api
+  name: Smartcat PlaceholderFormatApi API
+  description: The PlaceholderFormatApi API from Smartcat — 2 operation(s) for placeholderformatapi.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - PlaceholderFormatApi
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-placeholderformatapi-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-project-api
+  name: Smartcat Project API
+  description: The Project API from Smartcat — 32 operation(s) for project.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - Project
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-project-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-projecttask-api
+  name: Smartcat ProjectTask API
+  description: The ProjectTask API from Smartcat — 11 operation(s) for projecttask.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - ProjectTask
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-projecttask-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-quote-api
+  name: Smartcat Quote API
+  description: The Quote API from Smartcat — 9 operation(s) for quote.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - Quote
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-quote-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-segmentconfirmationstatistics-api
+  name: Smartcat SegmentConfirmationStatistics API
+  description: >-
+    The SegmentConfirmationStatistics API from Smartcat — 2 operation(s) for segmentconfirmationstatistics.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - SegmentConfirmationStatistics
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-segmentconfirmationstatistics-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-smarttranslation-api
+  name: Smartcat SmartTranslation API
+  description: The SmartTranslation API from Smartcat — 1 operation(s) for smarttranslation.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - SmartTranslation
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-smarttranslation-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-smartwords-api
+  name: Smartcat Smartwords API
+  description: The Smartwords API from Smartcat — 1 operation(s) for smartwords.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - Smartwords
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-smartwords-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-template-api
+  name: Smartcat Template API
+  description: The Template API from Smartcat — 1 operation(s) for template.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - Template
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-template-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-translationmemories-api
+  name: Smartcat TranslationMemories API
+  description: The TranslationMemories API from Smartcat — 7 operation(s) for translationmemories.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - TranslationMemories
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-translationmemories-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-userdeletionrequests-api
+  name: Smartcat UserDeletionRequests API
+  description: The UserDeletionRequests API from Smartcat — 2 operation(s) for userdeletionrequests.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - UserDeletionRequests
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-userdeletionrequests-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-vendor-api
+  name: Smartcat Vendor API
+  description: The Vendor API from Smartcat — 2 operation(s) for vendor.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - Vendor
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-vendor-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/smartcat-agentic-access.yml
+- type: DomainSecurity
+  url: security/smartcat-domain-security.yml
+- type: MCPServer
+  url: mcp/smartcat-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Conformance
+  url: conformance/smartcat-conformance.yml
+- type: Compliance
+  url: https://www.smartcat.com/security/
+- type: TrustCenter
+  url: security/smartcat-trust-center.yml
+- type: Lifecycle
+  url: lifecycle/smartcat-lifecycle.yml
+- type: StatusPage
+  url: https://status.smartcat.com/
+- type: Deprecation
+  url: https://developers.smartcat.com/changelog/
+- type: ChangeLog
+  url: changelog/smartcat-changelog.yml
+- type: Packages
+  url: packages/smartcat-packages.yml
+- type: SDKs
+  url: packages/smartcat-packages.yml
+- type: CLI
+  url: cli/smartcat-cli.yml
+- type: LLMsTxt
+  url: llms/smartcat-llms.txt
+- type: WellKnown
+  url: well-known/smartcat-well-known.yml
+- type: DeveloperPortal
+  url: https://developers.smartcat.com/
+- type: Documentation
+  url: https://developers.smartcat.com/api-guides/
+- type: APIReference
+  url: https://developers.smartcat.com/api/
+- type: GettingStarted
+  url: https://developers.smartcat.com/api-guides/
+- type: GitHubOrganization
+  url: https://github.com/smartcatai
+- type: Support
+  url: https://help.smartcat.com/
+- type: Blog
+  url: https://www.smartcat.com/blog/
+- type: Pricing
+  url: https://smartcat.com/pricing/
+- type: SignUp
+  url: https://smartcat.com/sign-up
+- type: Login
+  url: https://smartcat.com/sign-in
+- type: TermsOfService
+  url: https://www.smartcat.com/legal/terms/
+- type: PrivacyPolicy
+  url: https://www.smartcat.com/legal/privacy-policy/
 - type: Website
   url: https://smartcat.com
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 22
+  pass: local-v1

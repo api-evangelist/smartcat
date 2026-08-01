@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.smartcat.com/api-guides/
+spec_type: Webhooks
+note: >-
+  Smartcat does not publish an AsyncAPI document. It supports account-level webhook
+  callbacks configured via the Callback API. No event-streaming/AsyncAPI surface exists,
+  so only a webhook catalog is captured here.
+delivery:
+  registration: POST /api/integration/v1/callback  (set the account callback URL)
+  retrieve: GET /api/integration/v1/callback
+  delete: DELETE /api/integration/v1/callback
+  errors: GET /api/integration/v1/callback/lastErrors
+  retry: Exponential backoff, ~30s initial delay, up to 8 attempts on failed delivery.
+events:
+  - name: project.status
+    delivery_path: "<callbackURL>/project/status"
+    description: Fired when a project's status changes.
+  - name: document.status
+    delivery_path: "<callbackURL>/document/status"
+    description: Fired when a document's status changes.

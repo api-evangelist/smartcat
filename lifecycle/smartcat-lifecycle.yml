@@ -1,0 +1,13 @@
+generated: '2026-07-21'
+method: searched
+versioning:
+  scheme: uri-path
+  current: v1
+  notes: v2 list endpoints introduced pagination; v1 project/list deprecated
+  docs: https://developers.smartcat.com/api-guides/
+deprecation:
+  policy_url: https://developers.smartcat.com/changelog/
+  documented_example: GET /api/integration/v1/project/list deprecated (ended September 2022), superseded by GET /api/integration/v2/project/list
+status_page: https://status.smartcat.com/
+changelog: https://developers.smartcat.com/changelog/
+deprecated_operations: []   # none flagged deprecated in the current spec

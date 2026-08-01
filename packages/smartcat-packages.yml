@@ -1,0 +1,34 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/smartcatai
+packages:
+  - language: php
+    registry: github
+    name: smartcatai/SmartCAT-API
+    url: https://github.com/smartcatai/SmartCAT-API
+    install: composer require smartcat/api
+    official: true
+    note: First-party PHP client for the Smartcat integration API (smartcatai GitHub org).
+  - language: javascript
+    registry: npm
+    name: smartcat
+    url: https://www.npmjs.com/package/smartcat
+    install: npm install smartcat
+    official: false
+    note: Community package ("Translation via Smartcat"); not published by the smartcatai org.
+  - language: python
+    registry: pypi
+    name: smartcat
+    url: https://pypi.org/project/smartcat/
+    install: pip install smartcat
+    official: false
+    note: Community SDK "built to facilitate integration with SmartCAT API"; third-party author.
+first_party_connectors:
+  - WordPress (smartcatai/translation-manager)
+  - Joomla (smartcatai/translation-manager-joomla)
+  - Drupal
+  - Zapier
+  - CraftCMS
+  - Serge continuous-localization plugin
+cli:
+  note: Smartcat ships a cross-platform CLI as downloadable binaries (see cli/smartcat-cli.yml); not a package-registry install.
