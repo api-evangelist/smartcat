@@ -691,6 +691,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/smartcat-openapi-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/smartcat-agentic-access.yml
 - type: DomainSecurity
