@@ -1,0 +1,482 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account Document API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Document",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch the document details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/document",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "query",
+                "description": "Document ID"
+              }
+            ]
+          },
+          "docs": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+        },
+        {
+          "info": {
+            "name": "Delete one or several documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/integration/v1/document",
+            "params": [
+              {
+                "name": "documentIds",
+                "value": "",
+                "type": "query",
+                "description": "Array of document IDs"
+              }
+            ]
+          },
+          "docs": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+        },
+        {
+          "info": {
+            "name": "Fetch the status of adding document translation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/document/translate/status",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "query",
+                "description": "Document ID"
+              }
+            ]
+          },
+          "docs": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+        },
+        {
+          "info": {
+            "name": "Fetch a detailed report on translation import results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/document/translate/result",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "query",
+                "description": "Document ID"
+              }
+            ]
+          },
+          "docs": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+        },
+        {
+          "info": {
+            "name": "Fetch statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/document/statistics",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "query",
+                "description": "Document ID"
+              },
+              {
+                "name": "onlyExactMatches",
+                "value": "",
+                "type": "query",
+                "description": "Specifies whether returning 100% and higher matches will suffice"
+              }
+            ]
+          },
+          "docs": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+        },
+        {
+          "info": {
+            "name": "Divide the document into equal blocks by the number of words and assign one block to each specified freelancer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/document/assignFreelancers",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "query",
+                "description": "Document ID"
+              },
+              {
+                "name": "stageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Workflow stage number"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+        },
+        {
+          "info": {
+            "name": "Assign a vendor to a document workflow stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/document/assignVendors",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "query",
+                "description": "Document ID"
+              },
+              {
+                "name": "stageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Workflow stage number"
+              },
+              {
+                "name": "vendorAccountId",
+                "value": "",
+                "type": "query",
+                "description": "Vendor account ID"
+              }
+            ]
+          },
+          "docs": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+        },
+        {
+          "info": {
+            "name": "Specify the unit count for a document workflow stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/document/setStageUnitCount",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query",
+                "description": "Project ID"
+              },
+              {
+                "name": "stageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Workflow stage number"
+              },
+              {
+                "name": "targetLanguageId",
+                "value": "",
+                "type": "query",
+                "description": "Document target language ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Specify the unit count for a document workflow stage"
+        },
+        {
+          "info": {
+            "name": "Specify the linguist assignment and segment distribution model",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/document/assign",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "query",
+                "description": "Document ID"
+              },
+              {
+                "name": "stageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Workflow stage number"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format. \n\r\nAssignmentMode option descriptions:\n\r\n- AssignmentMode.DistributeAmongAll: Distribute segments among all the assigned linguists\n\r\n- AssignmentMode.Rocket: Send invitations and assign all unassigned segments to the first linguist who accepts\n\r\n- AssignmentMode.InviteOnly: Only invite linguists, segme"
+        },
+        {
+          "info": {
+            "name": "Unassign a linguist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/document/unassign",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "query",
+                "description": "Document ID"
+              },
+              {
+                "name": "stageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Workflow stage number"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+        },
+        {
+          "info": {
+            "name": "Send Rocket invitations to MyTeam linguists:\r\nsend invitations, assign the first one to accept the job to every unassigned document segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/document/assignFromMyTeam",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+        },
+        {
+          "info": {
+            "name": "Change the document status to Completed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/document/complete",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "query",
+                "description": "Document ID"
+              }
+            ]
+          },
+          "docs": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+        },
+        {
+          "info": {
+            "name": "Update the specified document",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v2/document/update",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "query",
+                "description": "Document ID"
+              },
+              {
+                "name": "disassembleAlgorithmName",
+                "value": "",
+                "type": "query",
+                "description": "Optional algorithm for file disassembly"
+              },
+              {
+                "name": "presetDisassembleAlgorithm",
+                "value": "",
+                "type": "query",
+                "description": "Optional preset for the file disassembly algorithm"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "value",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "files",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "UpdateDocumentModel must have exactly one file. All other fields in model are optional. \n"
+        },
+        {
+          "info": {
+            "name": "Rename the assigned document",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/document/rename",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "query",
+                "description": "Document ID"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "New name"
+              }
+            ]
+          },
+          "docs": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+        },
+        {
+          "info": {
+            "name": "Update document meta info",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/document/updateMetaInfo",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "query",
+                "description": "Document ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+        },
+        {
+          "info": {
+            "name": "Translate the specified document using the specified translation file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/document/translate",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "query",
+                "description": "Document ID"
+              },
+              {
+                "name": "overwrite",
+                "value": "",
+                "type": "query",
+                "description": "Specifies whether to overwrite the available translations"
+              },
+              {
+                "name": "confirmTranslation",
+                "value": "",
+                "type": "query",
+                "description": "Confirm updated segments"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "translationFile",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Available only for the file formats that support true updates (currently these are resource files with unique resource IDs) \n\r\nSets a task to processing. When the API call is completed, the translation might be not finished yet \n\r\nDocument ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+        },
+        {
+          "info": {
+            "name": "Import an XLIFF file with document translations",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/document/translateWithXliff",
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the document to update"
+              },
+              {
+                "name": "confirmTranslation",
+                "value": "",
+                "type": "query",
+                "description": "Confirm updated segments"
+              },
+              {
+                "name": "overwriteUpdatedSegments",
+                "value": "",
+                "type": "query",
+                "description": "Specifies whether to overwrite the segments that have been updated since the last export of the XLIFF file"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "translationFile",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "This method is available only for modified XLIFF files that were exported using the POST /api/integration/v1/document/export method. \n\r\nThe API call body can include one XLIFF file only. \n\r\nDocument ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,221 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account Invoice API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Invoice",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create payment to freelancer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/invoice/job",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create payment to freelancer"
+        },
+        {
+          "info": {
+            "name": "Create a payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v2/invoice/job",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a payment"
+        },
+        {
+          "info": {
+            "name": "Create an array of freelancer payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/invoice/jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an array of freelancer payments"
+        },
+        {
+          "info": {
+            "name": "Create a payments array",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v2/invoice/jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a payments array"
+        },
+        {
+          "info": {
+            "name": "Fetch an array of freelancer payments by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/invoice/job/list",
+            "params": [
+              {
+                "name": "externalIds",
+                "value": "",
+                "type": "query",
+                "description": "External payment IDs"
+              }
+            ]
+          },
+          "docs": "Fetch an array of freelancer payments by ID"
+        },
+        {
+          "info": {
+            "name": "Fetch an array of payments by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v2/invoice/job/listByExternalId",
+            "params": [
+              {
+                "name": "externalIds",
+                "value": "",
+                "type": "query",
+                "description": "External payment ID"
+              }
+            ]
+          },
+          "docs": "Fetch an array of payments by ID"
+        },
+        {
+          "info": {
+            "name": "Fetch an array of jobs by creation date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v2/invoice/job/listByCreatedDate",
+            "params": [
+              {
+                "name": "dateCreatedFrom",
+                "value": "",
+                "type": "query",
+                "description": "Fetch the jobs created after the specified date"
+              },
+              {
+                "name": "dateCreatedTo",
+                "value": "",
+                "type": "query",
+                "description": "Fetch the jobs created before the specified date"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of skipped items"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum returned items (not more than 500)"
+              }
+            ]
+          },
+          "docs": "Fetch an array of jobs by creation date"
+        },
+        {
+          "info": {
+            "name": "Fetch a list of invoices created within the specified period",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v2/invoice/list",
+            "params": [
+              {
+                "name": "dateCreatedFrom",
+                "value": "",
+                "type": "query",
+                "description": "Period start (inclusive)"
+              },
+              {
+                "name": "dateCreatedTo",
+                "value": "",
+                "type": "query",
+                "description": "Period end (inclusive)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum returned items (not more than 10)"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of skipped items"
+              }
+            ]
+          },
+          "docs": "Fetch a list of invoices created within the specified period"
+        },
+        {
+          "info": {
+            "name": "Fetch a list of agent invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v2/client-agent-invoice/list",
+            "params": [
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query",
+                "description": "Period start (inclusive)"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query",
+                "description": "Period end (inclusive)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit"
+              }
+            ]
+          },
+          "docs": "Fetch a list of agent invoices"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

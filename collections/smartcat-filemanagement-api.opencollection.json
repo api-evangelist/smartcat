@@ -1,0 +1,164 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account FileManagement API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FileManagement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download a file by path",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/file-management/file/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "Path of file"
+              }
+            ]
+          },
+          "docs": "Download a file by path"
+        },
+        {
+          "info": {
+            "name": "Upload file to a specified path in storage",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/file-management/file/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "Path of file"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload file to a specified path in storage"
+        },
+        {
+          "info": {
+            "name": "Delete a file by path",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/integration/v1/file-management/file/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "Path of file"
+              }
+            ]
+          },
+          "docs": "Delete a file by path"
+        },
+        {
+          "info": {
+            "name": "Upload multiple files to a specified path in storage",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/file-management/files/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "Prefix for uploaded files"
+              },
+              {
+                "name": "unzip",
+                "value": "",
+                "type": "query",
+                "description": "Extract files from uploaded zip file(-s) instead of saving zip as-is"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "files",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Original file names will be used for uploaded files"
+        },
+        {
+          "info": {
+            "name": "Get single file info by path",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/file-management/file-info/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "Path of file"
+              }
+            ]
+          },
+          "docs": "Get single file info by path"
+        },
+        {
+          "info": {
+            "name": "Get list of files whose path starts with given prefix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/file-management/file-info-list/:prefix",
+            "params": [
+              {
+                "name": "prefix",
+                "value": "",
+                "type": "path",
+                "description": "Prefix for searching files"
+              },
+              {
+                "name": "batchKey",
+                "value": "",
+                "type": "query",
+                "description": "Key to request the next batch of files"
+              }
+            ]
+          },
+          "docs": "Get list of files whose path starts with given prefix"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,128 @@
+{
+  "item": [
+    {
+      "id": "850b23d2-6d67-4d1d-8554-47d1520ad3e7",
+      "name": "SmartTranslation",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dd9562f1-f131-4e07-8ee7-cb593a388ec7",
+          "name": "Fetch translation\r\nSee the Smart Translation API guide [here](https://developers.smartcat.com/api-guides/#instant-translations-via-the-real-time-api)",
+          "request": {
+            "name": "Fetch translation\r\nSee the Smart Translation API guide [here](https://developers.smartcat.com/api-guides/#instant-translations-via-the-real-time-api)",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "smartTranslation",
+                "translate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sourceLanguage\": \"<string>\",\n  \"targetLanguages\": [\n    \"<string>\"\n  ],\n  \"texts\": [\n    {\n      \"text\": \"<string>\",\n      \"context\": \"<string>\"\n    }\n  ],\n  \"profile\": \"<string>\",\n  \"isHtml\": \"<boolean>\",\n  \"externalTag\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c4431d93-40d0-457e-82ce-5cb8dc30dbbf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "smartTranslation",
+                    "translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceLanguage\": \"<string>\",\n  \"targetLanguages\": [\n    \"<string>\"\n  ],\n  \"texts\": [\n    {\n      \"text\": \"<string>\",\n      \"context\": \"<string>\"\n    }\n  ],\n  \"profile\": \"<string>\",\n  \"isHtml\": \"<boolean>\",\n  \"externalTag\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"translations\": {\n    \"key_0\": [\n      {\n        \"translation\": \"string\",\n        \"error\": true,\n        \"segmentMetadata\": \"string\"\n      },\n      {\n        \"translation\": \"string\",\n        \"error\": false,\n        \"segmentMetadata\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "200b9a5e-ccf6-4a63-9673-04cf824d39bf",
+    "name": "Smartcat Account SmartTranslation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

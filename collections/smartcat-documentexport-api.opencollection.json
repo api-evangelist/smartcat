@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account DocumentExport API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DocumentExport",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download the export results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/document/export/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "Export task ID"
+              }
+            ]
+          },
+          "docs": "Download the export results"
+        },
+        {
+          "info": {
+            "name": "Request the documents export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/document/export",
+            "params": [
+              {
+                "name": "documentIds",
+                "value": "",
+                "type": "query",
+                "description": "Target language IDs (the syntax is documentId_languageId), where documentId_languageId is a document ID\r\nand languageId is a target language ID"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Segment export mode:\r\nCurrent - The current translation, the segment status notwithstanding (what is shown in the editor)\r\nConfirmed - Confirmed segments at the specific stage, as defined by the StageNumber parameter. If the stage is not specified, export all segments confirmed at any stage (this behavior is similar to exporting files using the Smartcat interface)\r\nComplete - Only completed segments, that is the segments that have passed all the stages and were confirmed at the last one"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Export document type, by default Smartcat.AppIntegrations.Contracts.ExportDocumentRequestType.Target"
+              },
+              {
+                "name": "stageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Workflow stage number when downloading an intermediate result"
+              },
+              {
+                "name": "exportingDocumentFormat",
+                "value": "",
+                "type": "query",
+                "description": "Exporting file format for export without using source file"
+              },
+              {
+                "name": "structuringDelimiter",
+                "value": "",
+                "type": "query",
+                "description": "Delimiter for structuring keys when exporting without using the source file"
+              }
+            ]
+          },
+          "docs": "Request the documents export"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

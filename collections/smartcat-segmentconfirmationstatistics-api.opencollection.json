@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account SegmentConfirmationStatistics API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SegmentConfirmationStatistics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch segment confirmation statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/segment-confirmation-statistics/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The period starting date (inclusive) for which statistics are requested. If not specified, this argument is not applicable"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The period end date (inclusive) for which statistics are requested. If not specified, this argument is not applicable"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "query",
+                "description": "Document ID"
+              },
+              {
+                "name": "targetLanguage",
+                "value": "",
+                "type": "query",
+                "description": "Target language code"
+              },
+              {
+                "name": "accountUserId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the supplier (user) in the account. If not specified, include all suppliers"
+              }
+            ]
+          },
+          "docs": "Fetch segment confirmation statistics"
+        },
+        {
+          "info": {
+            "name": "Fetch segment confirmation statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v2/segment-confirmation-statistics/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The period starting date for which statistics are requested. If not specified, this argument is not applicable"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The period end date for which statistics are requested. If not specified, this argument is not applicable"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "query",
+                "description": "Document ID"
+              },
+              {
+                "name": "targetLanguage",
+                "value": "",
+                "type": "query",
+                "description": "Target language code"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the supplier (user). If not specified, include all suppliers"
+              }
+            ]
+          },
+          "docs": "Fetch segment confirmation statistics"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

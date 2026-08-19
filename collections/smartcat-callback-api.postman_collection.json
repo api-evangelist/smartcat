@@ -1,0 +1,447 @@
+{
+  "item": [
+    {
+      "id": "f0c730a7-7168-4c76-8e99-71c34807b857",
+      "name": "Callback",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a9d3d697-35c4-45b3-8f2e-9ef4021943e7",
+          "name": "Fetch the notifications settings for the account",
+          "request": {
+            "name": "Fetch the notifications settings for the account",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "callback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d007170e-bc17-45d7-865b-585441d4147c",
+              "name": "Notifications settings have been successfully fetched",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "callback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"url\": \"string\",\n  \"additionalHeaders\": [\n    {\n      \"name\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46045582-017f-4e6e-ada2-935f5e016070",
+              "name": "Notifications settings are not configured",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "callback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56ae4aeb-6431-482d-8661-5feca9480671",
+          "name": "Create or update the notifications settings",
+          "request": {
+            "name": "Create or update the notifications settings",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "callback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<string>\",\n  \"additionalHeaders\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e053b210-53bd-4609-a453-8b378635a8ee",
+              "name": "Notifications settings have been successfully updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "callback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\",\n  \"additionalHeaders\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "86edf157-1354-4bbb-9f4d-22558eded963",
+              "name": "Returns if:\r\n- URI is invalid\r\n- a header Smartcat.AppIntegrations.Contracts.AdditionalHeaderModel.Name is empty or null, or consists of space characters only\r\n- a header Smartcat.AppIntegrations.Contracts.AdditionalHeaderModel.Value is null\r\n- a header is formatted incorrectly, that is requires coding or does not conform to special requirements (such as the authorization header)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "callback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\",\n  \"additionalHeaders\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e17c528-0f8d-4bdb-a1af-1e07d9e7794c",
+          "name": "Delete notifications settings",
+          "request": {
+            "name": "Delete notifications settings",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "callback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "551dfb63-5f46-4d80-9487-f10d02750cf9",
+              "name": "Notifications settings have been successfully deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "callback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "74ae343b-d8b2-43da-a34b-e9e4e27a9f08",
+          "name": "Fetch the latest delivery errors",
+          "request": {
+            "name": "Fetch the latest delivery errors",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "callback",
+                "lastErrors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum returned errors (no more than 100)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "88df3803-9af3-4f97-9661-136f9c99e1af",
+              "name": "The latest errors have been successfully fetched",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "callback",
+                    "lastErrors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"created\": \"2000-09-24T10:35:51.944Z\",\n    \"url\": \"string\",\n    \"reason\": \"string\",\n    \"code\": 472,\n    \"content\": \"string\",\n    \"sourceIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"created\": \"1992-07-05T23:25:08.339Z\",\n    \"url\": \"string\",\n    \"reason\": \"string\",\n    \"code\": 3483,\n    \"content\": \"string\",\n    \"sourceIds\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27bb09d7-5767-4c09-af78-e79964164130",
+              "name": "The provided limit exceeds the maximum",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "callback",
+                    "lastErrors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "62f9d59b-e713-4062-b944-aa27b5fd35f5",
+    "name": "Smartcat Account Callback API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

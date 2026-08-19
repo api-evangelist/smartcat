@@ -1,0 +1,2126 @@
+{
+  "item": [
+    {
+      "id": "9311f63e-3665-4ca6-8e93-89f38e1f50f3",
+      "name": "TranslationMemories",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "83d2b540-c6c9-4545-81e8-37f8e0c3712d",
+          "name": "Fetch information about the TM",
+          "request": {
+            "name": "Fetch information about the TM",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "translationmemory",
+                ":tmId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "tmId",
+                  "description": "(Required) TM ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47bf02e1-44b3-472d-a08c-02e84091296a",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    ":tmId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tmId",
+                      "description": "(Required) TM ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"5a49c91e-fd53-ee0a-38a9-3cd03178d5b4\",\n  \"accountId\": \"e7042c47-314d-a36c-eed2-74ae76d6572b\",\n  \"clientId\": \"50dd43bb-0b46-58b5-54bc-2515d0eb10ff\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"sourceLanguage\": \"string\",\n  \"targetLanguages\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdDate\": \"2017-02-21T14:19:45.117Z\",\n  \"isAutomaticallyCreated\": true,\n  \"unitCountByLanguageId\": {\n    \"key_0\": 6644\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01798052-c89d-4c72-974a-69ecea8ffaf1",
+              "name": "The account cannot access the TM with the specified ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    ":tmId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tmId",
+                      "description": "(Required) TM ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5beefe9d-9ca2-4647-8b38-1ddddb692ea7",
+              "name": "TM with the specified was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    ":tmId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tmId",
+                      "description": "(Required) TM ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d2ae343-60da-4763-81fd-7d8ffe0c5187",
+          "name": "Import TMX files to a TM",
+          "request": {
+            "name": "Import TMX files to a TM",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "translationmemory",
+                ":tmId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "replaceAllContent",
+                  "value": "<boolean>",
+                  "description": "(Required) Complete replacement of the TM contents is required"
+                },
+                {
+                  "disabled": false,
+                  "key": "assuranceLevel",
+                  "value": "<int32>",
+                  "description": "Translation assurance level. Calculated based on the document editing stage at which the TM unit was saved."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "tmId",
+                  "description": "(Required) TM ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "tmxFile",
+                  "type": "file",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4fb9d5f1-d4f6-40ac-9f91-5b4603872b7b",
+              "name": "TMX file has been successfully imported",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    ":tmId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "replaceAllContent",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "assuranceLevel",
+                      "value": "<int32>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tmId",
+                      "description": "(Required) TM ID"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "tmxFile",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "468029eb-c070-4605-9f3f-a1a6ed88f648",
+              "name": "Imported file is not a TMX file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    ":tmId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "replaceAllContent",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "assuranceLevel",
+                      "value": "<int32>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tmId",
+                      "description": "(Required) TM ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "tmxFile",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 4471,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff3a38be-30cd-4006-9bde-d069cf6ba5c7",
+              "name": "The account cannot access the TM with the specified ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    ":tmId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "replaceAllContent",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "assuranceLevel",
+                      "value": "<int32>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tmId",
+                      "description": "(Required) TM ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "tmxFile",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 4471,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5cb876c0-9ec5-4906-84da-7b821e5b42c6",
+              "name": "TM with the specified ID was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    ":tmId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "replaceAllContent",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "assuranceLevel",
+                      "value": "<int32>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tmId",
+                      "description": "(Required) TM ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "tmxFile",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 4471,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd4863b3-4727-466f-84cc-f9ff77f01c3c",
+          "name": "Delete a TM",
+          "request": {
+            "name": "Delete a TM",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "translationmemory",
+                ":tmId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "tmId",
+                  "description": "(Required) TM ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4c61d43-fdae-44cb-a234-531573533891",
+              "name": "TM has been successfully deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    ":tmId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tmId",
+                      "description": "(Required) TM ID"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "34ffa320-0b30-41ba-9930-c7ff22ae2f5f",
+              "name": "The TM has Write permissions in the account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    ":tmId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tmId",
+                      "description": "(Required) TM ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 4471,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a41f772d-db79-4290-a500-6d6cc3d6d8c1",
+              "name": "TM with the specified ID was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    ":tmId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tmId",
+                      "description": "(Required) TM ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 4471,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97394187-21eb-40d9-a722-102569feb292",
+          "name": "Fetch the available TMs filtered per account",
+          "request": {
+            "name": "Fetch the available TMs filtered per account",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "translationmemory"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lastProcessedId",
+                  "value": "<uuid>",
+                  "description": "The latest ID fetched by the previous query"
+                },
+                {
+                  "disabled": false,
+                  "key": "batchSize",
+                  "value": "<integer>",
+                  "description": "(Required) Required size of the returned batch"
+                },
+                {
+                  "disabled": false,
+                  "key": "sourceLanguage",
+                  "value": "<string>",
+                  "description": "Source language (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "targetLanguage",
+                  "value": "<string>",
+                  "description": "Target language (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientId",
+                  "value": "<uuid>",
+                  "description": "Client ID (optional)"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchName",
+                  "value": "<string>",
+                  "description": "TM partial name (optional)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9ac5d77b-4fce-4a79-86bc-4d50b39ee9b7",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lastProcessedId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "batchSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sourceLanguage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "targetLanguage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "searchName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"e872afd8-08aa-bae8-8554-2bd55eaca9f5\",\n    \"accountId\": \"3fe3b519-fc33-7319-3788-f46130a32725\",\n    \"clientId\": \"e03eb72b-5c6d-e093-c0a7-f585dcfeb5b4\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"sourceLanguage\": \"string\",\n    \"targetLanguages\": [\n      \"string\",\n      \"string\"\n    ],\n    \"createdDate\": \"1962-04-03T01:17:38.216Z\",\n    \"isAutomaticallyCreated\": false,\n    \"unitCountByLanguageId\": {\n      \"key_0\": 481\n    }\n  },\n  {\n    \"id\": \"b48bce82-3127-1c4a-8d87-8da76a160354\",\n    \"accountId\": \"9424f152-f65f-48e1-9e35-71f6eb0b89f5\",\n    \"clientId\": \"5f225a20-e960-4201-9288-e0ddff098cd6\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"sourceLanguage\": \"string\",\n    \"targetLanguages\": [\n      \"string\",\n      \"string\"\n    ],\n    \"createdDate\": \"2001-08-23T08:29:14.520Z\",\n    \"isAutomaticallyCreated\": false,\n    \"unitCountByLanguageId\": {\n      \"key_0\": 6072\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ff4609b-8962-47d9-9895-a560138af4e0",
+              "name": "TM collection is empty",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lastProcessedId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "batchSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sourceLanguage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "targetLanguage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "searchName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "be2675f2-989a-4aff-a199-81be511c4606",
+              "name": "The required TM collection size is larger than 100",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lastProcessedId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "batchSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sourceLanguage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "targetLanguage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "searchName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c5812bb-1881-4376-9ad6-d899330b9a57",
+          "name": "Create an empty TM",
+          "request": {
+            "name": "Create an empty TM",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "translationmemory"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"sourceLanguage\": \"<string>\",\n  \"targetLanguages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string>\",\n  \"clientId\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d6b3dc4c-49ef-4d2e-9761-3de6100c2184",
+              "name": "TM has been successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"sourceLanguage\": \"<string>\",\n  \"targetLanguages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string>\",\n  \"clientId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "52c1ec23-77e0-452f-a71d-4409eed41508",
+              "name": "Returns if:\n\r\n- TM creation model is empty\r\n- TM with this name already exists in the account\r\n- TM name is not specified\r\n- TM source language is defined as a translation target language\r\n- An error occurred when creating the TM",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"sourceLanguage\": \"<string>\",\n  \"targetLanguages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string>\",\n  \"clientId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 4471,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2713034-6d61-4fe0-8d36-5e9bca6a56d4",
+          "name": "Fetch a collection of TMX file import tasks",
+          "request": {
+            "name": "Fetch a collection of TMX file import tasks",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "translationmemory",
+                "task"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "00291ed2-7360-4204-9e1e-05b4e7ca7658",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    "task"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"accountId\": \"634e789a-e310-95e5-3933-19a47bd82b7c\",\n    \"id\": \"f23c612f-5901-3f8c-9291-af745667bcc2\",\n    \"translationMemoryId\": \"921d0e8f-79bb-5431-5ab7-7802b5d62f57\",\n    \"state\": \"string\",\n    \"insertedUnitCount\": 6733\n  },\n  {\n    \"accountId\": \"b4eb6711-f497-aa93-6d74-377f04b258d6\",\n    \"id\": \"07ae8a3d-4dc6-14a0-51c9-2f1432ed28a0\",\n    \"translationMemoryId\": \"169c1c29-c4ad-e46b-271b-29f219e354dd\",\n    \"state\": \"string\",\n    \"insertedUnitCount\": 4500\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "107ef6a9-9198-4c1e-a590-91ce1456a03f",
+              "name": "There are no unprocessed import tasks in the account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    "task"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc9a185e-afe5-4bdb-b5b8-7eb17641348c",
+          "name": "Export TMX files from the TM database",
+          "request": {
+            "name": "Export TMX files from the TM database",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "translationmemory",
+                ":tmId",
+                "file"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "exportMode",
+                  "value": "<int32>",
+                  "description": "(Required) Export mode"
+                },
+                {
+                  "disabled": false,
+                  "key": "withTags",
+                  "value": "<boolean>",
+                  "description": "(Required) Specifies whether to include tags into export results"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "tmId",
+                  "description": "(Required) TM ID"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "42dc0773-cb80-4971-9adb-1a12a1a558b8",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    ":tmId",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exportMode",
+                      "value": "<int32>"
+                    },
+                    {
+                      "key": "withTags",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tmId",
+                      "description": "(Required) TM ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4ed90393-e3e9-4f05-881f-564b51e7c329",
+              "name": "The account cannot access the TM with the specified ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    ":tmId",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exportMode",
+                      "value": "<int32>"
+                    },
+                    {
+                      "key": "withTags",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tmId",
+                      "description": "(Required) TM ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4eda0801-4d92-4141-8de8-5adec5f8fec8",
+              "name": "TM with the specified was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    ":tmId",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exportMode",
+                      "value": "<int32>"
+                    },
+                    {
+                      "key": "withTags",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tmId",
+                      "description": "(Required) TM ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "426d9387-0d3b-4a8d-b614-aac875664ab5",
+          "name": "Fetch matches from the specified TM",
+          "request": {
+            "name": "Fetch matches from the specified TM",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "translationmemory",
+                "matches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tmId",
+                  "value": "<uuid>",
+                  "description": "(Required) ID of the TM for the match search"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sourceLanguage\": \"<string>\",\n  \"targetLanguage\": \"<string>\",\n  \"segmentModel\": {\n    \"text\": \"<string>\",\n    \"prevContext\": \"<string>\",\n    \"nextContext\": \"<string>\",\n    \"tags\": [\n      {\n        \"tagNumber\": \"<integer>\",\n        \"tagType\": \"<string>\",\n        \"position\": \"<integer>\",\n        \"isVirtual\": \"<boolean>\",\n        \"isInvisible\": \"<boolean>\"\n      },\n      {\n        \"tagNumber\": \"<integer>\",\n        \"tagType\": \"<string>\",\n        \"position\": \"<integer>\",\n        \"isVirtual\": \"<boolean>\",\n        \"isInvisible\": \"<boolean>\"\n      }\n    ]\n  },\n  \"matchThreshold\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "11a3f1d9-b8cf-4053-9183-a08da9e4cb67",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    "matches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tmId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceLanguage\": \"<string>\",\n  \"targetLanguage\": \"<string>\",\n  \"segmentModel\": {\n    \"text\": \"<string>\",\n    \"prevContext\": \"<string>\",\n    \"nextContext\": \"<string>\",\n    \"tags\": [\n      {\n        \"tagNumber\": \"<integer>\",\n        \"tagType\": \"<string>\",\n        \"position\": \"<integer>\",\n        \"isVirtual\": \"<boolean>\",\n        \"isInvisible\": \"<boolean>\"\n      },\n      {\n        \"tagNumber\": \"<integer>\",\n        \"tagType\": \"<string>\",\n        \"position\": \"<integer>\",\n        \"isVirtual\": \"<boolean>\",\n        \"isInvisible\": \"<boolean>\"\n      }\n    ]\n  },\n  \"matchThreshold\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sourceText\": \"string\",\n  \"targetText\": \"string\",\n  \"segmentMatch\": 8986,\n  \"tags\": [\n    {\n      \"position\": 1613,\n      \"order\": 4431\n    },\n    {\n      \"position\": 9752,\n      \"order\": 6077\n    }\n  ],\n  \"assuranceLevel\": \"<int32>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cacd673-cfdc-46b8-8940-bbe4cf893fc9",
+              "name": "Returns if:\n\r\n- Request model is empty\r\n- No segment model is specified in the request model\r\n- Either source or target is not specified\r\n- The tag type is not \"Start\", \"End\" or \"Placeholder\"",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    "matches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tmId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceLanguage\": \"<string>\",\n  \"targetLanguage\": \"<string>\",\n  \"segmentModel\": {\n    \"text\": \"<string>\",\n    \"prevContext\": \"<string>\",\n    \"nextContext\": \"<string>\",\n    \"tags\": [\n      {\n        \"tagNumber\": \"<integer>\",\n        \"tagType\": \"<string>\",\n        \"position\": \"<integer>\",\n        \"isVirtual\": \"<boolean>\",\n        \"isInvisible\": \"<boolean>\"\n      },\n      {\n        \"tagNumber\": \"<integer>\",\n        \"tagType\": \"<string>\",\n        \"position\": \"<integer>\",\n        \"isVirtual\": \"<boolean>\",\n        \"isInvisible\": \"<boolean>\"\n      }\n    ]\n  },\n  \"matchThreshold\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "604950c2-9cf8-4f74-9afb-f0e7601191e4",
+              "name": "The account cannot access the TM with the specified ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    "matches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tmId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceLanguage\": \"<string>\",\n  \"targetLanguage\": \"<string>\",\n  \"segmentModel\": {\n    \"text\": \"<string>\",\n    \"prevContext\": \"<string>\",\n    \"nextContext\": \"<string>\",\n    \"tags\": [\n      {\n        \"tagNumber\": \"<integer>\",\n        \"tagType\": \"<string>\",\n        \"position\": \"<integer>\",\n        \"isVirtual\": \"<boolean>\",\n        \"isInvisible\": \"<boolean>\"\n      },\n      {\n        \"tagNumber\": \"<integer>\",\n        \"tagType\": \"<string>\",\n        \"position\": \"<integer>\",\n        \"isVirtual\": \"<boolean>\",\n        \"isInvisible\": \"<boolean>\"\n      }\n    ]\n  },\n  \"matchThreshold\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9214cdd6-0af3-4fb4-b3dd-59dae2a61727",
+              "name": "TM with the specified ID was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    "matches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tmId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceLanguage\": \"<string>\",\n  \"targetLanguage\": \"<string>\",\n  \"segmentModel\": {\n    \"text\": \"<string>\",\n    \"prevContext\": \"<string>\",\n    \"nextContext\": \"<string>\",\n    \"tags\": [\n      {\n        \"tagNumber\": \"<integer>\",\n        \"tagType\": \"<string>\",\n        \"position\": \"<integer>\",\n        \"isVirtual\": \"<boolean>\",\n        \"isInvisible\": \"<boolean>\"\n      },\n      {\n        \"tagNumber\": \"<integer>\",\n        \"tagType\": \"<string>\",\n        \"position\": \"<integer>\",\n        \"isVirtual\": \"<boolean>\",\n        \"isInvisible\": \"<boolean>\"\n      }\n    ]\n  },\n  \"matchThreshold\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f83e9e8-9efc-4801-b8bc-16f3cee345e2",
+          "name": "Add an array of target languages to a TM",
+          "request": {
+            "name": "Add an array of target languages to a TM",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "translationmemory",
+                ":tmId",
+                "targets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "tmId",
+                  "description": "(Required) TM ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "76481025-7d86-4b95-aed9-921465dc00cc",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    ":tmId",
+                    "targets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tmId",
+                      "description": "(Required) TM ID"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1e65086c-93cf-4593-ab56-e41da346234f",
+              "name": "Returns if:\n\r\n- Target languages are not specified\r\n- Target languages contain duplicates\r\n- Target languages contain the source language\r\n- Target language cannot be deleted\r\n- Target languages cannot be updated using the specified parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    ":tmId",
+                    "targets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tmId",
+                      "description": "(Required) TM ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 4471,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e5d77ae-324c-4178-a717-5e6b8bbe20aa",
+              "name": "The account cannot access the TM with the specified ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    ":tmId",
+                    "targets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tmId",
+                      "description": "(Required) TM ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 4471,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "991eea88-14dc-4742-a425-f30e728b687b",
+              "name": "TM with the specified ID was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    ":tmId",
+                    "targets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tmId",
+                      "description": "(Required) TM ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 4471,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5832defb-4a18-4891-823d-11f339e43f49",
+          "name": "Removes the specified import task",
+          "request": {
+            "name": "Removes the specified import task",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "translationmemory",
+                "task",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "taskId",
+                  "description": "(Required) ID of a task to be imported to the TM"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "494baa59-5160-4264-be02-b36c55f9d1ec",
+              "name": "The import task has been successfully deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    "task",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "taskId",
+                      "description": "(Required) ID of a task to be imported to the TM"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f44132b0-58c4-4ad7-b645-e829050108e4",
+              "name": "The account cannot access the TM with the specified ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    "task",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "taskId",
+                      "description": "(Required) ID of a task to be imported to the TM"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 4471,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "530fa4c7-5ce4-4b4f-b76a-8bb1da54aefc",
+              "name": "TM import task with the specified ID was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "translationmemory",
+                    "task",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "taskId",
+                      "description": "(Required) ID of a task to be imported to the TM"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 4471,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "941284d2-4141-49e2-a3b0-2eecd8708821",
+    "name": "Smartcat Account TranslationMemories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

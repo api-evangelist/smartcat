@@ -1,0 +1,936 @@
+{
+  "item": [
+    {
+      "id": "9c93657a-47a1-4351-8085-5b5a05b3f68b",
+      "name": "Glossary",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "35dab4f0-22c9-4852-8967-894a30a9b655",
+          "name": "Fetch glossaries from the current account",
+          "request": {
+            "name": "Fetch glossaries from the current account",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "glossaries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf3ad843-3162-462a-9e5b-d8f802df28b7",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "glossaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"e83cefef-dad4-f196-442d-085dfbeef5c7\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"clientId\": \"b874f45b-11d8-4adf-cca5-8a6e27956ce4\",\n    \"languages\": [\n      \"string\",\n      \"string\"\n    ],\n    \"units\": 8008,\n    \"unitsPending\": 1902,\n    \"isDefault\": true\n  },\n  {\n    \"id\": \"54e56ed4-6b19-2aaf-d3af-41009b56c9a1\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"clientId\": \"c59e86be-10b7-fdb4-b949-9de8a101e71b\",\n    \"languages\": [\n      \"string\",\n      \"string\"\n    ],\n    \"units\": 338,\n    \"unitsPending\": 6594,\n    \"isDefault\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65d9c04d-fb95-4fcb-97e0-2c26485c6f27",
+          "name": "Fetch default glossary from the current account",
+          "request": {
+            "name": "Fetch default glossary from the current account",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "glossaries",
+                "default"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1229b190-99d2-4484-8203-9ccaee0d8371",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "glossaries",
+                    "default"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"93580205-40d8-872a-0753-2080bdd219f7\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"clientId\": \"a4b930a5-ca93-0341-c0d9-f6260d2d02a1\",\n  \"languages\": [\n    \"string\",\n    \"string\"\n  ],\n  \"units\": 8825,\n  \"unitsPending\": 4673,\n  \"isDefault\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "864f064c-9fd1-4681-adcf-1100d7399f78",
+              "name": "Default glossary is not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "glossaries",
+                    "default"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09434eaa-64ca-4916-9e86-fe50675c9f78",
+          "name": "Create a task for importing concepts from a glossary file",
+          "request": {
+            "name": "Create a task for importing concepts from a glossary file",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "glossary",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "glossaryId",
+                  "value": "<uuid>",
+                  "description": "(Required) Glossary ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "clearBeforeImport",
+                  "value": "<boolean>",
+                  "description": "(Required) Specifies whether to delete all glossary concepts before the import"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "31149d47-b904-40b0-9a0f-0b2561515598",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "glossary",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "glossaryId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "clearBeforeImport",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"2775d999-dac3-b332-24aa-1b2cd3426ce7\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4ae98e8-d60a-4236-b55a-8086e38e2e3c",
+              "name": "The glossary with the specified ID was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "glossary",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "glossaryId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "clearBeforeImport",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8771331-d1ba-4765-86ca-25effe812072",
+          "name": "Fetch the status of a concept import task",
+          "request": {
+            "name": "Fetch the status of a concept import task",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "glossary",
+                "importTaskState",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "taskId",
+                  "description": "(Required) Concept import task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5feedeee-d79d-451f-9ba5-c1484e067560",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "glossary",
+                    "importTaskState",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "taskId",
+                      "description": "(Required) Concept import task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18904f63-7577-4018-9fac-779907550e27",
+              "name": "The task with the specified ID was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "glossary",
+                    "importTaskState",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "taskId",
+                      "description": "(Required) Concept import task ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b421e38-6f99-46b5-aadb-c414a7eeb8d9",
+          "name": "Create a task for export the glossary",
+          "request": {
+            "name": "Create a task for export the glossary",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "glossary",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "glossaryId",
+                  "value": "<uuid>",
+                  "description": "(Required) Glossary ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "467060ff-ba4e-433b-ace6-7f5648e4d764",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "glossary",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "glossaryId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"2775d999-dac3-b332-24aa-1b2cd3426ce7\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a98345a-0c76-4251-b52c-e062c36be8e2",
+              "name": "The glossary with the specified ID was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "glossary",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "glossaryId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bff1ea06-10a8-43f8-b015-c89c96e05c75",
+          "name": "Get the list of pending export glossary tasks",
+          "request": {
+            "name": "Get the list of pending export glossary tasks",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "glossary",
+                "export",
+                "pendingTasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "daddf17c-beee-4e92-be50-d77d6fc09866",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "glossary",
+                    "export",
+                    "pendingTasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"363868d6-e46e-7c8d-307d-112f5a914eaf\",\n    \"glossaryId\": \"4a930366-d5eb-8647-a67e-53853d35b47f\",\n    \"completed\": true\n  },\n  {\n    \"id\": \"b4440564-9720-d66c-9185-fbc07c8ace1d\",\n    \"glossaryId\": \"1364e2b9-9893-7f2d-b4a6-839fe9d654e0\",\n    \"completed\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60393919-54fd-489a-809c-8d8e71783704",
+          "name": "Download the glossary export task result",
+          "request": {
+            "name": "Download the glossary export task result",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "glossary",
+                "export",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "taskId",
+                  "description": "(Required) Export task ID"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b291b790-e3ff-4fce-b474-2893aaee5177",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "glossary",
+                    "export",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "taskId",
+                      "description": "(Required) Export task ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3d39b0a8-ac53-4a9d-8cc1-11bd35a362b4",
+              "name": "The results are not ready to download",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "glossary",
+                    "export",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "taskId",
+                      "description": "(Required) Export task ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "07584587-ad2b-45da-8f37-7cdf657064a8",
+              "name": "The export task with the specified ID was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "glossary",
+                    "export",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "taskId",
+                      "description": "(Required) Export task ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9692875b-7974-4041-bc43-37ce6ac486be",
+              "name": "Some problem has happended during export",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "glossary",
+                    "export",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "taskId",
+                      "description": "(Required) Export task ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c720a9dd-a28e-48f6-bdad-0133fa8099e8",
+    "name": "Smartcat Account Glossary API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

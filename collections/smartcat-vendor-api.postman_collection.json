@@ -1,0 +1,280 @@
+{
+  "item": [
+    {
+      "id": "f1cd102c-34ab-419e-99a5-66db370bdbe8",
+      "name": "Vendor",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "75625be3-4daf-44ba-a2e8-10222099b720",
+          "name": "Fetch the list of vendors",
+          "request": {
+            "name": "Fetch the list of vendors",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "vendor",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b447f106-0497-461a-9d0d-71187532931d",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "vendor",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"5d7f4af3-8384-c754-7c9e-7c78004bda2a\",\n    \"name\": \"string\",\n    \"customFields\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  },\n  {\n    \"id\": \"a1fb6950-7c3e-5634-5642-8d5e7827208f\",\n    \"name\": \"string\",\n    \"customFields\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac3480b3-c4b3-4854-980c-6dd16b44c5dc",
+          "name": "Fetch a vendor by ID",
+          "request": {
+            "name": "Fetch a vendor by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "vendor",
+                ":vendorAccountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "vendorAccountId",
+                  "description": "(Required) Vendor IDVendor ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a777cb2-4eff-48cd-8687-9cb647ca7370",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "vendor",
+                    ":vendorAccountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "vendorAccountId",
+                      "description": "(Required) Vendor IDVendor ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"899aed7a-4ad5-df18-4e37-9faff41b7639\",\n  \"name\": \"string\",\n  \"customFields\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60d4a99c-9633-4f79-bbbd-42764bd031aa",
+              "name": "The specified vendor ID's format is incorrect",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "vendor",
+                    ":vendorAccountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "vendorAccountId",
+                      "description": "(Required) Vendor IDVendor ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0ea0b1e3-901d-497d-ba6c-3f32e1c8fd83",
+              "name": "The provided vendor ID does not exist or the vendor is not associated with the account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "vendor",
+                    ":vendorAccountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "vendorAccountId",
+                      "description": "(Required) Vendor IDVendor ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "627f2102-13b7-470f-baec-37441819fa32",
+    "name": "Smartcat Account Vendor API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

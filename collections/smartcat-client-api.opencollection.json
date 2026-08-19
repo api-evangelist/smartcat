@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account Client API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Client",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new client with the specified name and return their ID\r\nSimply return the ID if a client with that name already exists",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/client/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new client with the specified name and return their ID\r\nSimply return the ID if a client with that name already exists"
+        },
+        {
+          "info": {
+            "name": "Apply the specified net rate to the specified client",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/client/:clientId/set",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "Client ID"
+              },
+              {
+                "name": "netRateId",
+                "value": "",
+                "type": "query",
+                "description": "Net rate ID"
+              }
+            ]
+          },
+          "docs": "Apply the specified net rate to the specified client"
+        },
+        {
+          "info": {
+            "name": "Sets contact details for the specified client",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/client/:clientId/contact",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "Client ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets contact details for the specified client"
+        },
+        {
+          "info": {
+            "name": "Fetch the client account information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v2/client/:clientId",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "Client ID"
+              }
+            ]
+          },
+          "docs": "Fetch the client account information"
+        },
+        {
+          "info": {
+            "name": "Update client details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v2/client/:clientId",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "Client ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update client details"
+        },
+        {
+          "info": {
+            "name": "Fetch the client account information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/client/:clientId",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "Client ID"
+              }
+            ]
+          },
+          "docs": "Fetch the client account information"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

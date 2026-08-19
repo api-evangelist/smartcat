@@ -1,0 +1,968 @@
+{
+  "item": [
+    {
+      "id": "64a194d2-b626-45bb-b7d8-6ad7caa5905f",
+      "name": "Client",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0b7d5326-76e2-46ff-b330-13d7f7bdff86",
+          "name": "Create a new client with the specified name and return their ID\r\nSimply return the ID if a client with that name already exists",
+          "request": {
+            "name": "Create a new client with the specified name and return their ID\r\nSimply return the ID if a client with that name already exists",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "client",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "452bbcc7-29ca-4d82-9afa-19942662890d",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "client",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"ca00a29d-219b-64cd-59ea-7cab1bc96aff\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e6366dc-123e-4082-8126-49647783181a",
+          "name": "Apply the specified net rate to the specified client",
+          "request": {
+            "name": "Apply the specified net rate to the specified client",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "client",
+                ":clientId",
+                "set"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "netRateId",
+                  "value": "<string>",
+                  "description": "(Required) Net rate ID"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clientId",
+                  "description": "(Required) Client ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea8b348c-a36e-4ef5-ba65-ba7557503c28",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "client",
+                    ":clientId",
+                    "set"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "netRateId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clientId",
+                      "description": "(Required) Client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"970d6d68-a1ae-5079-53fd-783a7c7c897a\",\n  \"name\": \"string\",\n  \"netRate\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"newWordsRate\": 8367.246238113476,\n    \"repetitionsRate\": 6761.108052899065,\n    \"tmMatchRates\": [\n      {\n        \"fromQuality\": 541,\n        \"toQuality\": 8147,\n        \"value\": 2571.228932042804\n      },\n      {\n        \"fromQuality\": 5830,\n        \"toQuality\": 4221,\n        \"value\": 644.49214659978\n      }\n    ]\n  },\n  \"contact\": {\n    \"email\": \"string\",\n    \"fullName\": \"string\",\n    \"phoneNumber\": \"string\",\n    \"position\": \"string\",\n    \"comment\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6d68c98-1529-46dc-862b-6f276db628d0",
+              "name": "The specified client or net rate were not found in the current account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "client",
+                    ":clientId",
+                    "set"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "netRateId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clientId",
+                      "description": "(Required) Client ID"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "31a5b498-c1c3-4a32-a4d2-1a0f65c478ae",
+          "name": "Sets contact details for the specified client",
+          "request": {
+            "name": "Sets contact details for the specified client",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "client",
+                ":clientId",
+                "contact"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clientId",
+                  "description": "(Required) Client ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"fullName\": \"<string>\",\n  \"phoneNumber\": \"<string>\",\n  \"position\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d2ac62ea-e37d-4d4b-aa14-61c6f1a9d4a1",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "client",
+                    ":clientId",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clientId",
+                      "description": "(Required) Client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"fullName\": \"<string>\",\n  \"phoneNumber\": \"<string>\",\n  \"position\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"8ccca962-dc32-8977-2aec-ca68a066a5c8\",\n  \"name\": \"string\",\n  \"netRate\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"newWordsRate\": 8660.001565424833,\n    \"repetitionsRate\": 2495.88260389602,\n    \"tmMatchRates\": [\n      {\n        \"fromQuality\": 1867,\n        \"toQuality\": 4899,\n        \"value\": 1763.7987724433856\n      },\n      {\n        \"fromQuality\": 2095,\n        \"toQuality\": 7253,\n        \"value\": 2895.0928580160075\n      }\n    ]\n  },\n  \"contact\": {\n    \"email\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"position\": \"<string>\",\n    \"comment\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecb90e55-4c2e-4673-bfb1-5a38f64b708d",
+              "name": "Contact details are incorrect",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "client",
+                    ":clientId",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clientId",
+                      "description": "(Required) Client ID"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"fullName\": \"<string>\",\n  \"phoneNumber\": \"<string>\",\n  \"position\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "402cc5ee-acec-4c61-81c9-55d988275e6e",
+              "name": "The specified client not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "client",
+                    ":clientId",
+                    "contact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clientId",
+                      "description": "(Required) Client ID"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"fullName\": \"<string>\",\n  \"phoneNumber\": \"<string>\",\n  \"position\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f32f0f11-3f23-48c7-bf5a-6ebea75e54ce",
+          "name": "Update client details",
+          "request": {
+            "name": "Update client details",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "client",
+                ":clientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clientId",
+                  "description": "(Required) Client ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"netRateId\": \"<string>\",\n  \"mainContact\": {\n    \"email\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"position\": \"<string>\",\n    \"comment\": \"<string>\"\n  },\n  \"additionalContacts\": [\n    {\n      \"email\": \"<string>\",\n      \"fullName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"position\": \"<string>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"fullName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"position\": \"<string>\",\n      \"comment\": \"<string>\"\n    }\n  ],\n  \"vat\": \"<string>\",\n  \"countryCode\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"website\": \"<string>\",\n  \"industryId\": \"<string>\",\n  \"legalName\": \"<string>\",\n  \"address\": \"<string>\",\n  \"languageId\": \"<integer>\",\n  \"vendorManager\": \"<string>\",\n  \"customFieldValues\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "830fb814-0991-4c31-8037-cb790213cd0c",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clientId",
+                      "description": "(Required) Client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"netRateId\": \"<string>\",\n  \"mainContact\": {\n    \"email\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"position\": \"<string>\",\n    \"comment\": \"<string>\"\n  },\n  \"additionalContacts\": [\n    {\n      \"email\": \"<string>\",\n      \"fullName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"position\": \"<string>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"fullName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"position\": \"<string>\",\n      \"comment\": \"<string>\"\n    }\n  ],\n  \"vat\": \"<string>\",\n  \"countryCode\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"website\": \"<string>\",\n  \"industryId\": \"<string>\",\n  \"legalName\": \"<string>\",\n  \"address\": \"<string>\",\n  \"languageId\": \"<integer>\",\n  \"vendorManager\": \"<string>\",\n  \"customFieldValues\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"3ccbd5da-78e2-388b-7077-499438512340\",\n  \"name\": \"string\",\n  \"netRate\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"newWordsRate\": 4308.861163832226,\n    \"repetitionsRate\": 1348.1747998375226,\n    \"tmMatchRates\": [\n      {\n        \"fromQuality\": 6382,\n        \"toQuality\": 5864,\n        \"value\": 8603.036123463427\n      },\n      {\n        \"fromQuality\": 35,\n        \"toQuality\": 1222,\n        \"value\": 8983.018166718253\n      }\n    ]\n  },\n  \"mainContact\": {\n    \"email\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"position\": \"<string>\",\n    \"comment\": \"<string>\"\n  },\n  \"additionalContacts\": [\n    {\n      \"email\": \"<string>\",\n      \"fullName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"position\": \"<string>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"fullName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"position\": \"<string>\",\n      \"comment\": \"<string>\"\n    }\n  ],\n  \"vat\": \"string\",\n  \"countryCode\": \"string\",\n  \"comment\": \"string\",\n  \"website\": \"string\",\n  \"industryId\": \"string\",\n  \"legalName\": \"string\",\n  \"address\": \"string\",\n  \"languageId\": 7341,\n  \"vendorManager\": \"string\",\n  \"customFields\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b664e0b9-719f-4c86-a7b7-c2142bd0d965",
+              "name": "Returns if:\r\n- contact details are invalid\r\n- the provided manager ID is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clientId",
+                      "description": "(Required) Client ID"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"netRateId\": \"<string>\",\n  \"mainContact\": {\n    \"email\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"position\": \"<string>\",\n    \"comment\": \"<string>\"\n  },\n  \"additionalContacts\": [\n    {\n      \"email\": \"<string>\",\n      \"fullName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"position\": \"<string>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"fullName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"position\": \"<string>\",\n      \"comment\": \"<string>\"\n    }\n  ],\n  \"vat\": \"<string>\",\n  \"countryCode\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"website\": \"<string>\",\n  \"industryId\": \"<string>\",\n  \"legalName\": \"<string>\",\n  \"address\": \"<string>\",\n  \"languageId\": \"<integer>\",\n  \"vendorManager\": \"<string>\",\n  \"customFieldValues\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ddbaa05c-80c9-4185-8d34-0a9013e51612",
+              "name": "The specified client not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clientId",
+                      "description": "(Required) Client ID"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"netRateId\": \"<string>\",\n  \"mainContact\": {\n    \"email\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"position\": \"<string>\",\n    \"comment\": \"<string>\"\n  },\n  \"additionalContacts\": [\n    {\n      \"email\": \"<string>\",\n      \"fullName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"position\": \"<string>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"fullName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"position\": \"<string>\",\n      \"comment\": \"<string>\"\n    }\n  ],\n  \"vat\": \"<string>\",\n  \"countryCode\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"website\": \"<string>\",\n  \"industryId\": \"<string>\",\n  \"legalName\": \"<string>\",\n  \"address\": \"<string>\",\n  \"languageId\": \"<integer>\",\n  \"vendorManager\": \"<string>\",\n  \"customFieldValues\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "950dc65c-361f-4af0-b9f3-1638b0b8c618",
+          "name": "Fetch the client account information",
+          "request": {
+            "name": "Fetch the client account information",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "client",
+                ":clientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clientId",
+                  "description": "(Required) Client ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31c16204-defc-497f-b6a9-eca88f08e89b",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clientId",
+                      "description": "(Required) Client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"4180d63e-44f7-9461-ecbb-df9f61145efc\",\n  \"name\": \"string\",\n  \"netRate\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"newWordsRate\": 8378.016506249149,\n    \"repetitionsRate\": 4039.3618222846694,\n    \"tmMatchRates\": [\n      {\n        \"fromQuality\": 3525,\n        \"toQuality\": 9640,\n        \"value\": 185.74092019863264\n      },\n      {\n        \"fromQuality\": 5941,\n        \"toQuality\": 7803,\n        \"value\": 7204.026546909542\n      }\n    ]\n  },\n  \"mainContact\": {\n    \"email\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"position\": \"<string>\",\n    \"comment\": \"<string>\"\n  },\n  \"additionalContacts\": [\n    {\n      \"email\": \"<string>\",\n      \"fullName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"position\": \"<string>\",\n      \"comment\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"fullName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"position\": \"<string>\",\n      \"comment\": \"<string>\"\n    }\n  ],\n  \"vat\": \"string\",\n  \"countryCode\": \"string\",\n  \"comment\": \"string\",\n  \"website\": \"string\",\n  \"industryId\": \"string\",\n  \"legalName\": \"string\",\n  \"address\": \"string\",\n  \"languageId\": 5201,\n  \"vendorManager\": \"string\",\n  \"customFields\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "019c2a69-4f27-4f9e-8d98-66b91850889d",
+              "name": "The specified client was not found in the current account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clientId",
+                      "description": "(Required) Client ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad88a3a0-a09b-4f6b-8c3e-4cdae2afe3b1",
+          "name": "Fetch the client account information",
+          "request": {
+            "name": "Fetch the client account information",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "client",
+                ":clientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "clientId",
+                  "description": "(Required) Client ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d5123d2-ce48-4d1f-a286-eb3dc47fc24a",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clientId",
+                      "description": "(Required) Client ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"8ccca962-dc32-8977-2aec-ca68a066a5c8\",\n  \"name\": \"string\",\n  \"netRate\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"newWordsRate\": 8660.001565424833,\n    \"repetitionsRate\": 2495.88260389602,\n    \"tmMatchRates\": [\n      {\n        \"fromQuality\": 1867,\n        \"toQuality\": 4899,\n        \"value\": 1763.7987724433856\n      },\n      {\n        \"fromQuality\": 2095,\n        \"toQuality\": 7253,\n        \"value\": 2895.0928580160075\n      }\n    ]\n  },\n  \"contact\": {\n    \"email\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"position\": \"<string>\",\n    \"comment\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33aa589f-e89b-4615-982a-4af988a23f67",
+              "name": "The specified client was not found in the current account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "clientId",
+                      "description": "(Required) Client ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "48947c91-ff14-446e-b2ec-5b6d01265473",
+    "name": "Smartcat Account Client API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

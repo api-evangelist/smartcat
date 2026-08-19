@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account Job API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Job",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch an array of jobs whose status is VERIFIED",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v3/job/verifiedForProject",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query",
+                "description": "Project ID"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of jobs to be skipped (default: 0)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of jobs to fetch (default: 100)"
+              }
+            ]
+          },
+          "docs": "Fetch an array of jobs whose status is VERIFIED"
+        },
+        {
+          "info": {
+            "name": "Fetch an array of jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v3/job",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query",
+                "description": "Project ID"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of jobs to be skipped (default: 0)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of jobs to fetch (default: 100)"
+              }
+            ]
+          },
+          "docs": "Fetch an array of jobs"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

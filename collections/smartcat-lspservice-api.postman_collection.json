@@ -1,0 +1,607 @@
+{
+  "item": [
+    {
+      "id": "ec340b21-a671-4c9e-b6ea-fc5b125c3ed5",
+      "name": "LspService",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d1c5c604-43dd-432e-912f-2ce9d7d26a62",
+          "name": "Delete an LSP service",
+          "request": {
+            "name": "Delete an LSP service",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "lsp",
+                "services",
+                ":serviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) Service ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d750f07b-d727-4586-b117-89b33adb8aa6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "lsp",
+                    "services",
+                    ":serviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceId",
+                      "description": "(Required) Service ID"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "942f3c9d-b92d-4be3-8726-b50c07490e7a",
+          "name": "Fetch LSP services by ID",
+          "request": {
+            "name": "Fetch LSP services by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "lsp",
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "serviceIds",
+                  "value": "<string>",
+                  "description": "(Required) List of service IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "serviceIds",
+                  "value": "<string>",
+                  "description": "(Required) List of service IDs"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "033dd0e3-73ee-46c5-becd-88acdcd1336b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "lsp",
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "serviceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "serviceIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"serviceTypes\": [\n      \"projectManagement\",\n      \"subtitlesTranslation\"\n    ],\n    \"specializations\": [\n      \"cartography\",\n      \"finance\"\n    ],\n    \"workUnitType\": \"hour\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"serviceTypes\": [\n      \"mediaTranslation\",\n      \"transcription\"\n    ],\n    \"specializations\": [\n      \"history\",\n      \"thermalPowerEngineering\"\n    ],\n    \"workUnitType\": \"minute\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e22fa7fd-796a-46ed-a649-c4aec90c6f24",
+          "name": "Create a new LSP service",
+          "request": {
+            "name": "Create a new LSP service",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "lsp",
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"serviceTypes\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"specializations\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"workUnitType\": \"<int32>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3158c6d2-7dc5-4e19-ad76-a68058c5d630",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "lsp",
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"serviceTypes\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"specializations\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"workUnitType\": \"<int32>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06f2661f-dc75-4e9f-a24f-596f26f505ed",
+          "name": "Fetch LSP services",
+          "request": {
+            "name": "Fetch LSP services",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "lsp",
+                "services",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lastServiceId",
+                  "value": "<string>",
+                  "description": "Fetch the list of services starting from the ID that follows the specified ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "(Required) The required number of results (the default is 100)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4482cadc-246d-4962-91da-5e975a5ceba5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "lsp",
+                    "services",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lastServiceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"serviceTypes\": [\n      \"<int32>\",\n      \"<int32>\"\n    ],\n    \"specializations\": [\n      \"<int32>\",\n      \"<int32>\"\n    ],\n    \"workUnitType\": \"<int32>\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"serviceTypes\": [\n      \"<int32>\",\n      \"<int32>\"\n    ],\n    \"specializations\": [\n      \"<int32>\",\n      \"<int32>\"\n    ],\n    \"workUnitType\": \"<int32>\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a66103f7-4d77-4a8d-a98b-a12dd624f810",
+          "name": "Create new LSP services",
+          "request": {
+            "name": "Create new LSP services",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "lsp",
+                "services",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"serviceTypes\": [\n      \"<int32>\",\n      \"<int32>\"\n    ],\n    \"specializations\": [\n      \"<int32>\",\n      \"<int32>\"\n    ],\n    \"workUnitType\": \"<int32>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"serviceTypes\": [\n      \"<int32>\",\n      \"<int32>\"\n    ],\n    \"specializations\": [\n      \"<int32>\",\n      \"<int32>\"\n    ],\n    \"workUnitType\": \"<int32>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "470d587b-621c-4e63-a218-7876b2088397",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "lsp",
+                    "services",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"serviceTypes\": [\n      \"<int32>\",\n      \"<int32>\"\n    ],\n    \"specializations\": [\n      \"<int32>\",\n      \"<int32>\"\n    ],\n    \"workUnitType\": \"<int32>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"serviceTypes\": [\n      \"<int32>\",\n      \"<int32>\"\n    ],\n    \"specializations\": [\n      \"<int32>\",\n      \"<int32>\"\n    ],\n    \"workUnitType\": \"<int32>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"index\": 5677,\n    \"success\": true\n  },\n  {\n    \"id\": \"string\",\n    \"index\": 848,\n    \"success\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76f34117-727d-498a-9793-152e3d54877e",
+          "name": "Update an existing LSP service",
+          "request": {
+            "name": "Update an existing LSP service",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "lsp",
+                "services",
+                ":serviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceId",
+                  "description": "(Required) Service ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"serviceTypes\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"specializations\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"workUnitType\": \"<int32>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b504b591-aefe-412d-9c62-17632bd217e2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "lsp",
+                    "services",
+                    ":serviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceId",
+                      "description": "(Required) Service ID"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"serviceTypes\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"specializations\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"workUnitType\": \"<int32>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6e8838f8-9245-4ff2-a4a0-2890a1887be6",
+    "name": "Smartcat Account LspService API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

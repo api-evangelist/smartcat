@@ -1,0 +1,1712 @@
+{
+  "item": [
+    {
+      "id": "a7402119-775c-4e95-80ac-4842689bb9ea",
+      "name": "ProjectTask",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e5ebfd31-a1da-4351-b9cb-ff0ca6848a69",
+          "name": "Get a list of project tasks",
+          "request": {
+            "name": "Get a list of project tasks",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "projectTask",
+                ":projectId",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<int32>",
+                  "description": "(Required) Code of the currency used to recalculate supplier rates and the cost of work  AbbyyLS.Web.Currency"
+                },
+                {
+                  "disabled": false,
+                  "key": "documentId",
+                  "value": "<string>",
+                  "description": "Document id filter. If present - returns only tasks with this specific document"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of skipped items"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of tasks in the response (no more than 50)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0272831e-5e1d-4398-9a72-dc885dc38fa0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "projectTask",
+                    ":projectId",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "currency",
+                      "value": "<int32>"
+                    },
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"187b05d6-2430-28f5-878a-51e250b9059a\",\n    \"number\": \"string\",\n    \"status\": \"inProgress\",\n    \"progressPercentage\": 8721.550194414593,\n    \"sourceLanguage\": \"string\",\n    \"targetLanguage\": \"string\",\n    \"stageType\": \"legalization\",\n    \"stageId\": \"328adfe1-d5e3-f028-15de-3c061c4660a3\",\n    \"deadline\": \"1998-08-09T21:14:58.673Z\",\n    \"cost\": 3512.566075923059,\n    \"approximateCost\": 8191.4271781834195,\n    \"documentIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"createDate\": \"2003-09-04T15:44:19.296Z\",\n    \"lastUpdateScopeDate\": \"1957-02-27T17:41:28.853Z\",\n    \"individualAssignments\": [\n      {\n        \"userId\": \"string\",\n        \"rate\": 2760.2765543072082,\n        \"currency\": \"string\",\n        \"status\": \"invited\"\n      },\n      {\n        \"userId\": \"string\",\n        \"rate\": 7633.28233784637,\n        \"currency\": \"string\",\n        \"status\": \"inProgress\"\n      }\n    ],\n    \"vendorAssignments\": [\n      {\n        \"accountId\": \"string\",\n        \"name\": \"string\",\n        \"canUnassign\": false,\n        \"rate\": 3092.651076362524,\n        \"status\": \"shortlisted\"\n      },\n      {\n        \"accountId\": \"string\",\n        \"name\": \"string\",\n        \"canUnassign\": false,\n        \"rate\": 3189.6583448570404,\n        \"status\": \"inProgress\"\n      }\n    ],\n    \"invitationStrategyType\": \"crowd\"\n  },\n  {\n    \"id\": \"1856c7ab-1800-770b-589e-171f39628e46\",\n    \"number\": \"string\",\n    \"status\": \"inProgress\",\n    \"progressPercentage\": 3429.5607897970417,\n    \"sourceLanguage\": \"string\",\n    \"targetLanguage\": \"string\",\n    \"stageType\": \"preliminaryPageProof\",\n    \"stageId\": \"b94672bb-cd23-cb48-1418-c917c4c40a87\",\n    \"deadline\": \"1979-09-15T19:22:31.617Z\",\n    \"cost\": 5050.802532099271,\n    \"approximateCost\": 702.0923170162852,\n    \"documentIds\": [\n      \"string\",\n      \"string\"\n    ],\n    \"createDate\": \"1985-09-21T12:41:00.571Z\",\n    \"lastUpdateScopeDate\": \"2011-08-13T21:37:04.806Z\",\n    \"individualAssignments\": [\n      {\n        \"userId\": \"string\",\n        \"rate\": 5399.866477756426,\n        \"currency\": \"string\",\n        \"status\": \"invited\"\n      },\n      {\n        \"userId\": \"string\",\n        \"rate\": 1394.5855199803193,\n        \"currency\": \"string\",\n        \"status\": \"invited\"\n      }\n    ],\n    \"vendorAssignments\": [\n      {\n        \"accountId\": \"string\",\n        \"name\": \"string\",\n        \"canUnassign\": true,\n        \"rate\": 5731.767930452848,\n        \"status\": \"inProgress\"\n      },\n      {\n        \"accountId\": \"string\",\n        \"name\": \"string\",\n        \"canUnassign\": false,\n        \"rate\": 5944.221087074974,\n        \"status\": \"inProgress\"\n      }\n    ],\n    \"invitationStrategyType\": \"rocket\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "484fe104-88a0-46bb-9f77-3f68e0658ea5",
+          "name": "Get information regarding task projectTaskId for project projectId",
+          "request": {
+            "name": "Get information regarding task projectTaskId for project projectId",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "projectTask",
+                ":projectId",
+                ":projectTaskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<int32>",
+                  "description": "(Required) Code of the currency used to recalculate supplier rates and the cost of work AbbyyLS.Web.Currency"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectTaskId",
+                  "description": "(Required) Task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e44fe398-2ee3-4c77-b475-342caea90c60",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "projectTask",
+                    ":projectId",
+                    ":projectTaskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "currency",
+                      "value": "<int32>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectTaskId",
+                      "description": "(Required) Task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"8a7544eb-a6e6-540d-0fd9-fa14a6925065\",\n  \"number\": \"string\",\n  \"status\": \"created\",\n  \"progressPercentage\": 6333.692901971752,\n  \"sourceLanguage\": \"string\",\n  \"targetLanguage\": \"string\",\n  \"stageType\": \"sourceReview\",\n  \"stageId\": \"3cabe45d-3362-dde8-af0e-305854ff724a\",\n  \"deadline\": \"2009-08-19T15:55:09.232Z\",\n  \"cost\": 331.97685344931614,\n  \"approximateCost\": 7431.21162074745,\n  \"documentIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createDate\": \"1987-12-05T20:33:52.270Z\",\n  \"lastUpdateScopeDate\": \"2001-10-26T17:46:51.554Z\",\n  \"individualAssignments\": [\n    {\n      \"userId\": \"string\",\n      \"rate\": 9535.962320032773,\n      \"currency\": \"string\",\n      \"status\": \"shortlisted\"\n    },\n    {\n      \"userId\": \"string\",\n      \"rate\": 9096.825192145372,\n      \"currency\": \"string\",\n      \"status\": \"invited\"\n    }\n  ],\n  \"vendorAssignments\": [\n    {\n      \"accountId\": \"string\",\n      \"name\": \"string\",\n      \"canUnassign\": false,\n      \"rate\": 9232.19371616126,\n      \"status\": \"shortlisted\"\n    },\n    {\n      \"accountId\": \"string\",\n      \"name\": \"string\",\n      \"canUnassign\": true,\n      \"rate\": 1481.0357415494657,\n      \"status\": \"shortlisted\"\n    }\n  ],\n  \"invitationStrategyType\": \"rocket\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e17bd6d-73e0-463f-9248-07f3264f0fc6",
+          "name": "Get information about the scope of work, regarding task  projectTaskId for project projectId",
+          "request": {
+            "name": "Get information about the scope of work, regarding task  projectTaskId for project projectId",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "projectTask",
+                ":projectId",
+                ":projectTaskId",
+                "scope"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<int32>",
+                  "description": "(Required) Code of the currency used to calculate the cost of work"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of skipped items"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of elements in the response (no more than 100)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectTaskId",
+                  "description": "(Required) Task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e97a946-2e54-498d-a65a-71051295c978",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "projectTask",
+                    ":projectId",
+                    ":projectTaskId",
+                    "scope"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "currency",
+                      "value": "<int32>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectTaskId",
+                      "description": "(Required) Task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"documentId\": \"string\",\n    \"progress\": 8829.896263423876,\n    \"name\": \"string\",\n    \"extension\": \"string\",\n    \"lastModified\": \"1979-08-12T13:21:35.152Z\",\n    \"approximateCost\": 5121.080165787458,\n    \"cost\": 160.11022896143757,\n    \"isExternal\": false,\n    \"unitType\": \"month\",\n    \"volumeSize\": 3454\n  },\n  {\n    \"documentId\": \"string\",\n    \"progress\": 7262.578788973073,\n    \"name\": \"string\",\n    \"extension\": \"string\",\n    \"lastModified\": \"1975-08-27T21:50:51.745Z\",\n    \"approximateCost\": 2193.1900241106837,\n    \"cost\": 9811.03171441145,\n    \"isExternal\": true,\n    \"unitType\": \"month\",\n    \"volumeSize\": 7376\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2e2ce11-5876-4702-a4fe-70b2318e563a",
+          "name": "Set the mode of access to perform the work for those who accepted the invitation",
+          "request": {
+            "name": "Set the mode of access to perform the work for those who accepted the invitation",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "projectTask",
+                ":projectId",
+                ":projectTaskId",
+                "set-invitation-strategy-type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "invitationStrategyType",
+                  "value": "<int32>",
+                  "description": "(Required) Mode of access to the work for those who accepted the invitation"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectTaskId",
+                  "description": "(Required) Task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "486bee56-e85e-4565-bd71-eb950802496d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "projectTask",
+                    ":projectId",
+                    ":projectTaskId",
+                    "set-invitation-strategy-type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "invitationStrategyType",
+                      "value": "<int32>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectTaskId",
+                      "description": "(Required) Task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "false",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75520f7d-e5e6-41b0-849a-1982a582c19e",
+          "name": "Assign individual suppliers to perform task projectTaskId",
+          "request": {
+            "name": "Assign individual suppliers to perform task projectTaskId",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "projectTask",
+                ":projectId",
+                ":projectTaskId",
+                "individual-assignment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectTaskId",
+                  "description": "(Required) Task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shouldAssignInShortlistStatus\": \"<boolean>\",\n  \"userIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c9263413-f5aa-40ba-90f9-8c12ba856a2e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "projectTask",
+                    ":projectId",
+                    ":projectTaskId",
+                    "individual-assignment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectTaskId",
+                      "description": "(Required) Task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shouldAssignInShortlistStatus\": \"<boolean>\",\n  \"userIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "false",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "234c5e93-8cba-4e01-a149-033855358153",
+          "name": "Delete individual assignment",
+          "request": {
+            "name": "Delete individual assignment",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "projectTask",
+                ":projectId",
+                ":projectTaskId",
+                "individual-assignment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "userId",
+                  "value": "<uuid>",
+                  "description": "(Required) ID of the user whose assignment is to be removed"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectTaskId",
+                  "description": "(Required) Task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f93d0ec-e399-48d9-bd80-aef72cf2819c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "projectTask",
+                    ":projectId",
+                    ":projectTaskId",
+                    "individual-assignment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "userId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectTaskId",
+                      "description": "(Required) Task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "false",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0719a267-3a65-46cd-b5f4-c088b69505a7",
+          "name": "Assign a supplier to perform task  projectTaskId",
+          "request": {
+            "name": "Assign a supplier to perform task  projectTaskId",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "projectTask",
+                ":projectId",
+                ":projectTaskId",
+                "vendor-assignment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectTaskId",
+                  "description": "(Required) Task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shouldAssignInShortlistStatus\": \"<boolean>\",\n  \"vendorAccountId\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "092efc71-7648-4368-8f06-5d31d28d71ce",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "projectTask",
+                    ":projectId",
+                    ":projectTaskId",
+                    "vendor-assignment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectTaskId",
+                      "description": "(Required) Task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shouldAssignInShortlistStatus\": \"<boolean>\",\n  \"vendorAccountId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "false",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ac11802-a283-4072-bcb0-93304e7a0194",
+          "name": "Remove supplier assignment",
+          "request": {
+            "name": "Remove supplier assignment",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "projectTask",
+                ":projectId",
+                ":projectTaskId",
+                "vendor-assignment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "vendorAccountId",
+                  "value": "<uuid>",
+                  "description": "(Required) Identifier of the supplier account whose assignment is to be removed"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectTaskId",
+                  "description": "(Required) Task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cfe412a2-839d-4f24-9f30-dfd57171828f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "projectTask",
+                    ":projectId",
+                    ":projectTaskId",
+                    "vendor-assignment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vendorAccountId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectTaskId",
+                      "description": "(Required) Task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "false",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb70a05c-eb18-4c8a-8422-d4378a56012f",
+          "name": "Get information about payments to suppliers for the work on task projectTaskId",
+          "request": {
+            "name": "Get information about payments to suppliers for the work on task projectTaskId",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "projectTask",
+                ":projectId",
+                ":projectTaskId",
+                "payables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<int32>",
+                  "description": "(Required) Code of the currency used to calculate the cost of work"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of skipped items"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of elements in the response (no more than 100)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectTaskId",
+                  "description": "(Required) Task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "049e21cf-c9e4-4cb6-9af2-fceb2a2a23ee",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "projectTask",
+                    ":projectId",
+                    ":projectTaskId",
+                    "payables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "currency",
+                      "value": "<int32>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectTaskId",
+                      "description": "(Required) Task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"jobId\": \"string\",\n    \"userId\": \"c3070b98-0294-faf8-63ed-cb546681e9e6\",\n    \"userName\": \"string\",\n    \"documentId\": \"string\",\n    \"documentName\": \"string\",\n    \"documentExtension\": \"string\",\n    \"unitsCount\": 5783.308584606808,\n    \"cost\": 8927.59962756688,\n    \"status\": \"doNotNeedToPay\",\n    \"vendorAccountId\": \"0fee802c-e0d8-31d0-5722-b6c116a4f478\",\n    \"vendorAccountName\": \"string\",\n    \"vendorImageUrl\": \"string\"\n  },\n  {\n    \"jobId\": \"string\",\n    \"userId\": \"73674a95-316f-7fe3-8c07-d5b0006d5088\",\n    \"userName\": \"string\",\n    \"documentId\": \"string\",\n    \"documentName\": \"string\",\n    \"documentExtension\": \"string\",\n    \"unitsCount\": 9328.680288015155,\n    \"cost\": 5866.654137277324,\n    \"status\": \"pendingToPay\",\n    \"vendorAccountId\": \"1afc44c2-b837-6b87-5be9-f8d56448aa43\",\n    \"vendorAccountName\": \"string\",\n    \"vendorImageUrl\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5fdcdd53-4c69-4441-aea7-8e251c3e818e",
+          "name": "Set a deadline for the task",
+          "request": {
+            "name": "Set a deadline for the task",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "projectTask",
+                ":projectId",
+                ":projectTaskId",
+                "deadline"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deadline",
+                  "value": "<dateTime>",
+                  "description": "Task deadline"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectTaskId",
+                  "description": "(Required) Task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3ae55bc-e215-4fdf-a4f7-89c62613d9b9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "projectTask",
+                    ":projectId",
+                    ":projectTaskId",
+                    "deadline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deadline",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectTaskId",
+                      "description": "(Required) Task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "false",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34b27e93-67a5-42e6-a201-cfe189ca566e",
+          "name": "Move the task volume to another task",
+          "request": {
+            "name": "Move the task volume to another task",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "projectTask",
+                ":projectId",
+                ":projectTaskId",
+                "split"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectTaskId",
+                  "description": "(Required) Task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"documentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"targetProjectTaskId\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3d85ed75-5d67-4ce7-b1a6-a6888f13878d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "projectTask",
+                    ":projectId",
+                    ":projectTaskId",
+                    "split"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectTaskId",
+                      "description": "(Required) Task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"targetProjectTaskId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"projectTaskId\": \"107c854b-7d9f-2959-32a2-bbf870a0d7a5\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c4b1e65-1ead-4334-af8a-cd7b43a9da49",
+          "name": "Split task into partsCount parts",
+          "request": {
+            "name": "Split task into partsCount parts",
+            "description": {
+              "content": "Available for accounts with subscription",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "projectTask",
+                ":projectId",
+                ":projectTaskId",
+                "splitByParts",
+                ":partsCount"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "preserveAssignments",
+                  "value": "false",
+                  "description": "Specifies whether assignments should be moved from the parent task"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectTaskId",
+                  "description": "(Required) Task ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "partsCount",
+                  "description": "(Required) Number of parts to divide the task into"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ddee288b-844a-4092-8893-5437dc993667",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "projectTask",
+                    ":projectId",
+                    ":projectTaskId",
+                    "splitByParts",
+                    ":partsCount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "preserveAssignments",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectTaskId",
+                      "description": "(Required) Task ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "partsCount",
+                      "description": "(Required) Number of parts to divide the task into"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"projectTaskIds\": [\n    \"327e91a0-cc1f-c005-21b1-96c0858d113d\",\n    \"98641bde-4505-eab5-3abb-a451647fdb4c\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7fd7dbe-6ba5-44a4-969a-365706945ee8",
+          "name": "Merge task projectTaskId with tasks request\r\nAll merged tasks must belong to the same stage Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel.StageId,\r\nhave the same target language Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel.TargetLanguage and have no agencies/companies assigned to the task\r\nDuring the merge process, existing supplier assignments will be removed. Tasks will be merged and become inaccessible.\r\nAs a result of the operation, a new task is created, which includes all the scope of work from the merged tasks.",
+          "request": {
+            "name": "Merge task projectTaskId with tasks request\r\nAll merged tasks must belong to the same stage Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel.StageId,\r\nhave the same target language Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel.TargetLanguage and have no agencies/companies assigned to the task\r\nDuring the merge process, existing supplier assignments will be removed. Tasks will be merged and become inaccessible.\r\nAs a result of the operation, a new task is created, which includes all the scope of work from the merged tasks.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "projectTask",
+                ":projectId",
+                ":projectTaskId",
+                "merge"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectTaskId",
+                  "description": "(Required) Task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projectTaskIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9226e170-b0e9-46f2-98d3-2d1cacf89597",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "projectTask",
+                    ":projectId",
+                    ":projectTaskId",
+                    "merge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectTaskId",
+                      "description": "(Required) Task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectTaskIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"projectTaskId\": \"3fc31453-bda1-dee2-c4aa-013efd51b2c9\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a6830953-7ce6-4ba2-b3b8-e976c7742f03",
+    "name": "Smartcat Account ProjectTask API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

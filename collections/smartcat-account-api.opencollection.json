@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch the account details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/account"
+          },
+          "docs": "Fetch the account details"
+        },
+        {
+          "info": {
+            "name": "Fetch the list of MT services available for the account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/account/mtengines"
+          },
+          "docs": "Fetch the list of MT services available for the account"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

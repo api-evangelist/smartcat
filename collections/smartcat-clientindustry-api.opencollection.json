@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account ClientIndustry API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ClientIndustry",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch a directory entry by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/clientIndustry/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Directory entry ID"
+              }
+            ]
+          },
+          "docs": "Fetch a directory entry by ID"
+        },
+        {
+          "info": {
+            "name": "Update the name of an entry by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/clientIndustry/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Entry ID"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "New entry name"
+              }
+            ]
+          },
+          "docs": "Update the name of an entry by ID"
+        },
+        {
+          "info": {
+            "name": "Delete a list entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/integration/v1/clientIndustry/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Entry ID"
+              }
+            ]
+          },
+          "docs": "Delete a list entry"
+        },
+        {
+          "info": {
+            "name": "Fetch all the available directory values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/clientIndustry"
+          },
+          "docs": "Fetch all the available directory values"
+        },
+        {
+          "info": {
+            "name": "Add a directory entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/clientIndustry/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Entry name"
+              }
+            ]
+          },
+          "docs": "Add a directory entry"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

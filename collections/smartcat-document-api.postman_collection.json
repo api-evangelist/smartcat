@@ -1,0 +1,4175 @@
+{
+  "item": [
+    {
+      "id": "5420b42a-f25a-45e3-a7ca-d963dc6d2eb6",
+      "name": "Document",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "66d34711-03bc-4532-a0fe-b3c6f354ae72",
+          "name": "Fetch the document details",
+          "request": {
+            "name": "Fetch the document details",
+            "description": {
+              "content": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "document"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "documentId",
+                  "value": "<string>",
+                  "description": "(Required) Document ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5f8cdb2d-b562-47b5-8dd0-4a6b8a701818",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"fullPath\": \"string\",\n  \"filename\": \"string\",\n  \"originalFilename\": \"string\",\n  \"creationDate\": \"2024-01-14T15:50:59.606Z\",\n  \"deadline\": \"1962-04-08T15:27:19.861Z\",\n  \"sourceLanguage\": \"string\",\n  \"documentDisassemblingStatus\": \"error\",\n  \"targetLanguage\": \"string\",\n  \"status\": \"updated\",\n  \"wordsCount\": 5738,\n  \"statusModificationDate\": \"2025-07-26T10:08:07.445Z\",\n  \"pretranslateCompleted\": false,\n  \"workflowStages\": [\n    {\n      \"id\": \"a28cc239-fe26-c207-a4f5-6d06243c5906\",\n      \"progress\": 7327.10629468008,\n      \"wordsTranslated\": 1407,\n      \"unassignedWordsCount\": 5283,\n      \"status\": \"notAssigned\",\n      \"statusModificationDate\": \"1957-03-29T09:03:34.567Z\",\n      \"executives\": [\n        {\n          \"assignedWordsCount\": 6892,\n          \"progress\": 3506.137755858234,\n          \"id\": \"4a0ff288-878f-e8a1-619d-72ecc15d53d2\",\n          \"supplierType\": \"freelancer\"\n        },\n        {\n          \"assignedWordsCount\": 9157,\n          \"progress\": 1921.0665695177254,\n          \"id\": \"317622a5-9481-4488-1c44-1ec5749d8732\",\n          \"supplierType\": \"company\"\n        }\n      ],\n      \"vendor\": {\n        \"id\": \"eb7c8649-95a6-ba9a-f78e-183f24accd8a\",\n        \"name\": \"string\",\n        \"customFields\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        }\n      }\n    },\n    {\n      \"id\": \"6adc555b-e5bb-8de2-78fc-9a99e2aa5fe6\",\n      \"progress\": 8248.037083033298,\n      \"wordsTranslated\": 2388,\n      \"unassignedWordsCount\": 241,\n      \"status\": \"notAssigned\",\n      \"statusModificationDate\": \"1972-03-08T17:40:14.011Z\",\n      \"executives\": [\n        {\n          \"assignedWordsCount\": 9680,\n          \"progress\": 7836.096759497096,\n          \"id\": \"a84c49a3-b177-d3ff-3711-df5fdcae78e9\",\n          \"supplierType\": \"company\"\n        },\n        {\n          \"assignedWordsCount\": 5961,\n          \"progress\": 9014.59628630353,\n          \"id\": \"b437167f-b57d-6434-f223-bbfcaa1ea7c2\",\n          \"supplierType\": \"freelancer\"\n        }\n      ],\n      \"vendor\": {\n        \"id\": \"2acb2e59-f0c8-46d7-a9ac-efa225ade22b\",\n        \"name\": \"string\",\n        \"customFields\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      }\n    }\n  ],\n  \"externalId\": \"string\",\n  \"projectId\": \"58f60c36-f47f-1129-3a90-ff9ea4972121\",\n  \"metaInfo\": \"string\",\n  \"placeholdersAreEnabled\": false,\n  \"revisionLabel\": \"string\",\n  \"readyForCompletion\": true,\n  \"package\": {\n    \"isRoot\": false,\n    \"packageId\": \"f61131bd-1662-42e7-b0cc-91275e6f38e2\",\n    \"parentPackageId\": \"258a4759-46af-efd2-234e-511502c380c8\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05cf72b7-0052-48f5-92cd-e24d28696fff",
+              "name": "The document is not associated with the account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "88505659-eb2d-4218-9628-7d7e20d3562e",
+              "name": "The provided document ID or language ID does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a36899d7-fd3f-4ce3-b17b-cda521f86282",
+          "name": "Delete one or several documents",
+          "request": {
+            "name": "Delete one or several documents",
+            "description": {
+              "content": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "document"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "documentIds",
+                  "value": "<string>",
+                  "description": "(Required) Array of document IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "documentIds",
+                  "value": "<string>",
+                  "description": "(Required) Array of document IDs"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8850bce2-15a0-40d6-8d82-08be2db19f53",
+              "name": "Documents have been successfully deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "documentIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e45c520a-b76a-46fe-87f7-1ea574f326a8",
+              "name": "The provided array of document IDs is empty",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "documentIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9d5449f-5d6a-490e-acfb-5c82b3a2cd19",
+              "name": "Returns if:\n\r\n- At least one document is not associated with the account\r\n- The document is assigned to a vendor who is not allowed to update documents in the assigned projects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "documentIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22a21613-afc8-43a0-b878-824b5b13acd0",
+          "name": "Fetch the status of adding document translation",
+          "request": {
+            "name": "Fetch the status of adding document translation",
+            "description": {
+              "content": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "document",
+                "translate",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "documentId",
+                  "value": "<string>",
+                  "description": "(Required) Document ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e18a776-7847-44d5-8022-e7c1f8b84cbe",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "translate",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"inProgress\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a926f48b-6141-4a5a-90f4-dea04e82dfd5",
+              "name": "At least one document is not associated with the account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "translate",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "93ad40c9-bbf1-4477-917e-dd0f87f3cf13",
+              "name": "The provided document ID does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "translate",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6fb8c7ef-c97a-46ae-82ca-0d103d81d6af",
+          "name": "Fetch a detailed report on translation import results",
+          "request": {
+            "name": "Fetch a detailed report on translation import results",
+            "description": {
+              "content": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "document",
+                "translate",
+                "result"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "documentId",
+                  "value": "<string>",
+                  "description": "(Required) Document ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cce6ae78-1a28-48a0-910c-008d6f2d4a7f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "translate",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7854587f-bb54-44d8-a3cc-02faeed1fc5f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "translate",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46140645-696d-4c9b-9b7f-c149c32a9cdf",
+          "name": "Fetch statistics",
+          "request": {
+            "name": "Fetch statistics",
+            "description": {
+              "content": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "document",
+                "statistics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "documentId",
+                  "value": "<string>",
+                  "description": "(Required) Document ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "onlyExactMatches",
+                  "value": "false",
+                  "description": "Specifies whether returning 100% and higher matches will suffice"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60163444-bdcd-408a-a747-e459b7e8ba4d",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "statistics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "onlyExactMatches",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"statistics\": [\n    {\n      \"name\": \"total\",\n      \"words\": 2039,\n      \"percent\": 2610.35098843869,\n      \"segments\": 7082,\n      \"pages\": 5625.403214821324,\n      \"charsWithoutSpaces\": 9999,\n      \"charsWithSpaces\": 5453,\n      \"effectiveWordsForBilling\": 1190.0585428863653\n    },\n    {\n      \"name\": \"match_100\",\n      \"words\": 3795,\n      \"percent\": 1172.4420515071788,\n      \"segments\": 4217,\n      \"pages\": 9910.2957393811,\n      \"charsWithoutSpaces\": 2465,\n      \"charsWithSpaces\": 1380,\n      \"effectiveWordsForBilling\": 3785.612653062679\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78dd4de4-b63a-409e-b9e4-4268f69569ec",
+              "name": "Statistics creation is in progress",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "statistics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "onlyExactMatches",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9407fb9d-b047-4a80-9cca-d9be17ae3916",
+              "name": "The document is not associated with the account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "statistics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "onlyExactMatches",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7b33e962-e44d-400c-ab5b-1cf53f516a1d",
+              "name": "A provided document could not be disassembled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "statistics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "onlyExactMatches",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd600806-158f-4969-babe-49d5dc93e844",
+          "name": "Divide the document into equal blocks by the number of words and assign one block to each specified freelancer",
+          "request": {
+            "name": "Divide the document into equal blocks by the number of words and assign one block to each specified freelancer",
+            "description": {
+              "content": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "document",
+                "assignFreelancers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "documentId",
+                  "value": "<string>",
+                  "description": "Document ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "stageNumber",
+                  "value": "<string>",
+                  "description": "Workflow stage number"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"<uuid>\",\n  \"<uuid>\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "42cbf5dc-efcf-489a-a9d0-f85e2e78171a",
+              "name": "Freelancer has been successfully assigned to the document",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "assignFreelancers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<uuid>\",\n  \"<uuid>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bce34a66-9ea0-419b-ad28-cac51a763cc1",
+              "name": " Returns if:\n\r\n- The document was not disassembled or was disassembled, but contains 0 words\r\n- The provided workflow stage number does not exist in the project\r\n- An assignment has been already made to the specified workflow stage\r\n- A freelancer ID was not found in CAT",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "assignFreelancers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<uuid>\",\n  \"<uuid>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5544867f-4e5e-44ec-81fe-422734e853a9",
+              "name": "The document is not associated with the account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "assignFreelancers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<uuid>\",\n  \"<uuid>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9dd7221d-da46-44d6-90ac-d1dcc99b684c",
+              "name": "The provided document ID does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "assignFreelancers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<uuid>\",\n  \"<uuid>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dad050ed-ac1a-4443-a240-95f5743f4cd3",
+          "name": "Assign a vendor to a document workflow stage",
+          "request": {
+            "name": "Assign a vendor to a document workflow stage",
+            "description": {
+              "content": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "document",
+                "assignVendors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "documentId",
+                  "value": "<string>",
+                  "description": "Document ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "stageNumber",
+                  "value": "<string>",
+                  "description": "Workflow stage number"
+                },
+                {
+                  "disabled": false,
+                  "key": "vendorAccountId",
+                  "value": "<uuid>",
+                  "description": "Vendor account ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7213a1f5-7457-48a4-8eb6-3371c1110db5",
+              "name": "Vendor has been successfully assigned to the document",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "assignVendors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vendorAccountId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9c1261c2-1bf0-4764-b2c7-3519b0b8aa0e",
+              "name": "Document disassembly failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "assignVendors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vendorAccountId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "162d0648-68f9-4e39-8e84-0ddc607beae9",
+              "name": "Returns if:\n\r\n- The document is not associated with the account\r\n- The account is a vendor",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "assignVendors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vendorAccountId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38979323-3bd0-42a4-b887-441ffc1ed6b7",
+              "name": "Returns if:\n\r\n- The provided document ID does not exist\r\n- The provided workflow stage number does not exist in the project\r\n- A vendor ID was not found in CAT\r\n- The client-to-vendor connection does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "assignVendors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vendorAccountId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24645735-793c-435e-aae0-f464c419c8f1",
+              "name": "An assignment has been already made to the specified workflow stage",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "assignVendors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vendorAccountId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "242aba28-556f-4d23-ab38-17d5d9d5adcb",
+          "name": "Specify the unit count for a document workflow stage",
+          "request": {
+            "name": "Specify the unit count for a document workflow stage",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "document",
+                "setStageUnitCount"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "projectId",
+                  "value": "<uuid>",
+                  "description": "Project ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "stageNumber",
+                  "value": "<string>",
+                  "description": "Workflow stage number"
+                },
+                {
+                  "disabled": false,
+                  "key": "targetLanguageId",
+                  "value": "<integer>",
+                  "description": "Document target language ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"documentId\": \"<string>\",\n    \"unitCount\": \"<integer>\"\n  },\n  {\n    \"documentId\": \"<string>\",\n    \"unitCount\": \"<integer>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "04bbbeb1-73b4-4ba2-a077-6c6b6dbd32c1",
+              "name": "Unit count has been successfully applied to a document workflow stage",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "setStageUnitCount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "targetLanguageId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"documentId\": \"<string>\",\n    \"unitCount\": \"<integer>\"\n  },\n  {\n    \"documentId\": \"<string>\",\n    \"unitCount\": \"<integer>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cc5e2aa6-1f61-4356-adfc-53df98bf5191",
+              "name": "Returns if:\n\r\n- The documents are not associated with the project\r\n- The stage is internal\r\n- The unit count is already set for the stage",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "setStageUnitCount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "targetLanguageId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"documentId\": \"<string>\",\n    \"unitCount\": \"<integer>\"\n  },\n  {\n    \"documentId\": \"<string>\",\n    \"unitCount\": \"<integer>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42a65657-4121-4c83-b111-f2f5e705c30f",
+              "name": " Returns if:\n\r\n- The project is not associated with the account and the account is not a project vendor\r\n- The document is not associated with the account and the vendor is not assigned to the stage",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "setStageUnitCount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "targetLanguageId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"documentId\": \"<string>\",\n    \"unitCount\": \"<integer>\"\n  },\n  {\n    \"documentId\": \"<string>\",\n    \"unitCount\": \"<integer>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4fde3935-baed-4624-b217-5dcff04da654",
+              "name": " Returns if:\n\r\n- The provided project ID does not exist\r\n- The provided workflow stage number does not exist in the project",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "setStageUnitCount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "targetLanguageId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"documentId\": \"<string>\",\n    \"unitCount\": \"<integer>\"\n  },\n  {\n    \"documentId\": \"<string>\",\n    \"unitCount\": \"<integer>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c40d344d-742c-468f-8411-ee416e5b4434",
+          "name": "Specify the linguist assignment and segment distribution model",
+          "request": {
+            "name": "Specify the linguist assignment and segment distribution model",
+            "description": {
+              "content": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format. \n\r\nAssignmentMode option descriptions:\n\r\n- AssignmentMode.DistributeAmongAll: Distribute segments among all the assigned linguists\n\r\n- AssignmentMode.Rocket: Send invitations and assign all unassigned segments to the first linguist who accepts\n\r\n- AssignmentMode.InviteOnly: Only invite linguists, segments will be assigned later manually\n\r\nNote: If the segment count is not specified, the task will be equally divided among all linguists\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "document",
+                "assign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "documentId",
+                  "value": "<string>",
+                  "description": "Document ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "stageNumber",
+                  "value": "<string>",
+                  "description": "Workflow stage number"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"executives\": [\n    {\n      \"id\": \"<uuid>\",\n      \"wordsCount\": \"<integer>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"wordsCount\": \"<integer>\"\n    }\n  ],\n  \"minWordsCountForExecutive\": \"<integer>\",\n  \"assignmentMode\": \"<int32>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "62bb4fef-8434-4308-a73e-5c800e5b5501",
+              "name": "Linguist has been successfully assigned to the document",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "assign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"executives\": [\n    {\n      \"id\": \"<uuid>\",\n      \"wordsCount\": \"<integer>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"wordsCount\": \"<integer>\"\n    }\n  ],\n  \"minWordsCountForExecutive\": \"<integer>\",\n  \"assignmentMode\": \"<int32>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f3038419-89be-4ccb-a2b1-eb8e85e0234f",
+              "name": "Returns if:\n\r\n- The document was not disassembled or was disassembled, but contains 0 words\r\n- The provided workflow stage number does not exist in the project\r\n- An assignment has been already made to the specified workflow stage\r\n- A freelancer ID was not found in CAT\r\n- The specified assignment type is unknown\r\n- Internal account users (not freelancers) were assigned to AssignmentMode.Rocket or AssignmentMode.InviteOnly\r\n- The workflow stage is accomplished outside of Smartcat and its word count/cost are not set (exception: for an in-house freelancer setting word count/cost is not mandatory)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "assign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"executives\": [\n    {\n      \"id\": \"<uuid>\",\n      \"wordsCount\": \"<integer>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"wordsCount\": \"<integer>\"\n    }\n  ],\n  \"minWordsCountForExecutive\": \"<integer>\",\n  \"assignmentMode\": \"<int32>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16a970f6-5247-4eb4-8d46-dc122c225d87",
+              "name": "Returns if:\n\r\n- The project is not associated with the account\r\n- The project is associated with the account, but was assigned to a vendor",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "assign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"executives\": [\n    {\n      \"id\": \"<uuid>\",\n      \"wordsCount\": \"<integer>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"wordsCount\": \"<integer>\"\n    }\n  ],\n  \"minWordsCountForExecutive\": \"<integer>\",\n  \"assignmentMode\": \"<int32>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3419ea74-ff55-415c-8ecd-bb8e6b1df815",
+              "name": "The provided document ID does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "assign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"executives\": [\n    {\n      \"id\": \"<uuid>\",\n      \"wordsCount\": \"<integer>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"wordsCount\": \"<integer>\"\n    }\n  ],\n  \"minWordsCountForExecutive\": \"<integer>\",\n  \"assignmentMode\": \"<int32>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71a1af0e-3c1d-4284-9a14-a45f812fcfae",
+          "name": "Unassign a linguist",
+          "request": {
+            "name": "Unassign a linguist",
+            "description": {
+              "content": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "document",
+                "unassign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "documentId",
+                  "value": "<string>",
+                  "description": "Document ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "stageNumber",
+                  "value": "<string>",
+                  "description": "Workflow stage number"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e91b9252-35df-495a-9f4d-9f574469f128",
+              "name": "Linguist has been successfully unassigned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "unassign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fd1733f7-a680-4c3c-b23c-614526b166aa",
+              "name": "Returns if:\n\r\n- The provided workflow stage number does not exist in the project\r\n- The linguist with the specified ID is not assigned to the document workflow stage",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "unassign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28e42fc7-5530-451e-b6a8-17517d793c7d",
+              "name": "Returns if:\n\r\n- The project is not associated with the account\r\n- The project is associated with the account, but was assigned to a vendor",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "unassign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb331e64-02d9-46b3-890b-677b5437f2da",
+              "name": "The provided document ID does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "unassign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bae905ce-8d1d-4e9f-919e-78f3857b0b8c",
+          "name": "Send Rocket invitations to MyTeam linguists:\r\nsend invitations, assign the first one to accept the job to every unassigned document segment",
+          "request": {
+            "name": "Send Rocket invitations to MyTeam linguists:\r\nsend invitations, assign the first one to accept the job to every unassigned document segment",
+            "description": {
+              "content": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "document",
+                "assignFromMyTeam"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"documentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stageNumber\": \"<string>\",\n  \"specializations\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"matchProjectClient\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5e4ad95c-2321-4701-bb64-42cd943137e5",
+              "name": "The operation has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "assignFromMyTeam"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stageNumber\": \"<string>\",\n  \"specializations\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"matchProjectClient\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "9355",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28fb6aaa-f367-4653-a711-c1cabb59c018",
+              "name": "Returns if:\n\r\n- The input model is not provided\r\n- No document is specified\r\n- The specified documents have different target languages\r\n- The specified documents are associated with different projects\r\n- The document was not disassembled or was disassembled, but contains 0 words\r\n- The provided workflow stage number does not exist in the project\r\n- An assignment has been already made to the specified workflow stage\r\n- The workflow stage is accomplished outside of Smartcat and its word count/cost are not set (exception: for an in-house freelancer setting word count/cost is not mandatory)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "assignFromMyTeam"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stageNumber\": \"<string>\",\n  \"specializations\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"matchProjectClient\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1df93bf3-0562-48c9-91c9-c2d4c0c78d70",
+              "name": "Returns if:\n\r\n- The project is not associated with the account\r\n- The project is associated with the account, but was assigned to a vendor",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "assignFromMyTeam"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stageNumber\": \"<string>\",\n  \"specializations\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"matchProjectClient\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "da6975c4-3f0e-4304-8957-842cded63970",
+              "name": "The provided document ID does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "assignFromMyTeam"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"documentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stageNumber\": \"<string>\",\n  \"specializations\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"matchProjectClient\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62b4e3db-55fc-4492-87d8-d8de16cbb25b",
+          "name": "Change the document status to Completed",
+          "request": {
+            "name": "Change the document status to Completed",
+            "description": {
+              "content": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "document",
+                "complete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "documentId",
+                  "value": "<string>",
+                  "description": "Document ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c988ae1-654c-42ee-a07b-ad93f2ac76fb",
+              "name": "The operation has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6b29f507-d298-494b-b108-2d35c0c11daa",
+              "name": "The document is already in Completed status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "10bac842-8e71-402e-8200-00f7c3f7b857",
+              "name": "The document status is not \"Manager Review\"",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20fb66ec-f322-4f57-8cd5-ae950dac1f7c",
+              "name": "The specified document ID does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6eaece1-9209-4a2c-a71a-166522a996cb",
+          "name": "Update the specified document",
+          "request": {
+            "name": "Update the specified document",
+            "description": {
+              "content": "UpdateDocumentModel must have exactly one file. All other fields in model are optional. \n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "document",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "documentId",
+                  "value": "<string>",
+                  "description": "(Required) Document ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "disassembleAlgorithmName",
+                  "value": "<string>",
+                  "description": "Optional algorithm for file disassembly"
+                },
+                {
+                  "disabled": false,
+                  "key": "presetDisassembleAlgorithm",
+                  "value": "<string>",
+                  "description": "Optional preset for the file disassembly algorithm"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "value",
+                  "value": "{\"bilingualFileImportSetings\":{\"targetSubstitutionMode\":\"<int32>\",\"targetLanguageUsageMode\":\"<int32>\",\"lockMode\":\"<int32>\",\"confirmMode\":\"<int32>\",\"saveType\":\"<int32>\"},\"enablePlaceholders\":\"<boolean>\"}",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "files",
+                  "value": "[\"<binary>\",\"<binary>\"]",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b083ec8d-d080-494a-8831-0fa17ecdfba1",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "document",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "disassembleAlgorithmName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "presetDisassembleAlgorithm",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "value",
+                      "value": "{\"bilingualFileImportSetings\":{\"targetSubstitutionMode\":\"<int32>\",\"targetLanguageUsageMode\":\"<int32>\",\"lockMode\":\"<int32>\",\"confirmMode\":\"<int32>\",\"saveType\":\"<int32>\"},\"enablePlaceholders\":\"<boolean>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"fullPath\": \"string\",\n    \"filename\": \"string\",\n    \"originalFilename\": \"string\",\n    \"creationDate\": \"1969-01-05T11:54:07.599Z\",\n    \"deadline\": \"1957-09-24T16:48:06.462Z\",\n    \"sourceLanguage\": \"string\",\n    \"documentDisassemblingStatus\": \"error\",\n    \"targetLanguage\": \"string\",\n    \"status\": \"inProgress\",\n    \"wordsCount\": 6747,\n    \"statusModificationDate\": \"1990-12-15T14:56:32.739Z\",\n    \"pretranslateCompleted\": false,\n    \"workflowStages\": [\n      {\n        \"id\": \"14118b1a-bbc2-f6f1-96a4-0016b5528ddc\",\n        \"progress\": 1889.3069604340185,\n        \"wordsTranslated\": 7539,\n        \"unassignedWordsCount\": 2428,\n        \"status\": \"notAssigned\",\n        \"statusModificationDate\": \"1957-10-11T08:27:50.444Z\",\n        \"executives\": [\n          {\n            \"assignedWordsCount\": 8498,\n            \"progress\": 2568.1054670321178,\n            \"id\": \"17124e63-c26f-4cf5-e7f0-5b1a0ccfeeae\",\n            \"supplierType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"assignedWordsCount\": 8159,\n            \"progress\": 6418.5583001765945,\n            \"id\": \"c5b98cf0-a3eb-a244-834b-5247b6211114\",\n            \"supplierType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"vendor\": {\n          \"id\": \"bfa138b9-b505-2bdf-0dd0-5ed8888a2d24\",\n          \"name\": \"string\",\n          \"customFields\": {\n            \"key_0\": \"string\"\n          }\n        }\n      },\n      {\n        \"id\": \"7dc73213-94b1-e7c4-c6ed-76299e9b38f1\",\n        \"progress\": 5241.405146937299,\n        \"wordsTranslated\": 4154,\n        \"unassignedWordsCount\": 2387,\n        \"status\": \"inProgress\",\n        \"statusModificationDate\": \"2022-06-13T19:49:02.234Z\",\n        \"executives\": [\n          {\n            \"assignedWordsCount\": 8978,\n            \"progress\": 847.8934051670983,\n            \"id\": \"494112fa-83ae-e3a7-2762-b1e482cb7f0c\",\n            \"supplierType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"assignedWordsCount\": 6690,\n            \"progress\": 4550.983177050652,\n            \"id\": \"2b5af70b-b328-fbba-c3e4-6224458a5027\",\n            \"supplierType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"vendor\": {\n          \"id\": \"e8291240-a375-7c20-a93f-0fe0da004f9c\",\n          \"name\": \"string\",\n          \"customFields\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        }\n      }\n    ],\n    \"externalId\": \"string\",\n    \"projectId\": \"c9212e1e-1030-73be-6281-4db264fdccff\",\n    \"metaInfo\": \"string\",\n    \"placeholdersAreEnabled\": false,\n    \"revisionLabel\": \"string\",\n    \"readyForCompletion\": true,\n    \"package\": {\n      \"isRoot\": true,\n      \"packageId\": \"eb8bf746-6a84-6ceb-60f8-40f50c2ced5f\",\n      \"parentPackageId\": \"fc55737c-0b57-d6a5-2fc8-5f357d4ecaa7\"\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"fullPath\": \"string\",\n    \"filename\": \"string\",\n    \"originalFilename\": \"string\",\n    \"creationDate\": \"1959-02-14T23:09:46.022Z\",\n    \"deadline\": \"1983-11-02T17:17:15.272Z\",\n    \"sourceLanguage\": \"string\",\n    \"documentDisassemblingStatus\": \"inProgress\",\n    \"targetLanguage\": \"string\",\n    \"status\": \"updated\",\n    \"wordsCount\": 7132,\n    \"statusModificationDate\": \"2000-11-09T11:36:22.699Z\",\n    \"pretranslateCompleted\": true,\n    \"workflowStages\": [\n      {\n        \"id\": \"91872802-d3eb-57b3-12a5-e3a06a114d9a\",\n        \"progress\": 2872.7958335579297,\n        \"wordsTranslated\": 8071,\n        \"unassignedWordsCount\": 3828,\n        \"status\": \"inProgress\",\n        \"statusModificationDate\": \"1976-05-28T08:36:27.798Z\",\n        \"executives\": [\n          {\n            \"assignedWordsCount\": 8509,\n            \"progress\": 6082.2913204197075,\n            \"id\": \"909ac5c7-6af5-9f0f-a511-a41f3e1a407f\",\n            \"supplierType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"assignedWordsCount\": 8587,\n            \"progress\": 6219.263888528492,\n            \"id\": \"96360a68-a8fd-7e4b-e927-faad8a9cfe8a\",\n            \"supplierType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"vendor\": {\n          \"id\": \"3f3c0109-bbb9-eb2e-45c1-151bcd26b0df\",\n          \"name\": \"string\",\n          \"customFields\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\",\n            \"key_3\": \"string\"\n          }\n        }\n      },\n      {\n        \"id\": \"4186b3d7-7a64-5579-b46f-acc94f542b7a\",\n        \"progress\": 2995.9800394176705,\n        \"wordsTranslated\": 1279,\n        \"unassignedWordsCount\": 2578,\n        \"status\": \"completed\",\n        \"statusModificationDate\": \"2009-04-28T11:42:49.378Z\",\n        \"executives\": [\n          {\n            \"assignedWordsCount\": 2704,\n            \"progress\": 6230.052757180007,\n            \"id\": \"b7eff65c-add0-a166-557d-09a8ffa227a7\",\n            \"supplierType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"assignedWordsCount\": 4165,\n            \"progress\": 4708.844387428995,\n            \"id\": \"5f666aca-c27e-c053-96f6-3092772aaa1f\",\n            \"supplierType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"vendor\": {\n          \"id\": \"417b04e8-354c-2c0b-b7c6-d175aaaaaa42\",\n          \"name\": \"string\",\n          \"customFields\": {\n            \"key_0\": \"string\"\n          }\n        }\n      }\n    ],\n    \"externalId\": \"string\",\n    \"projectId\": \"742f20ad-9d88-c463-c0f3-11d5c3534358\",\n    \"metaInfo\": \"string\",\n    \"placeholdersAreEnabled\": false,\n    \"revisionLabel\": \"string\",\n    \"readyForCompletion\": true,\n    \"package\": {\n      \"isRoot\": true,\n      \"packageId\": \"67c55581-cd76-d7b1-53f2-90602795476b\",\n      \"parentPackageId\": \"b2d593f8-5f2d-6d70-dd05-daf4d1b8334d\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4659269c-6880-4dc2-9730-bf8d942feb45",
+              "name": "The specified file is empty",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "document",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "disassembleAlgorithmName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "presetDisassembleAlgorithm",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "value",
+                      "value": "{\"bilingualFileImportSetings\":{\"targetSubstitutionMode\":\"<int32>\",\"targetLanguageUsageMode\":\"<int32>\",\"lockMode\":\"<int32>\",\"confirmMode\":\"<int32>\",\"saveType\":\"<int32>\"},\"enablePlaceholders\":\"<boolean>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0ac795ec-68ec-4be6-882c-4b9539df6657",
+              "name": " Returns if:\n\r\n- At least one document is not associated with the account\r\n- The document update functionality is not enabled in the account\r\n- The document is assigned to a vendor who is not allowed to update documents in the assigned projects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "document",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "disassembleAlgorithmName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "presetDisassembleAlgorithm",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "value",
+                      "value": "{\"bilingualFileImportSetings\":{\"targetSubstitutionMode\":\"<int32>\",\"targetLanguageUsageMode\":\"<int32>\",\"lockMode\":\"<int32>\",\"confirmMode\":\"<int32>\",\"saveType\":\"<int32>\"},\"enablePlaceholders\":\"<boolean>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ebb4e6e1-e1a8-46ec-9c09-f21bdb0b1fd0",
+              "name": "The provided document ID does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "document",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "disassembleAlgorithmName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "presetDisassembleAlgorithm",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "value",
+                      "value": "{\"bilingualFileImportSetings\":{\"targetSubstitutionMode\":\"<int32>\",\"targetLanguageUsageMode\":\"<int32>\",\"lockMode\":\"<int32>\",\"confirmMode\":\"<int32>\",\"saveType\":\"<int32>\"},\"enablePlaceholders\":\"<boolean>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ee526e4-bea0-4051-8c4a-e240dba50a4d",
+          "name": "Rename the assigned document",
+          "request": {
+            "name": "Rename the assigned document",
+            "description": {
+              "content": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "document",
+                "rename"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "documentId",
+                  "value": "<string>",
+                  "description": "(Required) Document ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) New name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22c2de86-3b52-42f3-883e-fe805f7320e9",
+              "name": "The document has been successfully renamed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "rename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b2222ddf-4f87-4d14-a341-83488327e93b",
+              "name": "At least one document is not associated with the account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "rename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "330b17ef-b707-44e3-a547-01c6a8b71f37",
+              "name": "The provided document ID does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "rename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e5ad3a8-db73-4414-96bd-d4131300eba6",
+              "name": "The new name will not be unique in the project",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "rename"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aaf0c5f9-3ece-43b5-abdf-5566283803d0",
+          "name": "Update document meta info",
+          "request": {
+            "name": "Update document meta info",
+            "description": {
+              "content": "Document ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "document",
+                "updateMetaInfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "documentId",
+                  "value": "<string>",
+                  "description": "(Required) Document ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ec0d6ad2-2901-4132-a76a-9bf81990873c",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "updateMetaInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3b7570a6-8d1d-4db1-aa27-b54e4351bfb5",
+              "name": "Document meta info has been successfully updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "updateMetaInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d2c575b0-0695-4dae-89d1-ceee8085407f",
+              "name": "At least one document is not associated with the account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "updateMetaInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3ea83d1-52c4-49bb-843f-52f8b8c8824c",
+              "name": "The provided document ID does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "updateMetaInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd6d7aa2-b0e9-43e4-86af-c35e8bb39f46",
+          "name": "Translate the specified document using the specified translation file",
+          "request": {
+            "name": "Translate the specified document using the specified translation file",
+            "description": {
+              "content": "Available only for the file formats that support true updates (currently these are resource files with unique resource IDs) \n\r\nSets a task to processing. When the API call is completed, the translation might be not finished yet \n\r\nDocument ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "document",
+                "translate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "documentId",
+                  "value": "<string>",
+                  "description": "(Required) Document ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "overwrite",
+                  "value": "false",
+                  "description": "Specifies whether to overwrite the available translations"
+                },
+                {
+                  "disabled": false,
+                  "key": "confirmTranslation",
+                  "value": "false",
+                  "description": "Confirm updated segments"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "translationFile",
+                  "type": "file",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8033f8a9-d72f-4145-b99d-6212fbe6a956",
+              "name": "The operation has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "overwrite",
+                      "value": "false"
+                    },
+                    {
+                      "key": "confirmTranslation",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "translationFile",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "632f9af3-6445-4345-9b46-96b7eab9597f",
+              "name": "At least one document is not associated with the account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "overwrite",
+                      "value": "false"
+                    },
+                    {
+                      "key": "confirmTranslation",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "translationFile",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "894d9628-9231-4be5-ada1-90e9e68ce86f",
+              "name": "The provided document ID does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "translate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "overwrite",
+                      "value": "false"
+                    },
+                    {
+                      "key": "confirmTranslation",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "translationFile",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "008a547e-50db-4279-b9cf-f78f8becab16",
+          "name": "Import an XLIFF file with document translations",
+          "request": {
+            "name": "Import an XLIFF file with document translations",
+            "description": {
+              "content": "This method is available only for modified XLIFF files that were exported using the POST /api/integration/v1/document/export method. \n\r\nThe API call body can include one XLIFF file only. \n\r\nDocument ID is represented as `{documentId}_{languageId}`, \r\nwhere `{documentId}` identifies the document id in string format,\r\nand `{languageId}` identifies its target language in numeric format",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "document",
+                "translateWithXliff"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "documentId",
+                  "value": "<string>",
+                  "description": "(Required) ID of the document to update"
+                },
+                {
+                  "disabled": false,
+                  "key": "confirmTranslation",
+                  "value": "<boolean>",
+                  "description": "Confirm updated segments"
+                },
+                {
+                  "disabled": false,
+                  "key": "overwriteUpdatedSegments",
+                  "value": "<boolean>",
+                  "description": "Specifies whether to overwrite the segments that have been updated since the last export of the XLIFF file"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "translationFile",
+                  "value": "[\"<binary>\",\"<binary>\"]",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2eb41835-7c60-491e-b2fd-8e0da35dfc1a",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "translateWithXliff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "confirmTranslation",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "overwriteUpdatedSegments",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "translationFile",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "73df3dfd-17a9-4435-9a0b-4546e3a419b4",
+              "name": "The document is not associated with the account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "translateWithXliff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "confirmTranslation",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "overwriteUpdatedSegments",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "translationFile",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b77fcf43-1d80-47c5-af03-2118c176308f",
+              "name": "The provided document ID does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "translateWithXliff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "confirmTranslation",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "overwriteUpdatedSegments",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "translationFile",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7669,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "47533582-3a58-403d-9a7b-8ac8c5b574a7",
+    "name": "Smartcat Account Document API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

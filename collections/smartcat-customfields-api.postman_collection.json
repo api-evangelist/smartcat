@@ -1,0 +1,105 @@
+{
+  "item": [
+    {
+      "id": "91865102-6dbd-4b4a-a48c-0ef07b39de4a",
+      "name": "CustomFields",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1d6861a-2759-4a4b-83ab-f569f479e340",
+          "name": "Retrieves all custom fields defined for the current account.",
+          "request": {
+            "name": "Retrieves all custom fields defined for the current account.",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "custom-fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b697ad17-6814-4ea5-b32b-8cb67f2389aa",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "custom-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"internalId\": \"b998adad-e7d6-4b91-3329-9ff7e2b9be10\",\n    \"entityType\": \"tMUnit\",\n    \"label\": \"string\",\n    \"id\": \"string\",\n    \"isHidden\": false,\n    \"fieldType\": \"text\",\n    \"usagesCount\": 8826,\n    \"isVisibleToSuppliers\": false,\n    \"options\": [\n      {\n        \"key\": \"3366aaf4-230b-c8c2-2356-5d2da38f8162\",\n        \"value\": \"string\"\n      },\n      {\n        \"key\": \"656b6707-d488-dce3-ebcf-2c4878c454a6\",\n        \"value\": \"string\"\n      }\n    ]\n  },\n  {\n    \"internalId\": \"84aec0ab-2219-f7bd-2b15-f1fbca8447fb\",\n    \"entityType\": \"freelancer\",\n    \"label\": \"string\",\n    \"id\": \"string\",\n    \"isHidden\": true,\n    \"fieldType\": \"select\",\n    \"usagesCount\": 6004,\n    \"isVisibleToSuppliers\": false,\n    \"options\": [\n      {\n        \"key\": \"310f39b2-f668-0553-2c54-239c9dd6a2ce\",\n        \"value\": \"string\"\n      },\n      {\n        \"key\": \"36509ab0-f3d7-9fc7-78ca-5dccbf5ca6df\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1a60a214-b41c-45d2-8249-254777160f30",
+    "name": "Smartcat Account CustomFields API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

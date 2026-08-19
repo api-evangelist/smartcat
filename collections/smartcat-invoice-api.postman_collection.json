@@ -1,0 +1,1121 @@
+{
+  "item": [
+    {
+      "id": "05916e00-f53b-4e8f-bfdc-a49807217941",
+      "name": "Invoice",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5a4e90ea-8135-4bd1-99c1-824e96d41dd7",
+          "name": "Create payment to freelancer",
+          "request": {
+            "name": "Create payment to freelancer",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "invoice",
+                "job"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"freelancerId\": \"<uuid>\",\n  \"serviceType\": \"<string>\",\n  \"jobDescription\": \"<string>\",\n  \"unitsType\": \"<string>\",\n  \"unitsAmount\": \"<double>\",\n  \"pricePerUnit\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"externalNumber\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e4080070-8c9d-45c2-9e17-fd7158d189c5",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "invoice",
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"freelancerId\": \"<uuid>\",\n  \"serviceType\": \"<string>\",\n  \"jobDescription\": \"<string>\",\n  \"unitsType\": \"<string>\",\n  \"unitsAmount\": \"<double>\",\n  \"pricePerUnit\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"externalNumber\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f7294e6-49b3-4ab2-b24a-2ee6d31d4a00",
+              "name": "One or several query parameters are incorrect",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "invoice",
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"freelancerId\": \"<uuid>\",\n  \"serviceType\": \"<string>\",\n  \"jobDescription\": \"<string>\",\n  \"unitsType\": \"<string>\",\n  \"unitsAmount\": \"<double>\",\n  \"pricePerUnit\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"externalNumber\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83ce3f58-82e4-4c9a-8ff6-d6bae49be56a",
+          "name": "Create a payment",
+          "request": {
+            "name": "Create a payment",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "invoice",
+                "job"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"supplierEmail\": \"<string>\",\n  \"supplierName\": \"<string>\",\n  \"supplierType\": \"<int32>\",\n  \"serviceType\": \"<string>\",\n  \"jobDescription\": \"<string>\",\n  \"unitsType\": \"<string>\",\n  \"unitsAmount\": \"<double>\",\n  \"pricePerUnit\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"externalNumber\": \"<string>\",\n  \"payUntilDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2a8dfb2c-9ae8-42f2-bfaf-8317bfa9c8bd",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "invoice",
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplierEmail\": \"<string>\",\n  \"supplierName\": \"<string>\",\n  \"supplierType\": \"<int32>\",\n  \"serviceType\": \"<string>\",\n  \"jobDescription\": \"<string>\",\n  \"unitsType\": \"<string>\",\n  \"unitsAmount\": \"<double>\",\n  \"pricePerUnit\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"externalNumber\": \"<string>\",\n  \"payUntilDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8c02705-9368-4b2b-8b10-3bc4b1f64e06",
+              "name": "One or several query parameters are incorrect",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "invoice",
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplierEmail\": \"<string>\",\n  \"supplierName\": \"<string>\",\n  \"supplierType\": \"<int32>\",\n  \"serviceType\": \"<string>\",\n  \"jobDescription\": \"<string>\",\n  \"unitsType\": \"<string>\",\n  \"unitsAmount\": \"<double>\",\n  \"pricePerUnit\": \"<double>\",\n  \"currency\": \"<string>\",\n  \"externalNumber\": \"<string>\",\n  \"payUntilDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "503ccc81-6156-4d67-8dcb-00be63817b3d",
+          "name": "Create an array of freelancer payments",
+          "request": {
+            "name": "Create an array of freelancer payments",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "invoice",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"freelancerId\": \"<uuid>\",\n    \"serviceType\": \"<string>\",\n    \"jobDescription\": \"<string>\",\n    \"unitsType\": \"<string>\",\n    \"unitsAmount\": \"<double>\",\n    \"pricePerUnit\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"externalNumber\": \"<string>\"\n  },\n  {\n    \"freelancerId\": \"<uuid>\",\n    \"serviceType\": \"<string>\",\n    \"jobDescription\": \"<string>\",\n    \"unitsType\": \"<string>\",\n    \"unitsAmount\": \"<double>\",\n    \"pricePerUnit\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"externalNumber\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e3d7db48-7ed1-4c44-b5bb-0e2f92925d72",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "invoice",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"freelancerId\": \"<uuid>\",\n    \"serviceType\": \"<string>\",\n    \"jobDescription\": \"<string>\",\n    \"unitsType\": \"<string>\",\n    \"unitsAmount\": \"<double>\",\n    \"pricePerUnit\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"externalNumber\": \"<string>\"\n  },\n  {\n    \"freelancerId\": \"<uuid>\",\n    \"serviceType\": \"<string>\",\n    \"jobDescription\": \"<string>\",\n    \"unitsType\": \"<string>\",\n    \"unitsAmount\": \"<double>\",\n    \"pricePerUnit\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"externalNumber\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"status\": \"invitationPending\",\n    \"freelancerId\": \"0e40fd55-fd6a-11c4-f54c-5a2074528868\",\n    \"serviceType\": \"string\",\n    \"jobDescription\": \"string\",\n    \"unitsType\": \"string\",\n    \"unitsAmount\": 3393.054841773019,\n    \"pricePerUnit\": 4928.182374370352,\n    \"currency\": \"string\",\n    \"externalNumber\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"status\": \"paidToFreelancer\",\n    \"freelancerId\": \"f1fa4dfe-034a-0c9d-8907-ac2ebe716697\",\n    \"serviceType\": \"string\",\n    \"jobDescription\": \"string\",\n    \"unitsType\": \"string\",\n    \"unitsAmount\": 9661.774854636014,\n    \"pricePerUnit\": 3497.8689213926896,\n    \"currency\": \"string\",\n    \"externalNumber\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a25c3b4-947b-411a-afa0-ad9044d0bd4b",
+              "name": "Returns if one or several parameters in a provided job are incorrect",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "invoice",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"freelancerId\": \"<uuid>\",\n    \"serviceType\": \"<string>\",\n    \"jobDescription\": \"<string>\",\n    \"unitsType\": \"<string>\",\n    \"unitsAmount\": \"<double>\",\n    \"pricePerUnit\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"externalNumber\": \"<string>\"\n  },\n  {\n    \"freelancerId\": \"<uuid>\",\n    \"serviceType\": \"<string>\",\n    \"jobDescription\": \"<string>\",\n    \"unitsType\": \"<string>\",\n    \"unitsAmount\": \"<double>\",\n    \"pricePerUnit\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"externalNumber\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "461eb18d-3eae-4cd2-831e-19897f6ed2bf",
+          "name": "Create a payments array",
+          "request": {
+            "name": "Create a payments array",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "invoice",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"supplierEmail\": \"<string>\",\n    \"supplierName\": \"<string>\",\n    \"supplierType\": \"<int32>\",\n    \"serviceType\": \"<string>\",\n    \"jobDescription\": \"<string>\",\n    \"unitsType\": \"<string>\",\n    \"unitsAmount\": \"<double>\",\n    \"pricePerUnit\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"externalNumber\": \"<string>\",\n    \"payUntilDate\": \"<dateTime>\"\n  },\n  {\n    \"supplierEmail\": \"<string>\",\n    \"supplierName\": \"<string>\",\n    \"supplierType\": \"<int32>\",\n    \"serviceType\": \"<string>\",\n    \"jobDescription\": \"<string>\",\n    \"unitsType\": \"<string>\",\n    \"unitsAmount\": \"<double>\",\n    \"pricePerUnit\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"externalNumber\": \"<string>\",\n    \"payUntilDate\": \"<dateTime>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ca153348-148b-4c57-a2a3-800e774601b2",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "invoice",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"supplierEmail\": \"<string>\",\n    \"supplierName\": \"<string>\",\n    \"supplierType\": \"<int32>\",\n    \"serviceType\": \"<string>\",\n    \"jobDescription\": \"<string>\",\n    \"unitsType\": \"<string>\",\n    \"unitsAmount\": \"<double>\",\n    \"pricePerUnit\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"externalNumber\": \"<string>\",\n    \"payUntilDate\": \"<dateTime>\"\n  },\n  {\n    \"supplierEmail\": \"<string>\",\n    \"supplierName\": \"<string>\",\n    \"supplierType\": \"<int32>\",\n    \"serviceType\": \"<string>\",\n    \"jobDescription\": \"<string>\",\n    \"unitsType\": \"<string>\",\n    \"unitsAmount\": \"<double>\",\n    \"pricePerUnit\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"externalNumber\": \"<string>\",\n    \"payUntilDate\": \"<dateTime>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"invoiceNumber\": \"string\",\n    \"supplierEmail\": \"string\",\n    \"supplierName\": \"string\",\n    \"supplierType\": \"<int32>\",\n    \"serviceType\": \"string\",\n    \"jobDescription\": \"string\",\n    \"unitsType\": \"string\",\n    \"unitsAmount\": 1583.352308840158,\n    \"pricePerUnit\": 4103.108404508552,\n    \"currency\": \"string\",\n    \"cost\": 6718.021556234813,\n    \"externalNumber\": \"string\",\n    \"supplierId\": \"a19a4787-9489-f2a1-8466-e1a670a5d202\",\n    \"status\": \"verified\",\n    \"projectId\": \"a758f28e-04d3-fbce-ac4c-e6fcf38f7e8b\",\n    \"sourceLanguage\": \"string\",\n    \"targetLanguage\": \"string\",\n    \"customFields\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"invoiceNumber\": \"string\",\n    \"supplierEmail\": \"string\",\n    \"supplierName\": \"string\",\n    \"supplierType\": \"<int32>\",\n    \"serviceType\": \"string\",\n    \"jobDescription\": \"string\",\n    \"unitsType\": \"string\",\n    \"unitsAmount\": 677.7644899464264,\n    \"pricePerUnit\": 4173.717743085208,\n    \"currency\": \"string\",\n    \"cost\": 7115.609311793249,\n    \"externalNumber\": \"string\",\n    \"supplierId\": \"acd49446-fba1-2307-ba6f-d9153b9676d2\",\n    \"status\": \"markedAsPaid\",\n    \"projectId\": \"0a2e54f5-9868-965e-e61b-6d7d1c5e0d3e\",\n    \"sourceLanguage\": \"string\",\n    \"targetLanguage\": \"string\",\n    \"customFields\": {\n      \"key_0\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8fdc4d4-b47e-4fc4-a5d2-128d45c8cbb8",
+              "name": "Returns if one or several parameters in a provided job are incorrect",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "invoice",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"supplierEmail\": \"<string>\",\n    \"supplierName\": \"<string>\",\n    \"supplierType\": \"<int32>\",\n    \"serviceType\": \"<string>\",\n    \"jobDescription\": \"<string>\",\n    \"unitsType\": \"<string>\",\n    \"unitsAmount\": \"<double>\",\n    \"pricePerUnit\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"externalNumber\": \"<string>\",\n    \"payUntilDate\": \"<dateTime>\"\n  },\n  {\n    \"supplierEmail\": \"<string>\",\n    \"supplierName\": \"<string>\",\n    \"supplierType\": \"<int32>\",\n    \"serviceType\": \"<string>\",\n    \"jobDescription\": \"<string>\",\n    \"unitsType\": \"<string>\",\n    \"unitsAmount\": \"<double>\",\n    \"pricePerUnit\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"externalNumber\": \"<string>\",\n    \"payUntilDate\": \"<dateTime>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dedc11b0-6653-4495-8f77-5b9dc25f28c6",
+          "name": "Fetch an array of freelancer payments by ID",
+          "request": {
+            "name": "Fetch an array of freelancer payments by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "invoice",
+                "job",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalIds",
+                  "value": "<string>",
+                  "description": "(Required) External payment IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "externalIds",
+                  "value": "<string>",
+                  "description": "(Required) External payment IDs"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "09b41b77-ac62-4fb2-bf6f-e38f2b50188f",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "invoice",
+                    "job",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"status\": \"invitationPending\",\n    \"freelancerId\": \"0e40fd55-fd6a-11c4-f54c-5a2074528868\",\n    \"serviceType\": \"string\",\n    \"jobDescription\": \"string\",\n    \"unitsType\": \"string\",\n    \"unitsAmount\": 3393.054841773019,\n    \"pricePerUnit\": 4928.182374370352,\n    \"currency\": \"string\",\n    \"externalNumber\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"status\": \"paidToFreelancer\",\n    \"freelancerId\": \"f1fa4dfe-034a-0c9d-8907-ac2ebe716697\",\n    \"serviceType\": \"string\",\n    \"jobDescription\": \"string\",\n    \"unitsType\": \"string\",\n    \"unitsAmount\": 9661.774854636014,\n    \"pricePerUnit\": 3497.8689213926896,\n    \"currency\": \"string\",\n    \"externalNumber\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d792397a-59f5-40b7-9c8f-db030dc4310c",
+          "name": "Fetch an array of payments by ID",
+          "request": {
+            "name": "Fetch an array of payments by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "invoice",
+                "job",
+                "listByExternalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalIds",
+                  "value": "<string>",
+                  "description": "(Required) External payment ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "externalIds",
+                  "value": "<string>",
+                  "description": "(Required) External payment ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e2c4b50-c088-4e30-a97c-6bc0530efbc2",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "invoice",
+                    "job",
+                    "listByExternalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "externalIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"invoiceNumber\": \"string\",\n    \"supplierEmail\": \"string\",\n    \"supplierName\": \"string\",\n    \"supplierType\": \"<int32>\",\n    \"serviceType\": \"string\",\n    \"jobDescription\": \"string\",\n    \"unitsType\": \"string\",\n    \"unitsAmount\": 1583.352308840158,\n    \"pricePerUnit\": 4103.108404508552,\n    \"currency\": \"string\",\n    \"cost\": 6718.021556234813,\n    \"externalNumber\": \"string\",\n    \"supplierId\": \"a19a4787-9489-f2a1-8466-e1a670a5d202\",\n    \"status\": \"verified\",\n    \"projectId\": \"a758f28e-04d3-fbce-ac4c-e6fcf38f7e8b\",\n    \"sourceLanguage\": \"string\",\n    \"targetLanguage\": \"string\",\n    \"customFields\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"invoiceNumber\": \"string\",\n    \"supplierEmail\": \"string\",\n    \"supplierName\": \"string\",\n    \"supplierType\": \"<int32>\",\n    \"serviceType\": \"string\",\n    \"jobDescription\": \"string\",\n    \"unitsType\": \"string\",\n    \"unitsAmount\": 677.7644899464264,\n    \"pricePerUnit\": 4173.717743085208,\n    \"currency\": \"string\",\n    \"cost\": 7115.609311793249,\n    \"externalNumber\": \"string\",\n    \"supplierId\": \"acd49446-fba1-2307-ba6f-d9153b9676d2\",\n    \"status\": \"markedAsPaid\",\n    \"projectId\": \"0a2e54f5-9868-965e-e61b-6d7d1c5e0d3e\",\n    \"sourceLanguage\": \"string\",\n    \"targetLanguage\": \"string\",\n    \"customFields\": {\n      \"key_0\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "832a0b3f-1352-4f2e-8e83-70e5ac129afd",
+          "name": "Fetch an array of jobs by creation date",
+          "request": {
+            "name": "Fetch an array of jobs by creation date",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "invoice",
+                "job",
+                "listByCreatedDate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dateCreatedFrom",
+                  "value": "<dateTime>",
+                  "description": "(Required) Fetch the jobs created after the specified date"
+                },
+                {
+                  "disabled": false,
+                  "key": "dateCreatedTo",
+                  "value": "<dateTime>",
+                  "description": "(Required) Fetch the jobs created before the specified date"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of skipped items"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum returned items (not more than 500)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "12e643ef-a0b1-4aee-be74-1610cdca00ea",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "invoice",
+                    "job",
+                    "listByCreatedDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateCreatedFrom",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "dateCreatedTo",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"invoiceNumber\": \"string\",\n    \"supplierEmail\": \"string\",\n    \"supplierName\": \"string\",\n    \"supplierType\": \"<int32>\",\n    \"serviceType\": \"string\",\n    \"jobDescription\": \"string\",\n    \"unitsType\": \"string\",\n    \"unitsAmount\": 1583.352308840158,\n    \"pricePerUnit\": 4103.108404508552,\n    \"currency\": \"string\",\n    \"cost\": 6718.021556234813,\n    \"externalNumber\": \"string\",\n    \"supplierId\": \"a19a4787-9489-f2a1-8466-e1a670a5d202\",\n    \"status\": \"verified\",\n    \"projectId\": \"a758f28e-04d3-fbce-ac4c-e6fcf38f7e8b\",\n    \"sourceLanguage\": \"string\",\n    \"targetLanguage\": \"string\",\n    \"customFields\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"invoiceNumber\": \"string\",\n    \"supplierEmail\": \"string\",\n    \"supplierName\": \"string\",\n    \"supplierType\": \"<int32>\",\n    \"serviceType\": \"string\",\n    \"jobDescription\": \"string\",\n    \"unitsType\": \"string\",\n    \"unitsAmount\": 677.7644899464264,\n    \"pricePerUnit\": 4173.717743085208,\n    \"currency\": \"string\",\n    \"cost\": 7115.609311793249,\n    \"externalNumber\": \"string\",\n    \"supplierId\": \"acd49446-fba1-2307-ba6f-d9153b9676d2\",\n    \"status\": \"markedAsPaid\",\n    \"projectId\": \"0a2e54f5-9868-965e-e61b-6d7d1c5e0d3e\",\n    \"sourceLanguage\": \"string\",\n    \"targetLanguage\": \"string\",\n    \"customFields\": {\n      \"key_0\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e6b1810c-0868-49be-9f73-68afcdca8976",
+          "name": "Fetch a list of invoices created within the specified period",
+          "request": {
+            "name": "Fetch a list of invoices created within the specified period",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "invoice",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dateCreatedFrom",
+                  "value": "<dateTime>",
+                  "description": "(Required) Period start (inclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "dateCreatedTo",
+                  "value": "<dateTime>",
+                  "description": "(Required) Period end (inclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum returned items (not more than 10)"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of skipped items"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5035006c-86b9-4473-9bb0-44d7317b60de",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "invoice",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateCreatedFrom",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "dateCreatedTo",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"number\": \"string\",\n    \"currency\": \"string\",\n    \"cost\": 3368.047978268239,\n    \"date\": \"1975-04-05T14:57:22.394Z\",\n    \"status\": \"cancelled\",\n    \"payerRequisites\": {\n      \"name\": \"string\",\n      \"contactPerson\": \"string\",\n      \"vat\": \"string\",\n      \"legalAddress\": \"string\",\n      \"country\": \"string\"\n    },\n    \"payeeRequisites\": {\n      \"registrationNumber\": \"string\",\n      \"beneficiary\": \"string\",\n      \"bankName\": \"string\",\n      \"bankAddress\": \"string\",\n      \"bankCode\": \"string\",\n      \"swift\": \"string\",\n      \"bankAccount\": \"string\",\n      \"achRoutingNumber\": \"string\",\n      \"wireRoutingNumber\": \"string\",\n      \"transitNumber\": \"string\",\n      \"bankCorrAccount\": \"string\",\n      \"bankCorrBankEn\": \"string\",\n      \"bankCorrBankRu\": \"string\",\n      \"iban\": \"string\",\n      \"kpp\": \"string\",\n      \"bic\": \"string\",\n      \"name\": \"string\",\n      \"contactPerson\": \"string\",\n      \"vat\": \"string\",\n      \"legalAddress\": \"string\",\n      \"country\": \"string\"\n    },\n    \"jobs\": [\n      {\n        \"id\": \"string\",\n        \"invoiceNumber\": \"string\",\n        \"supplierEmail\": \"string\",\n        \"supplierName\": \"string\",\n        \"supplierType\": \"<int32>\",\n        \"serviceType\": \"string\",\n        \"jobDescription\": \"string\",\n        \"unitsType\": \"string\",\n        \"unitsAmount\": 9120.22047155223,\n        \"pricePerUnit\": 3704.1495710216245,\n        \"currency\": \"string\",\n        \"cost\": 6596.963545287785,\n        \"externalNumber\": \"string\",\n        \"supplierId\": \"c1f62bd9-a4de-6572-2cfa-ff4c46dbf8dc\",\n        \"status\": \"invitationDeclined\",\n        \"projectId\": \"49413604-3f8b-6c7b-2d83-7a0ce72831f2\",\n        \"sourceLanguage\": \"string\",\n        \"targetLanguage\": \"string\",\n        \"customFields\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"invoiceNumber\": \"string\",\n        \"supplierEmail\": \"string\",\n        \"supplierName\": \"string\",\n        \"supplierType\": \"<int32>\",\n        \"serviceType\": \"string\",\n        \"jobDescription\": \"string\",\n        \"unitsType\": \"string\",\n        \"unitsAmount\": 677.9759499540417,\n        \"pricePerUnit\": 4520.5319786940445,\n        \"currency\": \"string\",\n        \"cost\": 6097.063565568659,\n        \"externalNumber\": \"string\",\n        \"supplierId\": \"8252cf23-37f9-a707-e82f-19cccd6c7c26\",\n        \"status\": \"invitationCanceled\",\n        \"projectId\": \"98a31b3b-c074-c722-1af8-e1e3665c0189\",\n        \"sourceLanguage\": \"string\",\n        \"targetLanguage\": \"string\",\n        \"customFields\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      }\n    ]\n  },\n  {\n    \"number\": \"string\",\n    \"currency\": \"string\",\n    \"cost\": 3165.08725986551,\n    \"date\": \"1978-02-07T19:20:15.260Z\",\n    \"status\": \"sent\",\n    \"payerRequisites\": {\n      \"name\": \"string\",\n      \"contactPerson\": \"string\",\n      \"vat\": \"string\",\n      \"legalAddress\": \"string\",\n      \"country\": \"string\"\n    },\n    \"payeeRequisites\": {\n      \"registrationNumber\": \"string\",\n      \"beneficiary\": \"string\",\n      \"bankName\": \"string\",\n      \"bankAddress\": \"string\",\n      \"bankCode\": \"string\",\n      \"swift\": \"string\",\n      \"bankAccount\": \"string\",\n      \"achRoutingNumber\": \"string\",\n      \"wireRoutingNumber\": \"string\",\n      \"transitNumber\": \"string\",\n      \"bankCorrAccount\": \"string\",\n      \"bankCorrBankEn\": \"string\",\n      \"bankCorrBankRu\": \"string\",\n      \"iban\": \"string\",\n      \"kpp\": \"string\",\n      \"bic\": \"string\",\n      \"name\": \"string\",\n      \"contactPerson\": \"string\",\n      \"vat\": \"string\",\n      \"legalAddress\": \"string\",\n      \"country\": \"string\"\n    },\n    \"jobs\": [\n      {\n        \"id\": \"string\",\n        \"invoiceNumber\": \"string\",\n        \"supplierEmail\": \"string\",\n        \"supplierName\": \"string\",\n        \"supplierType\": \"<int32>\",\n        \"serviceType\": \"string\",\n        \"jobDescription\": \"string\",\n        \"unitsType\": \"string\",\n        \"unitsAmount\": 746.010503004837,\n        \"pricePerUnit\": 7181.030725546015,\n        \"currency\": \"string\",\n        \"cost\": 9777.305336516069,\n        \"externalNumber\": \"string\",\n        \"supplierId\": \"3dbc59d2-6459-95df-691f-3e9a1c8ef786\",\n        \"status\": \"paidByCustomer\",\n        \"projectId\": \"aaec6762-3b84-b021-49d0-5755588e6066\",\n        \"sourceLanguage\": \"string\",\n        \"targetLanguage\": \"string\",\n        \"customFields\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"invoiceNumber\": \"string\",\n        \"supplierEmail\": \"string\",\n        \"supplierName\": \"string\",\n        \"supplierType\": \"<int32>\",\n        \"serviceType\": \"string\",\n        \"jobDescription\": \"string\",\n        \"unitsType\": \"string\",\n        \"unitsAmount\": 1124.6157304923154,\n        \"pricePerUnit\": 3445.368077862071,\n        \"currency\": \"string\",\n        \"cost\": 5718.300282774659,\n        \"externalNumber\": \"string\",\n        \"supplierId\": \"e7e528b6-511f-03d8-e61f-10f515c5f0a1\",\n        \"status\": \"verified\",\n        \"projectId\": \"072a93d9-46bc-3b32-ca72-7ea9cde57b67\",\n        \"sourceLanguage\": \"string\",\n        \"targetLanguage\": \"string\",\n        \"customFields\": {\n          \"key_0\": \"string\"\n        }\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c0b25de-bda5-4a4f-8a98-b9c3185178a5",
+          "name": "Fetch a list of agent invoices",
+          "request": {
+            "name": "Fetch a list of agent invoices",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "client-agent-invoice",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dateFrom",
+                  "value": "<dateTime>",
+                  "description": "Period start (inclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "dateTo",
+                  "value": "<dateTime>",
+                  "description": "Period end (inclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Limit"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "354a5ef8-19b7-4ba0-93c3-0fe3fcda91c7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "client-agent-invoice",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateFrom",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"number\": \"string\",\n    \"externalNumber\": \"string\",\n    \"payerLegalName\": \"string\",\n    \"payerVat\": \"string\",\n    \"payerKpp\": \"string\",\n    \"status\": \"string\",\n    \"dateCreated\": \"1971-07-05T14:15:28.757Z\",\n    \"datePaid\": \"1957-10-01T06:49:07.980Z\",\n    \"dueDate\": \"1947-02-25T22:54:41.140Z\",\n    \"jobs\": [\n      {\n        \"name\": \"string\",\n        \"projectId\": \"66f861eb-4a9b-d6bb-6990-739d5633bda9\",\n        \"description\": \"string\",\n        \"originalCost\": 5377.101394532781,\n        \"convertedCost\": 7818.10666878683,\n        \"originalCurrency\": \"string\",\n        \"sourceLanguage\": \"string\",\n        \"targetLanguage\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"projectId\": \"3356e04d-f5ae-1702-f147-59869ab945db\",\n        \"description\": \"string\",\n        \"originalCost\": 3932.0941477114848,\n        \"convertedCost\": 6553.6337956213865,\n        \"originalCurrency\": \"string\",\n        \"sourceLanguage\": \"string\",\n        \"targetLanguage\": \"string\"\n      }\n    ],\n    \"currency\": \"string\",\n    \"totalCost\": 8824.469832915147,\n    \"isInternalClient\": true,\n    \"paymentDestination\": \"externalBankAccount\",\n    \"bankRequisites\": {\n      \"bankName\": \"string\",\n      \"bankAddress\": \"string\",\n      \"bic\": \"string\",\n      \"swift\": \"string\",\n      \"bankCorrAccount\": \"string\",\n      \"bankAccount\": \"string\",\n      \"currency\": \"string\"\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"number\": \"string\",\n    \"externalNumber\": \"string\",\n    \"payerLegalName\": \"string\",\n    \"payerVat\": \"string\",\n    \"payerKpp\": \"string\",\n    \"status\": \"string\",\n    \"dateCreated\": \"2005-02-20T06:15:32.188Z\",\n    \"datePaid\": \"1958-09-17T10:49:23.590Z\",\n    \"dueDate\": \"1966-10-15T03:31:33.923Z\",\n    \"jobs\": [\n      {\n        \"name\": \"string\",\n        \"projectId\": \"d8882984-4143-974c-a90f-5a25f93c64c6\",\n        \"description\": \"string\",\n        \"originalCost\": 1148.007993480935,\n        \"convertedCost\": 6370.9474110540805,\n        \"originalCurrency\": \"string\",\n        \"sourceLanguage\": \"string\",\n        \"targetLanguage\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"projectId\": \"36867c88-d2a2-dd74-2716-39f7abfc7bcc\",\n        \"description\": \"string\",\n        \"originalCost\": 5137.627968053384,\n        \"convertedCost\": 3449.7650509098967,\n        \"originalCurrency\": \"string\",\n        \"sourceLanguage\": \"string\",\n        \"targetLanguage\": \"string\"\n      }\n    ],\n    \"currency\": \"string\",\n    \"totalCost\": 3010.752924716419,\n    \"isInternalClient\": false,\n    \"paymentDestination\": \"balance\",\n    \"bankRequisites\": {\n      \"bankName\": \"string\",\n      \"bankAddress\": \"string\",\n      \"bic\": \"string\",\n      \"swift\": \"string\",\n      \"bankCorrAccount\": \"string\",\n      \"bankAccount\": \"string\",\n      \"currency\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8c93dab9-2dda-43e1-9180-f167c37dacc0",
+    "name": "Smartcat Account Invoice API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

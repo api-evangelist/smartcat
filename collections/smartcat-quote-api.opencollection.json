@@ -1,0 +1,186 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account Quote API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Quote",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch information about the project quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/Quote/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ]
+          },
+          "docs": "Fetch information about the project quote"
+        },
+        {
+          "info": {
+            "name": "Fetch information about the project quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/Quote/ByVendor/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ]
+          },
+          "docs": "Fetch information about the project quote"
+        },
+        {
+          "info": {
+            "name": "Fetch a list of quotes by a list of projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/Quote/ListByProjectIds",
+            "params": [
+              {
+                "name": "projectIds",
+                "value": "",
+                "type": "query",
+                "description": "List of projects"
+              }
+            ]
+          },
+          "docs": "Fetch a list of quotes by a list of projects"
+        },
+        {
+          "info": {
+            "name": "Fetch the list of quotes for the current account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/Quote/List"
+          },
+          "docs": "Fetch the list of quotes for the current account"
+        },
+        {
+          "info": {
+            "name": "Update information on the project quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/Quote/Update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update information on the project quote"
+        },
+        {
+          "info": {
+            "name": "Upload a project quote details file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/Quote/:id/Upload",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a project quote details file"
+        },
+        {
+          "info": {
+            "name": "Approve a quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/Quote/:id/Approve",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Project quote ID"
+              }
+            ]
+          },
+          "docs": "Approve a quote"
+        },
+        {
+          "info": {
+            "name": "Mark the quote as paid",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/Quote/:id/MarkAsPaid",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Project quote ID"
+              }
+            ]
+          },
+          "docs": "Mark the quote as paid"
+        },
+        {
+          "info": {
+            "name": "Download a cost calculation file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/Quote/:id/File",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Quote ID"
+              }
+            ]
+          },
+          "docs": "Download a cost calculation file"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

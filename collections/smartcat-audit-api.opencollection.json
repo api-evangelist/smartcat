@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account Audit API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Audit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch audit logs with given filter parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/audit/logs",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Fetch audit logs starting from this date and time"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "Fetch audit logs until this date and time"
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Number of the page. Starts from 1"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Size of the page. Available range: 1 - 5000"
+              }
+            ]
+          },
+          "docs": "Fetch audit logs with given filter parameters"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,318 @@
+{
+  "item": [
+    {
+      "id": "a664cfd0-6d6d-4b16-a3a7-2d0a22d6d0f8",
+      "name": "SegmentConfirmationStatistics",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7ecb41da-0837-433b-b7a8-a05d25cb841e",
+          "name": "Fetch segment confirmation statistics",
+          "request": {
+            "name": "Fetch segment confirmation statistics",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "segment-confirmation-statistics",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "The period starting date (inclusive) for which statistics are requested. If not specified, this argument is not applicable"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "The period end date (inclusive) for which statistics are requested. If not specified, this argument is not applicable"
+                },
+                {
+                  "disabled": false,
+                  "key": "documentId",
+                  "value": "<string>",
+                  "description": "Document ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "targetLanguage",
+                  "value": "<string>",
+                  "description": "Target language code"
+                },
+                {
+                  "disabled": false,
+                  "key": "accountUserId",
+                  "value": "<string>",
+                  "description": "ID of the supplier (user) in the account. If not specified, include all suppliers"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7f51dd63-d36b-4187-8e8c-9194b51587a2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "segment-confirmation-statistics",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "targetLanguage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accountUserId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"accountId\": \"52605407-e090-4118-1cd1-7dc90cfc8513\",\n    \"accountUserId\": \"string\",\n    \"date\": \"1948-04-28T16:49:35.710Z\",\n    \"documentId\": \"string\",\n    \"language\": \"string\",\n    \"projectId\": \"3ffc2c47-e826-ec65-6a34-c092a6dfb96f\",\n    \"wordcounts\": {\n      \"repetitions\": 8692,\n      \"crossDocumentRepetitions\": 5461,\n      \"mt\": 189,\n      \"externalSource\": 4623,\n      \"confirmedWithoutAnySource\": 8709,\n      \"tmMatches\": {\n        \"key_0\": 2907,\n        \"key_1\": 384\n      }\n    },\n    \"vendorAccountId\": \"a8dc1117-e1a5-46d1-e6bc-a514b44695cd\",\n    \"externalTag\": \"string\",\n    \"stageType\": \"proofreading\",\n    \"jobId\": \"string\",\n    \"changeStamp\": \"62454b51-78cf-74a9-e3f4-216fa766d4e9\",\n    \"isConfirmedByPretranslate\": true\n  },\n  {\n    \"accountId\": \"8589c111-d274-c8ca-20b0-ddf64389c221\",\n    \"accountUserId\": \"string\",\n    \"date\": \"1950-07-26T07:47:33.280Z\",\n    \"documentId\": \"string\",\n    \"language\": \"string\",\n    \"projectId\": \"ca5e7886-f191-e0f6-949a-5dcf2ac6a0d8\",\n    \"wordcounts\": {\n      \"repetitions\": 6575,\n      \"crossDocumentRepetitions\": 7153,\n      \"mt\": 8263,\n      \"externalSource\": 7767,\n      \"confirmedWithoutAnySource\": 4445,\n      \"tmMatches\": {\n        \"key_0\": 1900\n      }\n    },\n    \"vendorAccountId\": \"66b48e70-985a-c7be-4469-59ed97d405c6\",\n    \"externalTag\": \"string\",\n    \"stageType\": \"sourceReview\",\n    \"jobId\": \"string\",\n    \"changeStamp\": \"e53dc829-ddba-9e26-0af0-cb9447eff295\",\n    \"isConfirmedByPretranslate\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a775aefd-4760-476f-a2f5-23c256895ca3",
+          "name": "Fetch segment confirmation statistics",
+          "request": {
+            "name": "Fetch segment confirmation statistics",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "segment-confirmation-statistics",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "The period starting date for which statistics are requested. If not specified, this argument is not applicable"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "The period end date for which statistics are requested. If not specified, this argument is not applicable"
+                },
+                {
+                  "disabled": false,
+                  "key": "documentId",
+                  "value": "<string>",
+                  "description": "Document ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "targetLanguage",
+                  "value": "<string>",
+                  "description": "Target language code"
+                },
+                {
+                  "disabled": false,
+                  "key": "userId",
+                  "value": "<string>",
+                  "description": "ID of the supplier (user). If not specified, include all suppliers"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) Project ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "173af867-e501-4b13-a58f-b8aa5d2fd309",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "segment-confirmation-statistics",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "documentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "targetLanguage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) Project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"accountId\": \"91f6ef98-634a-483f-da3c-dac566f3bc59\",\n    \"date\": \"2011-01-25T05:15:08.793Z\",\n    \"documentId\": \"string\",\n    \"language\": \"string\",\n    \"projectId\": \"c1751fd7-44af-4a43-d16b-6e23efa9d2f8\",\n    \"userId\": \"string\",\n    \"wordcounts\": {\n      \"repetitions\": 3060,\n      \"crossDocumentRepetitions\": 1939,\n      \"mt\": 1812,\n      \"externalSource\": 1264,\n      \"confirmedWithoutAnySource\": 2814,\n      \"tmMatches\": {\n        \"key_0\": 5092,\n        \"key_1\": 8614,\n        \"key_2\": 6680\n      }\n    },\n    \"vendorAccountId\": \"fdda8989-c6ee-09a1-2fb4-79e6d10450d8\",\n    \"externalTag\": \"string\",\n    \"stageType\": \"lQAReview\",\n    \"jobId\": \"string\",\n    \"changeStamp\": \"a37cad87-5d54-fd9d-2467-3f7ab52486ba\",\n    \"isConfirmedByPretranslate\": true\n  },\n  {\n    \"accountId\": \"0b04285d-e650-2b99-6152-a34f4ae20b45\",\n    \"date\": \"2021-03-20T22:52:14.696Z\",\n    \"documentId\": \"string\",\n    \"language\": \"string\",\n    \"projectId\": \"bf6284da-36cb-02d0-2a80-65de37c48435\",\n    \"userId\": \"string\",\n    \"wordcounts\": {\n      \"repetitions\": 8306,\n      \"crossDocumentRepetitions\": 6421,\n      \"mt\": 7258,\n      \"externalSource\": 5144,\n      \"confirmedWithoutAnySource\": 8645,\n      \"tmMatches\": {\n        \"key_0\": 405,\n        \"key_1\": 3498\n      }\n    },\n    \"vendorAccountId\": \"d8c5a989-fc78-da8a-c718-27898c5d1648\",\n    \"externalTag\": \"string\",\n    \"stageType\": \"notarization\",\n    \"jobId\": \"string\",\n    \"changeStamp\": \"2df76962-f297-fba9-15b1-b2b9931e0b14\",\n    \"isConfirmedByPretranslate\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4ba1d293-3379-4c97-b838-80e8ea2927fb",
+    "name": "Smartcat Account SegmentConfirmationStatistics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

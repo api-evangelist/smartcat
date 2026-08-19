@@ -1,0 +1,143 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account Glossary API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Glossary",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch glossaries from the current account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/glossaries"
+          },
+          "docs": "Fetch glossaries from the current account"
+        },
+        {
+          "info": {
+            "name": "Fetch default glossary from the current account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/glossaries/default"
+          },
+          "docs": "Fetch default glossary from the current account"
+        },
+        {
+          "info": {
+            "name": "Create a task for importing concepts from a glossary file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/glossary/import",
+            "params": [
+              {
+                "name": "glossaryId",
+                "value": "",
+                "type": "query",
+                "description": "Glossary ID"
+              },
+              {
+                "name": "clearBeforeImport",
+                "value": "",
+                "type": "query",
+                "description": "Specifies whether to delete all glossary concepts before the import"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Create a task for importing concepts from a glossary file"
+        },
+        {
+          "info": {
+            "name": "Fetch the status of a concept import task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/glossary/importTaskState/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "Concept import task ID"
+              }
+            ]
+          },
+          "docs": "Fetch the status of a concept import task"
+        },
+        {
+          "info": {
+            "name": "Create a task for export the glossary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/glossary/export",
+            "params": [
+              {
+                "name": "glossaryId",
+                "value": "",
+                "type": "query",
+                "description": "Glossary ID"
+              }
+            ]
+          },
+          "docs": "Create a task for export the glossary"
+        },
+        {
+          "info": {
+            "name": "Get the list of pending export glossary tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/glossary/export/pendingTasks"
+          },
+          "docs": "Get the list of pending export glossary tasks"
+        },
+        {
+          "info": {
+            "name": "Download the glossary export task result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/glossary/export/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "Export task ID"
+              }
+            ]
+          },
+          "docs": "Download the glossary export task result"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

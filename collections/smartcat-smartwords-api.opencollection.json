@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account Smartwords API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Smartwords",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch the current Smartwords balance of the workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/smartwords/balance"
+          },
+          "docs": "Fetch the current Smartwords balance of the workspace"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

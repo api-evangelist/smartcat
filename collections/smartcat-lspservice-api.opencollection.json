@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account LspService API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "LspService",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete an LSP service",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/integration/v1/lsp/services/:serviceId",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path",
+                "description": "Service ID"
+              }
+            ]
+          },
+          "docs": "Delete an LSP service"
+        },
+        {
+          "info": {
+            "name": "Fetch LSP services by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v2/lsp/services",
+            "params": [
+              {
+                "name": "serviceIds",
+                "value": "",
+                "type": "query",
+                "description": "List of service IDs"
+              }
+            ]
+          },
+          "docs": "Fetch LSP services by ID"
+        },
+        {
+          "info": {
+            "name": "Create a new LSP service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v2/lsp/services",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new LSP service"
+        },
+        {
+          "info": {
+            "name": "Fetch LSP services",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v2/lsp/services/batch",
+            "params": [
+              {
+                "name": "lastServiceId",
+                "value": "",
+                "type": "query",
+                "description": "Fetch the list of services starting from the ID that follows the specified ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The required number of results (the default is 100)"
+              }
+            ]
+          },
+          "docs": "Fetch LSP services"
+        },
+        {
+          "info": {
+            "name": "Create new LSP services",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v2/lsp/services/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new LSP services"
+        },
+        {
+          "info": {
+            "name": "Update an existing LSP service",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v2/lsp/services/:serviceId",
+            "params": [
+              {
+                "name": "serviceId",
+                "value": "",
+                "type": "path",
+                "description": "Service ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing LSP service"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

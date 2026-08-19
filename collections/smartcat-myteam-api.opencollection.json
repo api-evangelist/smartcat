@@ -1,0 +1,174 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account MyTeam API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "MyTeam",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch a MyTeam member model by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/account/myTeam/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User ID"
+              }
+            ]
+          },
+          "docs": "Fetch a MyTeam member model by ID"
+        },
+        {
+          "info": {
+            "name": "Delete the user from MyTeam",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/integration/v1/account/myTeam/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User ID"
+              }
+            ]
+          },
+          "docs": "Delete the user from MyTeam"
+        },
+        {
+          "info": {
+            "name": "Fetch a MyTeam member model by external ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/account/myTeam",
+            "params": [
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "query",
+                "description": "User external ID"
+              }
+            ]
+          },
+          "docs": "Fetch a MyTeam member model by external ID"
+        },
+        {
+          "info": {
+            "name": "Add an in-house translator to MyTeam as a linguist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/account/myTeam",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add an in-house translator to MyTeam as a linguist"
+        },
+        {
+          "info": {
+            "name": "Search for linguists in MyTeam",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/account/searchMyTeam",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search for linguists in MyTeam"
+        },
+        {
+          "info": {
+            "name": "Replace all services in a MyTeam profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/account/myTeam/:userId/services/replace",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace all services in a MyTeam profile"
+        },
+        {
+          "info": {
+            "name": "Add a MyTeam member's phone number",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/account/myTeam/:userId/phone",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a MyTeam member's phone number"
+        },
+        {
+          "info": {
+            "name": "Add a comment to a MyTeam member profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/account/myTeam/:userId/comment",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a comment to a MyTeam member profile"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

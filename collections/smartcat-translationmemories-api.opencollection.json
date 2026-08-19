@@ -1,0 +1,268 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account TranslationMemories API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TranslationMemories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch information about the TM",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/translationmemory/:tmId",
+            "params": [
+              {
+                "name": "tmId",
+                "value": "",
+                "type": "path",
+                "description": "TM ID"
+              }
+            ]
+          },
+          "docs": "Fetch information about the TM"
+        },
+        {
+          "info": {
+            "name": "Import TMX files to a TM",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/translationmemory/:tmId",
+            "params": [
+              {
+                "name": "tmId",
+                "value": "",
+                "type": "path",
+                "description": "TM ID"
+              },
+              {
+                "name": "replaceAllContent",
+                "value": "",
+                "type": "query",
+                "description": "Complete replacement of the TM contents is required"
+              },
+              {
+                "name": "assuranceLevel",
+                "value": "",
+                "type": "query",
+                "description": "Translation assurance level. Calculated based on the document editing stage at which the TM unit was saved."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "tmxFile",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Import TMX files to a TM"
+        },
+        {
+          "info": {
+            "name": "Delete a TM",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/integration/v1/translationmemory/:tmId",
+            "params": [
+              {
+                "name": "tmId",
+                "value": "",
+                "type": "path",
+                "description": "TM ID"
+              }
+            ]
+          },
+          "docs": "Delete a TM"
+        },
+        {
+          "info": {
+            "name": "Fetch the available TMs filtered per account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/translationmemory",
+            "params": [
+              {
+                "name": "lastProcessedId",
+                "value": "",
+                "type": "query",
+                "description": "The latest ID fetched by the previous query"
+              },
+              {
+                "name": "batchSize",
+                "value": "",
+                "type": "query",
+                "description": "Required size of the returned batch"
+              },
+              {
+                "name": "sourceLanguage",
+                "value": "",
+                "type": "query",
+                "description": "Source language (optional)"
+              },
+              {
+                "name": "targetLanguage",
+                "value": "",
+                "type": "query",
+                "description": "Target language (optional)"
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "Client ID (optional)"
+              },
+              {
+                "name": "searchName",
+                "value": "",
+                "type": "query",
+                "description": "TM partial name (optional)"
+              }
+            ]
+          },
+          "docs": "Fetch the available TMs filtered per account"
+        },
+        {
+          "info": {
+            "name": "Create an empty TM",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/translationmemory",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an empty TM"
+        },
+        {
+          "info": {
+            "name": "Fetch a collection of TMX file import tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/translationmemory/task"
+          },
+          "docs": "Fetch a collection of TMX file import tasks"
+        },
+        {
+          "info": {
+            "name": "Export TMX files from the TM database",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/translationmemory/:tmId/file",
+            "params": [
+              {
+                "name": "tmId",
+                "value": "",
+                "type": "path",
+                "description": "TM ID"
+              },
+              {
+                "name": "exportMode",
+                "value": "",
+                "type": "query",
+                "description": "Export mode"
+              },
+              {
+                "name": "withTags",
+                "value": "",
+                "type": "query",
+                "description": "Specifies whether to include tags into export results"
+              }
+            ]
+          },
+          "docs": "Export TMX files from the TM database"
+        },
+        {
+          "info": {
+            "name": "Fetch matches from the specified TM",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/translationmemory/matches",
+            "params": [
+              {
+                "name": "tmId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the TM for the match search"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fetch matches from the specified TM"
+        },
+        {
+          "info": {
+            "name": "Add an array of target languages to a TM",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/translationmemory/:tmId/targets",
+            "params": [
+              {
+                "name": "tmId",
+                "value": "",
+                "type": "path",
+                "description": "TM ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add an array of target languages to a TM"
+        },
+        {
+          "info": {
+            "name": "Removes the specified import task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/integration/v1/translationmemory/task/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "ID of a task to be imported to the TM"
+              }
+            ]
+          },
+          "docs": "Removes the specified import task"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

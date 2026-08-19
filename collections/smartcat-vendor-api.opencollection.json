@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account Vendor API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vendor",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch the list of vendors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/vendor/list"
+          },
+          "docs": "Fetch the list of vendors"
+        },
+        {
+          "info": {
+            "name": "Fetch a vendor by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/vendor/:vendorAccountId",
+            "params": [
+              {
+                "name": "vendorAccountId",
+                "value": "",
+                "type": "path",
+                "description": "Vendor IDVendor ID"
+              }
+            ]
+          },
+          "docs": "Fetch a vendor by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

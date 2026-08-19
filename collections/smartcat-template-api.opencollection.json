@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account Template API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Template",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all templates available in the workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/template"
+          },
+          "docs": "Get all templates available in the workspace"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

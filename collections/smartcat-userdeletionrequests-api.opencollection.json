@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account UserDeletionRequests API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "UserDeletionRequests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /api/integration/v1/user-deletion-requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/user-deletion-requests"
+          }
+        },
+        {
+          "info": {
+            "name": "POST /api/integration/v1/user-deletion-requests/confirm",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/user-deletion-requests/confirm",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account Callback API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Callback",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch the notifications settings for the account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/callback"
+          },
+          "docs": "Fetch the notifications settings for the account"
+        },
+        {
+          "info": {
+            "name": "Create or update the notifications settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/callback",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update the notifications settings"
+        },
+        {
+          "info": {
+            "name": "Delete notifications settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/integration/v1/callback"
+          },
+          "docs": "Delete notifications settings"
+        },
+        {
+          "info": {
+            "name": "Fetch the latest delivery errors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/callback/lastErrors",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum returned errors (no more than 100)"
+              }
+            ]
+          },
+          "docs": "Fetch the latest delivery errors"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

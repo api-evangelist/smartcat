@@ -1,0 +1,607 @@
+{
+  "item": [
+    {
+      "id": "262a7b15-deea-4391-9f9b-4465e3dcd599",
+      "name": "LspPrices",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "11dc4d04-ab49-4780-b9cd-f017172569b9",
+          "name": "Delete an LSP service price",
+          "request": {
+            "name": "Delete an LSP service price",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "lsp",
+                "prices",
+                ":priceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "priceId",
+                  "description": "(Required) Service price ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b72a14e5-4523-489a-aa4a-5ec5ac1aadd7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "lsp",
+                    "prices",
+                    ":priceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "priceId",
+                      "description": "(Required) Service price ID"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d2e6291-a209-4bc7-b272-6a7401b54d68",
+          "name": "Fetch LSP service prices by ID",
+          "request": {
+            "name": "Fetch LSP service prices by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "lsp",
+                "prices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "priceIds",
+                  "value": "<string>",
+                  "description": "(Required) The list of service price IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "priceIds",
+                  "value": "<string>",
+                  "description": "(Required) The list of service price IDs"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc38e0ad-df3b-4e2c-9597-825853958154",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "lsp",
+                    "prices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "priceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priceIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"serviceId\": \"string\",\n    \"clientId\": \"fdab6d17-a689-a1b3-1dd4-0c9372293bfe\",\n    \"sourceLanguage\": \"string\",\n    \"targetLanguages\": [\n      \"string\",\n      \"string\"\n    ],\n    \"pricePerUnit\": 9503.657382827923,\n    \"pricePerUnitCurrency\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"serviceId\": \"string\",\n    \"clientId\": \"033e3a48-9685-8863-9298-444c0f8de85a\",\n    \"sourceLanguage\": \"string\",\n    \"targetLanguages\": [\n      \"string\",\n      \"string\"\n    ],\n    \"pricePerUnit\": 3775.5854843515035,\n    \"pricePerUnitCurrency\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b89e8c5e-0cda-475f-bb38-2ae45d780160",
+          "name": "Create a new LSP service price",
+          "request": {
+            "name": "Create a new LSP service price",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "lsp",
+                "prices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"serviceId\": \"<string>\",\n  \"clientId\": \"<uuid>\",\n  \"sourceLanguage\": \"<string>\",\n  \"targetLanguages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pricePerUnit\": \"<double>\",\n  \"pricePerUnitCurrency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f715210b-68f9-45ba-ba9e-8df7e080f55e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "lsp",
+                    "prices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"serviceId\": \"<string>\",\n  \"clientId\": \"<uuid>\",\n  \"sourceLanguage\": \"<string>\",\n  \"targetLanguages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pricePerUnit\": \"<double>\",\n  \"pricePerUnitCurrency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97e9f88d-3588-41e2-96ad-75f16d443d96",
+          "name": "Fetch LSP service prices",
+          "request": {
+            "name": "Fetch LSP service prices",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "lsp",
+                "prices",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lastPriceId",
+                  "value": "<string>",
+                  "description": "Fetch the list of service prices starting from the ID that follows the specified ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "The required number of results (the default is 100)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "96ffb8aa-01eb-4238-ae23-4d8a18609fde",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "lsp",
+                    "prices",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lastPriceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"serviceId\": \"string\",\n    \"clientId\": \"9adc6265-4bb4-0500-45cc-32665a837e2e\",\n    \"sourceLanguage\": \"string\",\n    \"targetLanguages\": [\n      \"string\",\n      \"string\"\n    ],\n    \"pricePerUnit\": 3826.491635745597,\n    \"pricePerUnitCurrency\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"serviceId\": \"string\",\n    \"clientId\": \"60a4b718-a94b-c9be-6df9-27639a08c5b9\",\n    \"sourceLanguage\": \"string\",\n    \"targetLanguages\": [\n      \"string\",\n      \"string\"\n    ],\n    \"pricePerUnit\": 9556.991284763753,\n    \"pricePerUnitCurrency\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d497c70b-7499-4cd7-82a6-f4cc647b905e",
+          "name": "Create new LSP service prices",
+          "request": {
+            "name": "Create new LSP service prices",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "lsp",
+                "prices",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"serviceId\": \"<string>\",\n    \"clientId\": \"<uuid>\",\n    \"sourceLanguage\": \"<string>\",\n    \"targetLanguages\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"pricePerUnit\": \"<double>\",\n    \"pricePerUnitCurrency\": \"<string>\"\n  },\n  {\n    \"serviceId\": \"<string>\",\n    \"clientId\": \"<uuid>\",\n    \"sourceLanguage\": \"<string>\",\n    \"targetLanguages\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"pricePerUnit\": \"<double>\",\n    \"pricePerUnitCurrency\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "63b5ba62-b30a-4b5e-85f0-a84c9b4d22b0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "lsp",
+                    "prices",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"serviceId\": \"<string>\",\n    \"clientId\": \"<uuid>\",\n    \"sourceLanguage\": \"<string>\",\n    \"targetLanguages\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"pricePerUnit\": \"<double>\",\n    \"pricePerUnitCurrency\": \"<string>\"\n  },\n  {\n    \"serviceId\": \"<string>\",\n    \"clientId\": \"<uuid>\",\n    \"sourceLanguage\": \"<string>\",\n    \"targetLanguages\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"pricePerUnit\": \"<double>\",\n    \"pricePerUnitCurrency\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"index\": 9638,\n    \"success\": false\n  },\n  {\n    \"id\": \"string\",\n    \"index\": 2377,\n    \"success\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df3e8ee2-abbd-4dc2-a83c-9e7012b8149b",
+          "name": "Update an existing LSP service price",
+          "request": {
+            "name": "Update an existing LSP service price",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v2",
+                "lsp",
+                "prices",
+                ":priceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "priceId",
+                  "description": "(Required) Service price ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"serviceId\": \"<string>\",\n  \"clientId\": \"<uuid>\",\n  \"sourceLanguage\": \"<string>\",\n  \"targetLanguages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pricePerUnit\": \"<double>\",\n  \"pricePerUnitCurrency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1ae6e1b1-314f-4790-8fbf-8ecabb05db0e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v2",
+                    "lsp",
+                    "prices",
+                    ":priceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "priceId",
+                      "description": "(Required) Service price ID"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"serviceId\": \"<string>\",\n  \"clientId\": \"<uuid>\",\n  \"sourceLanguage\": \"<string>\",\n  \"targetLanguages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pricePerUnit\": \"<double>\",\n  \"pricePerUnitCurrency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8f240aca-e7a0-45c0-b32a-a1b5534b9488",
+    "name": "Smartcat Account LspPrices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

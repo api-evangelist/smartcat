@@ -1,0 +1,1294 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account Project API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Project",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add a document to the project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/document",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query",
+                "description": "Project ID"
+              },
+              {
+                "name": "disassembleAlgorithmName",
+                "value": "",
+                "type": "query",
+                "description": "Optional algorithm of file disassembly"
+              },
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "query",
+                "description": "External identifier assigned by the client upon the document creation"
+              },
+              {
+                "name": "metaInfo",
+                "value": "",
+                "type": "query",
+                "description": "Additional user information about the document"
+              },
+              {
+                "name": "targetLanguages",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated target languages of all documents. Optional parameter. Can be modified per document in the request body. By default, lists the project target languages."
+              },
+              {
+                "name": "presetDisassembleAlgorithm",
+                "value": "",
+                "type": "query",
+                "description": "Optional preset for the file disassembly algorithm"
+              },
+              {
+                "name": "enableOcr",
+                "value": "",
+                "type": "query",
+                "description": "Optional parameter for disabling OCR (the default is true)"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "value",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "files",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "This method uses special structure for multipart/form-data content\r\nPlease read this article in order to create a proper request\r\nhttps://developers.smartcat.com/api-guides/#multipart-requests"
+        },
+        {
+          "info": {
+            "name": "Receive the project model",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/project/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ]
+          },
+          "docs": "Receive the project model"
+        },
+        {
+          "info": {
+            "name": "Update a project by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/project/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a project by ID"
+        },
+        {
+          "info": {
+            "name": "Delete the project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/integration/v1/project/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ]
+          },
+          "docs": "Delete the project"
+        },
+        {
+          "info": {
+            "name": "Fetch the list of account projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v2/project/list",
+            "params": [
+              {
+                "name": "createdByUserId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the user who created the project"
+              },
+              {
+                "name": "assignedToUserId",
+                "value": "",
+                "type": "query",
+                "description": "User ID for filtering by assignment"
+              },
+              {
+                "name": "projectName",
+                "value": "",
+                "type": "query",
+                "description": "Partial project name"
+              },
+              {
+                "name": "externalTag",
+                "value": "",
+                "type": "query",
+                "description": "Partial external tag of the project"
+              },
+              {
+                "name": "clientIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated client ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of skipped items"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum returned items (not more than 100)"
+              }
+            ]
+          },
+          "docs": "Fetch the list of account projects"
+        },
+        {
+          "info": {
+            "name": "Fetch the list of account projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/project/list",
+            "params": [
+              {
+                "name": "createdByUserId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the user who created the project"
+              },
+              {
+                "name": "assignedToUserId",
+                "value": "",
+                "type": "query",
+                "description": "User ID for filtering by assignment"
+              },
+              {
+                "name": "projectName",
+                "value": "",
+                "type": "query",
+                "description": "Partial project name"
+              },
+              {
+                "name": "externalTag",
+                "value": "",
+                "type": "query",
+                "description": "Partial external tag of the project"
+              },
+              {
+                "name": "projectType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the project"
+              },
+              {
+                "name": "clientIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated client IDs"
+              },
+              {
+                "name": "includeDocuments",
+                "value": "",
+                "type": "query",
+                "description": "Include project documents in response"
+              },
+              {
+                "name": "includeQuotes",
+                "value": "",
+                "type": "query",
+                "description": "Include project related quotes in response"
+              },
+              {
+                "name": "includeCustomFields",
+                "value": "",
+                "type": "query",
+                "description": "Include project related custom fields in response"
+              },
+              {
+                "name": "includeClients",
+                "value": "",
+                "type": "query",
+                "description": "Include project clients in response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of skipped items"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum returned items (not more than 100)"
+              }
+            ]
+          },
+          "docs": "Fetch the list of account projects"
+        },
+        {
+          "info": {
+            "name": "(This method is obsolete and has been replaced with /api/integration/v2/project/{projectId}/statistics)\r\nFetch project statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/project/:projectId/statistics",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "onlyExactMatches",
+                "value": "",
+                "type": "query",
+                "description": "Specifies whether returning 100% and higher matches will suffice"
+              }
+            ]
+          },
+          "docs": "(This method is obsolete and has been replaced with /api/integration/v2/project/{projectId}/statistics)\r\nFetch project statistics"
+        },
+        {
+          "info": {
+            "name": "Fetch project statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v2/project/:projectId/statistics",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "onlyExactMatches",
+                "value": "",
+                "type": "query",
+                "description": "Specifies whether returning 100% and higher matches will suffice (the default is false)"
+              }
+            ]
+          },
+          "docs": "Fetch project statistics"
+        },
+        {
+          "info": {
+            "name": "Enable or disable calculating fuzzy repetitions in the project statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/project/:projectId/fuzzyRepetitions",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "withFuzzyMatches",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Enable or disable calculating fuzzy repetitions in the project statistics"
+        },
+        {
+          "info": {
+            "name": "Receive statistics for the completed parts of the project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/project/:projectId/completedWorkStatistics",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ]
+          },
+          "docs": "Receive statistics for the completed parts of the project"
+        },
+        {
+          "info": {
+            "name": "Receive a list of the TMs plugged into the project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/project/:projectId/translationmemories",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ]
+          },
+          "docs": "Receive a list of the TMs plugged into the project"
+        },
+        {
+          "info": {
+            "name": "Recreate the set of TMs plugged into the project.\r\nThe set of TMs is identical for all target languages of the project.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/project/:projectId/translationmemories",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "onlyExactSourceLanguageMatch",
+                "value": "",
+                "type": "query",
+                "description": "Specifies whether exact matches in the source language are required (the default is false)"
+              },
+              {
+                "name": "onlyExactTargetLanguageMatch",
+                "value": "",
+                "type": "query",
+                "description": "Specifies whether exact matches in the target language are required (the default is false)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Recreate the set of TMs plugged into the project.\r\nThe set of TMs is identical for all target languages of the project."
+        },
+        {
+          "info": {
+            "name": "Fetch the list of glossaries plugged into the project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/project/:projectId/glossaries",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ]
+          },
+          "docs": "Fetch the list of glossaries plugged into the project"
+        },
+        {
+          "info": {
+            "name": "Set a collection of glossaries plugged into the project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/project/:projectId/glossaries",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set a collection of glossaries plugged into the project"
+        },
+        {
+          "info": {
+            "name": "Fetch default glossary for the project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/project/:projectId/glossaries/default",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "fallbackToAccount",
+                "value": "",
+                "type": "query",
+                "description": "By default, if a project does not have a default glossary, a 404 error will be returned. Set this flag to true to attempt to get a default glossary from the entire account."
+              }
+            ]
+          },
+          "docs": "Fetch default glossary for the project"
+        },
+        {
+          "info": {
+            "name": "Fetch the project's MT configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/project/:projectId/mt",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ]
+          },
+          "docs": "Fetch the project's MT configuration"
+        },
+        {
+          "info": {
+            "name": "Set an MT configuration in the project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/project/:projectId/mt",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set an MT configuration in the project"
+        },
+        {
+          "info": {
+            "name": "Fetch all the MT engines and profiles that can be used in the specified project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/project/:projectId/mt/available",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ]
+          },
+          "docs": "Fetch all the MT engines and profiles that can be used in the specified project"
+        },
+        {
+          "info": {
+            "name": "Fetch the project pre-processing rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/project/:projectId/pretranslation-rules",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ]
+          },
+          "docs": "Fetch the project pre-processing rules"
+        },
+        {
+          "info": {
+            "name": "Define project pre-processing rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/project/:projectId/pretranslation-rules",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "startPretranslate",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Define project pre-processing rules"
+        },
+        {
+          "info": {
+            "name": "Define project pre-processing rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/project/:projectId/pretranslation-rules",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "startPretranslate",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Define project pre-processing rules"
+        },
+        {
+          "info": {
+            "name": "Fetch the status of removing empty project folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/project/:projectId/empty-folders-removing-status",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ]
+          },
+          "docs": "Fetch the status of removing empty project folders"
+        },
+        {
+          "info": {
+            "name": "Fetch the result of import into the Localization Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/project/import-result/:importId",
+            "params": [
+              {
+                "name": "importId",
+                "value": "",
+                "type": "path",
+                "description": "Import task identifier"
+              }
+            ]
+          },
+          "docs": "Fetch the result of import into the Localization Project"
+        },
+        {
+          "info": {
+            "name": "Cancel the project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/project/cancel",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query",
+                "description": "Project ID"
+              }
+            ]
+          },
+          "docs": "Cancel the project"
+        },
+        {
+          "info": {
+            "name": "Restore the project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/project/restore",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query",
+                "description": "Project ID"
+              }
+            ]
+          },
+          "docs": "Restore the project"
+        },
+        {
+          "info": {
+            "name": "Complete the workflow for all project documents. As a result, the project status will change to Completed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/project/complete",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Complete the workflow for all project documents. As a result, the project status will change to Completed."
+        },
+        {
+          "info": {
+            "name": "Create the project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/project/create",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "value",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "files",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "This method uses special structure for multipart/form-data content\r\nPlease read this article in order to create a proper request\r\nhttps://developers.smartcat.com/api-guides/#multipart-requests\r\nIf you need more comprehensive overview of the project creation process\r\nyou can find this series of articles with detailed explanations and examples\r\nhttps://developers.smartcat.com/api-guides/#creating-a-project"
+        },
+        {
+          "info": {
+            "name": "Import keys and values from files into the Software Localization Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v2/project/:projectId/import",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project identifier"
+              },
+              {
+                "name": "collection",
+                "value": "",
+                "type": "query",
+                "description": "Target collection (optional, \"main\" as default)"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Language of the imported files"
+              },
+              {
+                "name": "target-languages",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of target languages\r\n(optional, all target languages of the project by default, can only be specified when importing the source).\r\n- Empty list of languages produces a 400 bad request error with an appropriate reason text\r\n- An incorrect language code produces a 400 bad request error with an appropriate reason text\r\n- If any language didn't exist in the project, it will be created (but not added as a target to any existing collections)\r\n- If any language didn't exist in the collection (the target collection existed before), it will be added as a target to the collection"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the file format used to import the file (optional).\r\nSmartcat will try to identify the file format from its extension."
+              },
+              {
+                "name": "completion-state",
+                "value": "",
+                "type": "query",
+                "description": "Imported translation confirmation mode\r\ndraft — translation must be imported but not confirmed on any stage (default)\r\nintermediate — the translation must be imported and automatically confirmed at the first project stage\r\nfinal — the translation must be imported and confirmed on all project stages"
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated labels that will be attached to the created/updated segments (even if the text is not changed)"
+              },
+              {
+                "name": "path-separator",
+                "value": "",
+                "type": "query",
+                "description": "Path separator string (optional)"
+              },
+              {
+                "name": "skip-conflicting-values",
+                "value": "",
+                "type": "query",
+                "description": "Specifies how to deal with situations when the same key has a different\r\nvalue in the imported file and in Smartcat - keeps the value in Smartcat by default"
+              },
+              {
+                "name": "overwrite-conflicting-values",
+                "value": "",
+                "type": "query",
+                "description": "When the same key has a different value in the imported file and in Smartcat - use the value from the file"
+              },
+              {
+                "name": "auto-file-labels",
+                "value": "",
+                "type": "query",
+                "description": "Should Smartcat automatically create labels after file names?"
+              },
+              {
+                "name": "delete-missing-keys",
+                "value": "",
+                "type": "query",
+                "description": "Delete keys that are not present in the imported files"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "files",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Import keys and values from files into the Software Localization Project"
+        },
+        {
+          "info": {
+            "name": "Add a document to the project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/project/document",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query",
+                "description": "Project ID"
+              },
+              {
+                "name": "disassembleAlgorithmName",
+                "value": "",
+                "type": "query",
+                "description": "Optional algorithm of file disassembly"
+              },
+              {
+                "name": "externalId",
+                "value": "",
+                "type": "query",
+                "description": "External identifier assigned by the client upon the document creation"
+              },
+              {
+                "name": "metaInfo",
+                "value": "",
+                "type": "query",
+                "description": "Additional user information about the document"
+              },
+              {
+                "name": "targetLanguages",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated target languages of all documents. Optional parameter. Can be modified per document in the request body. By default, lists the project target languages."
+              },
+              {
+                "name": "presetDisassembleAlgorithm",
+                "value": "",
+                "type": "query",
+                "description": "Optional preset for the file disassembly algorithm"
+              },
+              {
+                "name": "enableOcr",
+                "value": "",
+                "type": "query",
+                "description": "Optional parameter for disabling OCR (the default is true)"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "value",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "files",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "This method uses special structure for multipart/form-data content\r\nPlease read this article in order to create a proper request\r\nhttps://developers.smartcat.com/api-guides/#multipart-requests"
+        },
+        {
+          "info": {
+            "name": "Add a new target language to the project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/project/language",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query",
+                "description": "Project ID"
+              },
+              {
+                "name": "targetLanguage",
+                "value": "",
+                "type": "query",
+                "description": "Target language"
+              },
+              {
+                "name": "addLanguageToDocuments",
+                "value": "",
+                "type": "query",
+                "description": "An optional parameter that can be used to disable the addition of a language for all project documents (by default - true)"
+              }
+            ]
+          },
+          "docs": "Add a new target language to the project"
+        },
+        {
+          "info": {
+            "name": "Remove a target language from the project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/integration/v1/project/language",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query",
+                "description": "Project ID"
+              },
+              {
+                "name": "targetLanguage",
+                "value": "",
+                "type": "query",
+                "description": "Target language"
+              }
+            ]
+          },
+          "docs": "Remove a target language from the project"
+        },
+        {
+          "info": {
+            "name": "Recreate the set of TMs plugged into the project.\r\nA separate set of TMs is created for each target language.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/project/:projectId/translationmemories/bylanguages",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Recreate the set of TMs plugged into the project.\r\nA separate set of TMs is created for each target language."
+        },
+        {
+          "info": {
+            "name": "Start processing the project statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/project/:projectId/statistics/build",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "onlyExactMatches",
+                "value": "",
+                "type": "query",
+                "description": "Specifies whether returning 100% and higher matches will suffice (the default is false)"
+              }
+            ]
+          },
+          "docs": "Start processing the project statistics"
+        },
+        {
+          "info": {
+            "name": "Add managers to the specified project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/project/:projectId/managers",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add managers to the specified project"
+        },
+        {
+          "info": {
+            "name": "Delete managers from the project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/integration/v1/project/:projectId/managers",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete managers from the project"
+        },
+        {
+          "info": {
+            "name": "Automatically assign all new documents/segments to current linguists",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/project/:projectId/assign",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Auto-assignment mode"
+              }
+            ]
+          },
+          "docs": "Current limitations:\r\n1. Assignments are made to the following stages only: Translation, Editing, Proofreading, Postediting\r\n2. Assignments are made only to documents with an ID"
+        },
+        {
+          "info": {
+            "name": "Add reference files to a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/project/:projectId/ReferenceFiles",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "files",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Add reference files to a project"
+        },
+        {
+          "info": {
+            "name": "Run the empty project folders deletion task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/project/:projectId/run-empty-folders-removing",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ]
+          },
+          "docs": "Run the empty project folders deletion task"
+        },
+        {
+          "info": {
+            "name": "Run export from Software Localization Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v2/project/:projectId/export",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "collections",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated collections list to export (optional, \"main\" as default)"
+              },
+              {
+                "name": "languages",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of languages to export (optional, all target languages by default)"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Export format (optional, JSON by default)"
+              },
+              {
+                "name": "path-separator",
+                "value": "",
+                "type": "query",
+                "description": "Path separator string (optional)\r\nWhen exporting \"structured-json\" and \"structured-yaml\" file formats,\r\nthis separator string will be used to split the key into multiple parts and construct the tree structure."
+              },
+              {
+                "name": "completion-state",
+                "value": "",
+                "type": "query",
+                "description": "Minimal key completion state (optional)\r\nSpecifies the state in which any key (segment) must be in order to be exported.\r\ndraft — download any translations, even unconfirmed ones (default)\r\nintermediate — download segments at the last confirmed stage\r\nfinal — download segments that passed through all translation stages"
+              },
+              {
+                "name": "fallback-to-default-language",
+                "value": "",
+                "type": "query",
+                "description": "Return default language values instead of incomplete translations (default)"
+              },
+              {
+                "name": "export-incomplete-as-blank",
+                "value": "",
+                "type": "query",
+                "description": "Export blank values when no translation is ready"
+              },
+              {
+                "name": "skip-incomplete-keys",
+                "value": "",
+                "type": "query",
+                "description": "Do not export keys that have no translations (will be used as a default for the \"android-xml\" export file type)"
+              },
+              {
+                "name": "output-file-path-template",
+                "value": "",
+                "type": "query",
+                "description": "Output file path template (Optional)\r\nSpecifies how the output files should be named and located.\r\nYou can use the {LANGUAGE} and {LABEL:PREFIX} placeholders to customize the output.\r\nThe {LOCALE:IOS} and {LOCALE:ANDROID} placeholders are also available for platform specific exports.\r\nThe ability to specify {LABEL:PREFIX} placeholder allows you to export keys that have the PREFIX value\r\nof label prefix and use the label suffix to determine the file name.\r\nSee examples [here](http://developers.sc.local/software-localization/#file-path-template)"
+              },
+              {
+                "name": "include-default-language",
+                "value": "",
+                "type": "query",
+                "description": "Specify if the default language should be included in the export"
+              },
+              {
+                "name": "zip",
+                "value": "",
+                "type": "query",
+                "description": "Force export to a ZIP archive, even for a single file"
+              },
+              {
+                "name": "modified-since",
+                "value": "",
+                "type": "query",
+                "description": "Export keys that were changed after the datetime"
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of labels to export keys that are marked with labels"
+              },
+              {
+                "name": "indent",
+                "value": "",
+                "type": "query",
+                "description": "Indent for formatting the exporting file (optional, 2 spaces by default)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Examples and detailed explanation can be found in this article:\r\nhttps://developers.smartcat.com/#extended-import-export-functionality"
+        },
+        {
+          "info": {
+            "name": "Run copying a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/project/:projectId/copying",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Run copying a project"
+        },
+        {
+          "info": {
+            "name": "Get project copy state",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/project/copying/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "Copy task ID"
+              }
+            ]
+          },
+          "docs": "Get project copy state"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

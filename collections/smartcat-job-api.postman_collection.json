@@ -1,0 +1,244 @@
+{
+  "item": [
+    {
+      "id": "b2b08401-af7a-46bb-97b6-25f94e672e8e",
+      "name": "Job",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d8c4c7b4-75f2-4752-a44d-a84467590986",
+          "name": "Fetch an array of jobs whose status is VERIFIED",
+          "request": {
+            "name": "Fetch an array of jobs whose status is VERIFIED",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v3",
+                "job",
+                "verifiedForProject"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "projectId",
+                  "value": "<uuid>",
+                  "description": "(Required) Project ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of jobs to be skipped (default: 0)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Number of jobs to fetch (default: 100)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8688f725-6bbd-4036-b5f6-78cc309fc2f5",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v3",
+                    "job",
+                    "verifiedForProject"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"invoiceNumber\": \"string\",\n    \"supplierEmail\": \"string\",\n    \"supplierName\": \"string\",\n    \"supplierType\": \"freelancer\",\n    \"serviceType\": \"string\",\n    \"jobDescription\": \"string\",\n    \"unitsType\": \"string\",\n    \"unitsAmount\": 1342.1775322156616,\n    \"customerPricePerUnit\": 4055.3960579370764,\n    \"executivePricePerUnit\": 8570.430275691138,\n    \"customerCurrency\": \"string\",\n    \"executiveCurrency\": \"string\",\n    \"customerCost\": 3195.241851458418,\n    \"executiveCost\": 3225.786698745112,\n    \"externalNumber\": \"string\",\n    \"supplierId\": \"ee4dd262-30ed-9826-fcd5-5dde0f9186a7\",\n    \"status\": \"inProgress\",\n    \"projectId\": \"864ad425-1ac8-eb81-c500-01b8ac79bcd3\",\n    \"deadline\": \"2018-09-18T09:43:48.813Z\",\n    \"sourceLanguage\": 8948,\n    \"targetLanguage\": 1555,\n    \"isPaidExternally\": false,\n    \"documentId\": \"string\",\n    \"stageId\": \"string\",\n    \"verifiedDate\": \"2013-01-19T18:25:51.170Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"invoiceNumber\": \"string\",\n    \"supplierEmail\": \"string\",\n    \"supplierName\": \"string\",\n    \"supplierType\": \"freelancer\",\n    \"serviceType\": \"string\",\n    \"jobDescription\": \"string\",\n    \"unitsType\": \"string\",\n    \"unitsAmount\": 432.9079324582408,\n    \"customerPricePerUnit\": 5508.667837079902,\n    \"executivePricePerUnit\": 9719.904676329148,\n    \"customerCurrency\": \"string\",\n    \"executiveCurrency\": \"string\",\n    \"customerCost\": 495.3432603254615,\n    \"executiveCost\": 3464.6068077117743,\n    \"externalNumber\": \"string\",\n    \"supplierId\": \"95f0c842-3f4c-be13-318d-969fe45bd245\",\n    \"status\": \"invitationDeclined\",\n    \"projectId\": \"e44e0ce8-cadc-f045-187b-6a5a31bb5011\",\n    \"deadline\": \"1953-09-08T03:55:30.806Z\",\n    \"sourceLanguage\": 9961,\n    \"targetLanguage\": 4571,\n    \"isPaidExternally\": true,\n    \"documentId\": \"string\",\n    \"stageId\": \"string\",\n    \"verifiedDate\": \"1972-02-04T13:16:27.047Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92cf1d9a-a91f-4511-a9a1-b1e6107bfd95",
+          "name": "Fetch an array of jobs",
+          "request": {
+            "name": "Fetch an array of jobs",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v3",
+                "job"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "projectId",
+                  "value": "<uuid>",
+                  "description": "(Required) Project ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of jobs to be skipped (default: 0)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Number of jobs to fetch (default: 100)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8ed11c53-12a4-4931-aebf-9e7653f5c9be",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v3",
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"invoiceNumber\": \"string\",\n    \"supplierEmail\": \"string\",\n    \"supplierName\": \"string\",\n    \"supplierType\": \"freelancer\",\n    \"serviceType\": \"string\",\n    \"jobDescription\": \"string\",\n    \"unitsType\": \"string\",\n    \"unitsAmount\": 1342.1775322156616,\n    \"customerPricePerUnit\": 4055.3960579370764,\n    \"executivePricePerUnit\": 8570.430275691138,\n    \"customerCurrency\": \"string\",\n    \"executiveCurrency\": \"string\",\n    \"customerCost\": 3195.241851458418,\n    \"executiveCost\": 3225.786698745112,\n    \"externalNumber\": \"string\",\n    \"supplierId\": \"ee4dd262-30ed-9826-fcd5-5dde0f9186a7\",\n    \"status\": \"inProgress\",\n    \"projectId\": \"864ad425-1ac8-eb81-c500-01b8ac79bcd3\",\n    \"deadline\": \"2018-09-18T09:43:48.813Z\",\n    \"sourceLanguage\": 8948,\n    \"targetLanguage\": 1555,\n    \"isPaidExternally\": false,\n    \"documentId\": \"string\",\n    \"stageId\": \"string\",\n    \"verifiedDate\": \"2013-01-19T18:25:51.170Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"invoiceNumber\": \"string\",\n    \"supplierEmail\": \"string\",\n    \"supplierName\": \"string\",\n    \"supplierType\": \"freelancer\",\n    \"serviceType\": \"string\",\n    \"jobDescription\": \"string\",\n    \"unitsType\": \"string\",\n    \"unitsAmount\": 432.9079324582408,\n    \"customerPricePerUnit\": 5508.667837079902,\n    \"executivePricePerUnit\": 9719.904676329148,\n    \"customerCurrency\": \"string\",\n    \"executiveCurrency\": \"string\",\n    \"customerCost\": 495.3432603254615,\n    \"executiveCost\": 3464.6068077117743,\n    \"externalNumber\": \"string\",\n    \"supplierId\": \"95f0c842-3f4c-be13-318d-969fe45bd245\",\n    \"status\": \"invitationDeclined\",\n    \"projectId\": \"e44e0ce8-cadc-f045-187b-6a5a31bb5011\",\n    \"deadline\": \"1953-09-08T03:55:30.806Z\",\n    \"sourceLanguage\": 9961,\n    \"targetLanguage\": 4571,\n    \"isPaidExternally\": true,\n    \"documentId\": \"string\",\n    \"stageId\": \"string\",\n    \"verifiedDate\": \"1972-02-04T13:16:27.047Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "98e3ecef-aaa4-4a78-baaf-9cab9ff69fb1",
+    "name": "Smartcat Account Job API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

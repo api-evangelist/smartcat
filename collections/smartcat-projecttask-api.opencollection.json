@@ -1,0 +1,455 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account ProjectTask API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ProjectTask",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of project tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/projectTask/:projectId/list",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query",
+                "description": "Code of the currency used to recalculate supplier rates and the cost of work  AbbyyLS.Web.Currency"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "query",
+                "description": "Document id filter. If present - returns only tasks with this specific document"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of skipped items"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of tasks in the response (no more than 50)"
+              }
+            ]
+          },
+          "docs": "Get a list of project tasks"
+        },
+        {
+          "info": {
+            "name": "Get information regarding task projectTaskId for project projectId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/projectTask/:projectId/:projectTaskId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "projectTaskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID"
+              },
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query",
+                "description": "Code of the currency used to recalculate supplier rates and the cost of work AbbyyLS.Web.Currency"
+              }
+            ]
+          },
+          "docs": "Get information regarding task projectTaskId for project projectId"
+        },
+        {
+          "info": {
+            "name": "Get information about the scope of work, regarding task  projectTaskId for project projectId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/projectTask/:projectId/:projectTaskId/scope",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "projectTaskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID"
+              },
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query",
+                "description": "Code of the currency used to calculate the cost of work"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of skipped items"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of elements in the response (no more than 100)"
+              }
+            ]
+          },
+          "docs": "Get information about the scope of work, regarding task  projectTaskId for project projectId"
+        },
+        {
+          "info": {
+            "name": "Set the mode of access to perform the work for those who accepted the invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/projectTask/:projectId/:projectTaskId/set-invitation-strategy-type",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "projectTaskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID"
+              },
+              {
+                "name": "invitationStrategyType",
+                "value": "",
+                "type": "query",
+                "description": "Mode of access to the work for those who accepted the invitation"
+              }
+            ]
+          },
+          "docs": "Set the mode of access to perform the work for those who accepted the invitation"
+        },
+        {
+          "info": {
+            "name": "Assign individual suppliers to perform task projectTaskId",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/projectTask/:projectId/:projectTaskId/individual-assignment",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "projectTaskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assign individual suppliers to perform task projectTaskId"
+        },
+        {
+          "info": {
+            "name": "Delete individual assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/integration/v1/projectTask/:projectId/:projectTaskId/individual-assignment",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "projectTaskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the user whose assignment is to be removed"
+              }
+            ]
+          },
+          "docs": "Delete individual assignment"
+        },
+        {
+          "info": {
+            "name": "Assign a supplier to perform task  projectTaskId",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/projectTask/:projectId/:projectTaskId/vendor-assignment",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "projectTaskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assign a supplier to perform task  projectTaskId"
+        },
+        {
+          "info": {
+            "name": "Remove supplier assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/integration/v1/projectTask/:projectId/:projectTaskId/vendor-assignment",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "projectTaskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID"
+              },
+              {
+                "name": "vendorAccountId",
+                "value": "",
+                "type": "query",
+                "description": "Identifier of the supplier account whose assignment is to be removed"
+              }
+            ]
+          },
+          "docs": "Remove supplier assignment"
+        },
+        {
+          "info": {
+            "name": "Get information about payments to suppliers for the work on task projectTaskId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/integration/v1/projectTask/:projectId/:projectTaskId/payables",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "projectTaskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID"
+              },
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query",
+                "description": "Code of the currency used to calculate the cost of work"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of skipped items"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of elements in the response (no more than 100)"
+              }
+            ]
+          },
+          "docs": "Get information about payments to suppliers for the work on task projectTaskId"
+        },
+        {
+          "info": {
+            "name": "Set a deadline for the task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/integration/v1/projectTask/:projectId/:projectTaskId/deadline",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "projectTaskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID"
+              },
+              {
+                "name": "deadline",
+                "value": "",
+                "type": "query",
+                "description": "Task deadline"
+              }
+            ]
+          },
+          "docs": "Set a deadline for the task"
+        },
+        {
+          "info": {
+            "name": "Move the task volume to another task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/projectTask/:projectId/:projectTaskId/split",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "projectTaskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Move the task volume to another task"
+        },
+        {
+          "info": {
+            "name": "Split task into partsCount parts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/projectTask/:projectId/:projectTaskId/splitByParts/:partsCount",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "projectTaskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID"
+              },
+              {
+                "name": "partsCount",
+                "value": "",
+                "type": "path",
+                "description": "Number of parts to divide the task into"
+              },
+              {
+                "name": "preserveAssignments",
+                "value": "",
+                "type": "query",
+                "description": "Specifies whether assignments should be moved from the parent task"
+              }
+            ]
+          },
+          "docs": "Available for accounts with subscription"
+        },
+        {
+          "info": {
+            "name": "Merge task projectTaskId with tasks request\r\nAll merged tasks must belong to the same stage Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel.StageId,\r\nhave the same target language Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel.TargetLanguage and have no agencies/companies assigned to the task\r\nDuring the merge process, existing supplier assignments will be removed. Tasks will be merged and become inaccessible.\r\nAs a result of the operation, a new task is created, which includes all the scope of work from the merged tasks.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/projectTask/:projectId/:projectTaskId/merge",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "projectTaskId",
+                "value": "",
+                "type": "path",
+                "description": "Task ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Merge task projectTaskId with tasks request\r\nAll merged tasks must belong to the same stage Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel.StageId,\r\nhave the same target language Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel.TargetLanguage and have no agencies/companies assigned to the task\r\nDuring the merge process, existing supplier assignments will be removed. Tasks will be merged and become inaccessible.\r\nAs a result of the operation, a new task is created,"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

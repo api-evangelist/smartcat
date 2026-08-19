@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Smartcat Account SmartTranslation API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SmartTranslation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch translation\r\nSee the Smart Translation API guide [here](https://developers.smartcat.com/api-guides/#instant-translations-via-the-real-time-api)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/integration/v1/smartTranslation/translate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fetch translation\r\nSee the Smart Translation API guide [here](https://developers.smartcat.com/api-guides/#instant-translations-via-the-real-time-api)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

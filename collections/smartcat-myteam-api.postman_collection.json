@@ -1,0 +1,1389 @@
+{
+  "item": [
+    {
+      "id": "e4d2aa7d-a929-4f5d-bb88-41d4af5f2727",
+      "name": "MyTeam",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8fcce222-9a84-4f8f-98e4-ad1a4c65a4c7",
+          "name": "Fetch a MyTeam member model by ID",
+          "request": {
+            "name": "Fetch a MyTeam member model by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "account",
+                "myTeam",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) User ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c3d6855f-67b7-4395-9ab2-6525dca7d777",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "myTeam",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) User ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"fa4699a5-9037-eaa0-52d8-2ccb9bd27d95\",\n  \"email\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"externalId\": \"string\",\n  \"services\": [\n    {\n      \"serviceType\": \"copywriting\",\n      \"sourceLanguage\": \"string\",\n      \"targetLanguage\": \"string\",\n      \"pricePerUnit\": 9200.399514353065,\n      \"performancePerDay\": 6560.801380529257,\n      \"currency\": \"string\",\n      \"specializations\": [\n        \"patent\",\n        \"documentsAndCertificates\"\n      ]\n    },\n    {\n      \"serviceType\": \"expertReview\",\n      \"sourceLanguage\": \"string\",\n      \"targetLanguage\": \"string\",\n      \"pricePerUnit\": 9930.737162751708,\n      \"performancePerDay\": 1622.0474428033504,\n      \"currency\": \"string\",\n      \"specializations\": [\n        \"bankingAndInvestment\",\n        \"documentsAndCertificates\"\n      ]\n    }\n  ],\n  \"clientIds\": [\n    \"328f6f5f-8cc4-05dc-98f8-2db8104fdc05\",\n    \"796294ef-d954-e950-8ca9-ad4831402ec1\"\n  ],\n  \"customFields\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "550753dc-fddf-4669-a012-2843ac1cd879",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "myTeam",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) User ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3d14eb9-ae5e-4d2e-8d8e-d83e660871fd",
+          "name": "Delete the user from MyTeam",
+          "request": {
+            "name": "Delete the user from MyTeam",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "account",
+                "myTeam",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) User ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e1d7fa0-f936-4757-b4fa-4baef6716bd1",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "myTeam",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) User ID"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d55b9b5c-8242-46a7-aca2-d9f79cfe3c99",
+          "name": "Fetch a MyTeam member model by external ID",
+          "request": {
+            "name": "Fetch a MyTeam member model by external ID",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "account",
+                "myTeam"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalId",
+                  "value": "<string>",
+                  "description": "User external ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4b710c3-0662-4b98-8109-f29bd310775e",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "myTeam"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"490c5a51-f84f-afd4-42b7-6aacca1ba59f\",\n  \"email\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"externalId\": \"string\",\n  \"services\": [\n    {\n      \"serviceType\": \"proofreading\",\n      \"sourceLanguage\": \"string\",\n      \"targetLanguage\": \"string\",\n      \"pricePerUnit\": 9290.964048095444,\n      \"performancePerDay\": 5976.272560542698,\n      \"currency\": \"string\",\n      \"specializations\": [\n        \"energy\",\n        \"metallurgy\"\n      ]\n    },\n    {\n      \"serviceType\": \"legalization\",\n      \"sourceLanguage\": \"string\",\n      \"targetLanguage\": \"string\",\n      \"pricePerUnit\": 9843.732966363013,\n      \"performancePerDay\": 5524.73540018769,\n      \"currency\": \"string\",\n      \"specializations\": [\n        \"physics\",\n        \"tourismAndTravel\"\n      ]\n    }\n  ],\n  \"clientIds\": [\n    \"57464dbb-dccc-d7ca-d2c5-926150abe906\",\n    \"9d776caa-edff-71ca-ecd8-982fd6c40f1d\"\n  ],\n  \"customFields\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9525dae6-2515-46f4-92b1-f86950041d6b",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "myTeam"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6ce97d8-7d5e-4b33-9b11-9db2cd5d5be4",
+          "name": "Add an in-house translator to MyTeam as a linguist",
+          "request": {
+            "name": "Add an in-house translator to MyTeam as a linguist",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "account",
+                "myTeam"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"services\": [\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    },\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    }\n  ],\n  \"clientIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9c382e00-fc78-45b8-a681-f37de1176acc",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "myTeam"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"services\": [\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    },\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    }\n  ],\n  \"clientIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"b27929ca-cae1-b210-85c3-bbb6f7f28643\",\n  \"email\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"externalId\": \"string\",\n  \"services\": [\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    },\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    }\n  ],\n  \"clientIds\": [\n    \"68e2f092-fa41-75d6-a406-66bf4230a414\",\n    \"d745fd98-78f3-b250-5862-3237cecf16a1\"\n  ],\n  \"customFields\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db1975b2-5026-4a09-802f-24e6e2e21bce",
+              "name": "Provided information is incorrect",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "myTeam"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"services\": [\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    },\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    }\n  ],\n  \"clientIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f5225a50-9a87-4be8-ad6c-0db36b052ceb",
+              "name": "Unable to find an account connected to the integration API",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "myTeam"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"services\": [\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    },\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    }\n  ],\n  \"clientIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4481ce8f-1d95-4380-81f0-1be5b225deb5",
+              "name": "A linguist with the provided email or external ID is already added to the team",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "myTeam"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"services\": [\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    },\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    }\n  ],\n  \"clientIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f65026cf-61b7-408b-86b9-262e76583a52",
+          "name": "Search for linguists in MyTeam",
+          "request": {
+            "name": "Search for linguists in MyTeam",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "account",
+                "searchMyTeam"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"serviceType\": \"<int32>\",\n  \"sourceLanguage\": \"<string>\",\n  \"targetLanguage\": \"<string>\",\n  \"onlyNativeSpeakers\": \"<boolean>\",\n  \"allDialects\": \"<boolean>\",\n  \"minRate\": \"<double>\",\n  \"maxRate\": \"<double>\",\n  \"rateRangeCurrency\": \"<string>\",\n  \"specializations\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"specializationKnowledgeLevel\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"searchString\": \"<string>\",\n  \"daytime\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "497cd85b-5aea-4004-98a8-ef27cce2e22f",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "searchMyTeam"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"serviceType\": \"<int32>\",\n  \"sourceLanguage\": \"<string>\",\n  \"targetLanguage\": \"<string>\",\n  \"onlyNativeSpeakers\": \"<boolean>\",\n  \"allDialects\": \"<boolean>\",\n  \"minRate\": \"<double>\",\n  \"maxRate\": \"<double>\",\n  \"rateRangeCurrency\": \"<string>\",\n  \"specializations\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"specializationKnowledgeLevel\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"searchString\": \"<string>\",\n  \"daytime\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"99307bf6-8933-d169-5a2a-16cd59abe05a\",\n    \"email\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"externalId\": \"string\",\n    \"services\": [\n      {\n        \"serviceType\": \"<int32>\",\n        \"sourceLanguage\": \"<string>\",\n        \"targetLanguage\": \"<string>\",\n        \"pricePerUnit\": \"<double>\",\n        \"performancePerDay\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"specializations\": [\n          \"<int32>\",\n          \"<int32>\"\n        ]\n      },\n      {\n        \"serviceType\": \"<int32>\",\n        \"sourceLanguage\": \"<string>\",\n        \"targetLanguage\": \"<string>\",\n        \"pricePerUnit\": \"<double>\",\n        \"performancePerDay\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"specializations\": [\n          \"<int32>\",\n          \"<int32>\"\n        ]\n      }\n    ],\n    \"clientIds\": [\n      \"68bc0d36-97bc-217b-5a46-f7b078ed5d06\",\n      \"616ecc32-8ec6-8c05-309a-67914584599f\"\n    ],\n    \"customFields\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  },\n  {\n    \"id\": \"e0fc4081-6fcf-7c83-85d2-5c4bc0badaa2\",\n    \"email\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"externalId\": \"string\",\n    \"services\": [\n      {\n        \"serviceType\": \"<int32>\",\n        \"sourceLanguage\": \"<string>\",\n        \"targetLanguage\": \"<string>\",\n        \"pricePerUnit\": \"<double>\",\n        \"performancePerDay\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"specializations\": [\n          \"<int32>\",\n          \"<int32>\"\n        ]\n      },\n      {\n        \"serviceType\": \"<int32>\",\n        \"sourceLanguage\": \"<string>\",\n        \"targetLanguage\": \"<string>\",\n        \"pricePerUnit\": \"<double>\",\n        \"performancePerDay\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"specializations\": [\n          \"<int32>\",\n          \"<int32>\"\n        ]\n      }\n    ],\n    \"clientIds\": [\n      \"bc2767f5-babf-f91e-4120-83a264067cff\",\n      \"fc9e7cfe-5f26-6763-d92d-e864cb81f27e\"\n    ],\n    \"customFields\": {\n      \"key_0\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be5b550b-0803-456b-bc52-265a815d1046",
+              "name": "Returns if:\n\r\n- Maximum required number of results is greater than 500\r\n- Specified language is unknown\r\n- Specified service type is unknown\r\n- Specified subject expertise (specialization) is unknown\r\n- Specified currency is unknown\r\n- Specified level of subject expertise (specialization) is unknown",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "searchMyTeam"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"serviceType\": \"<int32>\",\n  \"sourceLanguage\": \"<string>\",\n  \"targetLanguage\": \"<string>\",\n  \"onlyNativeSpeakers\": \"<boolean>\",\n  \"allDialects\": \"<boolean>\",\n  \"minRate\": \"<double>\",\n  \"maxRate\": \"<double>\",\n  \"rateRangeCurrency\": \"<string>\",\n  \"specializations\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"specializationKnowledgeLevel\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"searchString\": \"<string>\",\n  \"daytime\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5508e145-0391-4e43-817d-d49c578fb3d8",
+              "name": "Unable to find an account connected to the integration API",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "searchMyTeam"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skip\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"serviceType\": \"<int32>\",\n  \"sourceLanguage\": \"<string>\",\n  \"targetLanguage\": \"<string>\",\n  \"onlyNativeSpeakers\": \"<boolean>\",\n  \"allDialects\": \"<boolean>\",\n  \"minRate\": \"<double>\",\n  \"maxRate\": \"<double>\",\n  \"rateRangeCurrency\": \"<string>\",\n  \"specializations\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"specializationKnowledgeLevel\": [\n    \"<int32>\",\n    \"<int32>\"\n  ],\n  \"searchString\": \"<string>\",\n  \"daytime\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "36c10bbd-fdc0-4b35-b27e-a566324418d6",
+          "name": "Replace all services in a MyTeam profile",
+          "request": {
+            "name": "Replace all services in a MyTeam profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "account",
+                "myTeam",
+                ":userId",
+                "services",
+                "replace"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) User ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"services\": [\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    },\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a0efbdbe-1c47-4902-92b5-bb0fe9e34053",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "myTeam",
+                    ":userId",
+                    "services",
+                    "replace"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) User ID"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"services\": [\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    },\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e3a5ebf6-ee05-45fa-aa34-6797872c5958",
+              "name": "Provided information is incorrect",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "myTeam",
+                    ":userId",
+                    "services",
+                    "replace"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) User ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"services\": [\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    },\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8915,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c8c4832-c26b-41e7-af8c-82ff1681f016",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "myTeam",
+                    ":userId",
+                    "services",
+                    "replace"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) User ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"services\": [\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    },\n    {\n      \"serviceType\": \"<int32>\",\n      \"sourceLanguage\": \"<string>\",\n      \"targetLanguage\": \"<string>\",\n      \"pricePerUnit\": \"<double>\",\n      \"performancePerDay\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"specializations\": [\n        \"<int32>\",\n        \"<int32>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8915,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94ca735d-c039-4da7-a52f-c7e801074aa5",
+          "name": "Add a MyTeam member's phone number",
+          "request": {
+            "name": "Add a MyTeam member's phone number",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "account",
+                "myTeam",
+                ":userId",
+                "phone"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) User ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f84e2179-e178-432d-b898-e65186582d2f",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "myTeam",
+                    ":userId",
+                    "phone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) User ID"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "859606f7-17a9-4a2d-b322-7996dc978b1a",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "myTeam",
+                    ":userId",
+                    "phone"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) User ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8915,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd025c26-ce94-44b1-91b5-5bef16888d09",
+          "name": "Add a comment to a MyTeam member profile",
+          "request": {
+            "name": "Add a comment to a MyTeam member profile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "account",
+                "myTeam",
+                ":userId",
+                "comment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) User ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "34e13e99-c40d-4964-9968-0ec55afb697a",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "myTeam",
+                    ":userId",
+                    "comment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) User ID"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f961dbaf-940f-4e4e-9df0-6bd27a354b67",
+              "name": "Comment length exceeds 500 characters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "myTeam",
+                    ":userId",
+                    "comment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) User ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8915,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f29cfb6e-cb51-4adb-aba2-ceaf250ba20a",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "account",
+                    "myTeam",
+                    ":userId",
+                    "comment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) User ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8915,\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a3bfcec0-4e65-436b-ae78-a54f7862d929",
+    "name": "Smartcat Account MyTeam API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

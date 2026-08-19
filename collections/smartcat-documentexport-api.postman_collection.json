@@ -1,0 +1,528 @@
+{
+  "item": [
+    {
+      "id": "1bf87762-d40a-4f0f-8d20-86cab2e66454",
+      "name": "DocumentExport",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b4a9fa37-72c3-409b-b926-bf168b010135",
+          "name": "Download the export results",
+          "request": {
+            "name": "Download the export results",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "document",
+                "export",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "taskId",
+                  "description": "(Required) Export task ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "745fe077-10bd-4266-8b11-49c28dfa8427",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "export",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "taskId",
+                      "description": "(Required) Export task ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ccc6ad18-40cd-49c8-a1a8-8354134a672d",
+              "name": "The task is not ready yet",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "export",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "taskId",
+                      "description": "(Required) Export task ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d42feccb-8835-4699-ab56-bc40d30361d6",
+              "name": "The provided task ID does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "export",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "taskId",
+                      "description": "(Required) Export task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 593,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": {},\n  \"key_1\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d40345c7-8d1c-4746-962e-412b5926ca3a",
+              "name": "Export failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "export",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "taskId",
+                      "description": "(Required) Export task ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 593,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"key_0\": {},\n  \"key_1\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e60355f9-7b1b-4c0e-bf95-997b9a4c15fd",
+          "name": "Request the documents export",
+          "request": {
+            "name": "Request the documents export",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "integration",
+                "v1",
+                "document",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "documentIds",
+                  "value": "<string>",
+                  "description": "(Required) Target language IDs (the syntax is documentId_languageId), where documentId_languageId is a document ID\r\nand languageId is a target language ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "documentIds",
+                  "value": "<string>",
+                  "description": "(Required) Target language IDs (the syntax is documentId_languageId), where documentId_languageId is a document ID\r\nand languageId is a target language ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "<int32>",
+                  "description": "Segment export mode:\r\nCurrent - The current translation, the segment status notwithstanding (what is shown in the editor)\r\nConfirmed - Confirmed segments at the specific stage, as defined by the StageNumber parameter. If the stage is not specified, export all segments confirmed at any stage (this behavior is similar to exporting files using the Smartcat interface)\r\nComplete - Only completed segments, that is the segments that have passed all the stages and were confirmed at the last one"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<int32>",
+                  "description": "Export document type, by default Smartcat.AppIntegrations.Contracts.ExportDocumentRequestType.Target"
+                },
+                {
+                  "disabled": false,
+                  "key": "stageNumber",
+                  "value": "<string>",
+                  "description": "Workflow stage number when downloading an intermediate result"
+                },
+                {
+                  "disabled": false,
+                  "key": "exportingDocumentFormat",
+                  "value": "<int32>",
+                  "description": "Exporting file format for export without using source file"
+                },
+                {
+                  "disabled": false,
+                  "key": "structuringDelimiter",
+                  "value": "<string>",
+                  "description": "Delimiter for structuring keys when exporting without using the source file"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2ad163d-22fd-4c77-8417-896b5e379254",
+              "name": "Request has been successfully completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "documentIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<int32>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<int32>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportingDocumentFormat",
+                      "value": "<int32>"
+                    },
+                    {
+                      "key": "structuringDelimiter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"0307a4e4-638c-1754-8e6e-3fb5355a2922\",\n  \"documentIds\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "166c8395-fdce-4bab-bec9-07c25c6c5c6b",
+              "name": "Returns if:\n\r\n- the provided array of document IDs is empty\r\n- the provided workflow stage number is incorrect\r\n- the type of the provided document to be exported to the project is incorrect (for example, Smartcat.AppIntegrations.Contracts.ExportDocumentRequestType.DocumentWithMetadata for a docx-based project)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "documentIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<int32>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<int32>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportingDocumentFormat",
+                      "value": "<int32>"
+                    },
+                    {
+                      "key": "structuringDelimiter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "71767566-e682-4e1a-bd7c-dd0a31b3c902",
+              "name": "At least one document is not associated with the account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "integration",
+                    "v1",
+                    "document",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "documentIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "documentIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<int32>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<int32>"
+                    },
+                    {
+                      "key": "stageNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "exportingDocumentFormat",
+                      "value": "<int32>"
+                    },
+                    {
+                      "key": "structuringDelimiter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7228bc8d-1778-40c2-aa9e-49a4b3e630a6",
+    "name": "Smartcat Account DocumentExport API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
