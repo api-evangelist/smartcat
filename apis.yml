@@ -37,6 +37,15 @@ modified: '2026-07-21'
 image: https://smartcat.com/favicon.ico
 tags:
 - Company
+- Artificial Intelligence
+- Translation
+- Localization
+- Language
+- Machine Translation
+- Content
+- Translation Management
+tags_raw:
+- Company
 - Ai
 - Translation
 - Localization
@@ -139,6 +148,8 @@ apis:
   humanURL: https://developers.smartcat.com/api/
   baseURL: https://smartcat.com/api/integration/v1
   tags:
+  - Clients
+  tags_raw:
   - Client
   properties:
   - type: OpenAPI
@@ -183,6 +194,8 @@ apis:
   humanURL: https://developers.smartcat.com/api/
   baseURL: https://smartcat.com/api/integration/v1
   tags:
+  - Custom Fields
+  tags_raw:
   - CustomFields
   properties:
   - type: OpenAPI
@@ -294,6 +307,8 @@ apis:
   humanURL: https://developers.smartcat.com/api/
   baseURL: https://smartcat.com/api/integration/v1
   tags:
+  - File Management
+  tags_raw:
   - FileManagement
   properties:
   - type: OpenAPI
@@ -514,6 +529,8 @@ apis:
   humanURL: https://developers.smartcat.com/api/
   baseURL: https://smartcat.com/api/integration/v1
   tags:
+  - Quotes
+  tags_raw:
   - Quote
   properties:
   - type: OpenAPI
