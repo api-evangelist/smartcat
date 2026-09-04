@@ -33,15 +33,16 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: unknown
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Self-serve signup
-  confidence: medium
+  label: Unknown
+  confidence: low
   source:
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 specificationVersion: '0.23'
 created: '2026-07-17'
@@ -720,14 +721,18 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/smartcat-capability-edges.yml
+  name: Smartcat Business Capability Map
 - type: Overlay
   url: overlays/smartcat-openapi-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/smartcat-agentic-access.yml
 - type: DomainSecurity
   url: security/smartcat-domain-security.yml
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/smartcat-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: AgentSkill
   url: skills/_index.yml
 - type: Conformance
