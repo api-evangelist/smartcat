@@ -201,30 +201,6 @@ apis:
     url: data-model/smartcat-data-model.yml
   - type: Webhooks
     url: asyncapi/smartcat-callbacks-webhooks.yml
-- aid: smartcat:smartcat-customfields-api
-  name: Smartcat CustomFields API
-  description: The CustomFields API from Smartcat — 1 operation(s) for customfields.
-  humanURL: https://developers.smartcat.com/api/
-  baseURL: https://smartcat.com/api/integration/v1
-  tags:
-  - Custom Fields
-  tags_raw:
-  - CustomFields
-  properties:
-  - type: OpenAPI
-    url: openapi/smartcat-customfields-api-openapi.yml
-  - type: Authentication
-    url: authentication/smartcat-authentication.yml
-  - type: ErrorCatalog
-    url: errors/smartcat-problem-types.yml
-  - type: Conventions
-    url: conventions/smartcat-conventions.yml
-  - type: Idempotency
-    url: conventions/smartcat-conventions.yml
-  - type: DataModel
-    url: data-model/smartcat-data-model.yml
-  - type: Webhooks
-    url: asyncapi/smartcat-callbacks-webhooks.yml
 - aid: smartcat:smartcat-directories-api
   name: Smartcat Directories API
   description: The Directories API from Smartcat — 2 operation(s) for directories.
@@ -302,30 +278,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/smartcat-filedisassemblingalgorithmpresets-api-openapi.yml
-  - type: Authentication
-    url: authentication/smartcat-authentication.yml
-  - type: ErrorCatalog
-    url: errors/smartcat-problem-types.yml
-  - type: Conventions
-    url: conventions/smartcat-conventions.yml
-  - type: Idempotency
-    url: conventions/smartcat-conventions.yml
-  - type: DataModel
-    url: data-model/smartcat-data-model.yml
-  - type: Webhooks
-    url: asyncapi/smartcat-callbacks-webhooks.yml
-- aid: smartcat:smartcat-filemanagement-api
-  name: Smartcat FileManagement API
-  description: The FileManagement API from Smartcat — 4 operation(s) for filemanagement.
-  humanURL: https://developers.smartcat.com/api/
-  baseURL: https://smartcat.com/api/integration/v1
-  tags:
-  - File Management
-  tags_raw:
-  - FileManagement
-  properties:
-  - type: OpenAPI
-    url: openapi/smartcat-filemanagement-api-openapi.yml
   - type: Authentication
     url: authentication/smartcat-authentication.yml
   - type: ErrorCatalog
@@ -703,6 +655,50 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/smartcat-vendor-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-custom-fields-api
+  name: Smartcat Custom Fields API
+  description: The Custom Fields API from Smartcat — 1 operation(s) for custom fields.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - Custom Fields
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-custom-fields-api-openapi.yml
+  - type: Authentication
+    url: authentication/smartcat-authentication.yml
+  - type: ErrorCatalog
+    url: errors/smartcat-problem-types.yml
+  - type: Conventions
+    url: conventions/smartcat-conventions.yml
+  - type: Idempotency
+    url: conventions/smartcat-conventions.yml
+  - type: DataModel
+    url: data-model/smartcat-data-model.yml
+  - type: Webhooks
+    url: asyncapi/smartcat-callbacks-webhooks.yml
+- aid: smartcat:smartcat-file-management-api
+  name: Smartcat File Management API
+  description: The File Management API from Smartcat — 4 operation(s) for file management.
+  humanURL: https://developers.smartcat.com/api/
+  baseURL: https://smartcat.com/api/integration/v1
+  tags:
+  - File Management
+  properties:
+  - type: OpenAPI
+    url: openapi/smartcat-file-management-api-openapi.yml
   - type: Authentication
     url: authentication/smartcat-authentication.yml
   - type: ErrorCatalog
