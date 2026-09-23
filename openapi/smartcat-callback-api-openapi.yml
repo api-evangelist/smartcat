@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account Callback API
+  title: Smartcat Callback API
   version: v1
 servers:
 - url: /
@@ -27,6 +27,8 @@ paths:
                 $ref: '#/components/schemas/CallbackPropertyModel'
         '404':
           description: Notifications settings are not configured
+      operationId: getApiIntegrationV1Callback
+      x-operation-id-source: derived
     post:
       tags:
       - Callback
@@ -51,7 +53,17 @@ paths:
         '200':
           description: Notifications settings have been successfully updated
         '400':
-          description: "Returns if:\r\n- URI is invalid\r\n- a header Smartcat.AppIntegrations.Contracts.AdditionalHeaderModel.Name is empty or null, or consists of space characters only\r\n- a header Smartcat.AppIntegrations.Contracts.AdditionalHeaderModel.Value is null\r\n- a header is formatted incorrectly, that is requires coding or does not conform to special requirements (such as the authorization header)"
+          description: 'Returns if:
+
+            - URI is invalid
+
+            - a header Smartcat.AppIntegrations.Contracts.AdditionalHeaderModel.Name is empty or null, or consists of space characters only
+
+            - a header Smartcat.AppIntegrations.Contracts.AdditionalHeaderModel.Value is null
+
+            - a header is formatted incorrectly, that is requires coding or does not conform to special requirements (such as the authorization header)'
+      operationId: postApiIntegrationV1Callback
+      x-operation-id-source: derived
     delete:
       tags:
       - Callback
@@ -59,6 +71,8 @@ paths:
       responses:
         '204':
           description: Notifications settings have been successfully deleted
+      operationId: deleteApiIntegrationV1Callback
+      x-operation-id-source: derived
   /api/integration/v1/callback/lastErrors:
     get:
       tags:
@@ -93,21 +107,10 @@ paths:
                   $ref: '#/components/schemas/CallbackErrorModel'
         '400':
           description: The provided limit exceeds the maximum
+      operationId: getApiIntegrationV1CallbackLastErrors
+      x-operation-id-source: derived
 components:
   schemas:
-    AdditionalHeaderModel:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Header name
-          nullable: true
-        value:
-          type: string
-          description: Value
-          nullable: true
-      additionalProperties: false
-      description: User header model
     CallbackErrorModel:
       type: object
       properties:
@@ -116,42 +119,64 @@ components:
           description: Callback send time
           format: date-time
         url:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Request URL
-          nullable: true
         reason:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Request failure reason
-          nullable: true
         code:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Server response code
           format: int32
-          nullable: true
         content:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Server response content
-          nullable: true
         sourceIds:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
           description: List of event source IDs
-          nullable: true
       additionalProperties: false
       description: Callback error description
     CallbackPropertyModel:
       type: object
       properties:
         url:
-          type: string
+          type:
+          - string
+          - 'null'
           description: URL for receiving notifications
-          nullable: true
         additionalHeaders:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/AdditionalHeaderModel'
           description: Additional headers array
-          nullable: true
       additionalProperties: false
       description: Notification properties change model
+    AdditionalHeaderModel:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Header name
+        value:
+          type:
+          - string
+          - 'null'
+          description: Value
+      additionalProperties: false
+      description: User header model

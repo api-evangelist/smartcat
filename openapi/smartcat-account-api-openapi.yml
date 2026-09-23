@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Smartcat Account API
   version: v1
@@ -27,6 +27,8 @@ paths:
                 $ref: '#/components/schemas/AccountModel'
         '404':
           description: Unable to find an account connected to the integration API
+      operationId: getApiIntegrationV1Account
+      x-operation-id-source: derived
   /api/integration/v1/account/mtengines:
     get:
       tags:
@@ -51,67 +53,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/MTEngineModel'
+      operationId: getApiIntegrationV1AccountMtengines
+      x-operation-id-source: derived
 components:
   schemas:
-    MTEngineModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID
-          format: uuid
-        name:
-          type: string
-          description: MT engine name
-          nullable: true
-      additionalProperties: false
-      description: MT (Machine Translation) engine model
-    AccountModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID
-          format: uuid
-        name:
-          type: string
-          description: Name
-          nullable: true
-        description:
-          type: string
-          description: Description
-          nullable: true
-        isPersonal:
-          type: boolean
-          description: Specifies whether it is the user's personal account
-        type:
-          type: string
-          description: Account type
-          nullable: true
-        endCustomerValue:
-          $ref: '#/components/schemas/EndCustomerValue'
-        dateCreated:
-          type: string
-          description: Creation date
-          format: date-time
-        interInstallationAccountId:
-          type: string
-          description: Account ID for interacting with resources shared between installations
-          format: uuid
-        createdByUserId:
-          type: string
-          description: User ID who created the account
-          nullable: true
-        organizationId:
-          type: string
-          description: Organization ID to which the account belongs
-          format: uuid
-          nullable: true
-        isDisabled:
-          type: boolean
-          description: Attribute of "disabled" personal account
-      additionalProperties: false
-      description: Account information for external systems
     EndCustomerValue:
       enum:
       - lowValue
@@ -126,3 +71,68 @@ components:
       - anonymous
       type: string
       format: int32
+    MTEngineModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+          description: MT engine name
+      additionalProperties: false
+      description: MT (Machine Translation) engine model
+    AccountModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name
+        description:
+          type:
+          - string
+          - 'null'
+          description: Description
+        isPersonal:
+          type: boolean
+          description: Specifies whether it is the user's personal account
+        type:
+          type:
+          - string
+          - 'null'
+          description: Account type
+        endCustomerValue:
+          $ref: '#/components/schemas/EndCustomerValue'
+        dateCreated:
+          type: string
+          description: Creation date
+          format: date-time
+        interInstallationAccountId:
+          type: string
+          description: Account ID for interacting with resources shared between installations
+          format: uuid
+        createdByUserId:
+          type:
+          - string
+          - 'null'
+          description: User ID who created the account
+        organizationId:
+          type:
+          - string
+          - 'null'
+          description: Organization ID to which the account belongs
+          format: uuid
+        isDisabled:
+          type: boolean
+          description: Attribute of "disabled" personal account
+      additionalProperties: false
+      description: Account information for external systems

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account UserDeletionRequests API
+  title: Smartcat User Deletion Requests API
   version: v1
 servers:
 - url: /
@@ -24,6 +24,10 @@ paths:
             text/json:
               schema:
                 type: string
+      summary: Create api integration user deletion requests
+      x-summary-source: derived
+      operationId: postApiIntegrationV1UserDeletionRequests
+      x-operation-id-source: derived
   /api/integration/v1/user-deletion-requests/confirm:
     post:
       tags:
@@ -36,3 +40,7 @@ paths:
       responses:
         '200':
           description: OK
+      summary: Create api integration user deletion requests confirm
+      x-summary-source: derived
+      operationId: postApiIntegrationV1UserDeletionRequestsConfirm
+      x-operation-id-source: derived

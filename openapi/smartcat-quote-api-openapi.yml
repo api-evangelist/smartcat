@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account Quote API
+  title: Smartcat Quote API
   version: v1
 servers:
 - url: /
@@ -39,6 +39,8 @@ paths:
           description: The project is not associated with the account
         '404':
           description: The provided project ID does not exist
+      operationId: getApiIntegrationV1QuoteByProjectId
+      x-operation-id-source: derived
   /api/integration/v1/Quote/ByVendor/{projectId}:
     get:
       tags:
@@ -77,6 +79,8 @@ paths:
           description: The project is not associated with the account
         '404':
           description: The provided project ID does not exist
+      operationId: getApiIntegrationV1QuoteByVendorByProjectId
+      x-operation-id-source: derived
   /api/integration/v1/Quote/ListByProjectIds:
     get:
       tags:
@@ -111,6 +115,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/QuoteModel'
+      operationId: getApiIntegrationV1QuoteListByProjectIds
+      x-operation-id-source: derived
   /api/integration/v1/Quote/List:
     get:
       tags:
@@ -135,6 +141,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/QuoteModel'
+      operationId: getApiIntegrationV1QuoteList
+      x-operation-id-source: derived
   /api/integration/v1/Quote/Update:
     put:
       tags:
@@ -170,11 +178,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/QuoteModel'
         '400':
-          description: "Returns if:\r\n- The specified project ID's format is incorrect\r\n- The quote status is Paid"
+          description: 'Returns if:
+
+            - The specified project ID''s format is incorrect
+
+            - The quote status is Paid'
         '403':
           description: The project is not associated with the account
         '404':
-          description: "Returns if:\r\n- The provided project ID does not exist\r\n- The provided client ID does not exist"
+          description: 'Returns if:
+
+            - The provided project ID does not exist
+
+            - The provided client ID does not exist'
+      operationId: putApiIntegrationV1QuoteUpdate
+      x-operation-id-source: derived
   /api/integration/v1/Quote/{id}/Upload:
     post:
       tags:
@@ -200,11 +218,21 @@ paths:
         '200':
           description: Request has been successfully completed
         '400':
-          description: "Returns if:\r\n- The provided file model is empty\r\n- The specified project ID's format is incorrect\r\n- The quote is empty or includes service details\r\n- The quote status is Paid"
+          description: 'Returns if:
+
+            - The provided file model is empty
+
+            - The specified project ID''s format is incorrect
+
+            - The quote is empty or includes service details
+
+            - The quote status is Paid'
         '403':
           description: The project is not associated with the account
         '404':
           description: The provided project ID does not exist
+      operationId: postApiIntegrationV1QuoteByIdUpload
+      x-operation-id-source: derived
   /api/integration/v1/Quote/{id}/Approve:
     post:
       tags:
@@ -231,11 +259,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/QuoteModel'
         '400':
-          description: "Returns if:\r\n- The specified project ID's format is incorrect\r\n- The quote does not include the cost"
+          description: 'Returns if:
+
+            - The specified project ID''s format is incorrect
+
+            - The quote does not include the cost'
         '403':
           description: The project is not associated with the account
         '404':
           description: The provided project ID does not exist
+      operationId: postApiIntegrationV1QuoteByIdApprove
+      x-operation-id-source: derived
   /api/integration/v1/Quote/{id}/MarkAsPaid:
     post:
       tags:
@@ -262,11 +296,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/QuoteModel'
         '400':
-          description: "Returns if:\r\n- The specified project ID's format is incorrect\r\n- The quote does not include the cost"
+          description: 'Returns if:
+
+            - The specified project ID''s format is incorrect
+
+            - The quote does not include the cost'
         '403':
           description: The project is not associated with the account
         '404':
           description: The provided project ID does not exist
+      operationId: postApiIntegrationV1QuoteByIdMarkAsPaid
+      x-operation-id-source: derived
   /api/integration/v1/Quote/{id}/File:
     get:
       tags:
@@ -287,9 +327,96 @@ paths:
         '403':
           description: The project is not associated with the account
         '404':
-          description: "Returns if:\r\n- The provided project ID does not exist\r\n- Details are missing: file is not attached and generating a new one is not possible"
+          description: 'Returns if:
+
+            - The provided project ID does not exist
+
+            - Details are missing: file is not attached and generating a new one is not possible'
+      operationId: getApiIntegrationV1QuoteByIdFile
+      x-operation-id-source: derived
 components:
   schemas:
+    CostDetailsModel:
+      type: object
+      properties:
+        unitType:
+          $ref: '#/components/schemas/Contracts.WorkUnitType'
+        rate:
+          type:
+          - number
+          - 'null'
+          description: Rate
+          format: double
+        unitCount:
+          type:
+          - number
+          - 'null'
+          description: Unit count
+          format: double
+        detalizationRows:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DetalizationRowModel'
+          description: Show details
+        detalizationRowsByFiles:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DetalizationRowFileContainerModel'
+          description: Detalization by files
+        detalizationType:
+          $ref: '#/components/schemas/QuoteCostDetalizationType'
+      additionalProperties: false
+      description: DTO model of a quoted service price details
+    DetalizationRowModel:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Service details string description
+          example: 102% matches, repetitions, new words
+        unitCount:
+          type: number
+          description: Unit count
+          format: double
+        percentOfFullRate:
+          type: number
+          description: Percentage of the full rate for the specific unit category
+          format: double
+      additionalProperties: false
+      description: Service details string model
+    QuotePaymentStatus:
+      enum:
+      - notPaid
+      - paid
+      - awaitingPayment
+      type: string
+      format: int32
+    ExternalFileDetalizationModel:
+      type: object
+      properties:
+        serviceName:
+          type:
+          - string
+          - 'null'
+          description: Service name
+        cost:
+          type:
+          - number
+          - 'null'
+          description: Service cost
+          format: double
+        file:
+          $ref: '#/components/schemas/UploadedQuoteFileModel'
+        accuracyDegree:
+          $ref: '#/components/schemas/ProjectQuoteAccuracyDegree'
+      additionalProperties: false
+      description: Uploaded file with quote details
     Contracts.WorkUnitType:
       enum:
       - char
@@ -303,52 +430,44 @@ components:
       - month
       type: string
       format: int32
-    CostDetailsModel:
+    QuoteServiceModel:
       type: object
       properties:
-        unitType:
-          $ref: '#/components/schemas/Contracts.WorkUnitType'
-        rate:
-          type: number
-          description: Rate
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name
+        languageId:
+          type:
+          - integer
+          - 'null'
+          description: Target language ID
+          format: int32
+        cost:
+          type:
+          - number
+          - 'null'
+          description: Service cost
           format: double
-          nullable: true
-        unitCount:
-          type: number
-          description: Unit count
-          format: double
-          nullable: true
-        detalizationRows:
-          type: array
-          items:
-            $ref: '#/components/schemas/DetalizationRowModel'
-          description: Show details
-          nullable: true
-        detalizationRowsByFiles:
-          type: array
-          items:
-            $ref: '#/components/schemas/DetalizationRowFileContainerModel'
-          description: Detalization by files
-          nullable: true
-        detalizationType:
-          $ref: '#/components/schemas/QuoteCostDetalizationType'
+        costDetails:
+          $ref: '#/components/schemas/CostDetailsModel'
       additionalProperties: false
-      description: DTO model of a quoted service price details
-    DetalizationRowFileContainerModel:
+      description: Quote service model
+    UploadedQuoteFileModel:
       type: object
       properties:
-        fileName:
+        id:
           type: string
-          description: File name
-          nullable: true
-        detalizationRows:
-          type: array
-          items:
-            $ref: '#/components/schemas/DetalizationRowModel'
-          description: Details
-          nullable: true
+          description: ID
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name
       additionalProperties: false
-      description: Service details by files
+      description: Quote as an attached file
     ProjectQuoteAccuracyDegree:
       enum:
       - estimatedByWordsCount
@@ -357,19 +476,20 @@ components:
       - manuallyEntered
       type: string
       format: int32
-    ServicesDetalizationModel:
-      type: object
-      properties:
-        services:
-          type: array
-          items:
-            $ref: '#/components/schemas/QuoteServiceModel'
-          description: LSP service model
-          nullable: true
-        accuracyDegree:
-          $ref: '#/components/schemas/ProjectQuoteAccuracyDegree'
-      additionalProperties: false
-      description: Quote details generated by Smartcat
+    ApprovalStatus:
+      enum:
+      - notApproved
+      - approved
+      - approvalRequested
+      type: string
+      format: int32
+    QuoteCostDetalizationType:
+      enum:
+      - none
+      - byLanguage
+      - byFileAndLanguage
+      type: string
+      format: int32
     QuoteModel:
       type: object
       properties:
@@ -389,140 +509,88 @@ components:
           description: Project ID associated with the quote
           format: uuid
         deadline:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Project deadline
           format: date-time
-          nullable: true
         clientContactName:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Client's contact person name
-          nullable: true
         clientContactEmail:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Client's contact person email
-          nullable: true
         dueDate:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Get approval by
           format: date-time
-          nullable: true
         cost:
-          type: number
+          type:
+          - number
+          - 'null'
           description: Cost
           format: double
-          nullable: true
         currency:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Currency
-          nullable: true
         approvalStatus:
           $ref: '#/components/schemas/ApprovalStatus'
         approvalStatusModificationDate:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Date of the quote approval status change
           format: date-time
-          nullable: true
         paymentStatus:
           $ref: '#/components/schemas/QuotePaymentStatus'
         clientId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Project client ID
           format: uuid
-          nullable: true
         externalFileDetalization:
           $ref: '#/components/schemas/ExternalFileDetalizationModel'
         servicesDetalization:
           $ref: '#/components/schemas/ServicesDetalizationModel'
       additionalProperties: false
       description: Project quote model
-    ExternalFileDetalizationModel:
+    DetalizationRowFileContainerModel:
       type: object
       properties:
-        serviceName:
-          type: string
-          description: Service name
-          nullable: true
-        cost:
-          type: number
-          description: Service cost
-          format: double
-          nullable: true
-        file:
-          $ref: '#/components/schemas/UploadedQuoteFileModel'
+        fileName:
+          type:
+          - string
+          - 'null'
+          description: File name
+        detalizationRows:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DetalizationRowModel'
+          description: Details
+      additionalProperties: false
+      description: Service details by files
+    ServicesDetalizationModel:
+      type: object
+      properties:
+        services:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/QuoteServiceModel'
+          description: LSP service model
         accuracyDegree:
           $ref: '#/components/schemas/ProjectQuoteAccuracyDegree'
       additionalProperties: false
-      description: Uploaded file with quote details
-    QuoteServiceModel:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name
-          nullable: true
-        languageId:
-          type: integer
-          description: Target language ID
-          format: int32
-          nullable: true
-        cost:
-          type: number
-          description: Service cost
-          format: double
-          nullable: true
-        costDetails:
-          $ref: '#/components/schemas/CostDetailsModel'
-      additionalProperties: false
-      description: Quote service model
-    DetalizationRowModel:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Service details string description
-          nullable: true
-          example: 102% matches, repetitions, new words
-        unitCount:
-          type: number
-          description: Unit count
-          format: double
-        percentOfFullRate:
-          type: number
-          description: Percentage of the full rate for the specific unit category
-          format: double
-      additionalProperties: false
-      description: Service details string model
-    ApprovalStatus:
-      enum:
-      - notApproved
-      - approved
-      - approvalRequested
-      type: string
-      format: int32
-    QuotePaymentStatus:
-      enum:
-      - notPaid
-      - paid
-      - awaitingPayment
-      type: string
-      format: int32
-    QuoteCostDetalizationType:
-      enum:
-      - none
-      - byLanguage
-      - byFileAndLanguage
-      type: string
-      format: int32
-    UploadedQuoteFileModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID
-          format: uuid
-        name:
-          type: string
-          description: Name
-          nullable: true
-      additionalProperties: false
-      description: Quote as an attached file
+      description: Quote details generated by Smartcat

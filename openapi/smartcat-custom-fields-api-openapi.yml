@@ -1,17 +1,17 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account CustomFields API
+  title: Smartcat Custom Fields API
   version: v1
 servers:
 - url: /
 tags:
-- name: CustomFields
+- name: Custom Fields
 paths:
   /api/integration/v1/custom-fields:
     get:
       tags:
-      - CustomFields
-      summary: Retrieves all custom fields defined for the current account.
+      - Custom Fields
+      summary: Retrieves all custom fields defined for the current account
       responses:
         '200':
           description: OK
@@ -31,8 +31,17 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/CustomField'
+      operationId: getApiIntegrationV1CustomFields
+      x-operation-id-source: derived
 components:
   schemas:
+    FieldType:
+      enum:
+      - text
+      - select
+      type: string
+      description: Specifies the data type of a custom field, determining how its value is entered and stored.
+      format: int32
     EntityType:
       enum:
       - project
@@ -44,26 +53,6 @@ components:
       type: string
       description: Specifies the type of entity that a custom field can be attached to.
       format: int32
-    FieldType:
-      enum:
-      - text
-      - select
-      type: string
-      description: Specifies the data type of a custom field, determining how its value is entered and stored.
-      format: int32
-    SelectFieldOption:
-      type: object
-      properties:
-        key:
-          type: string
-          description: The unique identifier of the option.
-          format: uuid
-        value:
-          type: string
-          description: The display value associated with the option.
-          nullable: true
-      additionalProperties: false
-      description: "Represents a single selectable option for a custom field of selection type,\r\npairing a unique key with its display value."
     CustomField:
       type: object
       properties:
@@ -74,13 +63,15 @@ components:
         entityType:
           $ref: '#/components/schemas/EntityType'
         label:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The human-readable label displayed to users for the custom field.
-          nullable: true
         id:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The user-defined identifier of the custom field.
-          nullable: true
         isHidden:
           type: boolean
           description: Indicates whether the custom field is hidden from the user interface.
@@ -94,10 +85,29 @@ components:
           type: boolean
           description: Indicates whether the custom field is visible to the supplier.
         options:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/SelectFieldOption'
           description: The collection of pre-filled values available for selection-type fields.
-          nullable: true
       additionalProperties: false
-      description: "Represents a custom field defined within an account, used to attach\r\nadditional structured data to entities such as projects or assignments."
+      description: 'Represents a custom field defined within an account, used to attach
+
+        additional structured data to entities such as projects or assignments.'
+    SelectFieldOption:
+      type: object
+      properties:
+        key:
+          type: string
+          description: The unique identifier of the option.
+          format: uuid
+        value:
+          type:
+          - string
+          - 'null'
+          description: The display value associated with the option.
+      additionalProperties: false
+      description: 'Represents a single selectable option for a custom field of selection type,
+
+        pairing a unique key with its display value.'

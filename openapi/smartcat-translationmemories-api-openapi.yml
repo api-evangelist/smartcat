@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account TranslationMemories API
+  title: Smartcat Translation Memories API
   version: v1
 servers:
 - url: /
@@ -37,6 +37,8 @@ paths:
           description: The account cannot access the TM with the specified ID
         '404':
           description: TM with the specified was not found
+      operationId: getApiIntegrationV1TranslationmemoryByTmId
+      x-operation-id-source: derived
     post:
       tags:
       - TranslationMemories
@@ -110,6 +112,8 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+      operationId: postApiIntegrationV1TranslationmemoryByTmId
+      x-operation-id-source: derived
     delete:
       tags:
       - TranslationMemories
@@ -149,6 +153,8 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+      operationId: deleteApiIntegrationV1TranslationmemoryByTmId
+      x-operation-id-source: derived
   /api/integration/v1/translationmemory:
     get:
       tags:
@@ -212,6 +218,8 @@ paths:
           description: TM collection is empty
         '400':
           description: The required TM collection size is larger than 100
+      operationId: getApiIntegrationV1Translationmemory
+      x-operation-id-source: derived
     post:
       tags:
       - TranslationMemories
@@ -236,7 +244,18 @@ paths:
         '201':
           description: TM has been successfully created
         '400':
-          description: "Returns if:\n\r\n- TM creation model is empty\r\n- TM with this name already exists in the account\r\n- TM name is not specified\r\n- TM source language is defined as a translation target language\r\n- An error occurred when creating the TM"
+          description: 'Returns if:
+
+
+            - TM creation model is empty
+
+            - TM with this name already exists in the account
+
+            - TM name is not specified
+
+            - TM source language is defined as a translation target language
+
+            - An error occurred when creating the TM'
           content:
             text/plain:
               schema:
@@ -247,6 +266,8 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+      operationId: postApiIntegrationV1Translationmemory
+      x-operation-id-source: derived
   /api/integration/v1/translationmemory/task:
     get:
       tags:
@@ -273,6 +294,8 @@ paths:
                   $ref: '#/components/schemas/TMImportTaskModel'
         '404':
           description: There are no unprocessed import tasks in the account
+      operationId: getApiIntegrationV1TranslationmemoryTask
+      x-operation-id-source: derived
   /api/integration/v1/translationmemory/{tmId}/file:
     get:
       tags:
@@ -305,6 +328,8 @@ paths:
           description: The account cannot access the TM with the specified ID
         '404':
           description: TM with the specified was not found
+      operationId: getApiIntegrationV1TranslationmemoryByTmIdFile
+      x-operation-id-source: derived
   /api/integration/v1/translationmemory/matches:
     post:
       tags:
@@ -348,11 +373,22 @@ paths:
               schema:
                 $ref: '#/components/schemas/SegmentWithMatchesModel'
         '400':
-          description: "Returns if:\n\r\n- Request model is empty\r\n- No segment model is specified in the request model\r\n- Either source or target is not specified\r\n- The tag type is not \"Start\", \"End\" or \"Placeholder\""
+          description: 'Returns if:
+
+
+            - Request model is empty
+
+            - No segment model is specified in the request model
+
+            - Either source or target is not specified
+
+            - The tag type is not "Start", "End" or "Placeholder"'
         '403':
           description: The account cannot access the TM with the specified ID
         '404':
           description: TM with the specified ID was not found
+      operationId: postApiIntegrationV1TranslationmemoryMatches
+      x-operation-id-source: derived
   /api/integration/v1/translationmemory/{tmId}/targets:
     put:
       tags:
@@ -394,7 +430,18 @@ paths:
         '204':
           description: Request has been successfully completed
         '400':
-          description: "Returns if:\n\r\n- Target languages are not specified\r\n- Target languages contain duplicates\r\n- Target languages contain the source language\r\n- Target language cannot be deleted\r\n- Target languages cannot be updated using the specified parameters"
+          description: 'Returns if:
+
+
+            - Target languages are not specified
+
+            - Target languages contain duplicates
+
+            - Target languages contain the source language
+
+            - Target language cannot be deleted
+
+            - Target languages cannot be updated using the specified parameters'
           content:
             text/plain:
               schema:
@@ -429,6 +476,8 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+      operationId: putApiIntegrationV1TranslationmemoryByTmIdTargets
+      x-operation-id-source: derived
   /api/integration/v1/translationmemory/task/{taskId}:
     delete:
       tags:
@@ -469,44 +518,102 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+      operationId: deleteApiIntegrationV1TranslationmemoryTaskByTaskId
+      x-operation-id-source: derived
 components:
   schemas:
-    SegmentModel:
+    TranslationMemoryModel:
       type: object
       properties:
-        text:
+        id:
           type: string
-          description: Segment text
-          nullable: true
-        prevContext:
+          description: TM ID
+          format: uuid
+        accountId:
           type: string
-          description: Previous segment text
-          nullable: true
-        nextContext:
-          type: string
-          description: Next segment text
-          nullable: true
-        tags:
-          type: array
+          description: Corporate account ID
+          format: uuid
+        clientId:
+          type:
+          - string
+          - 'null'
+          description: Client ID
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+          description: TM name
+        description:
+          type:
+          - string
+          - 'null'
+          description: Description
+        sourceLanguage:
+          type:
+          - string
+          - 'null'
+          description: Source language ID
+        targetLanguages:
+          type:
+          - array
+          - 'null'
           items:
-            $ref: '#/components/schemas/SegmentTagModel'
-          description: Segment tags
-          nullable: true
+            type: string
+          description: Target languages
+        createdDate:
+          type: string
+          description: TM creation date and time
+          format: date-time
+        isAutomaticallyCreated:
+          type: boolean
+          description: Specifies whether the TM was created automatically
+        unitCountByLanguageId:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: integer
+            format: int32
+          description: Unit count by language
       additionalProperties: false
-      description: Segment model
-    TagsFromUnit:
+      description: TM model
+    TMExportMode:
+      enum:
+      - tmxDefault
+      - tmxWithTrados2009PlusCompatibility
+      - tmxWithTrados2007Compatibility
+      - excel
+      type: string
+      format: int32
+    SegmentWithMatchesModel:
       type: object
       properties:
-        position:
+        sourceText:
+          type:
+          - string
+          - 'null'
+          description: Source segment of a found record
+        targetText:
+          type:
+          - string
+          - 'null'
+          description: Target segment of a found record
+        segmentMatch:
           type: integer
-          description: Tag insertion position in the target
+          description: Segment match value
           format: int32
-        order:
-          type: integer
-          description: Tag order number in the target. Important if two tags have an identical position
-          format: int32
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/TagsFromUnit'
+          description: Record tags set
+        assuranceLevel:
+          $ref: '#/components/schemas/IntegrationApiTMTranslationAssuranceLevel'
       additionalProperties: false
-      description: Unit tags data serialization class
+      description: Segment with matches send model
     TMImportTaskModel:
       type: object
       properties:
@@ -523,90 +630,145 @@ components:
           description: TM database ID
           format: uuid
         state:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Task status
-          nullable: true
         insertedUnitCount:
           type: integer
           description: Inserted unit count
           format: int32
       additionalProperties: false
       description: TM import task model
+    CreateTranslationMemoryModel:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name
+        sourceLanguage:
+          type:
+          - string
+          - 'null'
+          description: Source language
+        targetLanguages:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Target languages
+        description:
+          type:
+          - string
+          - 'null'
+          description: Description
+        clientId:
+          type:
+          - string
+          - 'null'
+          description: Client ID
+          format: uuid
+      additionalProperties: false
+      description: TM creation model
+    SegmentModel:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+          description: Segment text
+        prevContext:
+          type:
+          - string
+          - 'null'
+          description: Previous segment text
+        nextContext:
+          type:
+          - string
+          - 'null'
+          description: Next segment text
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SegmentTagModel'
+          description: Segment tags
+      additionalProperties: false
+      description: Segment model
     ProblemDetails:
       type: object
       properties:
         type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         title:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         status:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         detail:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         instance:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: {}
     TMMatchesRequest:
       type: object
       properties:
         sourceLanguage:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Source language
-          nullable: true
         targetLanguage:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Target language
-          nullable: true
         segmentModel:
           $ref: '#/components/schemas/SegmentModel'
         matchThreshold:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Match threshold
           format: int32
-          nullable: true
       additionalProperties: false
       description: TM match query model
-    CreateTranslationMemoryModel:
+    TagsFromUnit:
       type: object
       properties:
-        name:
-          type: string
-          description: Name
-          nullable: true
-        sourceLanguage:
-          type: string
-          description: Source language
-          nullable: true
-        targetLanguages:
-          type: array
-          items:
-            type: string
-          description: Target languages
-          nullable: true
-        description:
-          type: string
-          description: Description
-          nullable: true
-        clientId:
-          type: string
-          description: Client ID
-          format: uuid
-          nullable: true
+        position:
+          type: integer
+          description: Tag insertion position in the target
+          format: int32
+        order:
+          type: integer
+          description: Tag order number in the target. Important if two tags have an identical position
+          format: int32
       additionalProperties: false
-      description: TM creation model
-    TMExportMode:
+      description: Unit tags data serialization class
+    IntegrationApiTMTranslationAssuranceLevel:
       enum:
-      - tmxDefault
-      - tmxWithTrados2009PlusCompatibility
-      - tmxWithTrados2007Compatibility
-      - excel
+      - mT
+      - questionable
+      - regular
+      - qualified
       type: string
+      description: Minimum TM segment quality
       format: int32
     SegmentTagModel:
       type: object
@@ -616,9 +778,10 @@ components:
           description: Tag number
           format: int32
         tagType:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Tag type
-          nullable: true
         position:
           type: integer
           description: Tag position
@@ -631,87 +794,3 @@ components:
           description: Specifies whether the tag is invisible
       additionalProperties: false
       description: Segment tag mandatory information model
-    SegmentWithMatchesModel:
-      type: object
-      properties:
-        sourceText:
-          type: string
-          description: Source segment of a found record
-          nullable: true
-        targetText:
-          type: string
-          description: Target segment of a found record
-          nullable: true
-        segmentMatch:
-          type: integer
-          description: Segment match value
-          format: int32
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/TagsFromUnit'
-          description: Record tags set
-          nullable: true
-        assuranceLevel:
-          $ref: '#/components/schemas/IntegrationApiTMTranslationAssuranceLevel'
-      additionalProperties: false
-      description: Segment with matches send model
-    IntegrationApiTMTranslationAssuranceLevel:
-      enum:
-      - mT
-      - questionable
-      - regular
-      - qualified
-      type: string
-      description: Minimum TM segment quality
-      format: int32
-    TranslationMemoryModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: TM ID
-          format: uuid
-        accountId:
-          type: string
-          description: Corporate account ID
-          format: uuid
-        clientId:
-          type: string
-          description: Client ID
-          format: uuid
-          nullable: true
-        name:
-          type: string
-          description: TM name
-          nullable: true
-        description:
-          type: string
-          description: Description
-          nullable: true
-        sourceLanguage:
-          type: string
-          description: Source language ID
-          nullable: true
-        targetLanguages:
-          type: array
-          items:
-            type: string
-          description: Target languages
-          nullable: true
-        createdDate:
-          type: string
-          description: TM creation date and time
-          format: date-time
-        isAutomaticallyCreated:
-          type: boolean
-          description: Specifies whether the TM was created automatically
-        unitCountByLanguageId:
-          type: object
-          additionalProperties:
-            type: integer
-            format: int32
-          description: Unit count by language
-          nullable: true
-      additionalProperties: false
-      description: TM model

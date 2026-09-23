@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account PlaceholderFormatApi API
+  title: Smartcat Placeholder Format API
   version: v1
 servers:
 - url: /
@@ -31,6 +31,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/PlaceholderFormatModel'
+      operationId: getApiIntegrationV1Placeholders
+      x-operation-id-source: derived
     put:
       tags:
       - PlaceholderFormatApi
@@ -61,6 +63,8 @@ paths:
       responses:
         '204':
           description: No Content
+      operationId: putApiIntegrationV1Placeholders
+      x-operation-id-source: derived
   /api/integration/v1/placeholders/validate:
     get:
       tags:
@@ -75,14 +79,17 @@ paths:
       responses:
         '204':
           description: No Content
+      operationId: getApiIntegrationV1PlaceholdersValidate
+      x-operation-id-source: derived
 components:
   schemas:
     PlaceholderFormatModel:
       type: object
       properties:
         regex:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Placeholder format regular expression
-          nullable: true
       additionalProperties: false
       description: Model for applying a placeholder format to a client

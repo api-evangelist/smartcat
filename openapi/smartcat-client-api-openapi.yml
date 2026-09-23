@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account Client API
+  title: Smartcat Client API
   version: v1
 servers:
 - url: /
@@ -11,7 +11,7 @@ paths:
     post:
       tags:
       - Client
-      summary: "Create a new client with the specified name and return their ID\r\nSimply return the ID if a client with that name already exists"
+      summary: Create a new client with the specified name and return their ID Simply return…
       requestBody:
         description: Client name
         content:
@@ -44,6 +44,8 @@ paths:
               schema:
                 type: string
                 format: uuid
+      operationId: postApiIntegrationV1ClientCreate
+      x-operation-id-source: derived
   /api/integration/v1/client/{clientId}/set:
     put:
       tags:
@@ -78,6 +80,8 @@ paths:
                 $ref: '#/components/schemas/ClientModel'
         '404':
           description: The specified client or net rate were not found in the current account
+      operationId: putApiIntegrationV1ClientByClientIdSet
+      x-operation-id-source: derived
   /api/integration/v1/client/{clientId}/contact:
     put:
       tags:
@@ -124,6 +128,8 @@ paths:
           description: Contact details are incorrect
         '404':
           description: The specified client not found
+      operationId: putApiIntegrationV1ClientByClientIdContact
+      x-operation-id-source: derived
   /api/integration/v2/client/{clientId}:
     put:
       tags:
@@ -167,9 +173,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/ClientModelV2'
         '400':
-          description: "Returns if:\r\n- contact details are invalid\r\n- the provided manager ID is invalid"
+          description: 'Returns if:
+
+            - contact details are invalid
+
+            - the provided manager ID is invalid'
         '404':
           description: The specified client not found
+      operationId: putApiIntegrationV2ClientByClientId
+      x-operation-id-source: derived
     get:
       tags:
       - Client
@@ -197,6 +209,8 @@ paths:
                 $ref: '#/components/schemas/ClientModelV2'
         '404':
           description: The specified client was not found in the current account
+      operationId: getApiIntegrationV2ClientByClientId
+      x-operation-id-source: derived
   /api/integration/v1/client/{clientId}:
     get:
       tags:
@@ -225,9 +239,248 @@ paths:
                 $ref: '#/components/schemas/ClientModel'
         '404':
           description: The specified client was not found in the current account
+      operationId: getApiIntegrationV1ClientByClientId
+      x-operation-id-source: derived
 components:
   schemas:
-    NetRateModel+TMRangeRateModel:
+    ContactModel:
+      type: object
+      properties:
+        email:
+          type:
+          - string
+          - 'null'
+          description: Client email
+        fullName:
+          type:
+          - string
+          - 'null'
+          description: Client name
+        phoneNumber:
+          type:
+          - string
+          - 'null'
+          description: Contact phone number
+        position:
+          type:
+          - string
+          - 'null'
+          description: Position
+        comment:
+          type:
+          - string
+          - 'null'
+          description: Commentary
+      additionalProperties: false
+      description: Contact information model
+    ClientModelV2:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Client ID
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name
+        netRate:
+          $ref: '#/components/schemas/NetRateModel'
+        mainContact:
+          $ref: '#/components/schemas/ContactModel'
+        additionalContacts:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ContactModel'
+          description: Additional contacts
+        vat:
+          type:
+          - string
+          - 'null'
+          description: VAT
+        countryCode:
+          type:
+          - string
+          - 'null'
+          description: Country code
+        comment:
+          type:
+          - string
+          - 'null'
+          description: Commentary
+        website:
+          type:
+          - string
+          - 'null'
+          description: Website
+        industryId:
+          type:
+          - string
+          - 'null'
+          description: Specialization
+        legalName:
+          type:
+          - string
+          - 'null'
+          description: Legal name
+        address:
+          type:
+          - string
+          - 'null'
+          description: Address
+        languageId:
+          type:
+          - integer
+          - 'null'
+          description: Language
+          format: int32
+        vendorManager:
+          type:
+          - string
+          - 'null'
+          description: Manager
+        customFields:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+          description: Custom fields
+      additionalProperties: false
+      description: Client model
+    NetRateModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Net rate ID
+        name:
+          type:
+          - string
+          - 'null'
+          description: Net rate name
+        newWordsRate:
+          type: number
+          description: New words rate
+          format: double
+        repetitionsRate:
+          type: number
+          description: Repetitions rate
+          format: double
+        tmMatchRates:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/NetRateModel_TMRangeRateModel'
+          description: TM matches rate
+      additionalProperties: false
+      description: Rate discounts model
+    UpdateClientModel:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name
+        netRateId:
+          type:
+          - string
+          - 'null'
+          description: ID of discount rates applicable to client
+        mainContact:
+          $ref: '#/components/schemas/ContactModel'
+        additionalContacts:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ContactModel'
+          description: Additional contacts
+        vat:
+          type:
+          - string
+          - 'null'
+          description: VAT
+        countryCode:
+          type:
+          - string
+          - 'null'
+          description: Country code
+        comment:
+          type:
+          - string
+          - 'null'
+          description: Commentary
+        website:
+          type:
+          - string
+          - 'null'
+          description: Website
+        industryId:
+          type:
+          - string
+          - 'null'
+          description: Entry ID in the client specializations list
+        legalName:
+          type:
+          - string
+          - 'null'
+          description: Legal name
+        address:
+          type:
+          - string
+          - 'null'
+          description: Address
+        languageId:
+          type:
+          - integer
+          - 'null'
+          description: Language
+          format: int32
+        vendorManager:
+          type:
+          - string
+          - 'null'
+          description: Manager
+        customFieldValues:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+          description: Customized field values
+      additionalProperties: false
+      description: Client update model
+    ClientModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Client ID
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name
+        netRate:
+          $ref: '#/components/schemas/NetRateModel'
+        contact:
+          $ref: '#/components/schemas/ContactModel'
+      additionalProperties: false
+      description: Client model
+    NetRateModel_TMRangeRateModel:
       type: object
       properties:
         fromQuality:
@@ -244,204 +497,3 @@ components:
           format: double
       additionalProperties: false
       description: TM matches rate model
-    ClientModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Client ID
-          format: uuid
-        name:
-          type: string
-          description: Name
-          nullable: true
-        netRate:
-          $ref: '#/components/schemas/NetRateModel'
-        contact:
-          $ref: '#/components/schemas/ContactModel'
-      additionalProperties: false
-      description: Client model
-    ContactModel:
-      type: object
-      properties:
-        email:
-          type: string
-          description: Client email
-          nullable: true
-        fullName:
-          type: string
-          description: Client name
-          nullable: true
-        phoneNumber:
-          type: string
-          description: Contact phone number
-          nullable: true
-        position:
-          type: string
-          description: Position
-          nullable: true
-        comment:
-          type: string
-          description: Commentary
-          nullable: true
-      additionalProperties: false
-      description: Contact information model
-    UpdateClientModel:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name
-          nullable: true
-        netRateId:
-          type: string
-          description: ID of discount rates applicable to client
-          nullable: true
-        mainContact:
-          $ref: '#/components/schemas/ContactModel'
-        additionalContacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContactModel'
-          description: Additional contacts
-          nullable: true
-        vat:
-          type: string
-          description: VAT
-          nullable: true
-        countryCode:
-          type: string
-          description: Country code
-          nullable: true
-        comment:
-          type: string
-          description: Commentary
-          nullable: true
-        website:
-          type: string
-          description: Website
-          nullable: true
-        industryId:
-          type: string
-          description: Entry ID in the client specializations list
-          nullable: true
-        legalName:
-          type: string
-          description: Legal name
-          nullable: true
-        address:
-          type: string
-          description: Address
-          nullable: true
-        languageId:
-          type: integer
-          description: Language
-          format: int32
-          nullable: true
-        vendorManager:
-          type: string
-          description: Manager
-          nullable: true
-        customFieldValues:
-          type: object
-          additionalProperties:
-            type: string
-            nullable: true
-          description: Customized field values
-          nullable: true
-      additionalProperties: false
-      description: Client update model
-    NetRateModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Net rate ID
-          nullable: true
-        name:
-          type: string
-          description: Net rate name
-          nullable: true
-        newWordsRate:
-          type: number
-          description: New words rate
-          format: double
-        repetitionsRate:
-          type: number
-          description: Repetitions rate
-          format: double
-        tmMatchRates:
-          type: array
-          items:
-            $ref: '#/components/schemas/NetRateModel+TMRangeRateModel'
-          description: TM matches rate
-          nullable: true
-      additionalProperties: false
-      description: Rate discounts model
-    ClientModelV2:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Client ID
-          format: uuid
-        name:
-          type: string
-          description: Name
-          nullable: true
-        netRate:
-          $ref: '#/components/schemas/NetRateModel'
-        mainContact:
-          $ref: '#/components/schemas/ContactModel'
-        additionalContacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContactModel'
-          description: Additional contacts
-          nullable: true
-        vat:
-          type: string
-          description: VAT
-          nullable: true
-        countryCode:
-          type: string
-          description: Country code
-          nullable: true
-        comment:
-          type: string
-          description: Commentary
-          nullable: true
-        website:
-          type: string
-          description: Website
-          nullable: true
-        industryId:
-          type: string
-          description: Specialization
-          nullable: true
-        legalName:
-          type: string
-          description: Legal name
-          nullable: true
-        address:
-          type: string
-          description: Address
-          nullable: true
-        languageId:
-          type: integer
-          description: Language
-          format: int32
-          nullable: true
-        vendorManager:
-          type: string
-          description: Manager
-          nullable: true
-        customFields:
-          type: object
-          additionalProperties:
-            type: string
-            nullable: true
-          description: Custom fields
-          nullable: true
-      additionalProperties: false
-      description: Client model

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account DocumentExport API
+  title: Smartcat Document Export API
   version: v1
 servers:
 - url: /
@@ -49,6 +49,8 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+      operationId: getApiIntegrationV1DocumentExportByTaskId
+      x-operation-id-source: derived
   /api/integration/v1/document/export:
     post:
       tags:
@@ -57,7 +59,9 @@ paths:
       parameters:
       - name: documentIds
         in: query
-        description: "Target language IDs (the syntax is documentId_languageId), where documentId_languageId is a document ID\r\nand languageId is a target language ID"
+        description: 'Target language IDs (the syntax is documentId_languageId), where documentId_languageId is a document ID
+
+          and languageId is a target language ID'
         required: true
         schema:
           type: array
@@ -66,7 +70,13 @@ paths:
             description: ID of the document translation
       - name: mode
         in: query
-        description: "Segment export mode:\r\nCurrent - The current translation, the segment status notwithstanding (what is shown in the editor)\r\nConfirmed - Confirmed segments at the specific stage, as defined by the StageNumber parameter. If the stage is not specified, export all segments confirmed at any stage (this behavior is similar to exporting files using the Smartcat interface)\r\nComplete - Only completed segments, that is the segments that have passed all the stages and were confirmed at the last one"
+        description: 'Segment export mode:
+
+          Current - The current translation, the segment status notwithstanding (what is shown in the editor)
+
+          Confirmed - Confirmed segments at the specific stage, as defined by the StageNumber parameter. If the stage is not specified, export all segments confirmed at any stage (this behavior is similar to exporting files using the Smartcat interface)
+
+          Complete - Only completed segments, that is the segments that have passed all the stages and were confirmed at the last one'
         schema:
           $ref: '#/components/schemas/SegmentExportMode'
       - name: type
@@ -103,54 +113,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/ExportDocumentTaskModel'
         '400':
-          description: "Returns if:\n\r\n- the provided array of document IDs is empty\r\n- the provided workflow stage number is incorrect\r\n- the type of the provided document to be exported to the project is incorrect (for example, Smartcat.AppIntegrations.Contracts.ExportDocumentRequestType.DocumentWithMetadata for a docx-based project)"
+          description: 'Returns if:
+
+
+            - the provided array of document IDs is empty
+
+            - the provided workflow stage number is incorrect
+
+            - the type of the provided document to be exported to the project is incorrect (for example, Smartcat.AppIntegrations.Contracts.ExportDocumentRequestType.DocumentWithMetadata for a docx-based project)'
         '403':
           description: At least one document is not associated with the account
+      operationId: postApiIntegrationV1DocumentExport
+      x-operation-id-source: derived
 components:
   schemas:
-    ExportDocumentTaskModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Task ID
-          format: uuid
-        documentIds:
-          type: array
-          items:
-            type: string
-          description: Documents for export
-          nullable: true
-      additionalProperties: false
-      description: Export document task model
-    SegmentExportMode:
-      enum:
-      - current
-      - confirmed
-      - complete
-      type: string
-      description: Document export mode
-      format: int32
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-      additionalProperties: {}
     ExportDocumentRequestType:
       enum:
       - source
@@ -177,4 +153,53 @@ components:
       - qt-ts
       type: string
       description: Software localization document format
+      format: int32
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
+    ExportDocumentTaskModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task ID
+          format: uuid
+        documentIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Documents for export
+      additionalProperties: false
+      description: Export document task model
+    SegmentExportMode:
+      enum:
+      - current
+      - confirmed
+      - complete
+      type: string
+      description: Document export mode
       format: int32

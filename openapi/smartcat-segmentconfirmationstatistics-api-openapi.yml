@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account SegmentConfirmationStatistics API
+  title: Smartcat Segment Confirmation Statistics API
   version: v1
 servers:
 - url: /
@@ -66,6 +66,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/SegmentConfirmationStatisticsModel'
+      operationId: getApiIntegrationV1SegmentConfirmationStatisticsByProjectId
+      x-operation-id-source: derived
   /api/integration/v2/segment-confirmation-statistics/{projectId}:
     get:
       tags:
@@ -125,8 +127,43 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/UserSegmentConfirmationStatisticsModel'
+      operationId: getApiIntegrationV2SegmentConfirmationStatisticsByProjectId
+      x-operation-id-source: derived
 components:
   schemas:
+    SegmentConfirmationStatisticsWordcountsModel:
+      type: object
+      properties:
+        repetitions:
+          type: integer
+          description: Number of repeated words in a document
+          format: int32
+        crossDocumentRepetitions:
+          type: integer
+          description: Number of repeated words in other project documents
+          format: int32
+        mt:
+          type: integer
+          description: MT words count
+          format: int32
+        externalSource:
+          type: integer
+          description: External sources word count
+          format: int32
+        confirmedWithoutAnySource:
+          type: integer
+          description: Word count from the editor without using MT or TM
+          format: int32
+        tmMatches:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: integer
+            format: int32
+          description: TM word count
+      additionalProperties: false
+      description: Word count model for segment confirmation statistics
     UserSegmentConfirmationStatisticsModel:
       required:
       - accountId
@@ -150,14 +187,16 @@ components:
           description: The account in which the project was created
           format: uuid
         vendorAccountId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Vendor account, if the vendor is assigned and the translation was performed by the user of their account
           format: uuid
-          nullable: true
         externalTag:
-          type: string
+          type:
+          - string
+          - 'null'
           description: External system tag
-          nullable: true
         stageType:
           $ref: '#/components/schemas/StageType'
         projectId:
@@ -173,9 +212,10 @@ components:
           type: string
           description: Target language
         jobId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Job ID, if a job was created
-          nullable: true
         wordcounts:
           $ref: '#/components/schemas/SegmentConfirmationStatisticsWordcountsModel'
         changeStamp:
@@ -206,38 +246,6 @@ components:
       type: string
       description: Workflow stage type
       format: int32
-    SegmentConfirmationStatisticsWordcountsModel:
-      type: object
-      properties:
-        repetitions:
-          type: integer
-          description: Number of repeated words in a document
-          format: int32
-        crossDocumentRepetitions:
-          type: integer
-          description: Number of repeated words in other project documents
-          format: int32
-        mt:
-          type: integer
-          description: MT words count
-          format: int32
-        externalSource:
-          type: integer
-          description: External sources word count
-          format: int32
-        confirmedWithoutAnySource:
-          type: integer
-          description: Word count from the editor without using MT or TM
-          format: int32
-        tmMatches:
-          type: object
-          additionalProperties:
-            type: integer
-            format: int32
-          description: TM word count
-          nullable: true
-      additionalProperties: false
-      description: Word count model for segment confirmation statistics
     SegmentConfirmationStatisticsModel:
       required:
       - accountId
@@ -261,14 +269,16 @@ components:
           description: The account in which the project was created
           format: uuid
         vendorAccountId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Vendor account, if the vendor is assigned and the translation was performed by the user of their account
           format: uuid
-          nullable: true
         externalTag:
-          type: string
+          type:
+          - string
+          - 'null'
           description: External system tag
-          nullable: true
         stageType:
           $ref: '#/components/schemas/StageType'
         projectId:
@@ -284,9 +294,10 @@ components:
           type: string
           description: Target language
         jobId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Job ID, if a job was created
-          nullable: true
         wordcounts:
           $ref: '#/components/schemas/SegmentConfirmationStatisticsWordcountsModel'
         changeStamp:

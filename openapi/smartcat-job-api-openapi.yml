@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account Job API
+  title: Smartcat Job API
   version: v1
 servers:
 - url: /
@@ -53,6 +53,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/JobModelV2Extended'
+      operationId: getApiIntegrationV3JobVerifiedForProject
+      x-operation-id-source: derived
   /api/integration/v3/job:
     get:
       tags:
@@ -99,118 +101,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/JobModelV2Extended'
+      operationId: getApiIntegrationV3Job
+      x-operation-id-source: derived
 components:
   schemas:
-    JobModelV2Extended:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Task ID
-          nullable: true
-        invoiceNumber:
-          type: string
-          description: Bank account number
-          nullable: true
-        supplierEmail:
-          type: string
-          description: Vendor email address
-          nullable: true
-        supplierName:
-          type: string
-          description: Vendor name
-          nullable: true
-        supplierType:
-          $ref: '#/components/schemas/SupplierType'
-        serviceType:
-          type: string
-          description: Service type
-          nullable: true
-        jobDescription:
-          type: string
-          description: 'Description: the name of a document or project'
-          nullable: true
-        unitsType:
-          type: string
-          description: Job unit type
-          nullable: true
-        unitsAmount:
-          type: number
-          description: Job unit count
-          format: double
-        customerPricePerUnit:
-          type: number
-          description: Job unit price
-          format: double
-        executivePricePerUnit:
-          type: number
-          description: Job unit price without commission
-          format: double
-        customerCurrency:
-          type: string
-          description: Price and cost currency
-          nullable: true
-        executiveCurrency:
-          type: string
-          description: Linguist's price and cost currency
-          nullable: true
-        customerCost:
-          type: number
-          description: Total job cost
-          format: double
-        executiveCost:
-          type: number
-          description: Total job cost without commission
-          format: double
-        externalNumber:
-          type: string
-          description: External payment ID
-          nullable: true
-        supplierId:
-          type: string
-          description: Supplier ID
-          format: uuid
-          nullable: true
-        status:
-          $ref: '#/components/schemas/JobStatus'
-        projectId:
-          type: string
-          description: Project ID
-          format: uuid
-          nullable: true
-        deadline:
-          type: string
-          description: Project deadline
-          format: date-time
-          nullable: true
-        sourceLanguage:
-          type: integer
-          description: Source language
-          format: int32
-          nullable: true
-        targetLanguage:
-          type: integer
-          description: Target language
-          format: int32
-          nullable: true
-        isPaidExternally:
-          type: boolean
-          description: Paid externally
-        documentId:
-          type: string
-          description: Document ID
-          nullable: true
-        stageId:
-          type: string
-          description: Workflow stage ID
-          nullable: true
-        verifiedDate:
-          type: string
-          description: The date the job status was set to VERIFIED.
-          format: date-time
-          nullable: true
-      additionalProperties: false
-      description: Payment model
     JobStatus:
       enum:
       - inProgress
@@ -226,6 +120,134 @@ components:
       type: string
       description: Payment status
       format: int32
+    JobModelV2Extended:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Task ID
+        invoiceNumber:
+          type:
+          - string
+          - 'null'
+          description: Bank account number
+        supplierEmail:
+          type:
+          - string
+          - 'null'
+          description: Vendor email address
+        supplierName:
+          type:
+          - string
+          - 'null'
+          description: Vendor name
+        supplierType:
+          $ref: '#/components/schemas/SupplierType'
+        serviceType:
+          type:
+          - string
+          - 'null'
+          description: Service type
+        jobDescription:
+          type:
+          - string
+          - 'null'
+          description: 'Description: the name of a document or project'
+        unitsType:
+          type:
+          - string
+          - 'null'
+          description: Job unit type
+        unitsAmount:
+          type: number
+          description: Job unit count
+          format: double
+        customerPricePerUnit:
+          type: number
+          description: Job unit price
+          format: double
+        executivePricePerUnit:
+          type: number
+          description: Job unit price without commission
+          format: double
+        customerCurrency:
+          type:
+          - string
+          - 'null'
+          description: Price and cost currency
+        executiveCurrency:
+          type:
+          - string
+          - 'null'
+          description: Linguist's price and cost currency
+        customerCost:
+          type: number
+          description: Total job cost
+          format: double
+        executiveCost:
+          type: number
+          description: Total job cost without commission
+          format: double
+        externalNumber:
+          type:
+          - string
+          - 'null'
+          description: External payment ID
+        supplierId:
+          type:
+          - string
+          - 'null'
+          description: Supplier ID
+          format: uuid
+        status:
+          $ref: '#/components/schemas/JobStatus'
+        projectId:
+          type:
+          - string
+          - 'null'
+          description: Project ID
+          format: uuid
+        deadline:
+          type:
+          - string
+          - 'null'
+          description: Project deadline
+          format: date-time
+        sourceLanguage:
+          type:
+          - integer
+          - 'null'
+          description: Source language
+          format: int32
+        targetLanguage:
+          type:
+          - integer
+          - 'null'
+          description: Target language
+          format: int32
+        isPaidExternally:
+          type: boolean
+          description: Paid externally
+        documentId:
+          type:
+          - string
+          - 'null'
+          description: Document ID
+        stageId:
+          type:
+          - string
+          - 'null'
+          description: Workflow stage ID
+        verifiedDate:
+          type:
+          - string
+          - 'null'
+          description: The date the job status was set to VERIFIED.
+          format: date-time
+      additionalProperties: false
+      description: Payment model
     SupplierType:
       enum:
       - freelancer

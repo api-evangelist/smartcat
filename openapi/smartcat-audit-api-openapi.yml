@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account Audit API
+  title: Smartcat Audit API
   version: v1
 servers:
 - url: /
@@ -63,8 +63,67 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      operationId: getApiIntegrationV1AuditLogs
+      x-operation-id-source: derived
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ErrorType'
+        code:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+        requestId:
+          type:
+          - string
+          - 'null'
+        innerException: {}
+        statusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+      additionalProperties: false
+    AuditLogModel:
+      type: object
+      properties:
+        time:
+          type: string
+          description: Event time
+          format: date-time
+        type:
+          type:
+          - string
+          - 'null'
+          description: Event type
+        userId:
+          type:
+          - string
+          - 'null'
+          description: User ID
+          format: uuid
+        userEmail:
+          type:
+          - string
+          - 'null'
+          description: User E-mail
+        userNickName:
+          type:
+          - string
+          - 'null'
+          description: User nickname
+        payload:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          description: Payload data
+      additionalProperties: false
+      description: Audit log model
     HttpStatusCode:
       enum:
       - continue
@@ -143,54 +202,3 @@ components:
       - unknown
       type: string
       format: int32
-    ErrorResponse:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ErrorType'
-        code:
-          type: string
-          nullable: true
-        message:
-          type: string
-          nullable: true
-        requestId:
-          type: string
-          nullable: true
-        innerException:
-          nullable: true
-        statusCode:
-          $ref: '#/components/schemas/HttpStatusCode'
-      additionalProperties: false
-    AuditLogModel:
-      type: object
-      properties:
-        time:
-          type: string
-          description: Event time
-          format: date-time
-        type:
-          type: string
-          description: Event type
-          nullable: true
-        userId:
-          type: string
-          description: User ID
-          format: uuid
-          nullable: true
-        userEmail:
-          type: string
-          description: User E-mail
-          nullable: true
-        userNickName:
-          type: string
-          description: User nickname
-          nullable: true
-        payload:
-          type: object
-          additionalProperties:
-            nullable: true
-          description: Payload data
-          nullable: true
-      additionalProperties: false
-      description: Audit log model

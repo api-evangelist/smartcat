@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account Glossary API
+  title: Smartcat Glossary API
   version: v1
 servers:
 - url: /
@@ -31,6 +31,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/GlossaryModel'
+      operationId: getApiIntegrationV1Glossaries
+      x-operation-id-source: derived
   /api/integration/v1/glossaries/default:
     get:
       tags:
@@ -51,6 +53,8 @@ paths:
                 $ref: '#/components/schemas/GlossaryModel'
         '404':
           description: Default glossary is not found
+      operationId: getApiIntegrationV1GlossariesDefault
+      x-operation-id-source: derived
   /api/integration/v1/glossary/import:
     post:
       tags:
@@ -99,6 +103,8 @@ paths:
                 format: uuid
         '404':
           description: The glossary with the specified ID was not found
+      operationId: postApiIntegrationV1GlossaryImport
+      x-operation-id-source: derived
   /api/integration/v1/glossary/importTaskState/{taskId}:
     get:
       tags:
@@ -127,6 +133,8 @@ paths:
                 type: string
         '404':
           description: The task with the specified ID was not found
+      operationId: getApiIntegrationV1GlossaryImportTaskStateByTaskId
+      x-operation-id-source: derived
   /api/integration/v1/glossary/export:
     post:
       tags:
@@ -158,6 +166,8 @@ paths:
                 format: uuid
         '404':
           description: The glossary with the specified ID was not found
+      operationId: postApiIntegrationV1GlossaryExport
+      x-operation-id-source: derived
   /api/integration/v1/glossary/export/pendingTasks:
     get:
       tags:
@@ -182,6 +192,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/GlossaryExportPendingTaskInfo'
+      operationId: getApiIntegrationV1GlossaryExportPendingTasks
+      x-operation-id-source: derived
   /api/integration/v1/glossary/export/{taskId}:
     get:
       tags:
@@ -204,6 +216,8 @@ paths:
           description: The export task with the specified ID was not found
         '500':
           description: Some problem has happended during export
+      operationId: getApiIntegrationV1GlossaryExportByTaskId
+      x-operation-id-source: derived
 components:
   schemas:
     GlossaryModel:
@@ -214,24 +228,28 @@ components:
           description: Glossary ID
           format: uuid
         name:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Glossary name
-          nullable: true
         description:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Glossary description
-          nullable: true
         clientId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Client ID, if a glossary client is specified
           format: uuid
-          nullable: true
         languages:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
           description: Glossary language codes
-          nullable: true
         units:
           type: integer
           description: Glossary unit count

@@ -1,10 +1,11 @@
 generated: '2026-07-21'
 method: searched
 host: https://smartcat.com
-note: >-
-  Probed the /.well-known/ discovery surface on smartcat.com, developers.smartcat.com,
-  help.smartcat.com and us.smartcat.com. No discovery documents are published.
-documents:
+note: Probed the /.well-known/ discovery surface on smartcat.com, developers.smartcat.com, help.smartcat.com
+  and us.smartcat.com. No discovery documents are published.
+hosts:
+- host: https://smartcat.com
+  documents:
   - path: /.well-known/security.txt
     status: 404
   - path: /.well-known/openid-configuration
@@ -15,3 +16,8 @@ documents:
     status: 404
   - path: /.well-known/ai-plugin.json
     status: 404
+x-shape-fix:
+  converted: '2026-08-20'
+  from: documents
+  note: Rewritten into hosts[] -> documents[], the only shape well_known_docs() in score.rb reads. A served
+    .well-known surface recorded in any other shape scores as absent.

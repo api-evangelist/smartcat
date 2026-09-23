@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account Vendor API
+  title: Smartcat Vendor API
   version: v1
 servers:
 - url: /
@@ -31,6 +31,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/VendorModel'
+      operationId: getApiIntegrationV1VendorList
+      x-operation-id-source: derived
   /api/integration/v1/vendor/{vendorAccountId}:
     get:
       tags:
@@ -61,6 +63,8 @@ paths:
           description: The specified vendor ID's format is incorrect
         '404':
           description: The provided vendor ID does not exist or the vendor is not associated with the account
+      operationId: getApiIntegrationV1VendorByVendorAccountId
+      x-operation-id-source: derived
 components:
   schemas:
     VendorModel:
@@ -71,15 +75,18 @@ components:
           description: ID
           format: uuid
         name:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Company name
-          nullable: true
         customFields:
-          type: object
+          type:
+          - object
+          - 'null'
           additionalProperties:
-            type: string
-            nullable: true
+            type:
+            - string
+            - 'null'
           description: Custom fields
-          nullable: true
       additionalProperties: false
       description: Vendor model

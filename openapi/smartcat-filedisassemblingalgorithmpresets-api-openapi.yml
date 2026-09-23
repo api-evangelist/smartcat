@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account FileDisassemblingAlgorithmPresets API
+  title: Smartcat File Disassembling Algorithm Presets API
   version: v1
 servers:
 - url: /
@@ -36,6 +36,8 @@ paths:
           description: The provided ID format is incorrect
         '404':
           description: The provided preset ID does not exist
+      operationId: getApiIntegrationV1FileDisassemblingAlgorithmPresetsById
+      x-operation-id-source: derived
     put:
       tags:
       - FileDisassemblingAlgorithmPresets
@@ -78,6 +80,8 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+      operationId: putApiIntegrationV1FileDisassemblingAlgorithmPresetsById
+      x-operation-id-source: derived
     delete:
       tags:
       - FileDisassemblingAlgorithmPresets
@@ -92,6 +96,8 @@ paths:
       responses:
         '204':
           description: Request has been successfully completed
+      operationId: deleteApiIntegrationV1FileDisassemblingAlgorithmPresetsById
+      x-operation-id-source: derived
   /api/integration/v1/fileDisassemblingAlgorithmPresets:
     get:
       tags:
@@ -116,6 +122,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/FileDisassemblingAlgorithmPresetViewModel'
+      operationId: getApiIntegrationV1FileDisassemblingAlgorithmPresets
+      x-operation-id-source: derived
     post:
       tags:
       - FileDisassemblingAlgorithmPresets
@@ -151,64 +159,10 @@ paths:
                 $ref: '#/components/schemas/FileDisassemblingAlgorithmPresetCreatedModel'
         '400':
           description: Incorrect parameter format
+      operationId: postApiIntegrationV1FileDisassemblingAlgorithmPresets
+      x-operation-id-source: derived
 components:
   schemas:
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-      additionalProperties: {}
-    FileDisassemblingAlgorithmPresetEditModel:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Preset name
-          nullable: true
-        algorithmName:
-          type: string
-          description: Preset algorithm
-          nullable: true
-        settings:
-          description: Settings
-          nullable: true
-      additionalProperties: false
-      description: Preset edit model
-    FileDisassemblingAlgorithmPresetViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID
-          format: uuid
-        name:
-          type: string
-          description: Name
-          nullable: true
-        algorithmName:
-          type: string
-          description: Algorithm
-          nullable: true
-        settings:
-          description: Settings
-          nullable: true
-      additionalProperties: false
-      description: Preset view model
     FileDisassemblingAlgorithmPresetCreatedModel:
       type: object
       properties:
@@ -218,3 +172,66 @@ components:
           format: uuid
       additionalProperties: false
       description: Created preset details
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
+    FileDisassemblingAlgorithmPresetViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name
+        algorithmName:
+          type:
+          - string
+          - 'null'
+          description: Algorithm
+        settings:
+          description: Settings
+      additionalProperties: false
+      description: Preset view model
+    FileDisassemblingAlgorithmPresetEditModel:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Preset name
+        algorithmName:
+          type:
+          - string
+          - 'null'
+          description: Preset algorithm
+        settings:
+          description: Settings
+      additionalProperties: false
+      description: Preset edit model

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account MyTeam API
+  title: Smartcat My Team API
   version: v1
 servers:
 - url: /
@@ -34,6 +34,8 @@ paths:
                 $ref: '#/components/schemas/MyTeamMemberModel'
         '404':
           description: User not found
+      operationId: getApiIntegrationV1AccountMyTeamByUserId
+      x-operation-id-source: derived
     delete:
       tags:
       - MyTeam
@@ -48,6 +50,8 @@ paths:
       responses:
         '204':
           description: Request has been successfully completed
+      operationId: deleteApiIntegrationV1AccountMyTeamByUserId
+      x-operation-id-source: derived
   /api/integration/v1/account/myTeam:
     get:
       tags:
@@ -74,6 +78,8 @@ paths:
                 $ref: '#/components/schemas/MyTeamMemberModel'
         '404':
           description: User not found
+      operationId: getApiIntegrationV1AccountMyTeam
+      x-operation-id-source: derived
     post:
       tags:
       - MyTeam
@@ -112,6 +118,8 @@ paths:
           description: Unable to find an account connected to the integration API
         '409':
           description: A linguist with the provided email or external ID is already added to the team
+      operationId: postApiIntegrationV1AccountMyTeam
+      x-operation-id-source: derived
   /api/integration/v1/account/searchMyTeam:
     post:
       tags:
@@ -152,9 +160,24 @@ paths:
                 items:
                   $ref: '#/components/schemas/MyTeamMemberModel'
         '400':
-          description: "Returns if:\n\r\n- Maximum required number of results is greater than 500\r\n- Specified language is unknown\r\n- Specified service type is unknown\r\n- Specified subject expertise (specialization) is unknown\r\n- Specified currency is unknown\r\n- Specified level of subject expertise (specialization) is unknown"
+          description: 'Returns if:
+
+
+            - Maximum required number of results is greater than 500
+
+            - Specified language is unknown
+
+            - Specified service type is unknown
+
+            - Specified subject expertise (specialization) is unknown
+
+            - Specified currency is unknown
+
+            - Specified level of subject expertise (specialization) is unknown'
         '404':
           description: Unable to find an account connected to the integration API
+      operationId: postApiIntegrationV1AccountSearchMyTeam
+      x-operation-id-source: derived
   /api/integration/v1/account/myTeam/{userId}/services/replace:
     post:
       tags:
@@ -209,6 +232,8 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+      operationId: postApiIntegrationV1AccountMyTeamByUserIdServicesReplace
+      x-operation-id-source: derived
   /api/integration/v1/account/myTeam/{userId}/phone:
     put:
       tags:
@@ -251,6 +276,8 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+      operationId: putApiIntegrationV1AccountMyTeamByUserIdPhone
+      x-operation-id-source: derived
   /api/integration/v1/account/myTeam/{userId}/comment:
     put:
       tags:
@@ -305,8 +332,71 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+      operationId: putApiIntegrationV1AccountMyTeamByUserIdComment
+      x-operation-id-source: derived
 components:
   schemas:
+    ReplaceServicesModel:
+      type: object
+      properties:
+        services:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ServiceModel'
+          description: Services
+      additionalProperties: false
+      description: MyTeam member services replacement model
+    SpecializationKnowledgeLevel:
+      enum:
+      - tested
+      - certified
+      - coursePassed
+      type: string
+      description: Level of specialization expertise
+      format: int32
+    ServiceModel:
+      type: object
+      properties:
+        serviceType:
+          $ref: '#/components/schemas/FreelancerServiceType'
+        sourceLanguage:
+          type:
+          - string
+          - 'null'
+          description: Source language
+        targetLanguage:
+          type:
+          - string
+          - 'null'
+          description: Target language
+        pricePerUnit:
+          type:
+          - number
+          - 'null'
+          description: Price per unit
+          format: double
+        performancePerDay:
+          type:
+          - number
+          - 'null'
+          description: User's daily performance per service
+          format: double
+        currency:
+          type:
+          - string
+          - 'null'
+          description: Currency
+        specializations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Specialization'
+          description: Specializations for a written service
+      additionalProperties: false
+      description: Service model
     Specialization:
       enum:
       - education
@@ -395,92 +485,196 @@ components:
       type: string
       description: Text specialization
       format: int32
-    SpecializationKnowledgeLevel:
-      enum:
-      - tested
-      - certified
-      - coursePassed
-      type: string
-      description: Level of specialization expertise
-      format: int32
-    ServiceModel:
+    MyTeamSearchRequestModel:
       type: object
       properties:
+        skip:
+          type:
+          - integer
+          - 'null'
+          description: Number of search request results to be skipped (mandatory parameter)
+          format: int32
+        limit:
+          type:
+          - integer
+          - 'null'
+          description: Maximum number of search request results (mandatory parameter, cannot exceed 500)
+          format: int32
         serviceType:
           $ref: '#/components/schemas/FreelancerServiceType'
         sourceLanguage:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Source language
-          nullable: true
         targetLanguage:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Target language
-          nullable: true
-        pricePerUnit:
-          type: number
-          description: Price per unit
+        onlyNativeSpeakers:
+          type: boolean
+          description: Linguist's native language
+        allDialects:
+          type: boolean
+          description: Search linguists in all dialects for the language pair
+        minRate:
+          type:
+          - number
+          - 'null'
+          description: Minimum translation unit rate
           format: double
-          nullable: true
-        performancePerDay:
-          type: number
-          description: User's daily performance per service
+        maxRate:
+          type:
+          - number
+          - 'null'
+          description: Maximum translation unit rate
           format: double
-          nullable: true
-        currency:
-          type: string
-          description: Currency
-          nullable: true
+        rateRangeCurrency:
+          type:
+          - string
+          - 'null'
+          description: Rate range currency
         specializations:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Specialization'
-          description: Specializations for a written service
-          nullable: true
-      additionalProperties: false
-      description: Service model
-    ReplaceServicesModel:
-      type: object
-      properties:
-        services:
-          type: array
+          description: Specializations
+        specializationKnowledgeLevel:
+          type:
+          - array
+          - 'null'
           items:
-            $ref: '#/components/schemas/ServiceModel'
-          description: Services
-          nullable: true
+            $ref: '#/components/schemas/SpecializationKnowledgeLevel'
+          description: Required level of expertise in the specified (or any other if undefined) specialization
+        searchString:
+          type:
+          - string
+          - 'null'
+          description: Full-text search string
+        daytime:
+          type: boolean
+          description: It is daytime now in the linguist's time zone
       additionalProperties: false
-      description: MyTeam member services replacement model
-    InhouseTranslatorCreationModel:
+      description: MyTeam member search request
+    MyTeamMemberModel:
       type: object
       properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
         email:
-          type: string
-          description: In-house translator email
-          nullable: true
+          type:
+          - string
+          - 'null'
+          description: Email
         firstName:
-          type: string
-          description: In-house translator first name
-          nullable: true
+          type:
+          - string
+          - 'null'
+          description: Name
         lastName:
-          type: string
-          description: In-house translator last name
-          nullable: true
+          type:
+          - string
+          - 'null'
+          description: Last name
         externalId:
-          type: string
-          description: In-house translator ID in an external system
-          nullable: true
+          type:
+          - string
+          - 'null'
+          description: MyTeam member ID in an external system
         services:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/ServiceModel'
-          description: Services
-          nullable: true
+          description: MyTeam member services
         clientIds:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
             format: uuid
           description: Client IDs associated with the user
-          nullable: true
+        customFields:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+          description: Custom fields
+      additionalProperties: false
+      description: MyTeam member model
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
+    InhouseTranslatorCreationModel:
+      type: object
+      properties:
+        email:
+          type:
+          - string
+          - 'null'
+          description: In-house translator email
+        firstName:
+          type:
+          - string
+          - 'null'
+          description: In-house translator first name
+        lastName:
+          type:
+          - string
+          - 'null'
+          description: In-house translator last name
+        externalId:
+          type:
+          - string
+          - 'null'
+          description: In-house translator ID in an external system
+        services:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ServiceModel'
+          description: Services
+        clientIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+          description: Client IDs associated with the user
       additionalProperties: false
       description: In-house translator creation model
     FreelancerServiceType:
@@ -508,132 +702,3 @@ components:
       type: string
       description: Freelancer service type
       format: int32
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-      additionalProperties: {}
-    MyTeamMemberModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID
-          format: uuid
-        email:
-          type: string
-          description: Email
-          nullable: true
-        firstName:
-          type: string
-          description: Name
-          nullable: true
-        lastName:
-          type: string
-          description: Last name
-          nullable: true
-        externalId:
-          type: string
-          description: MyTeam member ID in an external system
-          nullable: true
-        services:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceModel'
-          description: MyTeam member services
-          nullable: true
-        clientIds:
-          type: array
-          items:
-            type: string
-            format: uuid
-          description: Client IDs associated with the user
-          nullable: true
-        customFields:
-          type: object
-          additionalProperties:
-            type: string
-            nullable: true
-          description: Custom fields
-          nullable: true
-      additionalProperties: false
-      description: MyTeam member model
-    MyTeamSearchRequestModel:
-      type: object
-      properties:
-        skip:
-          type: integer
-          description: Number of search request results to be skipped (mandatory parameter)
-          format: int32
-          nullable: true
-        limit:
-          type: integer
-          description: Maximum number of search request results (mandatory parameter, cannot exceed 500)
-          format: int32
-          nullable: true
-        serviceType:
-          $ref: '#/components/schemas/FreelancerServiceType'
-        sourceLanguage:
-          type: string
-          description: Source language
-          nullable: true
-        targetLanguage:
-          type: string
-          description: Target language
-          nullable: true
-        onlyNativeSpeakers:
-          type: boolean
-          description: Linguist's native language
-        allDialects:
-          type: boolean
-          description: Search linguists in all dialects for the language pair
-        minRate:
-          type: number
-          description: Minimum translation unit rate
-          format: double
-          nullable: true
-        maxRate:
-          type: number
-          description: Maximum translation unit rate
-          format: double
-          nullable: true
-        rateRangeCurrency:
-          type: string
-          description: Rate range currency
-          nullable: true
-        specializations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Specialization'
-          description: Specializations
-          nullable: true
-        specializationKnowledgeLevel:
-          type: array
-          items:
-            $ref: '#/components/schemas/SpecializationKnowledgeLevel'
-          description: Required level of expertise in the specified (or any other if undefined) specialization
-          nullable: true
-        searchString:
-          type: string
-          description: Full-text search string
-          nullable: true
-        daytime:
-          type: boolean
-          description: It is daytime now in the linguist's time zone
-      additionalProperties: false
-      description: MyTeam member search request

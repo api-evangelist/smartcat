@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account Smartwords API
+  title: Smartcat Smartwords API
   version: v1
 servers:
 - url: /
@@ -25,6 +25,8 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/SmartwordsBalanceModel'
+      operationId: getApiIntegrationV1SmartwordsBalance
+      x-operation-id-source: derived
 components:
   schemas:
     SmartwordsBalanceModel:

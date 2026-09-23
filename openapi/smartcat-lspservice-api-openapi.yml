@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account LspService API
+  title: Smartcat Lsp Service API
   version: v1
 servers:
 - url: /
@@ -22,6 +22,8 @@ paths:
       responses:
         '200':
           description: OK
+      operationId: deleteApiIntegrationV1LspServicesByServiceId
+      x-operation-id-source: derived
   /api/integration/v2/lsp/services:
     get:
       tags:
@@ -55,6 +57,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/LspServiceModelV2'
+      operationId: getApiIntegrationV2LspServices
+      x-operation-id-source: derived
     post:
       tags:
       - LspService
@@ -88,6 +92,8 @@ paths:
             text/json:
               schema:
                 type: string
+      operationId: postApiIntegrationV2LspServices
+      x-operation-id-source: derived
   /api/integration/v2/lsp/services/batch:
     get:
       tags:
@@ -126,6 +132,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/LspServiceModelV2'
+      operationId: getApiIntegrationV2LspServicesBatch
+      x-operation-id-source: derived
     post:
       tags:
       - LspService
@@ -173,6 +181,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/AddBatchResult'
+      operationId: postApiIntegrationV2LspServicesBatch
+      x-operation-id-source: derived
   /api/integration/v2/lsp/services/{serviceId}:
     put:
       tags:
@@ -204,15 +214,18 @@ paths:
       responses:
         '200':
           description: OK
+      operationId: putApiIntegrationV2LspServicesByServiceId
+      x-operation-id-source: derived
 components:
   schemas:
     AddBatchResult:
       type: object
       properties:
         id:
-          type: string
+          type:
+          - string
+          - 'null'
           description: ID of a created entity
-          nullable: true
         index:
           type: integer
           description: ID of an entity assigned upon its addition to a batch
@@ -345,37 +358,6 @@ components:
       type: string
       description: LSP service type
       format: int32
-    LspServiceModelV2:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Service ID
-          nullable: true
-        name:
-          type: string
-          description: Service name
-          nullable: true
-        description:
-          type: string
-          description: Service description
-          nullable: true
-        serviceTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/LspServiceType'
-          description: Provided service types
-          nullable: true
-        specializations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Specialization'
-          description: Specializations
-          nullable: true
-        workUnitType:
-          $ref: '#/components/schemas/WorkUnitType'
-      additionalProperties: false
-      description: LSP service model
     WorkUnitType:
       enum:
       - char
@@ -390,29 +372,69 @@ components:
       type: string
       description: Linguist's work unit
       format: int32
+    LspServiceModelV2:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Service ID
+        name:
+          type:
+          - string
+          - 'null'
+          description: Service name
+        description:
+          type:
+          - string
+          - 'null'
+          description: Service description
+        serviceTypes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/LspServiceType'
+          description: Provided service types
+        specializations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Specialization'
+          description: Specializations
+        workUnitType:
+          $ref: '#/components/schemas/WorkUnitType'
+      additionalProperties: false
+      description: LSP service model
     LspUpdateServiceModelV2:
       type: object
       properties:
         name:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Service name
-          nullable: true
         description:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Service description
-          nullable: true
         serviceTypes:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/LspServiceType'
           description: Provided service types
-          nullable: true
         specializations:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/Specialization'
           description: Specializations
-          nullable: true
         workUnitType:
           $ref: '#/components/schemas/WorkUnitType'
       additionalProperties: false

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account SmartTranslation API
+  title: Smartcat Smart Translation API
   version: v1
 servers:
 - url: /
@@ -11,7 +11,7 @@ paths:
     post:
       tags:
       - SmartTranslation
-      summary: "Fetch translation\r\nSee the Smart Translation API guide [here](https://developers.smartcat.com/api-guides/#instant-translations-via-the-real-time-api)"
+      summary: Fetch translation See the Smart Translation API guide here
       requestBody:
         content:
           application/json-patch+json:
@@ -39,38 +39,10 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/SmartTranslationResponse'
+      operationId: postApiIntegrationV1SmartTranslationTranslate
+      x-operation-id-source: derived
 components:
   schemas:
-    SmartTranslationResponse:
-      type: object
-      properties:
-        translations:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/SmartTranslationResult'
-            nullable: true
-          description: Translation results grouped by the target language
-          nullable: true
-      additionalProperties: false
-      description: Successful response to a translation request
-    SmartTranslationResult:
-      type: object
-      properties:
-        translation:
-          type: string
-          description: Translation.
-          nullable: true
-        error:
-          type: boolean
-          description: Error flag.
-        segmentMetadata:
-          type: string
-          description: Optional opaque per-segment metadata associated with the translated text. Null when absent.
-          nullable: true
-      additionalProperties: false
-      description: Translation result.
     SmartTranslationRequest:
       required:
       - sourceLanguage
@@ -90,9 +62,10 @@ components:
             type: string
           description: Target languages
         profile:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Translation profile ID
-          nullable: true
         isHtml:
           type: boolean
           description: Indicates whether the source text is in HTML format
@@ -104,11 +77,46 @@ components:
             $ref: '#/components/schemas/SmartTranslationText'
           description: Translation text entry
         externalTag:
-          type: string
+          type:
+          - string
+          - 'null'
           description: External system tag
-          nullable: true
       additionalProperties: false
       description: Translation request
+    SmartTranslationResponse:
+      type: object
+      properties:
+        translations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/SmartTranslationResult'
+          description: Translation results grouped by the target language
+      additionalProperties: false
+      description: Successful response to a translation request
+    SmartTranslationResult:
+      type: object
+      properties:
+        translation:
+          type:
+          - string
+          - 'null'
+          description: Translation.
+        error:
+          type: boolean
+          description: Error flag.
+        segmentMetadata:
+          type:
+          - string
+          - 'null'
+          description: Optional opaque per-segment metadata associated with the translated text. Null when absent.
+      additionalProperties: false
+      description: Translation result.
     SmartTranslationText:
       required:
       - text
@@ -119,8 +127,9 @@ components:
           type: string
           description: Text
         context:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Translation context
-          nullable: true
       additionalProperties: false
       description: Translation text

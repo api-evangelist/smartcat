@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account ClientIndustry API
+  title: Smartcat Client Industry API
   version: v1
 servers:
 - url: /
@@ -32,6 +32,8 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ClientIndustryModel'
+      operationId: getApiIntegrationV1ClientIndustryById
+      x-operation-id-source: derived
     put:
       tags:
       - ClientIndustry
@@ -51,6 +53,8 @@ paths:
       responses:
         '204':
           description: No Content
+      operationId: putApiIntegrationV1ClientIndustryById
+      x-operation-id-source: derived
     delete:
       tags:
       - ClientIndustry
@@ -65,6 +69,8 @@ paths:
       responses:
         '204':
           description: No Content
+      operationId: deleteApiIntegrationV1ClientIndustryById
+      x-operation-id-source: derived
   /api/integration/v1/clientIndustry:
     get:
       tags:
@@ -89,6 +95,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ClientIndustryModel'
+      operationId: getApiIntegrationV1ClientIndustry
+      x-operation-id-source: derived
   /api/integration/v1/clientIndustry/{name}:
     post:
       tags:
@@ -114,18 +122,22 @@ paths:
             text/json:
               schema:
                 type: string
+      operationId: postApiIntegrationV1ClientIndustryByName
+      x-operation-id-source: derived
 components:
   schemas:
     ClientIndustryModel:
       type: object
       properties:
         id:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Directory entry ID
-          nullable: true
         name:
-          type: string
+          type:
+          - string
+          - 'null'
           description: List entry value
-          nullable: true
       additionalProperties: false
       description: Model of an entry in a client's specializations list

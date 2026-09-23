@@ -1,16 +1,16 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account FileManagement API
+  title: Smartcat File Management API
   version: v1
 servers:
 - url: /
 tags:
-- name: FileManagement
+- name: File Management
 paths:
   /api/integration/v1/file-management/file/{path}:
     get:
       tags:
-      - FileManagement
+      - File Management
       summary: Download a file by path
       parameters:
       - name: path
@@ -46,9 +46,11 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/Models.ErrorResponse'
+      operationId: getApiIntegrationV1FileManagementFileByPath
+      x-operation-id-source: derived
     put:
       tags:
-      - FileManagement
+      - File Management
       summary: Upload file to a specified path in storage
       parameters:
       - name: path
@@ -97,9 +99,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Models.ErrorResponse'
+      operationId: putApiIntegrationV1FileManagementFileByPath
+      x-operation-id-source: derived
     delete:
       tags:
-      - FileManagement
+      - File Management
       summary: Delete a file by path
       parameters:
       - name: path
@@ -123,10 +127,12 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/Models.ErrorResponse'
+      operationId: deleteApiIntegrationV1FileManagementFileByPath
+      x-operation-id-source: derived
   /api/integration/v1/file-management/files/{path}:
     put:
       tags:
-      - FileManagement
+      - File Management
       summary: Upload multiple files to a specified path in storage
       description: Original file names will be used for uploaded files
       parameters:
@@ -186,10 +192,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Models.ErrorResponse'
+      operationId: putApiIntegrationV1FileManagementFilesByPath
+      x-operation-id-source: derived
   /api/integration/v1/file-management/file-info/{path}:
     get:
       tags:
-      - FileManagement
+      - File Management
       summary: Get single file info by path
       parameters:
       - name: path
@@ -217,10 +225,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Models.ErrorResponse'
+      operationId: getApiIntegrationV1FileManagementFileInfoByPath
+      x-operation-id-source: derived
   /api/integration/v1/file-management/file-info-list/{prefix}:
     get:
       tags:
-      - FileManagement
+      - File Management
       summary: Get list of files whose path starts with given prefix
       parameters:
       - name: prefix
@@ -240,7 +250,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BatchResult<FileInfoModel>'
+                $ref: '#/components/schemas/BatchResult_FileInfoModel'
         '400':
           description: Bad Request
           content:
@@ -253,48 +263,42 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Models.ErrorResponse'
+      operationId: getApiIntegrationV1FileManagementFileInfoListByPrefix
+      x-operation-id-source: derived
 components:
   schemas:
-    BatchResult<FileInfoModel>:
+    BatchResult_FileInfoModel:
       type: object
       properties:
         items:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/FileInfoModel'
-          nullable: true
         nextBatchKey:
-          type: string
-          nullable: true
-      additionalProperties: false
-    Models.ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          nullable: true
-        details:
-          type: string
-          nullable: true
-        correlationId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       additionalProperties: false
     FileInfoModel:
       type: object
       properties:
         name:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Original name of the file
-          nullable: true
         mime:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Mime type of the file
-          nullable: true
         path:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Path of file in storage
-          nullable: true
         size:
           type: integer
           description: Size of file in bytes
@@ -304,13 +308,30 @@ components:
           description: Date when file was uploaded
           format: date-time
         lastAccessTime:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Date when file was last time accessed
           format: date-time
-          nullable: true
         expirationTime:
           type: string
           description: Date when file will be deleted if not used
           format: date-time
       additionalProperties: false
       description: Information about file uploaded to storage
+    Models.ErrorResponse:
+      type: object
+      properties:
+        message:
+          type:
+          - string
+          - 'null'
+        details:
+          type:
+          - string
+          - 'null'
+        correlationId:
+          type:
+          - string
+          - 'null'
+      additionalProperties: false

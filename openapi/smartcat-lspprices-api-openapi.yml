@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Smartcat Account LspPrices API
+  title: Smartcat Lsp Prices API
   version: v1
 servers:
 - url: /
@@ -22,6 +22,8 @@ paths:
       responses:
         '200':
           description: OK
+      operationId: deleteApiIntegrationV1LspPricesByPriceId
+      x-operation-id-source: derived
   /api/integration/v2/lsp/prices:
     get:
       tags:
@@ -55,6 +57,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/LspPriceModelV2'
+      operationId: getApiIntegrationV2LspPrices
+      x-operation-id-source: derived
     post:
       tags:
       - LspPrices
@@ -88,6 +92,8 @@ paths:
             text/json:
               schema:
                 type: string
+      operationId: postApiIntegrationV2LspPrices
+      x-operation-id-source: derived
   /api/integration/v2/lsp/prices/batch:
     get:
       tags:
@@ -125,6 +131,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/LspPriceModelV2'
+      operationId: getApiIntegrationV2LspPricesBatch
+      x-operation-id-source: derived
     post:
       tags:
       - LspPrices
@@ -172,6 +180,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/AddBatchResult'
+      operationId: postApiIntegrationV2LspPricesBatch
+      x-operation-id-source: derived
   /api/integration/v2/lsp/prices/{priceId}:
     put:
       tags:
@@ -203,15 +213,18 @@ paths:
       responses:
         '200':
           description: OK
+      operationId: putApiIntegrationV2LspPricesByPriceId
+      x-operation-id-source: derived
 components:
   schemas:
     AddBatchResult:
       type: object
       properties:
         id:
-          type: string
+          type:
+          - string
+          - 'null'
           description: ID of a created entity
-          nullable: true
         index:
           type: integer
           description: ID of an entity assigned upon its addition to a batch
@@ -221,73 +234,86 @@ components:
           description: Entity was successfully created
       additionalProperties: false
       description: Entity creation result model for batch addition
-    LspUpdatePriceModelV2:
-      type: object
-      properties:
-        serviceId:
-          type: string
-          description: Service ID
-          nullable: true
-        clientId:
-          type: string
-          description: Client ID
-          format: uuid
-          nullable: true
-        sourceLanguage:
-          type: string
-          description: Source language
-          nullable: true
-        targetLanguages:
-          type: array
-          items:
-            type: string
-          description: Target languages
-          nullable: true
-        pricePerUnit:
-          type: number
-          description: Price per unit
-          format: double
-          nullable: true
-        pricePerUnitCurrency:
-          type: string
-          description: Price currency
-          nullable: true
-      additionalProperties: false
-      description: LSP service price creation and update model
     LspPriceModelV2:
       type: object
       properties:
         id:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Price ID
-          nullable: true
         serviceId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Service ID
-          nullable: true
         clientId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Client ID
           format: uuid
-          nullable: true
         sourceLanguage:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Source language
-          nullable: true
         targetLanguages:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
           description: Target languages
-          nullable: true
         pricePerUnit:
-          type: number
+          type:
+          - number
+          - 'null'
           description: Price per unit
           format: double
-          nullable: true
         pricePerUnitCurrency:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Price currency
-          nullable: true
       additionalProperties: false
       description: LSP service price model
+    LspUpdatePriceModelV2:
+      type: object
+      properties:
+        serviceId:
+          type:
+          - string
+          - 'null'
+          description: Service ID
+        clientId:
+          type:
+          - string
+          - 'null'
+          description: Client ID
+          format: uuid
+        sourceLanguage:
+          type:
+          - string
+          - 'null'
+          description: Source language
+        targetLanguages:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Target languages
+        pricePerUnit:
+          type:
+          - number
+          - 'null'
+          description: Price per unit
+          format: double
+        pricePerUnitCurrency:
+          type:
+          - string
+          - 'null'
+          description: Price currency
+      additionalProperties: false
+      description: LSP service price creation and update model
