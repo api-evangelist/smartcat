@@ -35,24 +35,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    FieldType:
-      enum:
-      - text
-      - select
-      type: string
-      description: Specifies the data type of a custom field, determining how its value is entered and stored.
-      format: int32
-    EntityType:
-      enum:
-      - project
-      - freelancer
-      - vendor
-      - client
-      - tM
-      - tMUnit
-      type: string
-      description: Specifies the type of entity that a custom field can be attached to.
-      format: int32
     CustomField:
       type: object
       properties:
@@ -95,6 +77,13 @@ components:
       description: 'Represents a custom field defined within an account, used to attach
 
         additional structured data to entities such as projects or assignments.'
+    FieldType:
+      enum:
+      - text
+      - select
+      type: string
+      description: Specifies the data type of a custom field, determining how its value is entered and stored.
+      format: int32
     SelectFieldOption:
       type: object
       properties:
@@ -111,3 +100,14 @@ components:
       description: 'Represents a single selectable option for a custom field of selection type,
 
         pairing a unique key with its display value.'
+    EntityType:
+      enum:
+      - project
+      - freelancer
+      - vendor
+      - client
+      - tM
+      - tMUnit
+      type: string
+      description: Specifies the type of entity that a custom field can be attached to.
+      format: int32

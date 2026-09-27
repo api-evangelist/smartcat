@@ -243,36 +243,23 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ContactModel:
+    NetRateModel_TMRangeRateModel:
       type: object
       properties:
-        email:
-          type:
-          - string
-          - 'null'
-          description: Client email
-        fullName:
-          type:
-          - string
-          - 'null'
-          description: Client name
-        phoneNumber:
-          type:
-          - string
-          - 'null'
-          description: Contact phone number
-        position:
-          type:
-          - string
-          - 'null'
-          description: Position
-        comment:
-          type:
-          - string
-          - 'null'
-          description: Commentary
+        fromQuality:
+          type: integer
+          description: The lowest value in a TM match quality range
+          format: int32
+        toQuality:
+          type: integer
+          description: The highest value in a TM match quality range
+          format: int32
+        value:
+          type: number
+          description: TM range rate model
+          format: double
       additionalProperties: false
-      description: Contact information model
+      description: TM matches rate model
     ClientModelV2:
       type: object
       properties:
@@ -353,36 +340,24 @@ components:
           description: Custom fields
       additionalProperties: false
       description: Client model
-    NetRateModel:
+    ClientModel:
       type: object
       properties:
         id:
-          type:
-          - string
-          - 'null'
-          description: Net rate ID
+          type: string
+          description: Client ID
+          format: uuid
         name:
           type:
           - string
           - 'null'
-          description: Net rate name
-        newWordsRate:
-          type: number
-          description: New words rate
-          format: double
-        repetitionsRate:
-          type: number
-          description: Repetitions rate
-          format: double
-        tmMatchRates:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/NetRateModel_TMRangeRateModel'
-          description: TM matches rate
+          description: Name
+        netRate:
+          $ref: '#/components/schemas/NetRateModel'
+        contact:
+          $ref: '#/components/schemas/ContactModel'
       additionalProperties: false
-      description: Rate discounts model
+      description: Client model
     UpdateClientModel:
       type: object
       properties:
@@ -462,38 +437,63 @@ components:
           description: Customized field values
       additionalProperties: false
       description: Client update model
-    ClientModel:
+    ContactModel:
+      type: object
+      properties:
+        email:
+          type:
+          - string
+          - 'null'
+          description: Client email
+        fullName:
+          type:
+          - string
+          - 'null'
+          description: Client name
+        phoneNumber:
+          type:
+          - string
+          - 'null'
+          description: Contact phone number
+        position:
+          type:
+          - string
+          - 'null'
+          description: Position
+        comment:
+          type:
+          - string
+          - 'null'
+          description: Commentary
+      additionalProperties: false
+      description: Contact information model
+    NetRateModel:
       type: object
       properties:
         id:
-          type: string
-          description: Client ID
-          format: uuid
+          type:
+          - string
+          - 'null'
+          description: Net rate ID
         name:
           type:
           - string
           - 'null'
-          description: Name
-        netRate:
-          $ref: '#/components/schemas/NetRateModel'
-        contact:
-          $ref: '#/components/schemas/ContactModel'
-      additionalProperties: false
-      description: Client model
-    NetRateModel_TMRangeRateModel:
-      type: object
-      properties:
-        fromQuality:
-          type: integer
-          description: The lowest value in a TM match quality range
-          format: int32
-        toQuality:
-          type: integer
-          description: The highest value in a TM match quality range
-          format: int32
-        value:
+          description: Net rate name
+        newWordsRate:
           type: number
-          description: TM range rate model
+          description: New words rate
           format: double
+        repetitionsRate:
+          type: number
+          description: Repetitions rate
+          format: double
+        tmMatchRates:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/NetRateModel_TMRangeRateModel'
+          description: TM matches rate
       additionalProperties: false
-      description: TM matches rate model
+      description: Rate discounts model

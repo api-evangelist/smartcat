@@ -57,34 +57,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    EndCustomerValue:
-      enum:
-      - lowValue
-      - enterprise
-      - sMB
-      - corporate
-      - university
-      - government
-      - strategic
-      - smallBusiness
-      - midmarket
-      - anonymous
-      type: string
-      format: int32
-    MTEngineModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID
-          format: uuid
-        name:
-          type:
-          - string
-          - 'null'
-          description: MT engine name
-      additionalProperties: false
-      description: MT (Machine Translation) engine model
     AccountModel:
       type: object
       properties:
@@ -136,3 +108,31 @@ components:
           description: Attribute of "disabled" personal account
       additionalProperties: false
       description: Account information for external systems
+    EndCustomerValue:
+      enum:
+      - lowValue
+      - enterprise
+      - sMB
+      - corporate
+      - university
+      - government
+      - strategic
+      - smallBusiness
+      - midmarket
+      - anonymous
+      type: string
+      format: int32
+    MTEngineModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+          description: MT engine name
+      additionalProperties: false
+      description: MT (Machine Translation) engine model

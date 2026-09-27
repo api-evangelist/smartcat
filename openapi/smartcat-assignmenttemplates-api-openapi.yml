@@ -156,24 +156,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AssignmentTemplateModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID
-          format: uuid
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name
-        projectTasksCoveragePercent:
-          type: number
-          description: The percentage of tasks without assignments and invitations in the project to which the template will be applied
-          format: double
-      additionalProperties: false
-      description: Assignment template information for external systems
     AssignmentTemplateApplicationResultModel:
       type: object
       properties:
@@ -212,3 +194,21 @@ components:
           - string
           - 'null'
       additionalProperties: {}
+    AssignmentTemplateModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name
+        projectTasksCoveragePercent:
+          type: number
+          description: The percentage of tasks without assignments and invitations in the project to which the template will be applied
+          format: double
+      additionalProperties: false
+      description: Assignment template information for external systems

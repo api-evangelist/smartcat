@@ -127,6 +127,55 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ExportDocumentTaskModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task ID
+          format: uuid
+        documentIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Documents for export
+      additionalProperties: false
+      description: Export document task model
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
+    SegmentExportMode:
+      enum:
+      - current
+      - confirmed
+      - complete
+      type: string
+      description: Document export mode
+      format: int32
     ExportDocumentRequestType:
       enum:
       - source
@@ -153,53 +202,4 @@ components:
       - qt-ts
       type: string
       description: Software localization document format
-      format: int32
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      additionalProperties: {}
-    ExportDocumentTaskModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Task ID
-          format: uuid
-        documentIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: Documents for export
-      additionalProperties: false
-      description: Export document task model
-    SegmentExportMode:
-      enum:
-      - current
-      - confirmed
-      - complete
-      type: string
-      description: Document export mode
       format: int32

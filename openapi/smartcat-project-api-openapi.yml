@@ -2383,50 +2383,419 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    StatisticsRowModel:
+    ProjectCopyModel:
+      required:
+      - options
       type: object
       properties:
-        name:
-          $ref: '#/components/schemas/StatisticsFieldName'
-        words:
-          type: integer
-          description: Words
-          format: int64
-        percent:
-          type: number
-          description: Percent
-          format: double
-        segments:
-          type: integer
-          description: Segments
+        newProjectName:
+          type:
+          - string
+          - 'null'
+          description: New project name. If it is not filled, then it will be generated as "{ORIGINAL_PROJECT_NAME} — {YYYY-MM-DD HH:MM}"
+        options:
+          $ref: '#/components/schemas/ProjectCopyOptions'
+        copyTargetLanguageId:
+          type:
+          - integer
+          - 'null'
+          description: Target language ID for copying to source (if not specified, will take the first available target)
           format: int32
-        pages:
-          type: number
-          description: Pages
-          format: double
-        charsWithoutSpaces:
-          type: integer
-          description: Chars Without Spaces
-          format: int64
-        charsWithSpaces:
-          type: integer
-          description: Chars With Spaces
-          format: int64
-        effectiveWordsForBilling:
+        targetLanguagesToRemove:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+          description: Target languages to remove from the copied project
+        targetLanguagesToAdd:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+          description: Target languages to add to the copied project
+        disableNotifications:
+          type: boolean
+          description: Disable notifications about the project copying progress
+      additionalProperties: false
+      description: Model for project copy
+    ProjectCostModel:
+      type: object
+      properties:
+        value:
           type:
           - number
           - 'null'
-          description: Effective word count
+          description: Cost
           format: double
+          readOnly: true
+        currency:
+          type:
+          - string
+          - 'null'
+          description: Currency
+          readOnly: true
+        accuracyDegree:
+          $ref: '#/components/schemas/ProjectQuoteAccuracyDegree'
+        detailsFileName:
+          type:
+          - string
+          - 'null'
+          description: Quote file name
+          readOnly: true
+        paymentStatus:
+          $ref: '#/components/schemas/QuotePaymentStatus'
       additionalProperties: false
-      description: Document Statistics Model
-    SubtitleSegmentationMode:
+      description: Project cost model
+    PretranslateRuleType:
       enum:
-      - by-cue
-      - by-sentence
+      - tM
+      - mT
+      - numberConversion
+      - tQS
+      - lQA
       type: string
-      description: Subtitle auto-segmentation mode for project creation.
+      description: Pretranslation rule type
       format: int32
+    ProjectTranslationMemoryModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: TM ID
+          format: uuid
+        matchThreshold:
+          type: integer
+          description: Match threshold
+          format: int32
+        targetLanguageId:
+          type:
+          - integer
+          - 'null'
+          description: TM language (null, if the TM is applied to the entire project)
+          format: int32
+        isWritable:
+          type: boolean
+          description: TM is writable for confirmed segments
+      additionalProperties: false
+      description: Project TM creation model
+    ExecutiveStatisticsModel:
+      type: object
+      properties:
+        executive:
+          $ref: '#/components/schemas/ExecutiveModel'
+        stageType:
+          type:
+          - string
+          - 'null'
+          description: Stage name
+        stageNumber:
+          type: integer
+          description: Stage number
+          format: int32
+        targetLanguage:
+          type:
+          - string
+          - 'null'
+          description: Target language
+        total:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StatisticsRowModel'
+          description: Statistics summary for all documents
+        documents:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DocumentStatisticsModel'
+          description: Statistics per document
+      additionalProperties: false
+      description: Statistics model covering the work accomplished for the project by a specific user, the workflow stage, and the target language
+    ProjectStatisticsObsoleteModel:
+      type: object
+      properties:
+        statistics:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StatisticsRowModel'
+          description: Detailed statistics
+      additionalProperties: false
+      description: Project statistics model for a specific target language
+    CreateProjectNumberModel:
+      type: object
+      properties:
+        useTemplate:
+          type: boolean
+          description: Use a number generation template
+        number:
+          type:
+          - string
+          - 'null'
+          description: Project number (the value is ignored if a template generated number is applied)
+      additionalProperties: false
+      description: Data class for project number creation
+    AutoAssignmentMode:
+      enum:
+      - currentAssignees
+      type: string
+      description: Auto-assignment mode
+      format: int32
+    TMTranslationAssuranceLevel:
+      enum:
+      - mT
+      - questionable
+      - regular
+      - qualified
+      type: string
+      format: int32
+    ConfirmMode:
+      enum:
+      - none
+      - byStates
+      - atFirstStage
+      - atLastStage
+      type: string
+      description: Mode of segment confirmation at file upload
+      format: int32
+    ProjectCopyStatus:
+      enum:
+      - error
+      - inProgress
+      - success
+      type: string
+      description: Project copy status
+      format: int32
+    QuotePaymentStatus:
+      enum:
+      - notPaid
+      - paid
+      - awaitingPayment
+      type: string
+      format: int32
+    SupplierType:
+      enum:
+      - freelancer
+      - company
+      type: string
+      description: Supplier type
+      format: int32
+    TargetLanguageUsageMode:
+      enum:
+      - selected
+      - fromFile
+      type: string
+      description: Target language selection mode for translation
+      format: int32
+    TranslationMemoriesForLanguageModel:
+      type: object
+      properties:
+        language:
+          type:
+          - string
+          - 'null'
+          description: Language associated with TM list
+        translationMemories:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/TranslationMemoryForProjectModel'
+          description: TM list
+        onlyExactSourceLanguageMatch:
+          type:
+          - boolean
+          - 'null'
+          description: Specifies whether exact match with the source language is required
+        onlyExactTargetLanguageMatch:
+          type:
+          - boolean
+          - 'null'
+          description: Specifies whether exact match with the target language is required
+      additionalProperties: false
+      description: Project language TMs model
+    DocumentPackageModel:
+      type: object
+      properties:
+        isRoot:
+          type: boolean
+          description: Indicates whether the document is the root of the package
+        packageId:
+          type: string
+          description: Identifier of the package the document belongs to
+          format: uuid
+        parentPackageId:
+          type:
+          - string
+          - 'null'
+          description: Identifier of the parent package in the hierarchy, if any
+          format: uuid
+      additionalProperties: false
+      description: Package information for a document that belongs to a file package
+    ProjectType:
+      enum:
+      - default
+      - softwareLocalization
+      type: string
+      description: Project type
+      format: int32
+    CreateProjectSegmentationDefaultRuleModel:
+      required:
+      - segmentationMode
+      type: object
+      properties:
+        segmentationMode:
+          $ref: '#/components/schemas/SubtitleSegmentationMode'
+        maxCps:
+          type:
+          - integer
+          - 'null'
+          description: Subtitle cue's characters per second limit (1-100). Enables CPS normalization when set.
+          format: int32
+        maxLineSize:
+          type:
+          - integer
+          - 'null'
+          description: Maximum line size in characters (1-1000).
+          format: int32
+        maxLinesPerCue:
+          type:
+          - integer
+          - 'null'
+          description: Maximum number of lines per subtitle cue (1-10).
+          format: int32
+      additionalProperties: false
+      description: Default subtitle segmentation rule.
+    Specialization:
+      enum:
+      - education
+      - productsAndCatalogs
+      - documentsAndCertificates
+      - marketing
+      - correspondence
+      - software
+      - fiction
+      - scienceAndPatents
+      - contractsAndReports
+      - gaming
+      - manuals
+      - website
+      - annualReport
+      - corporateAndSocialResponsibility
+      - technicalAndEngineering
+      - cryptocurrencies
+      - biochemistry
+      - computingScience
+      - electronics
+      - metallurgy
+      - nuclear
+      - optics
+      - printing
+      - telecommunication
+      - textile
+      - patent
+      - military
+      - ecologyAndEnvironment
+      - agriculture
+      - artsAndCulture
+      - aviationAndSpace
+      - biology
+      - cartography
+      - chemistry
+      - cosmetics
+      - construction
+      - architecture
+      - economics
+      - accounting
+      - bankingAndInvestment
+      - insurance
+      - energy
+      - thermalPowerEngineering
+      - mechanicalEngineering
+      - finance
+      - general
+      - geography
+      - geology
+      - mining
+      - history
+      - linguistics
+      - philosophy
+      - psychology
+      - sociology
+      - industry
+      - industrialAutomation
+      - electricalEngineering
+      - iT
+      - eRP
+      - law
+      - hR
+      - mathematics
+      - medicine
+      - medicalEquipment
+      - pharmaceutics
+      - veterinaryMedicine
+      - oilAndGas
+      - physics
+      - politicsAndSociety
+      - realEstate
+      - recreation
+      - fashion
+      - luxuryItems
+      - tourismAndTravel
+      - religion
+      - socialScience
+      - sport
+      - transport
+      - automotiveBusiness
+      - foodAndDrinks
+      - biotechnology
+      - business
+      - lifeSciences
+      type: string
+      description: Text specialization
+      format: int32
+    ExecutiveModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: User ID
+          format: uuid
+        supplierType:
+          $ref: '#/components/schemas/SupplierType'
+      additionalProperties: false
+      description: Linguist details
+    Contracts.ProjectStatus:
+      enum:
+      - created
+      - inProgress
+      - completed
+      - canceled
+      type: string
+      description: Project Status
+      format: int32
+    ProjectWorkflowStageModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        progress:
+          type: number
+          description: Completion percentage
+          format: double
+        stageType:
+          $ref: '#/components/schemas/StageType'
+      additionalProperties: false
+      description: Project workflow stage model
     ProjectModel:
       type: object
       properties:
@@ -2572,165 +2941,34 @@ components:
           description: Custom fields
       additionalProperties: false
       description: Project model
-    Specialization:
+    SubtitleSegmentationMode:
       enum:
-      - education
-      - productsAndCatalogs
-      - documentsAndCertificates
-      - marketing
-      - correspondence
-      - software
-      - fiction
-      - scienceAndPatents
-      - contractsAndReports
-      - gaming
-      - manuals
-      - website
-      - annualReport
-      - corporateAndSocialResponsibility
-      - technicalAndEngineering
-      - cryptocurrencies
-      - biochemistry
-      - computingScience
-      - electronics
-      - metallurgy
-      - nuclear
-      - optics
-      - printing
-      - telecommunication
-      - textile
-      - patent
-      - military
-      - ecologyAndEnvironment
-      - agriculture
-      - artsAndCulture
-      - aviationAndSpace
-      - biology
-      - cartography
-      - chemistry
-      - cosmetics
-      - construction
-      - architecture
-      - economics
-      - accounting
-      - bankingAndInvestment
-      - insurance
-      - energy
-      - thermalPowerEngineering
-      - mechanicalEngineering
-      - finance
-      - general
-      - geography
-      - geology
-      - mining
-      - history
-      - linguistics
-      - philosophy
-      - psychology
-      - sociology
-      - industry
-      - industrialAutomation
-      - electricalEngineering
-      - iT
-      - eRP
-      - law
-      - hR
-      - mathematics
-      - medicine
-      - medicalEquipment
-      - pharmaceutics
-      - veterinaryMedicine
-      - oilAndGas
-      - physics
-      - politicsAndSociety
-      - realEstate
-      - recreation
-      - fashion
-      - luxuryItems
-      - tourismAndTravel
-      - religion
-      - socialScience
-      - sport
-      - transport
-      - automotiveBusiness
-      - foodAndDrinks
-      - biotechnology
-      - business
-      - lifeSciences
+      - by-cue
+      - by-sentence
       type: string
-      description: Text specialization
+      description: Subtitle auto-segmentation mode for project creation.
       format: int32
-    ExportKeysFromSoftwareLocalizationProjectModel:
+    LockMode:
+      enum:
+      - none
+      - byStates
+      - confirmed
+      type: string
+      description: Mode of locking segments at import
+      format: int32
+    VendorModel:
       type: object
       properties:
-        keys:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: Exporting keys
-      additionalProperties: false
-      description: Model for keys exported from
-    ProjectChangesModel:
-      type: object
-      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
         name:
           type:
           - string
           - 'null'
-          description: Project name
-        description:
-          type:
-          - string
-          - 'null'
-          description: Project description
-        deadline:
-          type:
-          - string
-          - 'null'
-          description: Project deadline
-          format: date-time
-        clientId:
-          type:
-          - string
-          - 'null'
-          description: Client ID
-          format: uuid
-        domainId:
-          type:
-          - integer
-          - 'null'
-          description: Project group ID
-          format: int32
-        vendorAccountIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: uuid
-          description: Vendor account IDs (supports a list containing maximum 1 entry)
-        externalTag:
-          type:
-          - string
-          - 'null'
-          description: External system tag
-        specializations:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Specialization'
-          description: Specializations
-        workflowStages:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StageType'
-          description: Translation level workflow stages to be applied to the project. This parameter is optional
-        customFieldValues:
+          description: Company name
+        customFields:
           type:
           - object
           - 'null'
@@ -2738,45 +2976,16 @@ components:
             type:
             - string
             - 'null'
-          description: Custom field values
+          description: Custom fields
       additionalProperties: false
-      description: Project changes model
-    TranslationMemoriesForLanguageModel:
-      type: object
-      properties:
-        language:
-          type:
-          - string
-          - 'null'
-          description: Language associated with TM list
-        translationMemories:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/TranslationMemoryForProjectModel'
-          description: TM list
-        onlyExactSourceLanguageMatch:
-          type:
-          - boolean
-          - 'null'
-          description: Specifies whether exact match with the source language is required
-        onlyExactTargetLanguageMatch:
-          type:
-          - boolean
-          - 'null'
-          description: Specifies whether exact match with the target language is required
-      additionalProperties: false
-      description: Project language TMs model
-    PretranslateRuleType:
+      description: Vendor model
+    ProjectTypeFilter:
       enum:
-      - tM
-      - mT
-      - numberConversion
-      - tQS
-      - lQA
+      - all
+      - softwareLocalization
+      - nonSoftwareLocalization
       type: string
-      description: Pretranslation rule type
+      description: Project type
       format: int32
     ProjectCopyStateModel:
       type: object
@@ -2801,193 +3010,12 @@ components:
           $ref: '#/components/schemas/ProjectCopyStatus'
       additionalProperties: false
       description: Project copy state
-    StringsTableImportResult:
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/StringsTableImportStatus'
-        failedFileNames:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          readOnly: true
-        keysCreated:
-          type: integer
-          format: int32
-          readOnly: true
-        keysUpdated:
-          type: integer
-          format: int32
-          readOnly: true
-        keysDeleted:
-          type: integer
-          format: int32
-          readOnly: true
-        keyValuesNotChanged:
-          type: integer
-          format: int32
-          readOnly: true
-        keysWithoutSource:
-          type: integer
-          format: int32
-          readOnly: true
-        conflictingKeyValues:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type:
-            - array
-            - 'null'
-            items:
-              type: string
-          readOnly: true
-      additionalProperties: false
-    StringsTableImportStatus:
-      enum:
-      - pending
-      - inProgress
-      - completed
-      - failed
-      type: string
-      format: int32
-    ConfirmMode:
-      enum:
-      - none
-      - byStates
-      - atFirstStage
-      - atLastStage
-      type: string
-      description: Mode of segment confirmation at file upload
-      format: int32
-    BilingualFileImportSetingsModel:
-      type: object
-      properties:
-        targetSubstitutionMode:
-          $ref: '#/components/schemas/TargetSubstitutionMode'
-        targetLanguageUsageMode:
-          $ref: '#/components/schemas/TargetLanguageUsageMode'
-        lockMode:
-          $ref: '#/components/schemas/LockMode'
-        confirmMode:
-          $ref: '#/components/schemas/ConfirmMode'
-        saveType:
-          $ref: '#/components/schemas/SaveType'
-      additionalProperties: false
-      description: Bilingual document upload settings model
-    ProjectCopyOptions:
-      enum:
-      - projectOnly
-      - projectSettings
-      - documents
-      - segmentTranslations
-      - segmentRevisions
-      - comments
-      - segmentCopyTargetToSource
-      type: string
-      description: Data to be copied when copying a project
-      format: int32
-    SaveType:
-      enum:
-      - autoSaved
-      - insertTM
-      - insertMT
-      - insertTB
-      - translatedInSourceFile
-      - repetitionInsert
-      - rollback
-      - replacement
-      - copyFromSource
-      - numberConversion
-      - crossDocumentRepetitionInsert
-      - joinSegments
-      - splitSegment
-      - updateSourceText
-      - documentCompletion
-      - updateFromExternalSystem
-      - reconnect
-      - cleanTarget
-      - autoCopyFromSource
-      - copyProject
-      - aiAction
-      - aligner
-      - confirmation
-      - glossaryImprovement
-      - agentReview
-      type: string
-      description: Revision type
-      format: int32
     TargetSubstitutionMode:
       enum:
       - all
       - none
       type: string
       description: Target substitution mode
-      format: int32
-    ExecutiveModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: User ID
-          format: uuid
-        supplierType:
-          $ref: '#/components/schemas/SupplierType'
-      additionalProperties: false
-      description: Linguist details
-    GlossaryModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Glossary ID
-          format: uuid
-        name:
-          type:
-          - string
-          - 'null'
-          description: Glossary name
-        description:
-          type:
-          - string
-          - 'null'
-          description: Glossary description
-        clientId:
-          type:
-          - string
-          - 'null'
-          description: Client ID, if a glossary client is specified
-          format: uuid
-        languages:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: Glossary language codes
-        units:
-          type: integer
-          description: Glossary unit count
-          format: int32
-        unitsPending:
-          type: integer
-          description: Pending unit count
-          format: int32
-        isDefault:
-          type: boolean
-          description: Default glossary flag
-      additionalProperties: false
-      description: Glossary
-    WorkflowStageStatus:
-      enum:
-      - notAssigned
-      - assigned
-      - inProgress
-      - completed
-      type: string
-      description: Workflow stage status
       format: int32
     CreateDocumentPropertyModel:
       type: object
@@ -3041,174 +3069,106 @@ components:
           description: Optional parameter for enabling OCR
       additionalProperties: false
       description: Created document properties
-    StageType:
-      enum:
-      - translation
-      - editing
-      - proofreading
-      - postediting
-      - finalPageProof
-      - notarization
-      - certifiedTranslation
-      - transcreation
-      - legalization
-      - preliminaryPageProof
-      - lQAReview
-      - subtitleReview
-      - voiceOverReview
-      - sourceReview
-      type: string
-      description: Workflow stage type
-      format: int32
-    ProjectStatisticsObsoleteModel:
+    WorkflowStageInDocumentModel:
       type: object
       properties:
+        documentId:
+          type:
+          - string
+          - 'null'
+        languageId:
+          type: integer
+          format: int32
+        workflowStageId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    ProjectMTEngineSupportedLanguagesModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: MT engine or profile ID
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the MT engine of profile
+        languages:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: The languages supported by the MT engine or profile
+      additionalProperties: false
+      description: The model represents the supported MT engines or profiles
+    DocumentStatisticsModel:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the document for which statistics are collected
         statistics:
           type:
           - array
           - 'null'
           items:
             $ref: '#/components/schemas/StatisticsRowModel'
-          description: Detailed statistics
+          description: Statistics regarding the work done for the project
       additionalProperties: false
-      description: Project statistics model for a specific target language
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      additionalProperties: {}
-    ExecutiveStatisticsModel:
-      type: object
-      properties:
-        executive:
-          $ref: '#/components/schemas/ExecutiveModel'
-        stageType:
-          type:
-          - string
-          - 'null'
-          description: Stage name
-        stageNumber:
-          type: integer
-          description: Stage number
-          format: int32
-        targetLanguage:
-          type:
-          - string
-          - 'null'
-          description: Target language
-        total:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/StatisticsRowModel'
-          description: Statistics summary for all documents
-        documents:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/DocumentStatisticsModel'
-          description: Statistics per document
-      additionalProperties: false
-      description: Statistics model covering the work accomplished for the project by a specific user, the workflow stage, and the target language
-    CreateProjectNumberModel:
-      type: object
-      properties:
-        useTemplate:
-          type: boolean
-          description: Use a number generation template
-        number:
-          type:
-          - string
-          - 'null'
-          description: Project number (the value is ignored if a template generated number is applied)
-      additionalProperties: false
-      description: Data class for project number creation
-    VendorModel:
+      description: Document statistics
+    IntegrationApiTMTranslationAssuranceLevel:
+      enum:
+      - mT
+      - questionable
+      - regular
+      - qualified
+      type: string
+      description: Minimum TM segment quality
+      format: int32
+    DocumentWorkflowStageModel:
       type: object
       properties:
         id:
           type: string
           description: ID
           format: uuid
-        name:
-          type:
-          - string
-          - 'null'
-          description: Company name
-        customFields:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type:
-            - string
-            - 'null'
-          description: Custom fields
-      additionalProperties: false
-      description: Vendor model
-    AssignedExecutiveModel:
-      type: object
-      properties:
-        assignedWordsCount:
-          type: integer
-          description: Assigned word count
-          format: int32
         progress:
           type: number
           description: Completion percentage
           format: double
-        id:
-          type: string
-          description: User ID
-          format: uuid
-        supplierType:
-          $ref: '#/components/schemas/SupplierType'
+        wordsTranslated:
+          type: integer
+          description: Translated words count
+          format: int32
+        unassignedWordsCount:
+          type: integer
+          description: Unassigned words count
+          format: int32
+        status:
+          $ref: '#/components/schemas/WorkflowStageStatus'
+        statusModificationDate:
+          type:
+          - string
+          - 'null'
+          description: Status change date
+          format: date-time
+        executives:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AssignedExecutiveModel'
+          description: Assigned linguists
+        vendor:
+          $ref: '#/components/schemas/VendorModel'
       additionalProperties: false
-      description: Model of a linguist assigned to a document workflow stage
-    SupplierType:
-      enum:
-      - freelancer
-      - company
-      type: string
-      description: Supplier type
-      format: int32
-    LockMode:
-      enum:
-      - none
-      - byStates
-      - confirmed
-      type: string
-      description: Mode of locking segments at import
-      format: int32
-    QuotePaymentStatus:
-      enum:
-      - notPaid
-      - paid
-      - awaitingPayment
-      type: string
-      format: int32
+      description: Document workflow stage model
     CreateProjectModel:
       required:
       - name
@@ -3368,43 +3328,97 @@ components:
           description: User's AI translation profile id
       additionalProperties: false
       description: Project creation model
-    TranslationMemoryForProjectModel:
+    SaveType:
+      enum:
+      - autoSaved
+      - insertTM
+      - insertMT
+      - insertTB
+      - translatedInSourceFile
+      - repetitionInsert
+      - rollback
+      - replacement
+      - copyFromSource
+      - numberConversion
+      - crossDocumentRepetitionInsert
+      - joinSegments
+      - splitSegment
+      - updateSourceText
+      - documentCompletion
+      - updateFromExternalSystem
+      - reconnect
+      - cleanTarget
+      - autoCopyFromSource
+      - copyProject
+      - aiAction
+      - aligner
+      - confirmation
+      - glossaryImprovement
+      - agentReview
+      type: string
+      description: Revision type
+      format: int32
+    CreateProjectSegmentationRulesModel:
+      required:
+      - default
       type: object
       properties:
-        id:
-          type: string
-          description: TM database ID
-          format: uuid
-        matchThreshold:
-          type: integer
-          description: Minimum percentage of full matches for the TM
-          format: int32
-        isWritable:
-          type: boolean
-          description: TM is writable for confirmed segments
+        default:
+          $ref: '#/components/schemas/CreateProjectSegmentationDefaultRuleModel'
+        exceptions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/CreateProjectSegmentationExceptionRuleModel'
+          description: Per-language overrides. Optional.
       additionalProperties: false
-      description: TM for project model
-    DocumentDisassemblingStatus:
+      description: Subtitle segmentation rules for project creation.
+    ProjectQuoteAccuracyDegree:
       enum:
+      - estimatedByWordsCount
+      - estimatedByTmMatches
+      - autoCalculatedExact
+      - manuallyEntered
+      type: string
+      format: int32
+    BilingualFileImportSetingsModel:
+      type: object
+      properties:
+        targetSubstitutionMode:
+          $ref: '#/components/schemas/TargetSubstitutionMode'
+        targetLanguageUsageMode:
+          $ref: '#/components/schemas/TargetLanguageUsageMode'
+        lockMode:
+          $ref: '#/components/schemas/LockMode'
+        confirmMode:
+          $ref: '#/components/schemas/ConfirmMode'
+        saveType:
+          $ref: '#/components/schemas/SaveType'
+      additionalProperties: false
+      description: Bilingual document upload settings model
+    EmptyProjectFoldersRemoveTaskStatus:
+      enum:
+      - done
+      - failed
       - inProgress
-      - error
-      - success
       type: string
-      description: Document disassembly status
       format: int32
-    ProjectTypeFilter:
-      enum:
-      - all
-      - softwareLocalization
-      - nonSoftwareLocalization
-      type: string
-      description: Project type
-      format: int32
-    CreateProjectSegmentationDefaultRuleModel:
+    CreateProjectSegmentationExceptionRuleModel:
       required:
+      - languages
       - segmentationMode
       type: object
       properties:
+        languages:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: 'Target language culture names this exception applies to (e.g. "en-US", "ru").
+
+            Required, must contain at least one element.'
         segmentationMode:
           $ref: '#/components/schemas/SubtitleSegmentationMode'
         maxCps:
@@ -3426,33 +3440,322 @@ components:
           description: Maximum number of lines per subtitle cue (1-10).
           format: int32
       additionalProperties: false
-      description: Default subtitle segmentation rule.
-    IntegrationApiTMTranslationAssuranceLevel:
+      description: Per-language subtitle segmentation rule override.
+    DocumentStatus:
       enum:
-      - mT
-      - questionable
-      - regular
-      - qualified
+      - created
+      - inProgress
+      - completed
+      - updated
+      - targetUpdated
       type: string
-      description: Minimum TM segment quality
+      description: Document status
       format: int32
-    DocumentStatisticsModel:
+    ProjectMTEngineModel:
       type: object
       properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: MT engine or profile ID
         name:
           type:
           - string
           - 'null'
-          description: Name of the document for which statistics are collected
-        statistics:
+          description: The name of the MT engine of profile
+        languages:
           type:
           - array
           - 'null'
           items:
-            $ref: '#/components/schemas/StatisticsRowModel'
-          description: Statistics regarding the work done for the project
+            type: string
+          description: The languages for which the MT engine of profile is added to the project
       additionalProperties: false
-      description: Document statistics
+      description: The model represents the addition of an MT engine or profile to the project
+    WizardType:
+      enum:
+      - smartcatAutomaticProject
+      - smartcatCustomProject
+      - smartcatWebsiteProject
+      - smartcatIntegrationProject
+      - smartcatForDevelopersProject
+      - smartcatLqaProject
+      - smartcatCourseProject
+      - smartcatVideoAndSubtitles
+      - smartcatCourseGeneration
+      - smartcatImages
+      - projectTemplate
+      - serviceTemplate
+      - integrationConnection
+      - articulateCourseProject
+      - tikTokVideoTranslator
+      type: string
+      description: Wizard types
+      format: int32
+    StatisticsRowModel:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/StatisticsFieldName'
+        words:
+          type: integer
+          description: Words
+          format: int64
+        percent:
+          type: number
+          description: Percent
+          format: double
+        segments:
+          type: integer
+          description: Segments
+          format: int32
+        pages:
+          type: number
+          description: Pages
+          format: double
+        charsWithoutSpaces:
+          type: integer
+          description: Chars Without Spaces
+          format: int64
+        charsWithSpaces:
+          type: integer
+          description: Chars With Spaces
+          format: int64
+        effectiveWordsForBilling:
+          type:
+          - number
+          - 'null'
+          description: Effective word count
+          format: double
+      additionalProperties: false
+      description: Document Statistics Model
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
+    WorkflowStageStatus:
+      enum:
+      - notAssigned
+      - assigned
+      - inProgress
+      - completed
+      type: string
+      description: Workflow stage status
+      format: int32
+    StatisticsFieldName:
+      enum:
+      - perfect
+      - crossFileRepeated
+      - total
+      - repetitions
+      - newWords
+      - match_50_74
+      - match_75_84
+      - match_85_94
+      - match_95_99
+      - match_100
+      - contextMatch_101
+      - contextMatch_102
+      type: string
+      description: Statistics field names
+      format: int32
+    StringsTableImportStatus:
+      enum:
+      - pending
+      - inProgress
+      - completed
+      - failed
+      type: string
+      format: int32
+    ExportKeysFromSoftwareLocalizationProjectModel:
+      type: object
+      properties:
+        keys:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Exporting keys
+      additionalProperties: false
+      description: Model for keys exported from
+    ProjectVendorModel:
+      type: object
+      properties:
+        vendorAccountId:
+          type: string
+          description: Vendor account ID
+          format: uuid
+        removedFromProject:
+          type: boolean
+          description: Removed from the project
+        cost:
+          $ref: '#/components/schemas/ProjectCostModel'
+        costDetailsFileId:
+          type:
+          - string
+          - 'null'
+          description: Quote ID
+          format: uuid
+          readOnly: true
+      additionalProperties: false
+      description: Vendor-to-project connection model
+    StageType:
+      enum:
+      - translation
+      - editing
+      - proofreading
+      - postediting
+      - finalPageProof
+      - notarization
+      - certifiedTranslation
+      - transcreation
+      - legalization
+      - preliminaryPageProof
+      - lQAReview
+      - subtitleReview
+      - voiceOverReview
+      - sourceReview
+      type: string
+      description: Workflow stage type
+      format: int32
+    StringsTableImportResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/StringsTableImportStatus'
+        failedFileNames:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          readOnly: true
+        keysCreated:
+          type: integer
+          format: int32
+          readOnly: true
+        keysUpdated:
+          type: integer
+          format: int32
+          readOnly: true
+        keysDeleted:
+          type: integer
+          format: int32
+          readOnly: true
+        keyValuesNotChanged:
+          type: integer
+          format: int32
+          readOnly: true
+        keysWithoutSource:
+          type: integer
+          format: int32
+          readOnly: true
+        conflictingKeyValues:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - array
+            - 'null'
+            items:
+              type: string
+          readOnly: true
+      additionalProperties: false
+    GlossaryModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Glossary ID
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+          description: Glossary name
+        description:
+          type:
+          - string
+          - 'null'
+          description: Glossary description
+        clientId:
+          type:
+          - string
+          - 'null'
+          description: Client ID, if a glossary client is specified
+          format: uuid
+        languages:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Glossary language codes
+        units:
+          type: integer
+          description: Glossary unit count
+          format: int32
+        unitsPending:
+          type: integer
+          description: Pending unit count
+          format: int32
+        isDefault:
+          type: boolean
+          description: Default glossary flag
+      additionalProperties: false
+      description: Glossary
+    TranslationMemoryForProjectModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: TM database ID
+          format: uuid
+        matchThreshold:
+          type: integer
+          description: Minimum percentage of full matches for the TM
+          format: int32
+        isWritable:
+          type: boolean
+          description: TM is writable for confirmed segments
+      additionalProperties: false
+      description: TM for project model
+    ProjectCopyOptions:
+      enum:
+      - projectOnly
+      - projectSettings
+      - documents
+      - segmentTranslations
+      - segmentRevisions
+      - comments
+      - segmentCopyTargetToSource
+      type: string
+      description: Data to be copied when copying a project
+      format: int32
     ProjectAssignmentMode:
       enum:
       - document
@@ -3460,47 +3763,90 @@ components:
       type: string
       description: Indicates the mode in which performers are assigned to the tasks in the project.
       format: int32
-    ProjectCopyStatus:
-      enum:
-      - error
-      - inProgress
-      - success
-      type: string
-      description: Project copy status
-      format: int32
-    ProjectCostModel:
+    ProjectChangesModel:
       type: object
       properties:
-        value:
-          type:
-          - number
-          - 'null'
-          description: Cost
-          format: double
-          readOnly: true
-        currency:
+        name:
           type:
           - string
           - 'null'
-          description: Currency
-          readOnly: true
-        accuracyDegree:
-          $ref: '#/components/schemas/ProjectQuoteAccuracyDegree'
-        detailsFileName:
+          description: Project name
+        description:
           type:
           - string
           - 'null'
-          description: Quote file name
-          readOnly: true
-        paymentStatus:
-          $ref: '#/components/schemas/QuotePaymentStatus'
+          description: Project description
+        deadline:
+          type:
+          - string
+          - 'null'
+          description: Project deadline
+          format: date-time
+        clientId:
+          type:
+          - string
+          - 'null'
+          description: Client ID
+          format: uuid
+        domainId:
+          type:
+          - integer
+          - 'null'
+          description: Project group ID
+          format: int32
+        vendorAccountIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+          description: Vendor account IDs (supports a list containing maximum 1 entry)
+        externalTag:
+          type:
+          - string
+          - 'null'
+          description: External system tag
+        specializations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Specialization'
+          description: Specializations
+        workflowStages:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/StageType'
+          description: Translation level workflow stages to be applied to the project. This parameter is optional
+        customFieldValues:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+          description: Custom field values
       additionalProperties: false
-      description: Project cost model
-    AutoAssignmentMode:
+      description: Project changes model
+    SegmentCompletionState:
       enum:
-      - currentAssignees
+      - draft
+      - intermediate
+      - final
       type: string
-      description: Auto-assignment mode
+      description: Segment completion state
+      format: int32
+    DocumentDisassemblingStatus:
+      enum:
+      - inProgress
+      - error
+      - success
+      type: string
+      description: Document disassembly status
       format: int32
     DocumentModel:
       type: object
@@ -3603,383 +3949,6 @@ components:
           $ref: '#/components/schemas/DocumentPackageModel'
       additionalProperties: false
       description: Document model
-    ProjectMTEngineModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: MT engine or profile ID
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the MT engine of profile
-        languages:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: The languages for which the MT engine of profile is added to the project
-      additionalProperties: false
-      description: The model represents the addition of an MT engine or profile to the project
-    ProjectCopyModel:
-      required:
-      - options
-      type: object
-      properties:
-        newProjectName:
-          type:
-          - string
-          - 'null'
-          description: New project name. If it is not filled, then it will be generated as "{ORIGINAL_PROJECT_NAME} — {YYYY-MM-DD HH:MM}"
-        options:
-          $ref: '#/components/schemas/ProjectCopyOptions'
-        copyTargetLanguageId:
-          type:
-          - integer
-          - 'null'
-          description: Target language ID for copying to source (if not specified, will take the first available target)
-          format: int32
-        targetLanguagesToRemove:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int32
-          description: Target languages to remove from the copied project
-        targetLanguagesToAdd:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int32
-          description: Target languages to add to the copied project
-        disableNotifications:
-          type: boolean
-          description: Disable notifications about the project copying progress
-      additionalProperties: false
-      description: Model for project copy
-    EmptyProjectFoldersRemoveTaskStatus:
-      enum:
-      - done
-      - failed
-      - inProgress
-      type: string
-      format: int32
-    WorkflowStageInDocumentModel:
-      type: object
-      properties:
-        documentId:
-          type:
-          - string
-          - 'null'
-        languageId:
-          type: integer
-          format: int32
-        workflowStageId:
-          type: integer
-          format: int32
-      additionalProperties: false
-    StatisticsFieldName:
-      enum:
-      - perfect
-      - crossFileRepeated
-      - total
-      - repetitions
-      - newWords
-      - match_50_74
-      - match_75_84
-      - match_85_94
-      - match_95_99
-      - match_100
-      - contextMatch_101
-      - contextMatch_102
-      type: string
-      description: Statistics field names
-      format: int32
-    DocumentStatus:
-      enum:
-      - created
-      - inProgress
-      - completed
-      - updated
-      - targetUpdated
-      type: string
-      description: Document status
-      format: int32
-    ProjectTranslationMemoryModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: TM ID
-          format: uuid
-        matchThreshold:
-          type: integer
-          description: Match threshold
-          format: int32
-        targetLanguageId:
-          type:
-          - integer
-          - 'null'
-          description: TM language (null, if the TM is applied to the entire project)
-          format: int32
-        isWritable:
-          type: boolean
-          description: TM is writable for confirmed segments
-      additionalProperties: false
-      description: Project TM creation model
-    DocumentWorkflowStageModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID
-          format: uuid
-        progress:
-          type: number
-          description: Completion percentage
-          format: double
-        wordsTranslated:
-          type: integer
-          description: Translated words count
-          format: int32
-        unassignedWordsCount:
-          type: integer
-          description: Unassigned words count
-          format: int32
-        status:
-          $ref: '#/components/schemas/WorkflowStageStatus'
-        statusModificationDate:
-          type:
-          - string
-          - 'null'
-          description: Status change date
-          format: date-time
-        executives:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AssignedExecutiveModel'
-          description: Assigned linguists
-        vendor:
-          $ref: '#/components/schemas/VendorModel'
-      additionalProperties: false
-      description: Document workflow stage model
-    TMTranslationAssuranceLevel:
-      enum:
-      - mT
-      - questionable
-      - regular
-      - qualified
-      type: string
-      format: int32
-    SoftwareLocalizationDocumentFormat:
-      enum:
-      - json
-      - ios-strings
-      - android-xml
-      - yaml
-      - structured-json
-      - structured-yaml
-      - qt-ts
-      type: string
-      description: Software localization document format
-      format: int32
-    CreateProjectSegmentationRulesModel:
-      required:
-      - default
-      type: object
-      properties:
-        default:
-          $ref: '#/components/schemas/CreateProjectSegmentationDefaultRuleModel'
-        exceptions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/CreateProjectSegmentationExceptionRuleModel'
-          description: Per-language overrides. Optional.
-      additionalProperties: false
-      description: Subtitle segmentation rules for project creation.
-    WizardType:
-      enum:
-      - smartcatAutomaticProject
-      - smartcatCustomProject
-      - smartcatWebsiteProject
-      - smartcatIntegrationProject
-      - smartcatForDevelopersProject
-      - smartcatLqaProject
-      - smartcatCourseProject
-      - smartcatVideoAndSubtitles
-      - smartcatCourseGeneration
-      - smartcatImages
-      - projectTemplate
-      - serviceTemplate
-      - integrationConnection
-      - articulateCourseProject
-      - tikTokVideoTranslator
-      type: string
-      description: Wizard types
-      format: int32
-    TargetLanguageUsageMode:
-      enum:
-      - selected
-      - fromFile
-      type: string
-      description: Target language selection mode for translation
-      format: int32
-    ProjectMTEngineSupportedLanguagesModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: MT engine or profile ID
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the MT engine of profile
-        languages:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: The languages supported by the MT engine or profile
-      additionalProperties: false
-      description: The model represents the supported MT engines or profiles
-    DocumentPackageModel:
-      type: object
-      properties:
-        isRoot:
-          type: boolean
-          description: Indicates whether the document is the root of the package
-        packageId:
-          type: string
-          description: Identifier of the package the document belongs to
-          format: uuid
-        parentPackageId:
-          type:
-          - string
-          - 'null'
-          description: Identifier of the parent package in the hierarchy, if any
-          format: uuid
-      additionalProperties: false
-      description: Package information for a document that belongs to a file package
-    CreateProjectSegmentationExceptionRuleModel:
-      required:
-      - languages
-      - segmentationMode
-      type: object
-      properties:
-        languages:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: 'Target language culture names this exception applies to (e.g. "en-US", "ru").
-
-            Required, must contain at least one element.'
-        segmentationMode:
-          $ref: '#/components/schemas/SubtitleSegmentationMode'
-        maxCps:
-          type:
-          - integer
-          - 'null'
-          description: Subtitle cue's characters per second limit (1-100). Enables CPS normalization when set.
-          format: int32
-        maxLineSize:
-          type:
-          - integer
-          - 'null'
-          description: Maximum line size in characters (1-1000).
-          format: int32
-        maxLinesPerCue:
-          type:
-          - integer
-          - 'null'
-          description: Maximum number of lines per subtitle cue (1-10).
-          format: int32
-      additionalProperties: false
-      description: Per-language subtitle segmentation rule override.
-    ProjectWorkflowStageModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID
-          format: uuid
-        progress:
-          type: number
-          description: Completion percentage
-          format: double
-        stageType:
-          $ref: '#/components/schemas/StageType'
-      additionalProperties: false
-      description: Project workflow stage model
-    Contracts.ProjectStatus:
-      enum:
-      - created
-      - inProgress
-      - completed
-      - canceled
-      type: string
-      description: Project Status
-      format: int32
-    ProjectType:
-      enum:
-      - default
-      - softwareLocalization
-      type: string
-      description: Project type
-      format: int32
-    ProjectQuoteAccuracyDegree:
-      enum:
-      - estimatedByWordsCount
-      - estimatedByTmMatches
-      - autoCalculatedExact
-      - manuallyEntered
-      type: string
-      format: int32
-    ProjectVendorModel:
-      type: object
-      properties:
-        vendorAccountId:
-          type: string
-          description: Vendor account ID
-          format: uuid
-        removedFromProject:
-          type: boolean
-          description: Removed from the project
-        cost:
-          $ref: '#/components/schemas/ProjectCostModel'
-        costDetailsFileId:
-          type:
-          - string
-          - 'null'
-          description: Quote ID
-          format: uuid
-          readOnly: true
-      additionalProperties: false
-      description: Vendor-to-project connection model
-    SegmentCompletionState:
-      enum:
-      - draft
-      - intermediate
-      - final
-      type: string
-      description: Segment completion state
-      format: int32
     PretranslateRuleModel:
       required:
       - order
@@ -4040,3 +4009,34 @@ components:
           description: LQA severity ids whose presence on a segment prevents auto-confirmation by the LQA automation rule
       additionalProperties: false
       description: Pretranslation rule model
+    SoftwareLocalizationDocumentFormat:
+      enum:
+      - json
+      - ios-strings
+      - android-xml
+      - yaml
+      - structured-json
+      - structured-yaml
+      - qt-ts
+      type: string
+      description: Software localization document format
+      format: int32
+    AssignedExecutiveModel:
+      type: object
+      properties:
+        assignedWordsCount:
+          type: integer
+          description: Assigned word count
+          format: int32
+        progress:
+          type: number
+          description: Completion percentage
+          format: double
+        id:
+          type: string
+          description: User ID
+          format: uuid
+        supplierType:
+          $ref: '#/components/schemas/SupplierType'
+      additionalProperties: false
+      description: Model of a linguist assigned to a document workflow stage

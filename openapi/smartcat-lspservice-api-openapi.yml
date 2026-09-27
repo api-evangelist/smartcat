@@ -218,6 +218,72 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    LspServiceType:
+      enum:
+      - translation
+      - editing
+      - proofreading
+      - postediting
+      - pageProof
+      - notarization
+      - glossaryCreation
+      - apostille
+      - simultaneousTranslation
+      - consecutiveTranslation
+      - mediaTranslation
+      - expertReview
+      - projectManagement
+      - translationMemoryCreation
+      - copywriting
+      - training
+      - transcription
+      - certifiedTranslation
+      - transcreation
+      - legalization
+      - machineTranslation
+      - interpretationService
+      - otherTranslationRelatedServices
+      - translationForSubtitling
+      - subtitlesTranslation
+      - editingTranslationOfSubtitles
+      - lQAReview
+      - subtitleReview
+      - voiceOverReview
+      - sourceReview
+      type: string
+      description: LSP service type
+      format: int32
+    LspUpdateServiceModelV2:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Service name
+        description:
+          type:
+          - string
+          - 'null'
+          description: Service description
+        serviceTypes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/LspServiceType'
+          description: Provided service types
+        specializations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Specialization'
+          description: Specializations
+        workUnitType:
+          $ref: '#/components/schemas/WorkUnitType'
+      additionalProperties: false
+      description: LSP service creation and update model
     AddBatchResult:
       type: object
       properties:
@@ -235,6 +301,56 @@ components:
           description: Entity was successfully created
       additionalProperties: false
       description: Entity creation result model for batch addition
+    LspServiceModelV2:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Service ID
+        name:
+          type:
+          - string
+          - 'null'
+          description: Service name
+        description:
+          type:
+          - string
+          - 'null'
+          description: Service description
+        serviceTypes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/LspServiceType'
+          description: Provided service types
+        specializations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Specialization'
+          description: Specializations
+        workUnitType:
+          $ref: '#/components/schemas/WorkUnitType'
+      additionalProperties: false
+      description: LSP service model
+    WorkUnitType:
+      enum:
+      - char
+      - word
+      - page
+      - hour
+      - minute
+      - document
+      - service
+      - day
+      - month
+      type: string
+      description: Linguist's work unit
+      format: int32
     Specialization:
       enum:
       - education
@@ -323,119 +439,3 @@ components:
       type: string
       description: Text specialization
       format: int32
-    LspServiceType:
-      enum:
-      - translation
-      - editing
-      - proofreading
-      - postediting
-      - pageProof
-      - notarization
-      - glossaryCreation
-      - apostille
-      - simultaneousTranslation
-      - consecutiveTranslation
-      - mediaTranslation
-      - expertReview
-      - projectManagement
-      - translationMemoryCreation
-      - copywriting
-      - training
-      - transcription
-      - certifiedTranslation
-      - transcreation
-      - legalization
-      - machineTranslation
-      - interpretationService
-      - otherTranslationRelatedServices
-      - translationForSubtitling
-      - subtitlesTranslation
-      - editingTranslationOfSubtitles
-      - lQAReview
-      - subtitleReview
-      - voiceOverReview
-      - sourceReview
-      type: string
-      description: LSP service type
-      format: int32
-    WorkUnitType:
-      enum:
-      - char
-      - word
-      - page
-      - hour
-      - minute
-      - document
-      - service
-      - day
-      - month
-      type: string
-      description: Linguist's work unit
-      format: int32
-    LspServiceModelV2:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: Service ID
-        name:
-          type:
-          - string
-          - 'null'
-          description: Service name
-        description:
-          type:
-          - string
-          - 'null'
-          description: Service description
-        serviceTypes:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/LspServiceType'
-          description: Provided service types
-        specializations:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Specialization'
-          description: Specializations
-        workUnitType:
-          $ref: '#/components/schemas/WorkUnitType'
-      additionalProperties: false
-      description: LSP service model
-    LspUpdateServiceModelV2:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: Service name
-        description:
-          type:
-          - string
-          - 'null'
-          description: Service description
-        serviceTypes:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/LspServiceType'
-          description: Provided service types
-        specializations:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Specialization'
-          description: Specializations
-        workUnitType:
-          $ref: '#/components/schemas/WorkUnitType'
-      additionalProperties: false
-      description: LSP service creation and update model

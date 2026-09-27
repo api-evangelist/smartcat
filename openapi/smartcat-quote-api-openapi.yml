@@ -336,100 +336,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CostDetailsModel:
-      type: object
-      properties:
-        unitType:
-          $ref: '#/components/schemas/Contracts.WorkUnitType'
-        rate:
-          type:
-          - number
-          - 'null'
-          description: Rate
-          format: double
-        unitCount:
-          type:
-          - number
-          - 'null'
-          description: Unit count
-          format: double
-        detalizationRows:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/DetalizationRowModel'
-          description: Show details
-        detalizationRowsByFiles:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/DetalizationRowFileContainerModel'
-          description: Detalization by files
-        detalizationType:
-          $ref: '#/components/schemas/QuoteCostDetalizationType'
-      additionalProperties: false
-      description: DTO model of a quoted service price details
-    DetalizationRowModel:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: Service details string description
-          example: 102% matches, repetitions, new words
-        unitCount:
-          type: number
-          description: Unit count
-          format: double
-        percentOfFullRate:
-          type: number
-          description: Percentage of the full rate for the specific unit category
-          format: double
-      additionalProperties: false
-      description: Service details string model
-    QuotePaymentStatus:
-      enum:
-      - notPaid
-      - paid
-      - awaitingPayment
-      type: string
-      format: int32
-    ExternalFileDetalizationModel:
-      type: object
-      properties:
-        serviceName:
-          type:
-          - string
-          - 'null'
-          description: Service name
-        cost:
-          type:
-          - number
-          - 'null'
-          description: Service cost
-          format: double
-        file:
-          $ref: '#/components/schemas/UploadedQuoteFileModel'
-        accuracyDegree:
-          $ref: '#/components/schemas/ProjectQuoteAccuracyDegree'
-      additionalProperties: false
-      description: Uploaded file with quote details
-    Contracts.WorkUnitType:
-      enum:
-      - char
-      - word
-      - page
-      - hour
-      - minute
-      - document
-      - service
-      - day
-      - month
-      type: string
-      format: int32
     QuoteServiceModel:
       type: object
       properties:
@@ -454,40 +360,12 @@ components:
           $ref: '#/components/schemas/CostDetailsModel'
       additionalProperties: false
       description: Quote service model
-    UploadedQuoteFileModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID
-          format: uuid
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name
-      additionalProperties: false
-      description: Quote as an attached file
     ProjectQuoteAccuracyDegree:
       enum:
       - estimatedByWordsCount
       - estimatedByTmMatches
       - autoCalculatedExact
       - manuallyEntered
-      type: string
-      format: int32
-    ApprovalStatus:
-      enum:
-      - notApproved
-      - approved
-      - approvalRequested
-      type: string
-      format: int32
-    QuoteCostDetalizationType:
-      enum:
-      - none
-      - byLanguage
-      - byFileAndLanguage
       type: string
       format: int32
     QuoteModel:
@@ -563,6 +441,108 @@ components:
           $ref: '#/components/schemas/ServicesDetalizationModel'
       additionalProperties: false
       description: Project quote model
+    CostDetailsModel:
+      type: object
+      properties:
+        unitType:
+          $ref: '#/components/schemas/Contracts.WorkUnitType'
+        rate:
+          type:
+          - number
+          - 'null'
+          description: Rate
+          format: double
+        unitCount:
+          type:
+          - number
+          - 'null'
+          description: Unit count
+          format: double
+        detalizationRows:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DetalizationRowModel'
+          description: Show details
+        detalizationRowsByFiles:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DetalizationRowFileContainerModel'
+          description: Detalization by files
+        detalizationType:
+          $ref: '#/components/schemas/QuoteCostDetalizationType'
+      additionalProperties: false
+      description: DTO model of a quoted service price details
+    QuoteCostDetalizationType:
+      enum:
+      - none
+      - byLanguage
+      - byFileAndLanguage
+      type: string
+      format: int32
+    ServicesDetalizationModel:
+      type: object
+      properties:
+        services:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/QuoteServiceModel'
+          description: LSP service model
+        accuracyDegree:
+          $ref: '#/components/schemas/ProjectQuoteAccuracyDegree'
+      additionalProperties: false
+      description: Quote details generated by Smartcat
+    DetalizationRowModel:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Service details string description
+          example: 102% matches, repetitions, new words
+        unitCount:
+          type: number
+          description: Unit count
+          format: double
+        percentOfFullRate:
+          type: number
+          description: Percentage of the full rate for the specific unit category
+          format: double
+      additionalProperties: false
+      description: Service details string model
+    Contracts.WorkUnitType:
+      enum:
+      - char
+      - word
+      - page
+      - hour
+      - minute
+      - document
+      - service
+      - day
+      - month
+      type: string
+      format: int32
+    QuotePaymentStatus:
+      enum:
+      - notPaid
+      - paid
+      - awaitingPayment
+      type: string
+      format: int32
+    ApprovalStatus:
+      enum:
+      - notApproved
+      - approved
+      - approvalRequested
+      type: string
+      format: int32
     DetalizationRowFileContainerModel:
       type: object
       properties:
@@ -580,17 +560,37 @@ components:
           description: Details
       additionalProperties: false
       description: Service details by files
-    ServicesDetalizationModel:
+    ExternalFileDetalizationModel:
       type: object
       properties:
-        services:
+        serviceName:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/QuoteServiceModel'
-          description: LSP service model
+          description: Service name
+        cost:
+          type:
+          - number
+          - 'null'
+          description: Service cost
+          format: double
+        file:
+          $ref: '#/components/schemas/UploadedQuoteFileModel'
         accuracyDegree:
           $ref: '#/components/schemas/ProjectQuoteAccuracyDegree'
       additionalProperties: false
-      description: Quote details generated by Smartcat
+      description: Uploaded file with quote details
+    UploadedQuoteFileModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name
+      additionalProperties: false
+      description: Quote as an attached file

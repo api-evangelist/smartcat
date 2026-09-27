@@ -66,29 +66,20 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    DirectoryType:
-      enum:
-      - language
-      - vendor
-      - domain
-      - client
-      - group
-      - projectStatus
-      - documentStatus
-      - netRate
-      - currency
-      - freelancerServiceType
-      - specialization
-      - specializationKnowledgeLevel
-      - lspServiceType
-      - jobStatus
-      - country
-      - supplierType
-      - workUnitType
-      - translationAssuranceLevel
-      type: string
-      description: Directory type
-      format: int32
+    DirectoryModel:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/DirectoryType'
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DirectoryItemModel'
+          description: Elements
+      additionalProperties: false
+      description: Directory model
     FileFormatModel:
       type: object
       properties:
@@ -127,17 +118,26 @@ components:
           description: Name
       additionalProperties: false
       description: Directory entry model
-    DirectoryModel:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/DirectoryType'
-        items:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/DirectoryItemModel'
-          description: Elements
-      additionalProperties: false
-      description: Directory model
+    DirectoryType:
+      enum:
+      - language
+      - vendor
+      - domain
+      - client
+      - group
+      - projectStatus
+      - documentStatus
+      - netRate
+      - currency
+      - freelancerServiceType
+      - specialization
+      - specializationKnowledgeLevel
+      - lspServiceType
+      - jobStatus
+      - country
+      - supplierType
+      - workUnitType
+      - translationAssuranceLevel
+      type: string
+      description: Directory type
+      format: int32

@@ -197,6 +197,23 @@ components:
           - string
           - 'null'
       additionalProperties: {}
+    FileDisassemblingAlgorithmPresetEditModel:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Preset name
+        algorithmName:
+          type:
+          - string
+          - 'null'
+          description: Preset algorithm
+        settings:
+          description: Settings
+      additionalProperties: false
+      description: Preset edit model
     FileDisassemblingAlgorithmPresetViewModel:
       type: object
       properties:
@@ -218,20 +235,3 @@ components:
           description: Settings
       additionalProperties: false
       description: Preset view model
-    FileDisassemblingAlgorithmPresetEditModel:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: Preset name
-        algorithmName:
-          type:
-          - string
-          - 'null'
-          description: Preset algorithm
-        settings:
-          description: Settings
-      additionalProperties: false
-      description: Preset edit model

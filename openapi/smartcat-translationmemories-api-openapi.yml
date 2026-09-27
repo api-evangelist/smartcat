@@ -586,34 +586,6 @@ components:
       - excel
       type: string
       format: int32
-    SegmentWithMatchesModel:
-      type: object
-      properties:
-        sourceText:
-          type:
-          - string
-          - 'null'
-          description: Source segment of a found record
-        targetText:
-          type:
-          - string
-          - 'null'
-          description: Target segment of a found record
-        segmentMatch:
-          type: integer
-          description: Segment match value
-          format: int32
-        tags:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/TagsFromUnit'
-          description: Record tags set
-        assuranceLevel:
-          $ref: '#/components/schemas/IntegrationApiTMTranslationAssuranceLevel'
-      additionalProperties: false
-      description: Segment with matches send model
     TMImportTaskModel:
       type: object
       properties:
@@ -640,6 +612,69 @@ components:
           format: int32
       additionalProperties: false
       description: TM import task model
+    TagsFromUnit:
+      type: object
+      properties:
+        position:
+          type: integer
+          description: Tag insertion position in the target
+          format: int32
+        order:
+          type: integer
+          description: Tag order number in the target. Important if two tags have an identical position
+          format: int32
+      additionalProperties: false
+      description: Unit tags data serialization class
+    TMMatchesRequest:
+      type: object
+      properties:
+        sourceLanguage:
+          type:
+          - string
+          - 'null'
+          description: Source language
+        targetLanguage:
+          type:
+          - string
+          - 'null'
+          description: Target language
+        segmentModel:
+          $ref: '#/components/schemas/SegmentModel'
+        matchThreshold:
+          type:
+          - integer
+          - 'null'
+          description: Match threshold
+          format: int32
+      additionalProperties: false
+      description: TM match query model
+    SegmentModel:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+          description: Segment text
+        prevContext:
+          type:
+          - string
+          - 'null'
+          description: Previous segment text
+        nextContext:
+          type:
+          - string
+          - 'null'
+          description: Next segment text
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SegmentTagModel'
+          description: Segment tags
+      additionalProperties: false
+      description: Segment model
     CreateTranslationMemoryModel:
       type: object
       properties:
@@ -673,33 +708,6 @@ components:
           format: uuid
       additionalProperties: false
       description: TM creation model
-    SegmentModel:
-      type: object
-      properties:
-        text:
-          type:
-          - string
-          - 'null'
-          description: Segment text
-        prevContext:
-          type:
-          - string
-          - 'null'
-          description: Previous segment text
-        nextContext:
-          type:
-          - string
-          - 'null'
-          description: Next segment text
-        tags:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SegmentTagModel'
-          description: Segment tags
-      additionalProperties: false
-      description: Segment model
     ProblemDetails:
       type: object
       properties:
@@ -725,51 +733,34 @@ components:
           - string
           - 'null'
       additionalProperties: {}
-    TMMatchesRequest:
+    SegmentWithMatchesModel:
       type: object
       properties:
-        sourceLanguage:
+        sourceText:
           type:
           - string
           - 'null'
-          description: Source language
-        targetLanguage:
+          description: Source segment of a found record
+        targetText:
           type:
           - string
           - 'null'
-          description: Target language
-        segmentModel:
-          $ref: '#/components/schemas/SegmentModel'
-        matchThreshold:
+          description: Target segment of a found record
+        segmentMatch:
+          type: integer
+          description: Segment match value
+          format: int32
+        tags:
           type:
-          - integer
+          - array
           - 'null'
-          description: Match threshold
-          format: int32
+          items:
+            $ref: '#/components/schemas/TagsFromUnit'
+          description: Record tags set
+        assuranceLevel:
+          $ref: '#/components/schemas/IntegrationApiTMTranslationAssuranceLevel'
       additionalProperties: false
-      description: TM match query model
-    TagsFromUnit:
-      type: object
-      properties:
-        position:
-          type: integer
-          description: Tag insertion position in the target
-          format: int32
-        order:
-          type: integer
-          description: Tag order number in the target. Important if two tags have an identical position
-          format: int32
-      additionalProperties: false
-      description: Unit tags data serialization class
-    IntegrationApiTMTranslationAssuranceLevel:
-      enum:
-      - mT
-      - questionable
-      - regular
-      - qualified
-      type: string
-      description: Minimum TM segment quality
-      format: int32
+      description: Segment with matches send model
     SegmentTagModel:
       type: object
       properties:
@@ -794,3 +785,12 @@ components:
           description: Specifies whether the tag is invisible
       additionalProperties: false
       description: Segment tag mandatory information model
+    IntegrationApiTMTranslationAssuranceLevel:
+      enum:
+      - mT
+      - questionable
+      - regular
+      - qualified
+      type: string
+      description: Minimum TM segment quality
+      format: int32

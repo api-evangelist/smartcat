@@ -83,22 +83,6 @@ components:
           description: External system tag
       additionalProperties: false
       description: Translation request
-    SmartTranslationResponse:
-      type: object
-      properties:
-        translations:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type:
-            - array
-            - 'null'
-            items:
-              $ref: '#/components/schemas/SmartTranslationResult'
-          description: Translation results grouped by the target language
-      additionalProperties: false
-      description: Successful response to a translation request
     SmartTranslationResult:
       type: object
       properties:
@@ -117,6 +101,22 @@ components:
           description: Optional opaque per-segment metadata associated with the translated text. Null when absent.
       additionalProperties: false
       description: Translation result.
+    SmartTranslationResponse:
+      type: object
+      properties:
+        translations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/SmartTranslationResult'
+          description: Translation results grouped by the target language
+      additionalProperties: false
+      description: Successful response to a translation request
     SmartTranslationText:
       required:
       - text
