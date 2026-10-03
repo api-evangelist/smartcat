@@ -57,6 +57,20 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    EndCustomerValue:
+      enum:
+      - lowValue
+      - enterprise
+      - sMB
+      - corporate
+      - university
+      - government
+      - strategic
+      - smallBusiness
+      - midmarket
+      - anonymous
+      type: string
+      format: int32
     AccountModel:
       type: object
       properties:
@@ -108,20 +122,6 @@ components:
           description: Attribute of "disabled" personal account
       additionalProperties: false
       description: Account information for external systems
-    EndCustomerValue:
-      enum:
-      - lowValue
-      - enterprise
-      - sMB
-      - corporate
-      - university
-      - government
-      - strategic
-      - smallBusiness
-      - midmarket
-      - anonymous
-      type: string
-      format: int32
     MTEngineModel:
       type: object
       properties:

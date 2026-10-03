@@ -103,21 +103,6 @@ components:
           description: Disassemble algorithm name
       additionalProperties: false
       description: Model of file formats supported by the account
-    DirectoryItemModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: ID
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name
-      additionalProperties: false
-      description: Directory entry model
     DirectoryType:
       enum:
       - language
@@ -141,3 +126,18 @@ components:
       type: string
       description: Directory type
       format: int32
+    DirectoryItemModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name
+      additionalProperties: false
+      description: Directory entry model

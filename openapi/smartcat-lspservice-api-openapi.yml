@@ -218,6 +218,23 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    AddBatchResult:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID of a created entity
+        index:
+          type: integer
+          description: ID of an entity assigned upon its addition to a batch
+          format: int32
+        success:
+          type: boolean
+          description: Entity was successfully created
+      additionalProperties: false
+      description: Entity creation result model for batch addition
     LspServiceType:
       enum:
       - translation
@@ -284,73 +301,6 @@ components:
           $ref: '#/components/schemas/WorkUnitType'
       additionalProperties: false
       description: LSP service creation and update model
-    AddBatchResult:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: ID of a created entity
-        index:
-          type: integer
-          description: ID of an entity assigned upon its addition to a batch
-          format: int32
-        success:
-          type: boolean
-          description: Entity was successfully created
-      additionalProperties: false
-      description: Entity creation result model for batch addition
-    LspServiceModelV2:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: Service ID
-        name:
-          type:
-          - string
-          - 'null'
-          description: Service name
-        description:
-          type:
-          - string
-          - 'null'
-          description: Service description
-        serviceTypes:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/LspServiceType'
-          description: Provided service types
-        specializations:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Specialization'
-          description: Specializations
-        workUnitType:
-          $ref: '#/components/schemas/WorkUnitType'
-      additionalProperties: false
-      description: LSP service model
-    WorkUnitType:
-      enum:
-      - char
-      - word
-      - page
-      - hour
-      - minute
-      - document
-      - service
-      - day
-      - month
-      type: string
-      description: Linguist's work unit
-      format: int32
     Specialization:
       enum:
       - education
@@ -439,3 +389,53 @@ components:
       type: string
       description: Text specialization
       format: int32
+    WorkUnitType:
+      enum:
+      - char
+      - word
+      - page
+      - hour
+      - minute
+      - document
+      - service
+      - day
+      - month
+      type: string
+      description: Linguist's work unit
+      format: int32
+    LspServiceModelV2:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Service ID
+        name:
+          type:
+          - string
+          - 'null'
+          description: Service name
+        description:
+          type:
+          - string
+          - 'null'
+          description: Service description
+        serviceTypes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/LspServiceType'
+          description: Provided service types
+        specializations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Specialization'
+          description: Specializations
+        workUnitType:
+          $ref: '#/components/schemas/WorkUnitType'
+      additionalProperties: false
+      description: LSP service model

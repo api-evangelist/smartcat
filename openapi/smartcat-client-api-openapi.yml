@@ -243,103 +243,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    NetRateModel_TMRangeRateModel:
-      type: object
-      properties:
-        fromQuality:
-          type: integer
-          description: The lowest value in a TM match quality range
-          format: int32
-        toQuality:
-          type: integer
-          description: The highest value in a TM match quality range
-          format: int32
-        value:
-          type: number
-          description: TM range rate model
-          format: double
-      additionalProperties: false
-      description: TM matches rate model
-    ClientModelV2:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Client ID
-          format: uuid
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name
-        netRate:
-          $ref: '#/components/schemas/NetRateModel'
-        mainContact:
-          $ref: '#/components/schemas/ContactModel'
-        additionalContacts:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ContactModel'
-          description: Additional contacts
-        vat:
-          type:
-          - string
-          - 'null'
-          description: VAT
-        countryCode:
-          type:
-          - string
-          - 'null'
-          description: Country code
-        comment:
-          type:
-          - string
-          - 'null'
-          description: Commentary
-        website:
-          type:
-          - string
-          - 'null'
-          description: Website
-        industryId:
-          type:
-          - string
-          - 'null'
-          description: Specialization
-        legalName:
-          type:
-          - string
-          - 'null'
-          description: Legal name
-        address:
-          type:
-          - string
-          - 'null'
-          description: Address
-        languageId:
-          type:
-          - integer
-          - 'null'
-          description: Language
-          format: int32
-        vendorManager:
-          type:
-          - string
-          - 'null'
-          description: Manager
-        customFields:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type:
-            - string
-            - 'null'
-          description: Custom fields
-      additionalProperties: false
-      description: Client model
     ClientModel:
       type: object
       properties:
@@ -467,6 +370,103 @@ components:
           description: Commentary
       additionalProperties: false
       description: Contact information model
+    NetRateModel_TMRangeRateModel:
+      type: object
+      properties:
+        fromQuality:
+          type: integer
+          description: The lowest value in a TM match quality range
+          format: int32
+        toQuality:
+          type: integer
+          description: The highest value in a TM match quality range
+          format: int32
+        value:
+          type: number
+          description: TM range rate model
+          format: double
+      additionalProperties: false
+      description: TM matches rate model
+    ClientModelV2:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Client ID
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name
+        netRate:
+          $ref: '#/components/schemas/NetRateModel'
+        mainContact:
+          $ref: '#/components/schemas/ContactModel'
+        additionalContacts:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ContactModel'
+          description: Additional contacts
+        vat:
+          type:
+          - string
+          - 'null'
+          description: VAT
+        countryCode:
+          type:
+          - string
+          - 'null'
+          description: Country code
+        comment:
+          type:
+          - string
+          - 'null'
+          description: Commentary
+        website:
+          type:
+          - string
+          - 'null'
+          description: Website
+        industryId:
+          type:
+          - string
+          - 'null'
+          description: Specialization
+        legalName:
+          type:
+          - string
+          - 'null'
+          description: Legal name
+        address:
+          type:
+          - string
+          - 'null'
+          description: Address
+        languageId:
+          type:
+          - integer
+          - 'null'
+          description: Language
+          format: int32
+        vendorManager:
+          type:
+          - string
+          - 'null'
+          description: Manager
+        customFields:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+          description: Custom fields
+      additionalProperties: false
+      description: Client model
     NetRateModel:
       type: object
       properties:

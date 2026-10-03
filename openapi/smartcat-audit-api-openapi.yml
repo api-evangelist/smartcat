@@ -67,49 +67,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AuditLogModel:
-      type: object
-      properties:
-        time:
-          type: string
-          description: Event time
-          format: date-time
-        type:
-          type:
-          - string
-          - 'null'
-          description: Event type
-        userId:
-          type:
-          - string
-          - 'null'
-          description: User ID
-          format: uuid
-        userEmail:
-          type:
-          - string
-          - 'null'
-          description: User E-mail
-        userNickName:
-          type:
-          - string
-          - 'null'
-          description: User nickname
-        payload:
-          type:
-          - object
-          - 'null'
-          additionalProperties: {}
-          description: Payload data
-      additionalProperties: false
-      description: Audit log model
-    ErrorType:
-      enum:
-      - sender
-      - receiver
-      - unknown
-      type: string
-      format: int32
     ErrorResponse:
       type: object
       properties:
@@ -200,5 +157,48 @@ components:
       - loopDetected
       - notExtended
       - networkAuthenticationRequired
+      type: string
+      format: int32
+    AuditLogModel:
+      type: object
+      properties:
+        time:
+          type: string
+          description: Event time
+          format: date-time
+        type:
+          type:
+          - string
+          - 'null'
+          description: Event type
+        userId:
+          type:
+          - string
+          - 'null'
+          description: User ID
+          format: uuid
+        userEmail:
+          type:
+          - string
+          - 'null'
+          description: User E-mail
+        userNickName:
+          type:
+          - string
+          - 'null'
+          description: User nickname
+        payload:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          description: Payload data
+      additionalProperties: false
+      description: Audit log model
+    ErrorType:
+      enum:
+      - sender
+      - receiver
+      - unknown
       type: string
       format: int32

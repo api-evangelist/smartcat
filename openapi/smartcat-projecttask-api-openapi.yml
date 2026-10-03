@@ -646,59 +646,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ProjectTaskScopeModel:
-      type: object
-      properties:
-        documentId:
-          type: string
-          description: Document ID
-        progress:
-          type: number
-          description: Document progress in percent from 0 to 100
-          format: double
-        name:
-          type:
-          - string
-          - 'null'
-          description: Document name
-        extension:
-          type:
-          - string
-          - 'null'
-          description: File extension
-        lastModified:
-          type: string
-          description: Last document modification date (date the file was uploaded or updated)
-          format: date-time
-        approximateCost:
-          type:
-          - number
-          - 'null'
-          description: 'Preliminary cost of the work on a particular document
-
-            Calculated based on the document volume and the rates of suppliers assigned to the task'
-          format: double
-        cost:
-          type:
-          - number
-          - 'null'
-          description: Amount spent on the work performed on the document
-          format: double
-        isExternal:
-          type: boolean
-          description: 'The document at the stage will be processed without the use of CAT tools
-
-            (work on the document is not performed in the editor)'
-        unitType:
-          $ref: '#/components/schemas/WorkUnitType'
-        volumeSize:
-          type:
-          - integer
-          - 'null'
-          description: Work volume in units Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskScopeModel.UnitType
-          format: int32
-      additionalProperties: false
-      description: Model containing information about one work item included in the task
     IndividualAssignmentStatus:
       enum:
       - shortlisted
@@ -707,115 +654,6 @@ components:
       type: string
       description: Status of the invitation to the user to perform the task
       format: int32
-    IndividualAssignmentRequestModel:
-      type: object
-      properties:
-        shouldAssignInShortlistStatus:
-          type: boolean
-          description: Specifies whether shortlisted suppliers should be assigned
-        userIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: uuid
-          description: Individual supplier IDs
-      additionalProperties: false
-      description: Model for inviting individual suppliers to the task
-    Currency:
-      enum:
-      - uSD
-      - eUR
-      - rUB
-      - tRY
-      - jPY
-      - sGD
-      - mYR
-      - hKD
-      - aRS
-      - uAH
-      - cNY
-      - aED
-      - aUD
-      - bRL
-      - cAD
-      - cLP
-      - eGP
-      - gBP
-      - iDR
-      - iLS
-      - iNR
-      - kES
-      - kRW
-      - lKR
-      - mAD
-      - mXN
-      - nPR
-      - pEN
-      - pHP
-      - pLN
-      - tHB
-      - vND
-      - sEK
-      - tWD
-      - pKR
-      - nZD
-      - tTD
-      - zAR
-      - cHF
-      - kZT
-      - dKK
-      - iSK
-      type: string
-      format: int32
-    IndividualAssignmentModel:
-      type: object
-      properties:
-        userId:
-          type: string
-          description: User ID
-        rate:
-          type:
-          - number
-          - 'null'
-          description: Supplier rate per word
-          format: double
-        currency:
-          type:
-          - string
-          - 'null'
-          description: Rate currency
-        status:
-          $ref: '#/components/schemas/IndividualAssignmentStatus'
-      additionalProperties: false
-      description: Information about the user assigned to the task Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel
-    ProjectTaskJobStatus:
-      enum:
-      - doNotNeedToPay
-      - forming
-      - pendingToPay
-      - paid
-      type: string
-      description: Status of the work performed by the supplier
-      format: int32
-    ProjectTaskMergeRequest:
-      type: object
-      properties:
-        projectTaskIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: uuid
-          description: IDs of the tasks to be merged
-      additionalProperties: false
-      description: 'IDs of the tasks to be merged
-
-        All merged tasks must belong to the same stage Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel.StageId
-
-        and have the same target language Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel.TargetLanguage'
     SplitProjectTaskRequest:
       type: object
       properties:
@@ -840,198 +678,6 @@ components:
           format: uuid
       additionalProperties: false
       description: Data required to split the task volume
-    SplitProjectTaskResponse:
-      type: object
-      properties:
-        projectTaskId:
-          type: string
-          description: ID of the task to which the documents were moved
-          format: uuid
-      additionalProperties: false
-      description: Result of splitting the task volume
-    ProjectTaskJobModel:
-      type: object
-      properties:
-        jobId:
-          type:
-          - string
-          - 'null'
-          description: Job ID Smartcat.AppIntegrations.Contracts.JobModel.Id
-        userId:
-          type:
-          - string
-          - 'null'
-          description: Supplier ID
-          format: uuid
-        userName:
-          type:
-          - string
-          - 'null'
-          description: Supplier name
-        documentId:
-          type:
-          - string
-          - 'null'
-          description: Document ID
-        documentName:
-          type:
-          - string
-          - 'null'
-          description: Document name
-        documentExtension:
-          type:
-          - string
-          - 'null'
-          description: Document extension
-        unitsCount:
-          type:
-          - number
-          - 'null'
-          description: Number of units of work performed
-          format: double
-        cost:
-          type:
-          - number
-          - 'null'
-          description: Cost of work
-          format: double
-        status:
-          $ref: '#/components/schemas/ProjectTaskJobStatus'
-        vendorAccountId:
-          type:
-          - string
-          - 'null'
-          description: Vendor account id
-          format: uuid
-        vendorAccountName:
-          type:
-          - string
-          - 'null'
-          description: Vendor account name
-        vendorImageUrl:
-          type:
-          - string
-          - 'null'
-          description: Vendor image URL
-      additionalProperties: false
-      description: Job information for a specific task
-    SplitProjectTaskByPartsResponse:
-      type: object
-      properties:
-        projectTaskIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: uuid
-          description: Target task IDs
-      additionalProperties: false
-      description: Result of splitting the task volume
-    WorkUnitType:
-      enum:
-      - char
-      - word
-      - page
-      - hour
-      - minute
-      - document
-      - service
-      - day
-      - month
-      type: string
-      description: Linguist's work unit
-      format: int32
-    VendorAssignmentStatus:
-      enum:
-      - shortlisted
-      - inProgress
-      type: string
-      description: Vendor assignment status
-      format: int32
-    VendorAssignmentModel:
-      type: object
-      properties:
-        accountId:
-          type:
-          - string
-          - 'null'
-          description: Account ID
-        name:
-          type:
-          - string
-          - 'null'
-          description: Agency/company name
-        canUnassign:
-          type: boolean
-          description: Specifies whether the assignment can be removed
-        rate:
-          type:
-          - number
-          - 'null'
-          description: Rate per word
-          format: double
-        status:
-          $ref: '#/components/schemas/VendorAssignmentStatus'
-      additionalProperties: false
-      description: Information about the agency/company assigned to the task Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel
-    VendorAssignmentRequestModel:
-      type: object
-      properties:
-        shouldAssignInShortlistStatus:
-          type: boolean
-          description: Specifies whether the vendor must be assigned with the Smartcat.AppIntegrations.Contracts.ProjectTask.Enums.VendorAssignmentStatus.Shortlisted status
-        vendorAccountId:
-          type: string
-          description: Vendor account ID
-          format: uuid
-      additionalProperties: false
-      description: Model for inviting a vendor to the task
-    ProjectTaskStatus:
-      enum:
-      - created
-      - suppliersShortlisted
-      - suppliersInvited
-      - inProgress
-      - completed
-      type: string
-      description: Task status
-      format: int32
-    MergeProjectTasksResponse:
-      type: object
-      properties:
-        projectTaskId:
-          type: string
-          description: ID of the task created as a result of merging
-          format: uuid
-      additionalProperties: false
-      description: Result of merging tasks
-    ProjectTaskIndividualInvitationStrategyType:
-      enum:
-      - crowd
-      - rocket
-      type: string
-      description: Mode of access to the work for those who accepted the invitation
-      format: int32
-    StageType:
-      enum:
-      - translation
-      - editing
-      - proofreading
-      - postediting
-      - finalPageProof
-      - notarization
-      - certifiedTranslation
-      - transcreation
-      - legalization
-      - preliminaryPageProof
-      - lQAReview
-      - subtitleReview
-      - voiceOverReview
-      - sourceReview
-      type: string
-      description: Workflow stage type
-      format: int32
     ProjectTaskModel:
       type: object
       properties:
@@ -1121,3 +767,357 @@ components:
           $ref: '#/components/schemas/ProjectTaskIndividualInvitationStrategyType'
       additionalProperties: false
       description: Project task
+    VendorAssignmentStatus:
+      enum:
+      - shortlisted
+      - inProgress
+      type: string
+      description: Vendor assignment status
+      format: int32
+    ProjectTaskIndividualInvitationStrategyType:
+      enum:
+      - crowd
+      - rocket
+      type: string
+      description: Mode of access to the work for those who accepted the invitation
+      format: int32
+    VendorAssignmentModel:
+      type: object
+      properties:
+        accountId:
+          type:
+          - string
+          - 'null'
+          description: Account ID
+        name:
+          type:
+          - string
+          - 'null'
+          description: Agency/company name
+        canUnassign:
+          type: boolean
+          description: Specifies whether the assignment can be removed
+        rate:
+          type:
+          - number
+          - 'null'
+          description: Rate per word
+          format: double
+        status:
+          $ref: '#/components/schemas/VendorAssignmentStatus'
+      additionalProperties: false
+      description: Information about the agency/company assigned to the task Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel
+    IndividualAssignmentRequestModel:
+      type: object
+      properties:
+        shouldAssignInShortlistStatus:
+          type: boolean
+          description: Specifies whether shortlisted suppliers should be assigned
+        userIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+          description: Individual supplier IDs
+      additionalProperties: false
+      description: Model for inviting individual suppliers to the task
+    StageType:
+      enum:
+      - translation
+      - editing
+      - proofreading
+      - postediting
+      - finalPageProof
+      - notarization
+      - certifiedTranslation
+      - transcreation
+      - legalization
+      - preliminaryPageProof
+      - lQAReview
+      - subtitleReview
+      - voiceOverReview
+      - sourceReview
+      type: string
+      description: Workflow stage type
+      format: int32
+    ProjectTaskJobStatus:
+      enum:
+      - doNotNeedToPay
+      - forming
+      - pendingToPay
+      - paid
+      type: string
+      description: Status of the work performed by the supplier
+      format: int32
+    ProjectTaskJobModel:
+      type: object
+      properties:
+        jobId:
+          type:
+          - string
+          - 'null'
+          description: Job ID Smartcat.AppIntegrations.Contracts.JobModel.Id
+        userId:
+          type:
+          - string
+          - 'null'
+          description: Supplier ID
+          format: uuid
+        userName:
+          type:
+          - string
+          - 'null'
+          description: Supplier name
+        documentId:
+          type:
+          - string
+          - 'null'
+          description: Document ID
+        documentName:
+          type:
+          - string
+          - 'null'
+          description: Document name
+        documentExtension:
+          type:
+          - string
+          - 'null'
+          description: Document extension
+        unitsCount:
+          type:
+          - number
+          - 'null'
+          description: Number of units of work performed
+          format: double
+        cost:
+          type:
+          - number
+          - 'null'
+          description: Cost of work
+          format: double
+        status:
+          $ref: '#/components/schemas/ProjectTaskJobStatus'
+        vendorAccountId:
+          type:
+          - string
+          - 'null'
+          description: Vendor account id
+          format: uuid
+        vendorAccountName:
+          type:
+          - string
+          - 'null'
+          description: Vendor account name
+        vendorImageUrl:
+          type:
+          - string
+          - 'null'
+          description: Vendor image URL
+      additionalProperties: false
+      description: Job information for a specific task
+    VendorAssignmentRequestModel:
+      type: object
+      properties:
+        shouldAssignInShortlistStatus:
+          type: boolean
+          description: Specifies whether the vendor must be assigned with the Smartcat.AppIntegrations.Contracts.ProjectTask.Enums.VendorAssignmentStatus.Shortlisted status
+        vendorAccountId:
+          type: string
+          description: Vendor account ID
+          format: uuid
+      additionalProperties: false
+      description: Model for inviting a vendor to the task
+    SplitProjectTaskByPartsResponse:
+      type: object
+      properties:
+        projectTaskIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+          description: Target task IDs
+      additionalProperties: false
+      description: Result of splitting the task volume
+    MergeProjectTasksResponse:
+      type: object
+      properties:
+        projectTaskId:
+          type: string
+          description: ID of the task created as a result of merging
+          format: uuid
+      additionalProperties: false
+      description: Result of merging tasks
+    ProjectTaskMergeRequest:
+      type: object
+      properties:
+        projectTaskIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+          description: IDs of the tasks to be merged
+      additionalProperties: false
+      description: 'IDs of the tasks to be merged
+
+        All merged tasks must belong to the same stage Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel.StageId
+
+        and have the same target language Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel.TargetLanguage'
+    SplitProjectTaskResponse:
+      type: object
+      properties:
+        projectTaskId:
+          type: string
+          description: ID of the task to which the documents were moved
+          format: uuid
+      additionalProperties: false
+      description: Result of splitting the task volume
+    Currency:
+      enum:
+      - uSD
+      - eUR
+      - rUB
+      - tRY
+      - jPY
+      - sGD
+      - mYR
+      - hKD
+      - aRS
+      - uAH
+      - cNY
+      - aED
+      - aUD
+      - bRL
+      - cAD
+      - cLP
+      - eGP
+      - gBP
+      - iDR
+      - iLS
+      - iNR
+      - kES
+      - kRW
+      - lKR
+      - mAD
+      - mXN
+      - nPR
+      - pEN
+      - pHP
+      - pLN
+      - tHB
+      - vND
+      - sEK
+      - tWD
+      - pKR
+      - nZD
+      - tTD
+      - zAR
+      - cHF
+      - kZT
+      - dKK
+      - iSK
+      type: string
+      format: int32
+    WorkUnitType:
+      enum:
+      - char
+      - word
+      - page
+      - hour
+      - minute
+      - document
+      - service
+      - day
+      - month
+      type: string
+      description: Linguist's work unit
+      format: int32
+    ProjectTaskStatus:
+      enum:
+      - created
+      - suppliersShortlisted
+      - suppliersInvited
+      - inProgress
+      - completed
+      type: string
+      description: Task status
+      format: int32
+    ProjectTaskScopeModel:
+      type: object
+      properties:
+        documentId:
+          type: string
+          description: Document ID
+        progress:
+          type: number
+          description: Document progress in percent from 0 to 100
+          format: double
+        name:
+          type:
+          - string
+          - 'null'
+          description: Document name
+        extension:
+          type:
+          - string
+          - 'null'
+          description: File extension
+        lastModified:
+          type: string
+          description: Last document modification date (date the file was uploaded or updated)
+          format: date-time
+        approximateCost:
+          type:
+          - number
+          - 'null'
+          description: 'Preliminary cost of the work on a particular document
+
+            Calculated based on the document volume and the rates of suppliers assigned to the task'
+          format: double
+        cost:
+          type:
+          - number
+          - 'null'
+          description: Amount spent on the work performed on the document
+          format: double
+        isExternal:
+          type: boolean
+          description: 'The document at the stage will be processed without the use of CAT tools
+
+            (work on the document is not performed in the editor)'
+        unitType:
+          $ref: '#/components/schemas/WorkUnitType'
+        volumeSize:
+          type:
+          - integer
+          - 'null'
+          description: Work volume in units Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskScopeModel.UnitType
+          format: int32
+      additionalProperties: false
+      description: Model containing information about one work item included in the task
+    IndividualAssignmentModel:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: User ID
+        rate:
+          type:
+          - number
+          - 'null'
+          description: Supplier rate per word
+          format: double
+        currency:
+          type:
+          - string
+          - 'null'
+          description: Rate currency
+        status:
+          $ref: '#/components/schemas/IndividualAssignmentStatus'
+      additionalProperties: false
+      description: Information about the user assigned to the task Smartcat.AppIntegrations.Contracts.ProjectTask.ProjectTaskModel

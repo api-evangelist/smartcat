@@ -220,6 +220,25 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    GlossaryExportPendingTaskInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task ID
+          format: uuid
+          readOnly: true
+        glossaryId:
+          type: string
+          description: Glossary ID
+          format: uuid
+          readOnly: true
+        completed:
+          type: boolean
+          description: Whether the task is completed
+          readOnly: true
+      additionalProperties: false
+      description: Information about the glossary export task
     GlossaryModel:
       type: object
       properties:
@@ -263,22 +282,3 @@ components:
           description: Default glossary flag
       additionalProperties: false
       description: Glossary
-    GlossaryExportPendingTaskInfo:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Task ID
-          format: uuid
-          readOnly: true
-        glossaryId:
-          type: string
-          description: Glossary ID
-          format: uuid
-          readOnly: true
-        completed:
-          type: boolean
-          description: Whether the task is completed
-          readOnly: true
-      additionalProperties: false
-      description: Information about the glossary export task

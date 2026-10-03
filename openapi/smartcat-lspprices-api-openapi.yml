@@ -217,45 +217,23 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    LspUpdatePriceModelV2:
+    AddBatchResult:
       type: object
       properties:
-        serviceId:
+        id:
           type:
           - string
           - 'null'
-          description: Service ID
-        clientId:
-          type:
-          - string
-          - 'null'
-          description: Client ID
-          format: uuid
-        sourceLanguage:
-          type:
-          - string
-          - 'null'
-          description: Source language
-        targetLanguages:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: Target languages
-        pricePerUnit:
-          type:
-          - number
-          - 'null'
-          description: Price per unit
-          format: double
-        pricePerUnitCurrency:
-          type:
-          - string
-          - 'null'
-          description: Price currency
+          description: ID of a created entity
+        index:
+          type: integer
+          description: ID of an entity assigned upon its addition to a batch
+          format: int32
+        success:
+          type: boolean
+          description: Entity was successfully created
       additionalProperties: false
-      description: LSP service price creation and update model
+      description: Entity creation result model for batch addition
     LspPriceModelV2:
       type: object
       properties:
@@ -300,20 +278,42 @@ components:
           description: Price currency
       additionalProperties: false
       description: LSP service price model
-    AddBatchResult:
+    LspUpdatePriceModelV2:
       type: object
       properties:
-        id:
+        serviceId:
           type:
           - string
           - 'null'
-          description: ID of a created entity
-        index:
-          type: integer
-          description: ID of an entity assigned upon its addition to a batch
-          format: int32
-        success:
-          type: boolean
-          description: Entity was successfully created
+          description: Service ID
+        clientId:
+          type:
+          - string
+          - 'null'
+          description: Client ID
+          format: uuid
+        sourceLanguage:
+          type:
+          - string
+          - 'null'
+          description: Source language
+        targetLanguages:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Target languages
+        pricePerUnit:
+          type:
+          - number
+          - 'null'
+          description: Price per unit
+          format: double
+        pricePerUnitCurrency:
+          type:
+          - string
+          - 'null'
+          description: Price currency
       additionalProperties: false
-      description: Entity creation result model for batch addition
+      description: LSP service price creation and update model

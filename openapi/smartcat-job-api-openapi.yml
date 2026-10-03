@@ -105,6 +105,13 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    SupplierType:
+      enum:
+      - freelancer
+      - company
+      type: string
+      description: Supplier type
+      format: int32
     JobModelV2Extended:
       type: object
       properties:
@@ -233,13 +240,6 @@ components:
           format: date-time
       additionalProperties: false
       description: Payment model
-    SupplierType:
-      enum:
-      - freelancer
-      - company
-      type: string
-      description: Supplier type
-      format: int32
     JobStatus:
       enum:
       - inProgress

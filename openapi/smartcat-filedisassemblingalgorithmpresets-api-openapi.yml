@@ -163,15 +163,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    FileDisassemblingAlgorithmPresetCreatedModel:
-      type: object
-      properties:
-        presetId:
-          type: string
-          description: Preset ID
-          format: uuid
-      additionalProperties: false
-      description: Created preset details
     ProblemDetails:
       type: object
       properties:
@@ -214,6 +205,15 @@ components:
           description: Settings
       additionalProperties: false
       description: Preset edit model
+    FileDisassemblingAlgorithmPresetCreatedModel:
+      type: object
+      properties:
+        presetId:
+          type: string
+          description: Preset ID
+          format: uuid
+      additionalProperties: false
+      description: Created preset details
     FileDisassemblingAlgorithmPresetViewModel:
       type: object
       properties:

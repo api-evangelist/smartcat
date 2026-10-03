@@ -1186,28 +1186,27 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AssignExecutivesRequestModel:
+    UploadDocumentPropertiesModel:
       type: object
       properties:
-        executives:
+        bilingualFileImportSetings:
+          $ref: '#/components/schemas/BilingualFileImportSetingsModel'
+        enablePlaceholders:
           type:
-          - array
+          - boolean
           - 'null'
-          items:
-            $ref: '#/components/schemas/AssignExecutivesRequestModel_Executive'
-          description: Linguists
-        minWordsCountForExecutive:
-          type:
-          - integer
-          - 'null'
-          description: 'Minimal word count per linguist. Optional parameter applicable if the word count for the linguist is not explicitly defined
-
-            The remaining document portion assigned to the last linguist might be smaller than the minimum'
-          format: int32
-        assignmentMode:
-          $ref: '#/components/schemas/AssignmentMode'
+          description: Specifies whether to enable placeholders in the document body
       additionalProperties: false
-      description: Input model of a request for assigning account freelancers or users to a document
+      description: Document upload properties model
+    WorkflowStageStatus:
+      enum:
+      - notAssigned
+      - assigned
+      - inProgress
+      - completed
+      type: string
+      description: Workflow stage status
+      format: int32
     AssignMyTeamExecutivesRequestModel:
       type: object
       properties:
@@ -1233,59 +1232,60 @@ components:
           description: Consider the project client
       additionalProperties: false
       description: Model for assigning documents to MyTeam executors
-    ConfirmMode:
+    TargetSubstitutionMode:
       enum:
+      - all
       - none
-      - byStates
-      - atFirstStage
-      - atLastStage
       type: string
-      description: Mode of segment confirmation at file upload
+      description: Target substitution mode
       format: int32
-    TargetLanguageUsageMode:
+    SaveType:
       enum:
-      - selected
-      - fromFile
+      - autoSaved
+      - insertTM
+      - insertMT
+      - insertTB
+      - translatedInSourceFile
+      - repetitionInsert
+      - rollback
+      - replacement
+      - copyFromSource
+      - numberConversion
+      - crossDocumentRepetitionInsert
+      - joinSegments
+      - splitSegment
+      - updateSourceText
+      - documentCompletion
+      - updateFromExternalSystem
+      - reconnect
+      - cleanTarget
+      - autoCopyFromSource
+      - copyProject
+      - aiAction
+      - aligner
+      - confirmation
+      - glossaryImprovement
+      - agentReview
       type: string
-      description: Target language selection mode for translation
+      description: Revision type
       format: int32
-    SupplierType:
+    StatisticsFieldName:
       enum:
-      - freelancer
-      - company
+      - perfect
+      - crossFileRepeated
+      - total
+      - repetitions
+      - newWords
+      - match_50_74
+      - match_75_84
+      - match_85_94
+      - match_95_99
+      - match_100
+      - contextMatch_101
+      - contextMatch_102
       type: string
-      description: Supplier type
+      description: Statistics field names
       format: int32
-    DocumentPackageModel:
-      type: object
-      properties:
-        isRoot:
-          type: boolean
-          description: Indicates whether the document is the root of the package
-        packageId:
-          type: string
-          description: Identifier of the package the document belongs to
-          format: uuid
-        parentPackageId:
-          type:
-          - string
-          - 'null'
-          description: Identifier of the parent package in the hierarchy, if any
-          format: uuid
-      additionalProperties: false
-      description: Package information for a document that belongs to a file package
-    UploadDocumentPropertiesModel:
-      type: object
-      properties:
-        bilingualFileImportSetings:
-          $ref: '#/components/schemas/BilingualFileImportSetingsModel'
-        enablePlaceholders:
-          type:
-          - boolean
-          - 'null'
-          description: Specifies whether to enable placeholders in the document body
-      additionalProperties: false
-      description: Document upload properties model
     Specialization:
       enum:
       - education
@@ -1374,13 +1374,39 @@ components:
       type: string
       description: Text specialization
       format: int32
-    LockMode:
+    AssignExecutivesRequestModel_Executive:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Identifier (UserId for freelancers, AccountUserId for linguists)
+          format: uuid
+        wordsCount:
+          type:
+          - integer
+          - 'null'
+          description: Word count assigned to the linguist. Optional
+          format: int32
+      additionalProperties: false
+      description: Model for the assignment of a freelancer or account user to a document
+    DocumentStatus:
+      enum:
+      - created
+      - inProgress
+      - completed
+      - updated
+      - targetUpdated
+      type: string
+      description: Document status
+      format: int32
+    ConfirmMode:
       enum:
       - none
       - byStates
-      - confirmed
+      - atFirstStage
+      - atLastStage
       type: string
-      description: Mode of locking segments at import
+      description: Mode of segment confirmation at file upload
       format: int32
     SetStageUnitsCountModel:
       type: object
@@ -1394,36 +1420,6 @@ components:
           format: int32
       additionalProperties: false
       description: Document unit count setup model
-    VendorModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID
-          format: uuid
-        name:
-          type:
-          - string
-          - 'null'
-          description: Company name
-        customFields:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type:
-            - string
-            - 'null'
-          description: Custom fields
-      additionalProperties: false
-      description: Vendor model
-    TargetSubstitutionMode:
-      enum:
-      - all
-      - none
-      type: string
-      description: Target substitution mode
-      format: int32
     DocumentStatisticsModel:
       type: object
       properties:
@@ -1441,226 +1437,6 @@ components:
           description: Statistics regarding the work done for the project
       additionalProperties: false
       description: Document statistics
-    DocumentWorkflowStageModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID
-          format: uuid
-        progress:
-          type: number
-          description: Completion percentage
-          format: double
-        wordsTranslated:
-          type: integer
-          description: Translated words count
-          format: int32
-        unassignedWordsCount:
-          type: integer
-          description: Unassigned words count
-          format: int32
-        status:
-          $ref: '#/components/schemas/WorkflowStageStatus'
-        statusModificationDate:
-          type:
-          - string
-          - 'null'
-          description: Status change date
-          format: date-time
-        executives:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AssignedExecutiveModel'
-          description: Assigned linguists
-        vendor:
-          $ref: '#/components/schemas/VendorModel'
-      additionalProperties: false
-      description: Document workflow stage model
-    SaveType:
-      enum:
-      - autoSaved
-      - insertTM
-      - insertMT
-      - insertTB
-      - translatedInSourceFile
-      - repetitionInsert
-      - rollback
-      - replacement
-      - copyFromSource
-      - numberConversion
-      - crossDocumentRepetitionInsert
-      - joinSegments
-      - splitSegment
-      - updateSourceText
-      - documentCompletion
-      - updateFromExternalSystem
-      - reconnect
-      - cleanTarget
-      - autoCopyFromSource
-      - copyProject
-      - aiAction
-      - aligner
-      - confirmation
-      - glossaryImprovement
-      - agentReview
-      type: string
-      description: Revision type
-      format: int32
-    TranslationTaskStatus:
-      enum:
-      - inProgress
-      - faulted
-      - completed
-      type: string
-      description: Status of a document translation addition task
-      format: int32
-    BilingualFileImportSetingsModel:
-      type: object
-      properties:
-        targetSubstitutionMode:
-          $ref: '#/components/schemas/TargetSubstitutionMode'
-        targetLanguageUsageMode:
-          $ref: '#/components/schemas/TargetLanguageUsageMode'
-        lockMode:
-          $ref: '#/components/schemas/LockMode'
-        confirmMode:
-          $ref: '#/components/schemas/ConfirmMode'
-        saveType:
-          $ref: '#/components/schemas/SaveType'
-      additionalProperties: false
-      description: Bilingual document upload settings model
-    StatisticsRowModel:
-      type: object
-      properties:
-        name:
-          $ref: '#/components/schemas/StatisticsFieldName'
-        words:
-          type: integer
-          description: Words
-          format: int64
-        percent:
-          type: number
-          description: Percent
-          format: double
-        segments:
-          type: integer
-          description: Segments
-          format: int32
-        pages:
-          type: number
-          description: Pages
-          format: double
-        charsWithoutSpaces:
-          type: integer
-          description: Chars Without Spaces
-          format: int64
-        charsWithSpaces:
-          type: integer
-          description: Chars With Spaces
-          format: int64
-        effectiveWordsForBilling:
-          type:
-          - number
-          - 'null'
-          description: Effective word count
-          format: double
-      additionalProperties: false
-      description: Document Statistics Model
-    DocumentStatus:
-      enum:
-      - created
-      - inProgress
-      - completed
-      - updated
-      - targetUpdated
-      type: string
-      description: Document status
-      format: int32
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      additionalProperties: {}
-    WorkflowStageStatus:
-      enum:
-      - notAssigned
-      - assigned
-      - inProgress
-      - completed
-      type: string
-      description: Workflow stage status
-      format: int32
-    StatisticsFieldName:
-      enum:
-      - perfect
-      - crossFileRepeated
-      - total
-      - repetitions
-      - newWords
-      - match_50_74
-      - match_75_84
-      - match_85_94
-      - match_95_99
-      - match_100
-      - contextMatch_101
-      - contextMatch_102
-      type: string
-      description: Statistics field names
-      format: int32
-    AssignExecutivesRequestModel_Executive:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Identifier (UserId for freelancers, AccountUserId for linguists)
-          format: uuid
-        wordsCount:
-          type:
-          - integer
-          - 'null'
-          description: Word count assigned to the linguist. Optional
-          format: int32
-      additionalProperties: false
-      description: Model for the assignment of a freelancer or account user to a document
-    AssignmentMode:
-      enum:
-      - distributeAmongAll
-      - rocket
-      - inviteOnly
-      type: string
-      description: Linguist assignment mode
-      format: int32
-    DocumentDisassemblingStatus:
-      enum:
-      - inProgress
-      - error
-      - success
-      type: string
-      description: Document disassembly status
-      format: int32
     DocumentModel:
       type: object
       properties:
@@ -1762,6 +1538,70 @@ components:
           $ref: '#/components/schemas/DocumentPackageModel'
       additionalProperties: false
       description: Document model
+    TranslationTaskStatus:
+      enum:
+      - inProgress
+      - faulted
+      - completed
+      type: string
+      description: Status of a document translation addition task
+      format: int32
+    DocumentDisassemblingStatus:
+      enum:
+      - inProgress
+      - error
+      - success
+      type: string
+      description: Document disassembly status
+      format: int32
+    DocumentPackageModel:
+      type: object
+      properties:
+        isRoot:
+          type: boolean
+          description: Indicates whether the document is the root of the package
+        packageId:
+          type: string
+          description: Identifier of the package the document belongs to
+          format: uuid
+        parentPackageId:
+          type:
+          - string
+          - 'null'
+          description: Identifier of the parent package in the hierarchy, if any
+          format: uuid
+      additionalProperties: false
+      description: Package information for a document that belongs to a file package
+    LockMode:
+      enum:
+      - none
+      - byStates
+      - confirmed
+      type: string
+      description: Mode of locking segments at import
+      format: int32
+    AssignExecutivesRequestModel:
+      type: object
+      properties:
+        executives:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AssignExecutivesRequestModel_Executive'
+          description: Linguists
+        minWordsCountForExecutive:
+          type:
+          - integer
+          - 'null'
+          description: 'Minimal word count per linguist. Optional parameter applicable if the word count for the linguist is not explicitly defined
+
+            The remaining document portion assigned to the last linguist might be smaller than the minimum'
+          format: int32
+        assignmentMode:
+          $ref: '#/components/schemas/AssignmentMode'
+      additionalProperties: false
+      description: Input model of a request for assigning account freelancers or users to a document
     AssignedExecutiveModel:
       type: object
       properties:
@@ -1781,3 +1621,163 @@ components:
           $ref: '#/components/schemas/SupplierType'
       additionalProperties: false
       description: Model of a linguist assigned to a document workflow stage
+    TargetLanguageUsageMode:
+      enum:
+      - selected
+      - fromFile
+      type: string
+      description: Target language selection mode for translation
+      format: int32
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
+    StatisticsRowModel:
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/StatisticsFieldName'
+        words:
+          type: integer
+          description: Words
+          format: int64
+        percent:
+          type: number
+          description: Percent
+          format: double
+        segments:
+          type: integer
+          description: Segments
+          format: int32
+        pages:
+          type: number
+          description: Pages
+          format: double
+        charsWithoutSpaces:
+          type: integer
+          description: Chars Without Spaces
+          format: int64
+        charsWithSpaces:
+          type: integer
+          description: Chars With Spaces
+          format: int64
+        effectiveWordsForBilling:
+          type:
+          - number
+          - 'null'
+          description: Effective word count
+          format: double
+      additionalProperties: false
+      description: Document Statistics Model
+    AssignmentMode:
+      enum:
+      - distributeAmongAll
+      - rocket
+      - inviteOnly
+      type: string
+      description: Linguist assignment mode
+      format: int32
+    VendorModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+          description: Company name
+        customFields:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+          description: Custom fields
+      additionalProperties: false
+      description: Vendor model
+    SupplierType:
+      enum:
+      - freelancer
+      - company
+      type: string
+      description: Supplier type
+      format: int32
+    BilingualFileImportSetingsModel:
+      type: object
+      properties:
+        targetSubstitutionMode:
+          $ref: '#/components/schemas/TargetSubstitutionMode'
+        targetLanguageUsageMode:
+          $ref: '#/components/schemas/TargetLanguageUsageMode'
+        lockMode:
+          $ref: '#/components/schemas/LockMode'
+        confirmMode:
+          $ref: '#/components/schemas/ConfirmMode'
+        saveType:
+          $ref: '#/components/schemas/SaveType'
+      additionalProperties: false
+      description: Bilingual document upload settings model
+    DocumentWorkflowStageModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        progress:
+          type: number
+          description: Completion percentage
+          format: double
+        wordsTranslated:
+          type: integer
+          description: Translated words count
+          format: int32
+        unassignedWordsCount:
+          type: integer
+          description: Unassigned words count
+          format: int32
+        status:
+          $ref: '#/components/schemas/WorkflowStageStatus'
+        statusModificationDate:
+          type:
+          - string
+          - 'null'
+          description: Status change date
+          format: date-time
+        executives:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AssignedExecutiveModel'
+          description: Assigned linguists
+        vendor:
+          $ref: '#/components/schemas/VendorModel'
+      additionalProperties: false
+      description: Document workflow stage model

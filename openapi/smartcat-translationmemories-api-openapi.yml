@@ -522,6 +522,150 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    CreateTranslationMemoryModel:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name
+        sourceLanguage:
+          type:
+          - string
+          - 'null'
+          description: Source language
+        targetLanguages:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Target languages
+        description:
+          type:
+          - string
+          - 'null'
+          description: Description
+        clientId:
+          type:
+          - string
+          - 'null'
+          description: Client ID
+          format: uuid
+      additionalProperties: false
+      description: TM creation model
+    TMMatchesRequest:
+      type: object
+      properties:
+        sourceLanguage:
+          type:
+          - string
+          - 'null'
+          description: Source language
+        targetLanguage:
+          type:
+          - string
+          - 'null'
+          description: Target language
+        segmentModel:
+          $ref: '#/components/schemas/SegmentModel'
+        matchThreshold:
+          type:
+          - integer
+          - 'null'
+          description: Match threshold
+          format: int32
+      additionalProperties: false
+      description: TM match query model
+    TMImportTaskModel:
+      type: object
+      properties:
+        accountId:
+          type: string
+          description: Account ID
+          format: uuid
+        id:
+          type: string
+          description: Task ID
+          format: uuid
+        translationMemoryId:
+          type: string
+          description: TM database ID
+          format: uuid
+        state:
+          type:
+          - string
+          - 'null'
+          description: Task status
+        insertedUnitCount:
+          type: integer
+          description: Inserted unit count
+          format: int32
+      additionalProperties: false
+      description: TM import task model
+    SegmentWithMatchesModel:
+      type: object
+      properties:
+        sourceText:
+          type:
+          - string
+          - 'null'
+          description: Source segment of a found record
+        targetText:
+          type:
+          - string
+          - 'null'
+          description: Target segment of a found record
+        segmentMatch:
+          type: integer
+          description: Segment match value
+          format: int32
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/TagsFromUnit'
+          description: Record tags set
+        assuranceLevel:
+          $ref: '#/components/schemas/IntegrationApiTMTranslationAssuranceLevel'
+      additionalProperties: false
+      description: Segment with matches send model
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
+    IntegrationApiTMTranslationAssuranceLevel:
+      enum:
+      - mT
+      - questionable
+      - regular
+      - qualified
+      type: string
+      description: Minimum TM segment quality
+      format: int32
     TranslationMemoryModel:
       type: object
       properties:
@@ -578,40 +722,6 @@ components:
           description: Unit count by language
       additionalProperties: false
       description: TM model
-    TMExportMode:
-      enum:
-      - tmxDefault
-      - tmxWithTrados2009PlusCompatibility
-      - tmxWithTrados2007Compatibility
-      - excel
-      type: string
-      format: int32
-    TMImportTaskModel:
-      type: object
-      properties:
-        accountId:
-          type: string
-          description: Account ID
-          format: uuid
-        id:
-          type: string
-          description: Task ID
-          format: uuid
-        translationMemoryId:
-          type: string
-          description: TM database ID
-          format: uuid
-        state:
-          type:
-          - string
-          - 'null'
-          description: Task status
-        insertedUnitCount:
-          type: integer
-          description: Inserted unit count
-          format: int32
-      additionalProperties: false
-      description: TM import task model
     TagsFromUnit:
       type: object
       properties:
@@ -625,29 +735,38 @@ components:
           format: int32
       additionalProperties: false
       description: Unit tags data serialization class
-    TMMatchesRequest:
+    TMExportMode:
+      enum:
+      - tmxDefault
+      - tmxWithTrados2009PlusCompatibility
+      - tmxWithTrados2007Compatibility
+      - excel
+      type: string
+      format: int32
+    SegmentTagModel:
       type: object
       properties:
-        sourceLanguage:
-          type:
-          - string
-          - 'null'
-          description: Source language
-        targetLanguage:
-          type:
-          - string
-          - 'null'
-          description: Target language
-        segmentModel:
-          $ref: '#/components/schemas/SegmentModel'
-        matchThreshold:
-          type:
-          - integer
-          - 'null'
-          description: Match threshold
+        tagNumber:
+          type: integer
+          description: Tag number
           format: int32
+        tagType:
+          type:
+          - string
+          - 'null'
+          description: Tag type
+        position:
+          type: integer
+          description: Tag position
+          format: int32
+        isVirtual:
+          type: boolean
+          description: Specifies whether the tag is virtual
+        isInvisible:
+          type: boolean
+          description: Specifies whether the tag is invisible
       additionalProperties: false
-      description: TM match query model
+      description: Segment tag mandatory information model
     SegmentModel:
       type: object
       properties:
@@ -675,122 +794,3 @@ components:
           description: Segment tags
       additionalProperties: false
       description: Segment model
-    CreateTranslationMemoryModel:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name
-        sourceLanguage:
-          type:
-          - string
-          - 'null'
-          description: Source language
-        targetLanguages:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: Target languages
-        description:
-          type:
-          - string
-          - 'null'
-          description: Description
-        clientId:
-          type:
-          - string
-          - 'null'
-          description: Client ID
-          format: uuid
-      additionalProperties: false
-      description: TM creation model
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      additionalProperties: {}
-    SegmentWithMatchesModel:
-      type: object
-      properties:
-        sourceText:
-          type:
-          - string
-          - 'null'
-          description: Source segment of a found record
-        targetText:
-          type:
-          - string
-          - 'null'
-          description: Target segment of a found record
-        segmentMatch:
-          type: integer
-          description: Segment match value
-          format: int32
-        tags:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/TagsFromUnit'
-          description: Record tags set
-        assuranceLevel:
-          $ref: '#/components/schemas/IntegrationApiTMTranslationAssuranceLevel'
-      additionalProperties: false
-      description: Segment with matches send model
-    SegmentTagModel:
-      type: object
-      properties:
-        tagNumber:
-          type: integer
-          description: Tag number
-          format: int32
-        tagType:
-          type:
-          - string
-          - 'null'
-          description: Tag type
-        position:
-          type: integer
-          description: Tag position
-          format: int32
-        isVirtual:
-          type: boolean
-          description: Specifies whether the tag is virtual
-        isInvisible:
-          type: boolean
-          description: Specifies whether the tag is invisible
-      additionalProperties: false
-      description: Segment tag mandatory information model
-    IntegrationApiTMTranslationAssuranceLevel:
-      enum:
-      - mT
-      - questionable
-      - regular
-      - qualified
-      type: string
-      description: Minimum TM segment quality
-      format: int32
