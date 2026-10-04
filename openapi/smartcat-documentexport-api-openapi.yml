@@ -127,6 +127,22 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ExportDocumentTaskModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task ID
+          format: uuid
+        documentIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: Documents for export
+      additionalProperties: false
+      description: Export document task model
     SegmentExportMode:
       enum:
       - current
@@ -149,18 +165,6 @@ components:
       - imageTargetText
       type: string
       description: Document download request type
-      format: int32
-    SoftwareLocalizationDocumentFormat:
-      enum:
-      - json
-      - ios-strings
-      - android-xml
-      - yaml
-      - structured-json
-      - structured-yaml
-      - qt-ts
-      type: string
-      description: Software localization document format
       format: int32
     ProblemDetails:
       type: object
@@ -187,19 +191,15 @@ components:
           - string
           - 'null'
       additionalProperties: {}
-    ExportDocumentTaskModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Task ID
-          format: uuid
-        documentIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: Documents for export
-      additionalProperties: false
-      description: Export document task model
+    SoftwareLocalizationDocumentFormat:
+      enum:
+      - json
+      - ios-strings
+      - android-xml
+      - yaml
+      - structured-json
+      - structured-yaml
+      - qt-ts
+      type: string
+      description: Software localization document format
+      format: int32

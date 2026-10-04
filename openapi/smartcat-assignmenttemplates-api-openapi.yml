@@ -156,6 +156,19 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    AssignmentTemplateApplicationResultModel:
+      type: object
+      properties:
+        assignedCount:
+          type: integer
+          description: Number of assigned project tasks
+          format: int32
+        unassignedCount:
+          type: integer
+          description: Number of unassigned project tasks
+          format: int32
+      additionalProperties: false
+      description: Assignment template application result information for external systems
     ProblemDetails:
       type: object
       properties:
@@ -199,16 +212,3 @@ components:
           format: double
       additionalProperties: false
       description: Assignment template information for external systems
-    AssignmentTemplateApplicationResultModel:
-      type: object
-      properties:
-        assignedCount:
-          type: integer
-          description: Number of assigned project tasks
-          format: int32
-        unassignedCount:
-          type: integer
-          description: Number of unassigned project tasks
-          format: int32
-      additionalProperties: false
-      description: Assignment template application result information for external systems

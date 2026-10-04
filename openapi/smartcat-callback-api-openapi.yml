@@ -126,6 +126,23 @@ components:
           description: Value
       additionalProperties: false
       description: User header model
+    CallbackPropertyModel:
+      type: object
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+          description: URL for receiving notifications
+        additionalHeaders:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AdditionalHeaderModel'
+          description: Additional headers array
+      additionalProperties: false
+      description: Notification properties change model
     CallbackErrorModel:
       type: object
       properties:
@@ -163,20 +180,3 @@ components:
           description: List of event source IDs
       additionalProperties: false
       description: Callback error description
-    CallbackPropertyModel:
-      type: object
-      properties:
-        url:
-          type:
-          - string
-          - 'null'
-          description: URL for receiving notifications
-        additionalHeaders:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AdditionalHeaderModel'
-          description: Additional headers array
-      additionalProperties: false
-      description: Notification properties change model

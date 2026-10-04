@@ -43,38 +43,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    SmartTranslationText:
-      required:
-      - text
-      type: object
-      properties:
-        text:
-          minLength: 1
-          type: string
-          description: Text
-        context:
-          type:
-          - string
-          - 'null'
-          description: Translation context
-      additionalProperties: false
-      description: Translation text
-    SmartTranslationResponse:
-      type: object
-      properties:
-        translations:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type:
-            - array
-            - 'null'
-            items:
-              $ref: '#/components/schemas/SmartTranslationResult'
-          description: Translation results grouped by the target language
-      additionalProperties: false
-      description: Successful response to a translation request
     SmartTranslationRequest:
       required:
       - sourceLanguage
@@ -115,6 +83,38 @@ components:
           description: External system tag
       additionalProperties: false
       description: Translation request
+    SmartTranslationText:
+      required:
+      - text
+      type: object
+      properties:
+        text:
+          minLength: 1
+          type: string
+          description: Text
+        context:
+          type:
+          - string
+          - 'null'
+          description: Translation context
+      additionalProperties: false
+      description: Translation text
+    SmartTranslationResponse:
+      type: object
+      properties:
+        translations:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/SmartTranslationResult'
+          description: Translation results grouped by the target language
+      additionalProperties: false
+      description: Successful response to a translation request
     SmartTranslationResult:
       type: object
       properties:

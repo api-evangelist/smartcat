@@ -67,27 +67,13 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/ErrorType'
-        code:
-          type:
-          - string
-          - 'null'
-        message:
-          type:
-          - string
-          - 'null'
-        requestId:
-          type:
-          - string
-          - 'null'
-        innerException: {}
-        statusCode:
-          $ref: '#/components/schemas/HttpStatusCode'
-      additionalProperties: false
+    ErrorType:
+      enum:
+      - sender
+      - receiver
+      - unknown
+      type: string
+      format: int32
     HttpStatusCode:
       enum:
       - continue
@@ -195,10 +181,24 @@ components:
           description: Payload data
       additionalProperties: false
       description: Audit log model
-    ErrorType:
-      enum:
-      - sender
-      - receiver
-      - unknown
-      type: string
-      format: int32
+    ErrorResponse:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ErrorType'
+        code:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+        requestId:
+          type:
+          - string
+          - 'null'
+        innerException: {}
+        statusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+      additionalProperties: false

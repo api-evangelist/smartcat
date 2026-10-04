@@ -522,6 +522,132 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    TMMatchesRequest:
+      type: object
+      properties:
+        sourceLanguage:
+          type:
+          - string
+          - 'null'
+          description: Source language
+        targetLanguage:
+          type:
+          - string
+          - 'null'
+          description: Target language
+        segmentModel:
+          $ref: '#/components/schemas/SegmentModel'
+        matchThreshold:
+          type:
+          - integer
+          - 'null'
+          description: Match threshold
+          format: int32
+      additionalProperties: false
+      description: TM match query model
+    TagsFromUnit:
+      type: object
+      properties:
+        position:
+          type: integer
+          description: Tag insertion position in the target
+          format: int32
+        order:
+          type: integer
+          description: Tag order number in the target. Important if two tags have an identical position
+          format: int32
+      additionalProperties: false
+      description: Unit tags data serialization class
+    TMImportTaskModel:
+      type: object
+      properties:
+        accountId:
+          type: string
+          description: Account ID
+          format: uuid
+        id:
+          type: string
+          description: Task ID
+          format: uuid
+        translationMemoryId:
+          type: string
+          description: TM database ID
+          format: uuid
+        state:
+          type:
+          - string
+          - 'null'
+          description: Task status
+        insertedUnitCount:
+          type: integer
+          description: Inserted unit count
+          format: int32
+      additionalProperties: false
+      description: TM import task model
+    SegmentModel:
+      type: object
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+          description: Segment text
+        prevContext:
+          type:
+          - string
+          - 'null'
+          description: Previous segment text
+        nextContext:
+          type:
+          - string
+          - 'null'
+          description: Next segment text
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SegmentTagModel'
+          description: Segment tags
+      additionalProperties: false
+      description: Segment model
+    IntegrationApiTMTranslationAssuranceLevel:
+      enum:
+      - mT
+      - questionable
+      - regular
+      - qualified
+      type: string
+      description: Minimum TM segment quality
+      format: int32
+    SegmentWithMatchesModel:
+      type: object
+      properties:
+        sourceText:
+          type:
+          - string
+          - 'null'
+          description: Source segment of a found record
+        targetText:
+          type:
+          - string
+          - 'null'
+          description: Target segment of a found record
+        segmentMatch:
+          type: integer
+          description: Segment match value
+          format: int32
+        tags:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/TagsFromUnit'
+          description: Record tags set
+        assuranceLevel:
+          $ref: '#/components/schemas/IntegrationApiTMTranslationAssuranceLevel'
+      additionalProperties: false
+      description: Segment with matches send model
     CreateTranslationMemoryModel:
       type: object
       properties:
@@ -555,117 +681,6 @@ components:
           format: uuid
       additionalProperties: false
       description: TM creation model
-    TMMatchesRequest:
-      type: object
-      properties:
-        sourceLanguage:
-          type:
-          - string
-          - 'null'
-          description: Source language
-        targetLanguage:
-          type:
-          - string
-          - 'null'
-          description: Target language
-        segmentModel:
-          $ref: '#/components/schemas/SegmentModel'
-        matchThreshold:
-          type:
-          - integer
-          - 'null'
-          description: Match threshold
-          format: int32
-      additionalProperties: false
-      description: TM match query model
-    TMImportTaskModel:
-      type: object
-      properties:
-        accountId:
-          type: string
-          description: Account ID
-          format: uuid
-        id:
-          type: string
-          description: Task ID
-          format: uuid
-        translationMemoryId:
-          type: string
-          description: TM database ID
-          format: uuid
-        state:
-          type:
-          - string
-          - 'null'
-          description: Task status
-        insertedUnitCount:
-          type: integer
-          description: Inserted unit count
-          format: int32
-      additionalProperties: false
-      description: TM import task model
-    SegmentWithMatchesModel:
-      type: object
-      properties:
-        sourceText:
-          type:
-          - string
-          - 'null'
-          description: Source segment of a found record
-        targetText:
-          type:
-          - string
-          - 'null'
-          description: Target segment of a found record
-        segmentMatch:
-          type: integer
-          description: Segment match value
-          format: int32
-        tags:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/TagsFromUnit'
-          description: Record tags set
-        assuranceLevel:
-          $ref: '#/components/schemas/IntegrationApiTMTranslationAssuranceLevel'
-      additionalProperties: false
-      description: Segment with matches send model
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      additionalProperties: {}
-    IntegrationApiTMTranslationAssuranceLevel:
-      enum:
-      - mT
-      - questionable
-      - regular
-      - qualified
-      type: string
-      description: Minimum TM segment quality
-      format: int32
     TranslationMemoryModel:
       type: object
       properties:
@@ -722,27 +737,6 @@ components:
           description: Unit count by language
       additionalProperties: false
       description: TM model
-    TagsFromUnit:
-      type: object
-      properties:
-        position:
-          type: integer
-          description: Tag insertion position in the target
-          format: int32
-        order:
-          type: integer
-          description: Tag order number in the target. Important if two tags have an identical position
-          format: int32
-      additionalProperties: false
-      description: Unit tags data serialization class
-    TMExportMode:
-      enum:
-      - tmxDefault
-      - tmxWithTrados2009PlusCompatibility
-      - tmxWithTrados2007Compatibility
-      - excel
-      type: string
-      format: int32
     SegmentTagModel:
       type: object
       properties:
@@ -767,30 +761,36 @@ components:
           description: Specifies whether the tag is invisible
       additionalProperties: false
       description: Segment tag mandatory information model
-    SegmentModel:
+    ProblemDetails:
       type: object
       properties:
-        text:
+        type:
           type:
           - string
           - 'null'
-          description: Segment text
-        prevContext:
+        title:
           type:
           - string
           - 'null'
-          description: Previous segment text
-        nextContext:
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
           type:
           - string
           - 'null'
-          description: Next segment text
-        tags:
+        instance:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/SegmentTagModel'
-          description: Segment tags
-      additionalProperties: false
-      description: Segment model
+      additionalProperties: {}
+    TMExportMode:
+      enum:
+      - tmxDefault
+      - tmxWithTrados2009PlusCompatibility
+      - tmxWithTrados2007Compatibility
+      - excel
+      type: string
+      format: int32

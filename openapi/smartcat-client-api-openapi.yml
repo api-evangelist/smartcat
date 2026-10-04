@@ -243,24 +243,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ClientModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Client ID
-          format: uuid
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name
-        netRate:
-          $ref: '#/components/schemas/NetRateModel'
-        contact:
-          $ref: '#/components/schemas/ContactModel'
-      additionalProperties: false
-      description: Client model
     UpdateClientModel:
       type: object
       properties:
@@ -340,6 +322,24 @@ components:
           description: Customized field values
       additionalProperties: false
       description: Client update model
+    ClientModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Client ID
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name
+        netRate:
+          $ref: '#/components/schemas/NetRateModel'
+        contact:
+          $ref: '#/components/schemas/ContactModel'
+      additionalProperties: false
+      description: Client model
     ContactModel:
       type: object
       properties:
@@ -370,6 +370,36 @@ components:
           description: Commentary
       additionalProperties: false
       description: Contact information model
+    NetRateModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Net rate ID
+        name:
+          type:
+          - string
+          - 'null'
+          description: Net rate name
+        newWordsRate:
+          type: number
+          description: New words rate
+          format: double
+        repetitionsRate:
+          type: number
+          description: Repetitions rate
+          format: double
+        tmMatchRates:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/NetRateModel_TMRangeRateModel'
+          description: TM matches rate
+      additionalProperties: false
+      description: Rate discounts model
     NetRateModel_TMRangeRateModel:
       type: object
       properties:
@@ -467,33 +497,3 @@ components:
           description: Custom fields
       additionalProperties: false
       description: Client model
-    NetRateModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: Net rate ID
-        name:
-          type:
-          - string
-          - 'null'
-          description: Net rate name
-        newWordsRate:
-          type: number
-          description: New words rate
-          format: double
-        repetitionsRate:
-          type: number
-          description: Repetitions rate
-          format: double
-        tmMatchRates:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/NetRateModel_TMRangeRateModel'
-          description: TM matches rate
-      additionalProperties: false
-      description: Rate discounts model
