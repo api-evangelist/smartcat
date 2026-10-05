@@ -1,23 +1,35 @@
-generated: '2026-07-21'
+generated: '2026-09-23'
 method: generated
-source: openapi/smartcat-openapi-original.json, openapi/smartcat-openapi.json
+source: openapi/smartcat-account-api-openapi.yml, openapi/smartcat-assignmenttemplates-api-openapi.yml,
+  openapi/smartcat-audit-api-openapi.yml, openapi/smartcat-callback-api-openapi.yml, openapi/smartcat-client-api-openapi.yml,
+  openapi/smartcat-clientindustry-api-openapi.yml, openapi/smartcat-custom-fields-api-openapi.yml,
+  openapi/smartcat-directories-api-openapi.yml, openapi/smartcat-document-api-openapi.yml, openapi/smartcat-documentexport-api-openapi.yml,
+  openapi/smartcat-file-management-api-openapi.yml, openapi/smartcat-filedisassemblingalgorithmpresets-api-openapi.yml,
+  openapi/smartcat-glossary-api-openapi.yml, openapi/smartcat-invoice-api-openapi.yml, openapi/smartcat-job-api-openapi.yml,
+  openapi/smartcat-lspprices-api-openapi.yml, openapi/smartcat-lspservice-api-openapi.yml, openapi/smartcat-myteam-api-openapi.yml,
+  openapi/smartcat-placeholderformatapi-api-openapi.yml, openapi/smartcat-project-api-openapi.yml,
+  openapi/smartcat-projecttask-api-openapi.yml, openapi/smartcat-quote-api-openapi.yml, openapi/smartcat-segmentconfirmationstatistics-api-openapi.yml,
+  openapi/smartcat-smarttranslation-api-openapi.yml, openapi/smartcat-smartwords-api-openapi.yml,
+  openapi/smartcat-template-api-openapi.yml, openapi/smartcat-translationmemories-api-openapi.yml,
+  openapi/smartcat-userdeletionrequests-api-openapi.yml, openapi/smartcat-vendor-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 352
+  operations: 176
   by_action_class:
-    connected: 154
-    acting: 198
+    connected: 80
+    acting: 96
   by_consequence:
-    read: 154
-    write: 180
-    physical: 10
-    safety-critical: 8
-  human_in_the_loop_required: 8
+    read: 80
+    write: 87
+    physical: 5
+    safety-critical: 4
+  human_in_the_loop_required: 4
 operations:
 - path: /api/integration/v1/account
   method: get
+  operationId: getApiIntegrationV1Account
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -27,6 +39,7 @@ operations:
     audit: none
 - path: /api/integration/v1/account/mtengines
   method: get
+  operationId: getApiIntegrationV1AccountMtengines
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -36,6 +49,7 @@ operations:
     audit: none
 - path: /api/integration/v1/assignment-templates/project/{projectId}
   method: get
+  operationId: getApiIntegrationV1AssignmentTemplatesProjectByProjectId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -45,6 +59,7 @@ operations:
     audit: none
 - path: /api/integration/v1/assignment-templates/{assignmentTemplateId}/project/{projectId}
   method: post
+  operationId: postApiIntegrationV1AssignmentTemplatesByAssignmentTemplateIdProjectByProjectId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -60,6 +75,7 @@ operations:
     audit: required
 - path: /api/integration/v1/audit/logs
   method: get
+  operationId: getApiIntegrationV1AuditLogs
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -69,6 +85,7 @@ operations:
     audit: none
 - path: /api/integration/v1/callback
   method: get
+  operationId: getApiIntegrationV1Callback
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -78,6 +95,7 @@ operations:
     audit: none
 - path: /api/integration/v1/callback
   method: post
+  operationId: postApiIntegrationV1Callback
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -93,6 +111,7 @@ operations:
     audit: required
 - path: /api/integration/v1/callback
   method: delete
+  operationId: deleteApiIntegrationV1Callback
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -108,6 +127,7 @@ operations:
     audit: required
 - path: /api/integration/v1/callback/lastErrors
   method: get
+  operationId: getApiIntegrationV1CallbackLastErrors
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -117,6 +137,7 @@ operations:
     audit: none
 - path: /api/integration/v1/client/create
   method: post
+  operationId: postApiIntegrationV1ClientCreate
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -132,6 +153,7 @@ operations:
     audit: required
 - path: /api/integration/v1/client/{clientId}/set
   method: put
+  operationId: putApiIntegrationV1ClientByClientIdSet
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -147,6 +169,7 @@ operations:
     audit: required
 - path: /api/integration/v1/client/{clientId}/contact
   method: put
+  operationId: putApiIntegrationV1ClientByClientIdContact
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -162,6 +185,7 @@ operations:
     audit: required
 - path: /api/integration/v2/client/{clientId}
   method: put
+  operationId: putApiIntegrationV2ClientByClientId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -177,6 +201,7 @@ operations:
     audit: required
 - path: /api/integration/v2/client/{clientId}
   method: get
+  operationId: getApiIntegrationV2ClientByClientId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -186,6 +211,7 @@ operations:
     audit: none
 - path: /api/integration/v1/client/{clientId}
   method: get
+  operationId: getApiIntegrationV1ClientByClientId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -195,6 +221,7 @@ operations:
     audit: none
 - path: /api/integration/v1/clientIndustry/{id}
   method: get
+  operationId: getApiIntegrationV1ClientIndustryById
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -204,6 +231,7 @@ operations:
     audit: none
 - path: /api/integration/v1/clientIndustry/{id}
   method: put
+  operationId: putApiIntegrationV1ClientIndustryById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -219,6 +247,7 @@ operations:
     audit: required
 - path: /api/integration/v1/clientIndustry/{id}
   method: delete
+  operationId: deleteApiIntegrationV1ClientIndustryById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -234,6 +263,7 @@ operations:
     audit: required
 - path: /api/integration/v1/clientIndustry
   method: get
+  operationId: getApiIntegrationV1ClientIndustry
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -243,6 +273,7 @@ operations:
     audit: none
 - path: /api/integration/v1/clientIndustry/{name}
   method: post
+  operationId: postApiIntegrationV1ClientIndustryByName
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -258,6 +289,7 @@ operations:
     audit: required
 - path: /api/integration/v1/custom-fields
   method: get
+  operationId: getApiIntegrationV1CustomFields
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -267,6 +299,7 @@ operations:
     audit: none
 - path: /api/integration/v2/directory
   method: get
+  operationId: getApiIntegrationV2Directory
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -276,6 +309,7 @@ operations:
     audit: none
 - path: /api/integration/v1/directory/formats
   method: get
+  operationId: getApiIntegrationV1DirectoryFormats
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -285,6 +319,7 @@ operations:
     audit: none
 - path: /api/integration/v1/document
   method: get
+  operationId: getApiIntegrationV1Document
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -294,21 +329,7 @@ operations:
     audit: none
 - path: /api/integration/v1/document
   method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/document
-  method: post
+  operationId: deleteApiIntegrationV1Document
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -324,6 +345,7 @@ operations:
     audit: required
 - path: /api/integration/v1/document/translate/status
   method: get
+  operationId: getApiIntegrationV1DocumentTranslateStatus
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -333,6 +355,7 @@ operations:
     audit: none
 - path: /api/integration/v1/document/translate/result
   method: get
+  operationId: getApiIntegrationV1DocumentTranslateResult
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -342,6 +365,7 @@ operations:
     audit: none
 - path: /api/integration/v1/document/statistics
   method: get
+  operationId: getApiIntegrationV1DocumentStatistics
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -351,6 +375,7 @@ operations:
     audit: none
 - path: /api/integration/v1/document/assignFreelancers
   method: post
+  operationId: postApiIntegrationV1DocumentAssignFreelancers
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -366,6 +391,7 @@ operations:
     audit: required
 - path: /api/integration/v1/document/assignVendors
   method: post
+  operationId: postApiIntegrationV1DocumentAssignVendors
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -381,6 +407,7 @@ operations:
     audit: required
 - path: /api/integration/v1/document/setStageUnitCount
   method: post
+  operationId: postApiIntegrationV1DocumentSetStageUnitCount
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -396,6 +423,7 @@ operations:
     audit: required
 - path: /api/integration/v1/document/assign
   method: post
+  operationId: postApiIntegrationV1DocumentAssign
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -411,6 +439,7 @@ operations:
     audit: required
 - path: /api/integration/v1/document/unassign
   method: post
+  operationId: postApiIntegrationV1DocumentUnassign
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -426,6 +455,7 @@ operations:
     audit: required
 - path: /api/integration/v1/document/assignFromMyTeam
   method: post
+  operationId: postApiIntegrationV1DocumentAssignFromMyTeam
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -443,6 +473,7 @@ operations:
     audit: required
 - path: /api/integration/v1/document/complete
   method: post
+  operationId: postApiIntegrationV1DocumentComplete
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -458,6 +489,7 @@ operations:
     audit: required
 - path: /api/integration/v2/document/update
   method: put
+  operationId: putApiIntegrationV2DocumentUpdate
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -473,6 +505,7 @@ operations:
     audit: required
 - path: /api/integration/v1/document/rename
   method: put
+  operationId: putApiIntegrationV1DocumentRename
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -488,6 +521,7 @@ operations:
     audit: required
 - path: /api/integration/v1/document/updateMetaInfo
   method: put
+  operationId: putApiIntegrationV1DocumentUpdateMetaInfo
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -503,6 +537,7 @@ operations:
     audit: required
 - path: /api/integration/v1/document/translate
   method: put
+  operationId: putApiIntegrationV1DocumentTranslate
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -518,6 +553,7 @@ operations:
     audit: required
 - path: /api/integration/v1/document/translateWithXliff
   method: put
+  operationId: putApiIntegrationV1DocumentTranslateWithXliff
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -533,6 +569,7 @@ operations:
     audit: required
 - path: /api/integration/v1/document/export/{taskId}
   method: get
+  operationId: getApiIntegrationV1DocumentExportByTaskId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -542,6 +579,7 @@ operations:
     audit: none
 - path: /api/integration/v1/document/export
   method: post
+  operationId: postApiIntegrationV1DocumentExport
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -555,71 +593,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /api/integration/v1/fileDisassemblingAlgorithmPresets/{id}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/fileDisassemblingAlgorithmPresets/{id}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /api/integration/v1/fileDisassemblingAlgorithmPresets/{id}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /api/integration/v1/fileDisassemblingAlgorithmPresets
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/fileDisassemblingAlgorithmPresets
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
 - path: /api/integration/v1/file-management/file/{path}
   method: get
+  operationId: getApiIntegrationV1FileManagementFileByPath
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -629,6 +605,7 @@ operations:
     audit: none
 - path: /api/integration/v1/file-management/file/{path}
   method: put
+  operationId: putApiIntegrationV1FileManagementFileByPath
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -644,6 +621,7 @@ operations:
     audit: required
 - path: /api/integration/v1/file-management/file/{path}
   method: delete
+  operationId: deleteApiIntegrationV1FileManagementFileByPath
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -659,6 +637,7 @@ operations:
     audit: required
 - path: /api/integration/v1/file-management/files/{path}
   method: put
+  operationId: putApiIntegrationV1FileManagementFilesByPath
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -674,6 +653,7 @@ operations:
     audit: required
 - path: /api/integration/v1/file-management/file-info/{path}
   method: get
+  operationId: getApiIntegrationV1FileManagementFileInfoByPath
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -683,6 +663,7 @@ operations:
     audit: none
 - path: /api/integration/v1/file-management/file-info-list/{prefix}
   method: get
+  operationId: getApiIntegrationV1FileManagementFileInfoListByPrefix
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -690,8 +671,77 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /api/integration/v1/fileDisassemblingAlgorithmPresets/{id}
+  method: get
+  operationId: getApiIntegrationV1FileDisassemblingAlgorithmPresetsById
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/integration/v1/fileDisassemblingAlgorithmPresets/{id}
+  method: put
+  operationId: putApiIntegrationV1FileDisassemblingAlgorithmPresetsById
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/integration/v1/fileDisassemblingAlgorithmPresets/{id}
+  method: delete
+  operationId: deleteApiIntegrationV1FileDisassemblingAlgorithmPresetsById
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/integration/v1/fileDisassemblingAlgorithmPresets
+  method: get
+  operationId: getApiIntegrationV1FileDisassemblingAlgorithmPresets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/integration/v1/fileDisassemblingAlgorithmPresets
+  method: post
+  operationId: postApiIntegrationV1FileDisassemblingAlgorithmPresets
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
 - path: /api/integration/v1/glossaries
   method: get
+  operationId: getApiIntegrationV1Glossaries
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -701,6 +751,7 @@ operations:
     audit: none
 - path: /api/integration/v1/glossaries/default
   method: get
+  operationId: getApiIntegrationV1GlossariesDefault
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -710,6 +761,7 @@ operations:
     audit: none
 - path: /api/integration/v1/glossary/import
   method: post
+  operationId: postApiIntegrationV1GlossaryImport
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -725,6 +777,7 @@ operations:
     audit: required
 - path: /api/integration/v1/glossary/importTaskState/{taskId}
   method: get
+  operationId: getApiIntegrationV1GlossaryImportTaskStateByTaskId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -734,6 +787,7 @@ operations:
     audit: none
 - path: /api/integration/v1/glossary/export
   method: post
+  operationId: postApiIntegrationV1GlossaryExport
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -749,6 +803,7 @@ operations:
     audit: required
 - path: /api/integration/v1/glossary/export/pendingTasks
   method: get
+  operationId: getApiIntegrationV1GlossaryExportPendingTasks
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -758,6 +813,7 @@ operations:
     audit: none
 - path: /api/integration/v1/glossary/export/{taskId}
   method: get
+  operationId: getApiIntegrationV1GlossaryExportByTaskId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -767,6 +823,7 @@ operations:
     audit: none
 - path: /api/integration/v1/invoice/job
   method: post
+  operationId: postApiIntegrationV1InvoiceJob
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -784,6 +841,7 @@ operations:
     audit: required
 - path: /api/integration/v2/invoice/job
   method: post
+  operationId: postApiIntegrationV2InvoiceJob
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -801,6 +859,7 @@ operations:
     audit: required
 - path: /api/integration/v1/invoice/jobs
   method: post
+  operationId: postApiIntegrationV1InvoiceJobs
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -818,6 +877,7 @@ operations:
     audit: required
 - path: /api/integration/v2/invoice/jobs
   method: post
+  operationId: postApiIntegrationV2InvoiceJobs
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -835,6 +895,7 @@ operations:
     audit: required
 - path: /api/integration/v1/invoice/job/list
   method: get
+  operationId: getApiIntegrationV1InvoiceJobList
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -844,6 +905,7 @@ operations:
     audit: none
 - path: /api/integration/v2/invoice/job/listByExternalId
   method: get
+  operationId: getApiIntegrationV2InvoiceJobListByExternalId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -853,6 +915,7 @@ operations:
     audit: none
 - path: /api/integration/v2/invoice/job/listByCreatedDate
   method: get
+  operationId: getApiIntegrationV2InvoiceJobListByCreatedDate
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -862,6 +925,7 @@ operations:
     audit: none
 - path: /api/integration/v2/invoice/list
   method: get
+  operationId: getApiIntegrationV2InvoiceList
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -871,6 +935,7 @@ operations:
     audit: none
 - path: /api/integration/v2/client-agent-invoice/list
   method: get
+  operationId: getApiIntegrationV2ClientAgentInvoiceList
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -880,6 +945,7 @@ operations:
     audit: none
 - path: /api/integration/v3/job/verifiedForProject
   method: get
+  operationId: getApiIntegrationV3JobVerifiedForProject
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -889,6 +955,7 @@ operations:
     audit: none
 - path: /api/integration/v3/job
   method: get
+  operationId: getApiIntegrationV3Job
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -898,6 +965,7 @@ operations:
     audit: none
 - path: /api/integration/v1/lsp/prices/{priceId}
   method: delete
+  operationId: deleteApiIntegrationV1LspPricesByPriceId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -913,6 +981,7 @@ operations:
     audit: required
 - path: /api/integration/v2/lsp/prices
   method: get
+  operationId: getApiIntegrationV2LspPrices
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -922,6 +991,7 @@ operations:
     audit: none
 - path: /api/integration/v2/lsp/prices
   method: post
+  operationId: postApiIntegrationV2LspPrices
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -937,6 +1007,7 @@ operations:
     audit: required
 - path: /api/integration/v2/lsp/prices/batch
   method: get
+  operationId: getApiIntegrationV2LspPricesBatch
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -946,6 +1017,7 @@ operations:
     audit: none
 - path: /api/integration/v2/lsp/prices/batch
   method: post
+  operationId: postApiIntegrationV2LspPricesBatch
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -961,6 +1033,7 @@ operations:
     audit: required
 - path: /api/integration/v2/lsp/prices/{priceId}
   method: put
+  operationId: putApiIntegrationV2LspPricesByPriceId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -976,6 +1049,7 @@ operations:
     audit: required
 - path: /api/integration/v1/lsp/services/{serviceId}
   method: delete
+  operationId: deleteApiIntegrationV1LspServicesByServiceId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -991,6 +1065,7 @@ operations:
     audit: required
 - path: /api/integration/v2/lsp/services
   method: get
+  operationId: getApiIntegrationV2LspServices
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1000,6 +1075,7 @@ operations:
     audit: none
 - path: /api/integration/v2/lsp/services
   method: post
+  operationId: postApiIntegrationV2LspServices
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1015,6 +1091,7 @@ operations:
     audit: required
 - path: /api/integration/v2/lsp/services/batch
   method: get
+  operationId: getApiIntegrationV2LspServicesBatch
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1024,6 +1101,7 @@ operations:
     audit: none
 - path: /api/integration/v2/lsp/services/batch
   method: post
+  operationId: postApiIntegrationV2LspServicesBatch
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1039,6 +1117,7 @@ operations:
     audit: required
 - path: /api/integration/v2/lsp/services/{serviceId}
   method: put
+  operationId: putApiIntegrationV2LspServicesByServiceId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1054,6 +1133,7 @@ operations:
     audit: required
 - path: /api/integration/v1/account/myTeam/{userId}
   method: get
+  operationId: getApiIntegrationV1AccountMyTeamByUserId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1063,6 +1143,7 @@ operations:
     audit: none
 - path: /api/integration/v1/account/myTeam/{userId}
   method: delete
+  operationId: deleteApiIntegrationV1AccountMyTeamByUserId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1078,6 +1159,7 @@ operations:
     audit: required
 - path: /api/integration/v1/account/myTeam
   method: get
+  operationId: getApiIntegrationV1AccountMyTeam
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1087,6 +1169,7 @@ operations:
     audit: none
 - path: /api/integration/v1/account/myTeam
   method: post
+  operationId: postApiIntegrationV1AccountMyTeam
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1102,21 +1185,17 @@ operations:
     audit: required
 - path: /api/integration/v1/account/searchMyTeam
   method: post
+  operationId: postApiIntegrationV1AccountSearchMyTeam
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/integration/v1/account/myTeam/{userId}/services/replace
   method: post
+  operationId: postApiIntegrationV1AccountMyTeamByUserIdServicesReplace
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1132,6 +1211,7 @@ operations:
     audit: required
 - path: /api/integration/v1/account/myTeam/{userId}/phone
   method: put
+  operationId: putApiIntegrationV1AccountMyTeamByUserIdPhone
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1147,6 +1227,7 @@ operations:
     audit: required
 - path: /api/integration/v1/account/myTeam/{userId}/comment
   method: put
+  operationId: putApiIntegrationV1AccountMyTeamByUserIdComment
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1162,6 +1243,7 @@ operations:
     audit: required
 - path: /api/integration/v1/placeholders
   method: get
+  operationId: getApiIntegrationV1Placeholders
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1171,6 +1253,7 @@ operations:
     audit: none
 - path: /api/integration/v1/placeholders
   method: put
+  operationId: putApiIntegrationV1Placeholders
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1186,6 +1269,7 @@ operations:
     audit: required
 - path: /api/integration/v1/placeholders/validate
   method: get
+  operationId: getApiIntegrationV1PlaceholdersValidate
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1193,8 +1277,25 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /api/integration/v1/document
+  method: post
+  operationId: postApiIntegrationV1Document
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /api/integration/v1/project/{projectId}
   method: get
+  operationId: getApiIntegrationV1ProjectByProjectId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1204,6 +1305,7 @@ operations:
     audit: none
 - path: /api/integration/v1/project/{projectId}
   method: put
+  operationId: putApiIntegrationV1ProjectByProjectId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1219,6 +1321,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/{projectId}
   method: delete
+  operationId: deleteApiIntegrationV1ProjectByProjectId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1234,6 +1337,7 @@ operations:
     audit: required
 - path: /api/integration/v2/project/list
   method: get
+  operationId: getApiIntegrationV2ProjectList
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1243,6 +1347,7 @@ operations:
     audit: none
 - path: /api/integration/v1/project/list
   method: get
+  operationId: getApiIntegrationV1ProjectList
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1252,6 +1357,7 @@ operations:
     audit: none
 - path: /api/integration/v1/project/{projectId}/statistics
   method: get
+  operationId: getApiIntegrationV1ProjectByProjectIdStatistics
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1261,6 +1367,7 @@ operations:
     audit: none
 - path: /api/integration/v2/project/{projectId}/statistics
   method: get
+  operationId: getApiIntegrationV2ProjectByProjectIdStatistics
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1270,6 +1377,7 @@ operations:
     audit: none
 - path: /api/integration/v1/project/{projectId}/fuzzyRepetitions
   method: put
+  operationId: putApiIntegrationV1ProjectByProjectIdFuzzyRepetitions
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -1285,6 +1393,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/{projectId}/completedWorkStatistics
   method: get
+  operationId: getApiIntegrationV1ProjectByProjectIdCompletedWorkStatistics
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1294,6 +1403,7 @@ operations:
     audit: none
 - path: /api/integration/v1/project/{projectId}/translationmemories
   method: get
+  operationId: getApiIntegrationV1ProjectByProjectIdTranslationmemories
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1303,6 +1413,7 @@ operations:
     audit: none
 - path: /api/integration/v1/project/{projectId}/translationmemories
   method: post
+  operationId: postApiIntegrationV1ProjectByProjectIdTranslationmemories
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1318,6 +1429,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/{projectId}/glossaries
   method: get
+  operationId: getApiIntegrationV1ProjectByProjectIdGlossaries
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1327,6 +1439,7 @@ operations:
     audit: none
 - path: /api/integration/v1/project/{projectId}/glossaries
   method: put
+  operationId: putApiIntegrationV1ProjectByProjectIdGlossaries
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1342,6 +1455,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/{projectId}/glossaries/default
   method: get
+  operationId: getApiIntegrationV1ProjectByProjectIdGlossariesDefault
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1351,6 +1465,7 @@ operations:
     audit: none
 - path: /api/integration/v1/project/{projectId}/mt
   method: get
+  operationId: getApiIntegrationV1ProjectByProjectIdMt
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1360,6 +1475,7 @@ operations:
     audit: none
 - path: /api/integration/v1/project/{projectId}/mt
   method: post
+  operationId: postApiIntegrationV1ProjectByProjectIdMt
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1375,6 +1491,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/{projectId}/mt/available
   method: get
+  operationId: getApiIntegrationV1ProjectByProjectIdMtAvailable
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1384,6 +1501,7 @@ operations:
     audit: none
 - path: /api/integration/v1/project/{projectId}/pretranslation-rules
   method: get
+  operationId: getApiIntegrationV1ProjectByProjectIdPretranslationRules
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1393,6 +1511,7 @@ operations:
     audit: none
 - path: /api/integration/v1/project/{projectId}/pretranslation-rules
   method: post
+  operationId: postApiIntegrationV1ProjectByProjectIdPretranslationRules
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1408,6 +1527,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/{projectId}/pretranslation-rules
   method: put
+  operationId: putApiIntegrationV1ProjectByProjectIdPretranslationRules
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1423,6 +1543,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/{projectId}/empty-folders-removing-status
   method: get
+  operationId: getApiIntegrationV1ProjectByProjectIdEmptyFoldersRemovingStatus
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1432,6 +1553,7 @@ operations:
     audit: none
 - path: /api/integration/v1/project/import-result/{importId}
   method: get
+  operationId: getApiIntegrationV1ProjectImportResultByImportId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1441,6 +1563,7 @@ operations:
     audit: none
 - path: /api/integration/v1/project/cancel
   method: post
+  operationId: postApiIntegrationV1ProjectCancel
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1456,6 +1579,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/restore
   method: post
+  operationId: postApiIntegrationV1ProjectRestore
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1471,6 +1595,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/complete
   method: post
+  operationId: postApiIntegrationV1ProjectComplete
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1486,6 +1611,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/create
   method: post
+  operationId: postApiIntegrationV1ProjectCreate
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1501,6 +1627,7 @@ operations:
     audit: required
 - path: /api/integration/v2/project/{projectId}/import
   method: post
+  operationId: postApiIntegrationV2ProjectByProjectIdImport
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1516,6 +1643,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/document
   method: post
+  operationId: postApiIntegrationV1ProjectDocument
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1531,6 +1659,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/language
   method: post
+  operationId: postApiIntegrationV1ProjectLanguage
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1546,6 +1675,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/language
   method: delete
+  operationId: deleteApiIntegrationV1ProjectLanguage
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1561,6 +1691,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/{projectId}/translationmemories/bylanguages
   method: post
+  operationId: postApiIntegrationV1ProjectByProjectIdTranslationmemoriesBylanguages
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1576,6 +1707,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/{projectId}/statistics/build
   method: post
+  operationId: postApiIntegrationV1ProjectByProjectIdStatisticsBuild
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1591,6 +1723,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/{projectId}/managers
   method: post
+  operationId: postApiIntegrationV1ProjectByProjectIdManagers
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1606,6 +1739,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/{projectId}/managers
   method: delete
+  operationId: deleteApiIntegrationV1ProjectByProjectIdManagers
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1621,6 +1755,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/{projectId}/assign
   method: post
+  operationId: postApiIntegrationV1ProjectByProjectIdAssign
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1636,6 +1771,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/{projectId}/ReferenceFiles
   method: post
+  operationId: postApiIntegrationV1ProjectByProjectIdReferenceFiles
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1651,6 +1787,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/{projectId}/run-empty-folders-removing
   method: post
+  operationId: postApiIntegrationV1ProjectByProjectIdRunEmptyFoldersRemoving
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1666,6 +1803,7 @@ operations:
     audit: required
 - path: /api/integration/v2/project/{projectId}/export
   method: post
+  operationId: postApiIntegrationV2ProjectByProjectIdExport
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1681,6 +1819,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/{projectId}/copying
   method: post
+  operationId: postApiIntegrationV1ProjectByProjectIdCopying
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1696,6 +1835,7 @@ operations:
     audit: required
 - path: /api/integration/v1/project/copying/{taskId}
   method: get
+  operationId: getApiIntegrationV1ProjectCopyingByTaskId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1705,6 +1845,7 @@ operations:
     audit: none
 - path: /api/integration/v1/projectTask/{projectId}/list
   method: get
+  operationId: getApiIntegrationV1ProjectTaskByProjectIdList
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1714,6 +1855,7 @@ operations:
     audit: none
 - path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}
   method: get
+  operationId: getApiIntegrationV1ProjectTaskByProjectIdByProjectTaskId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1723,6 +1865,7 @@ operations:
     audit: none
 - path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/scope
   method: get
+  operationId: getApiIntegrationV1ProjectTaskByProjectIdByProjectTaskIdScope
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1732,6 +1875,7 @@ operations:
     audit: none
 - path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/set-invitation-strategy-type
   method: put
+  operationId: putApiIntegrationV1ProjectTaskByProjectIdByProjectTaskIdSetInvitationStrategyType
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1747,6 +1891,7 @@ operations:
     audit: required
 - path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/individual-assignment
   method: put
+  operationId: putApiIntegrationV1ProjectTaskByProjectIdByProjectTaskIdIndividualAssignment
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1762,6 +1907,7 @@ operations:
     audit: required
 - path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/individual-assignment
   method: delete
+  operationId: deleteApiIntegrationV1ProjectTaskByProjectIdByProjectTaskIdIndividualAssignment
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1777,6 +1923,7 @@ operations:
     audit: required
 - path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/vendor-assignment
   method: put
+  operationId: putApiIntegrationV1ProjectTaskByProjectIdByProjectTaskIdVendorAssignment
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1792,6 +1939,7 @@ operations:
     audit: required
 - path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/vendor-assignment
   method: delete
+  operationId: deleteApiIntegrationV1ProjectTaskByProjectIdByProjectTaskIdVendorAssignment
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1807,6 +1955,7 @@ operations:
     audit: required
 - path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/payables
   method: get
+  operationId: getApiIntegrationV1ProjectTaskByProjectIdByProjectTaskIdPayables
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1816,6 +1965,7 @@ operations:
     audit: none
 - path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/deadline
   method: put
+  operationId: putApiIntegrationV1ProjectTaskByProjectIdByProjectTaskIdDeadline
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1831,6 +1981,7 @@ operations:
     audit: required
 - path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/split
   method: post
+  operationId: postApiIntegrationV1ProjectTaskByProjectIdByProjectTaskIdSplit
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1846,6 +1997,7 @@ operations:
     audit: required
 - path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/splitByParts/{partsCount}
   method: post
+  operationId: postApiIntegrationV1ProjectTaskByProjectIdByProjectTaskIdSplitByPartsByPartsCount
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1861,6 +2013,7 @@ operations:
     audit: required
 - path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/merge
   method: post
+  operationId: postApiIntegrationV1ProjectTaskByProjectIdByProjectTaskIdMerge
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1876,6 +2029,7 @@ operations:
     audit: required
 - path: /api/integration/v1/Quote/{projectId}
   method: get
+  operationId: getApiIntegrationV1QuoteByProjectId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1885,6 +2039,7 @@ operations:
     audit: none
 - path: /api/integration/v1/Quote/ByVendor/{projectId}
   method: get
+  operationId: getApiIntegrationV1QuoteByVendorByProjectId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1894,6 +2049,7 @@ operations:
     audit: none
 - path: /api/integration/v1/Quote/ListByProjectIds
   method: get
+  operationId: getApiIntegrationV1QuoteListByProjectIds
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1903,6 +2059,7 @@ operations:
     audit: none
 - path: /api/integration/v1/Quote/List
   method: get
+  operationId: getApiIntegrationV1QuoteList
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1912,6 +2069,7 @@ operations:
     audit: none
 - path: /api/integration/v1/Quote/Update
   method: put
+  operationId: putApiIntegrationV1QuoteUpdate
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1927,6 +2085,7 @@ operations:
     audit: required
 - path: /api/integration/v1/Quote/{id}/Upload
   method: post
+  operationId: postApiIntegrationV1QuoteByIdUpload
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1942,6 +2101,7 @@ operations:
     audit: required
 - path: /api/integration/v1/Quote/{id}/Approve
   method: post
+  operationId: postApiIntegrationV1QuoteByIdApprove
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1957,6 +2117,7 @@ operations:
     audit: required
 - path: /api/integration/v1/Quote/{id}/MarkAsPaid
   method: post
+  operationId: postApiIntegrationV1QuoteByIdMarkAsPaid
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1972,6 +2133,7 @@ operations:
     audit: required
 - path: /api/integration/v1/Quote/{id}/File
   method: get
+  operationId: getApiIntegrationV1QuoteByIdFile
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1981,6 +2143,7 @@ operations:
     audit: none
 - path: /api/integration/v1/segment-confirmation-statistics/{projectId}
   method: get
+  operationId: getApiIntegrationV1SegmentConfirmationStatisticsByProjectId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1990,6 +2153,7 @@ operations:
     audit: none
 - path: /api/integration/v2/segment-confirmation-statistics/{projectId}
   method: get
+  operationId: getApiIntegrationV2SegmentConfirmationStatisticsByProjectId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1999,21 +2163,17 @@ operations:
     audit: none
 - path: /api/integration/v1/smartTranslation/translate
   method: post
+  operationId: postApiIntegrationV1SmartTranslationTranslate
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/integration/v1/smartwords/balance
   method: get
+  operationId: getApiIntegrationV1SmartwordsBalance
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2023,6 +2183,7 @@ operations:
     audit: none
 - path: /api/integration/v1/template
   method: get
+  operationId: getApiIntegrationV1Template
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2032,6 +2193,7 @@ operations:
     audit: none
 - path: /api/integration/v1/translationmemory/{tmId}
   method: get
+  operationId: getApiIntegrationV1TranslationmemoryByTmId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2041,6 +2203,7 @@ operations:
     audit: none
 - path: /api/integration/v1/translationmemory/{tmId}
   method: post
+  operationId: postApiIntegrationV1TranslationmemoryByTmId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2056,6 +2219,7 @@ operations:
     audit: required
 - path: /api/integration/v1/translationmemory/{tmId}
   method: delete
+  operationId: deleteApiIntegrationV1TranslationmemoryByTmId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2071,6 +2235,7 @@ operations:
     audit: required
 - path: /api/integration/v1/translationmemory
   method: get
+  operationId: getApiIntegrationV1Translationmemory
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2080,6 +2245,7 @@ operations:
     audit: none
 - path: /api/integration/v1/translationmemory
   method: post
+  operationId: postApiIntegrationV1Translationmemory
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2095,6 +2261,7 @@ operations:
     audit: required
 - path: /api/integration/v1/translationmemory/task
   method: get
+  operationId: getApiIntegrationV1TranslationmemoryTask
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2104,6 +2271,7 @@ operations:
     audit: none
 - path: /api/integration/v1/translationmemory/{tmId}/file
   method: get
+  operationId: getApiIntegrationV1TranslationmemoryByTmIdFile
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2113,21 +2281,17 @@ operations:
     audit: none
 - path: /api/integration/v1/translationmemory/matches
   method: post
+  operationId: postApiIntegrationV1TranslationmemoryMatches
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/integration/v1/translationmemory/{tmId}/targets
   method: put
+  operationId: putApiIntegrationV1TranslationmemoryByTmIdTargets
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2143,6 +2307,7 @@ operations:
     audit: required
 - path: /api/integration/v1/translationmemory/task/{taskId}
   method: delete
+  operationId: deleteApiIntegrationV1TranslationmemoryTaskByTaskId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2158,6 +2323,7 @@ operations:
     audit: required
 - path: /api/integration/v1/user-deletion-requests
   method: post
+  operationId: postApiIntegrationV1UserDeletionRequests
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2173,6 +2339,7 @@ operations:
     audit: required
 - path: /api/integration/v1/user-deletion-requests/confirm
   method: post
+  operationId: postApiIntegrationV1UserDeletionRequestsConfirm
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2188,6 +2355,7 @@ operations:
     audit: required
 - path: /api/integration/v1/vendor/list
   method: get
+  operationId: getApiIntegrationV1VendorList
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2197,2194 +2365,7 @@ operations:
     audit: none
 - path: /api/integration/v1/vendor/{vendorAccountId}
   method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/account
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/account/mtengines
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/assignment-templates/project/{projectId}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/assignment-templates/{assignmentTemplateId}/project/{projectId}
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/audit/logs
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/callback
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/callback
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/callback
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/callback/lastErrors
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/client/create
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/client/{clientId}/set
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/client/{clientId}/contact
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v2/client/{clientId}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v2/client/{clientId}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/client/{clientId}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/clientIndustry/{id}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/clientIndustry/{id}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/clientIndustry/{id}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/clientIndustry
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/clientIndustry/{name}
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/custom-fields
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v2/directory
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/directory/formats
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/document
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/document
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/document
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/document/translate/status
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/document/translate/result
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/document/statistics
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/document/assignFreelancers
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/document/assignVendors
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/document/setStageUnitCount
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/document/assign
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/document/unassign
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/document/assignFromMyTeam
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/document/complete
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v2/document/update
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/document/rename
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/document/updateMetaInfo
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/document/translate
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/document/translateWithXliff
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/document/export/{taskId}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/document/export
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/fileDisassemblingAlgorithmPresets/{id}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/fileDisassemblingAlgorithmPresets/{id}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /api/integration/v1/fileDisassemblingAlgorithmPresets/{id}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /api/integration/v1/fileDisassemblingAlgorithmPresets
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/fileDisassemblingAlgorithmPresets
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /api/integration/v1/file-management/file/{path}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/file-management/file/{path}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/file-management/file/{path}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/file-management/files/{path}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/file-management/file-info/{path}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/file-management/file-info-list/{prefix}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/glossaries
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/glossaries/default
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/glossary/import
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/glossary/importTaskState/{taskId}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/glossary/export
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/glossary/export/pendingTasks
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/glossary/export/{taskId}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/invoice/job
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v2/invoice/job
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/invoice/jobs
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v2/invoice/jobs
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/invoice/job/list
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v2/invoice/job/listByExternalId
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v2/invoice/job/listByCreatedDate
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v2/invoice/list
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v2/client-agent-invoice/list
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v3/job/verifiedForProject
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v3/job
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/lsp/prices/{priceId}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v2/lsp/prices
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v2/lsp/prices
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v2/lsp/prices/batch
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v2/lsp/prices/batch
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v2/lsp/prices/{priceId}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/lsp/services/{serviceId}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v2/lsp/services
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v2/lsp/services
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v2/lsp/services/batch
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v2/lsp/services/batch
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v2/lsp/services/{serviceId}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/account/myTeam/{userId}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/account/myTeam/{userId}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/account/myTeam
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/account/myTeam
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/account/searchMyTeam
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/account/myTeam/{userId}/services/replace
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/account/myTeam/{userId}/phone
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/account/myTeam/{userId}/comment
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/placeholders
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/placeholders
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/placeholders/validate
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/project/{projectId}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/project/{projectId}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/{projectId}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v2/project/list
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/project/list
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/project/{projectId}/statistics
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v2/project/{projectId}/statistics
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/project/{projectId}/fuzzyRepetitions
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /api/integration/v1/project/{projectId}/completedWorkStatistics
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/project/{projectId}/translationmemories
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/project/{projectId}/translationmemories
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/{projectId}/glossaries
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/project/{projectId}/glossaries
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/{projectId}/glossaries/default
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/project/{projectId}/mt
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/project/{projectId}/mt
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/{projectId}/mt/available
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/project/{projectId}/pretranslation-rules
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/project/{projectId}/pretranslation-rules
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/{projectId}/pretranslation-rules
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/{projectId}/empty-folders-removing-status
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/project/import-result/{importId}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/project/cancel
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/restore
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/complete
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/create
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v2/project/{projectId}/import
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/document
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/language
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/language
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/{projectId}/translationmemories/bylanguages
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/{projectId}/statistics/build
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/{projectId}/managers
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/{projectId}/managers
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/{projectId}/assign
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/{projectId}/ReferenceFiles
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/{projectId}/run-empty-folders-removing
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v2/project/{projectId}/export
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/{projectId}/copying
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/project/copying/{taskId}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/projectTask/{projectId}/list
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/scope
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/set-invitation-strategy-type
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/individual-assignment
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/individual-assignment
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/vendor-assignment
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/vendor-assignment
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/payables
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/deadline
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/split
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/splitByParts/{partsCount}
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/projectTask/{projectId}/{projectTaskId}/merge
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/Quote/{projectId}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/Quote/ByVendor/{projectId}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/Quote/ListByProjectIds
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/Quote/List
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/Quote/Update
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/Quote/{id}/Upload
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/Quote/{id}/Approve
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/Quote/{id}/MarkAsPaid
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/Quote/{id}/File
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/segment-confirmation-statistics/{projectId}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v2/segment-confirmation-statistics/{projectId}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/smartTranslation/translate
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/smartwords/balance
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/template
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/translationmemory/{tmId}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/translationmemory/{tmId}
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/translationmemory/{tmId}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/translationmemory
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/translationmemory
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/translationmemory/task
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/translationmemory/{tmId}/file
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/translationmemory/matches
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/translationmemory/{tmId}/targets
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/translationmemory/task/{taskId}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/user-deletion-requests
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/user-deletion-requests/confirm
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/integration/v1/vendor/list
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/integration/v1/vendor/{vendorAccountId}
-  method: get
+  operationId: getApiIntegrationV1VendorByVendorAccountId
   x-agentic-access:
     action-class: connected
     consequence: read
