@@ -1,0 +1,25 @@
+slug: smartcat
+provider: Smartcat
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: LspPrices
+  spec_file: smartcat-lspprices-api-openapi.yml
+  capability_id: BC-440.20
+  capability_id_l1: BC-440
+  capability_name: Price List Management
+  confidence: 0.72
+  evidence: '"Create a new LSP service price", "Update an existing LSP service price", "Fetch LSP service
+    prices", schema "LspPriceModelV2"'
+  reason: CRUD over a catalogue of service prices for the language service provider is price book / price
+    list maintenance, mapping to Price List Management under Pricing Management.
