@@ -1,0 +1,51 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://www.smartcat.com/pricing/
+sources:
+- https://www.smartcat.com/pricing/
+- https://smartcat.com/pricing/
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-07'
+published: true
+note: Annual tiered plans with Smartwords allowances; API access only from Anticipate. 15-day free trial
+  including API access.
+plan_count: 4
+currency: USD
+plans:
+- name: Adapt
+  price_text: Starting at $1,200 / year
+  price: 1200
+  currency: USD
+  period: year
+  included_quota: Chief of Staff, Content Translator Coworker, Content Creator Coworker; all content types;
+    unlimited users; linear workflows; standard SLA; 100K Smartwords included
+  overage: Smartwords top up at any point in your contract year
+- name: Accelerate
+  price_text: Starting at $24,000 / year
+  price: 24000
+  currency: USD
+  period: year
+  included_quota: Everything in Adapt, plus partner and vendor collaboration, Marketplace access (500K+
+    experts), Priority SLA; 1M Smartwords
+- name: Anticipate
+  price_text: Starting at $60,000 / year
+  price: 60000
+  currency: USD
+  period: year
+  included_quota: Everything in Accelerate, plus API access, SSO & 2FA, preconfigured reporting + ROI
+    dashboard; 2 workspaces; 2M Smartwords
+  overage: add more workspaces at your plan's workspace add-on price
+- name: Autonomous
+  price_text: Custom
+  period: none
+  included_quota: Everything in Anticipate, plus parallel workflows, 7 workspaces, enterprise governance
+    + Intelligence Fabric, custom reporting, on-site support; 6M Smartwords
