@@ -49,3 +49,39 @@ plans:
   period: none
   included_quota: Everything in Anticipate, plus parallel workflows, 7 workspaces, enterprise governance
     + Intelligence Fabric, custom reporting, on-site support; 6M Smartwords
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - subscription
+  units: []
+  plans:
+  - name: Adapt
+    access: other
+    model: hybrid
+    model_how: derived
+    units: []
+    periods:
+    - year
+  - name: Accelerate
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - year
+  - name: Anticipate
+    access: other
+    model: hybrid
+    model_how: derived
+    units: []
+    periods:
+    - year
+  - name: Autonomous
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
