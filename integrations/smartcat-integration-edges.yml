@@ -1,0 +1,42 @@
+edges:
+- partner_name: Contentful (own)
+  partner: contentful
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.contentful.com/marketplace/smartcat/
+  mirror_of: contentful/integrations/contentful-integration-edges.yml
+  apps:
+  - Smartcat.ai
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+- partner_name: WordPress (own)
+  partner: wordpress
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://wordpress.org/plugins/smartcat-wpml/
+  mirror_of: wordpress/integrations/wordpress-integration-edges.yml
+  apps:
+  - Smartcat Translator for WPML
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: WordPress plugin
+generated: '2026-10-15'
+method: searched
+checked:
+- contentful/integrations/contentful-integration-edges.yml
+- wordpress/integrations/wordpress-integration-edges.yml
+source:
+- contentful/integrations/contentful-integration-edges.yml
+- wordpress/integrations/wordpress-integration-edges.yml
