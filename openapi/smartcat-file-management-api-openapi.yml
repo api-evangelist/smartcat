@@ -267,18 +267,16 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Models.ErrorResponse:
+    BatchResult_FileInfoModel:
       type: object
       properties:
-        message:
+        items:
           type:
-          - string
+          - array
           - 'null'
-        details:
-          type:
-          - string
-          - 'null'
-        correlationId:
+          items:
+            $ref: '#/components/schemas/FileInfoModel'
+        nextBatchKey:
           type:
           - string
           - 'null'
@@ -321,16 +319,18 @@ components:
           format: date-time
       additionalProperties: false
       description: Information about file uploaded to storage
-    BatchResult_FileInfoModel:
+    Models.ErrorResponse:
       type: object
       properties:
-        items:
+        message:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/FileInfoModel'
-        nextBatchKey:
+        details:
+          type:
+          - string
+          - 'null'
+        correlationId:
           type:
           - string
           - 'null'

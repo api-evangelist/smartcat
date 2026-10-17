@@ -105,20 +105,12 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    JobStatus:
+    SupplierType:
       enum:
-      - inProgress
-      - invitationPending
-      - waitingForAssignment
-      - waitingForPayment
-      - verified
-      - paidByCustomer
-      - paidToFreelancer
-      - markedAsPaid
-      - invitationCanceled
-      - invitationDeclined
+      - freelancer
+      - company
       type: string
-      description: Payment status
+      description: Supplier type
       format: int32
     JobModelV2Extended:
       type: object
@@ -248,10 +240,18 @@ components:
           format: date-time
       additionalProperties: false
       description: Payment model
-    SupplierType:
+    JobStatus:
       enum:
-      - freelancer
-      - company
+      - inProgress
+      - invitationPending
+      - waitingForAssignment
+      - waitingForPayment
+      - verified
+      - paidByCustomer
+      - paidToFreelancer
+      - markedAsPaid
+      - invitationCanceled
+      - invitationDeclined
       type: string
-      description: Supplier type
+      description: Payment status
       format: int32

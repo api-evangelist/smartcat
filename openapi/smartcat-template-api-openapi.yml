@@ -29,6 +29,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    TemplateListModel:
+      type: object
+      properties:
+        templates:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/TemplateInfoModel'
+          description: List of templates
+      additionalProperties: false
+      description: Template list model
     TemplateInfoModel:
       type: object
       properties:
@@ -43,15 +55,3 @@ components:
           description: Template name
       additionalProperties: false
       description: Template information model
-    TemplateListModel:
-      type: object
-      properties:
-        templates:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/TemplateInfoModel'
-          description: List of templates
-      additionalProperties: false
-      description: Template list model

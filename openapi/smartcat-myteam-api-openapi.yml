@@ -369,40 +369,36 @@ components:
       type: string
       description: Freelancer service type
       format: int32
-    MyTeamMemberModel:
+    InhouseTranslatorCreationModel:
       type: object
       properties:
-        id:
-          type: string
-          description: ID
-          format: uuid
         email:
           type:
           - string
           - 'null'
-          description: Email
+          description: In-house translator email
         firstName:
           type:
           - string
           - 'null'
-          description: Name
+          description: In-house translator first name
         lastName:
           type:
           - string
           - 'null'
-          description: Last name
+          description: In-house translator last name
         externalId:
           type:
           - string
           - 'null'
-          description: MyTeam member ID in an external system
+          description: In-house translator ID in an external system
         services:
           type:
           - array
           - 'null'
           items:
             $ref: '#/components/schemas/ServiceModel'
-          description: MyTeam member services
+          description: Services
         clientIds:
           type:
           - array
@@ -411,17 +407,33 @@ components:
             type: string
             format: uuid
           description: Client IDs associated with the user
-        customFields:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type:
-            - string
-            - 'null'
-          description: Custom fields
       additionalProperties: false
-      description: MyTeam member model
+      description: In-house translator creation model
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+      additionalProperties: {}
     MyTeamSearchRequestModel:
       type: object
       properties:
@@ -496,6 +508,100 @@ components:
           description: It is daytime now in the linguist's time zone
       additionalProperties: false
       description: MyTeam member search request
+    ServiceModel:
+      type: object
+      properties:
+        serviceType:
+          $ref: '#/components/schemas/FreelancerServiceType'
+        sourceLanguage:
+          type:
+          - string
+          - 'null'
+          description: Source language
+        targetLanguage:
+          type:
+          - string
+          - 'null'
+          description: Target language
+        pricePerUnit:
+          type:
+          - number
+          - 'null'
+          description: Price per unit
+          format: double
+        performancePerDay:
+          type:
+          - number
+          - 'null'
+          description: User's daily performance per service
+          format: double
+        currency:
+          type:
+          - string
+          - 'null'
+          description: Currency
+        specializations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Specialization'
+          description: Specializations for a written service
+      additionalProperties: false
+      description: Service model
+    MyTeamMemberModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        email:
+          type:
+          - string
+          - 'null'
+          description: Email
+        firstName:
+          type:
+          - string
+          - 'null'
+          description: Name
+        lastName:
+          type:
+          - string
+          - 'null'
+          description: Last name
+        externalId:
+          type:
+          - string
+          - 'null'
+          description: MyTeam member ID in an external system
+        services:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ServiceModel'
+          description: MyTeam member services
+        clientIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+          description: Client IDs associated with the user
+        customFields:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+          description: Custom fields
+      additionalProperties: false
+      description: MyTeam member model
     ReplaceServicesModel:
       type: object
       properties:
@@ -508,71 +614,6 @@ components:
           description: Services
       additionalProperties: false
       description: MyTeam member services replacement model
-    InhouseTranslatorCreationModel:
-      type: object
-      properties:
-        email:
-          type:
-          - string
-          - 'null'
-          description: In-house translator email
-        firstName:
-          type:
-          - string
-          - 'null'
-          description: In-house translator first name
-        lastName:
-          type:
-          - string
-          - 'null'
-          description: In-house translator last name
-        externalId:
-          type:
-          - string
-          - 'null'
-          description: In-house translator ID in an external system
-        services:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ServiceModel'
-          description: Services
-        clientIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: uuid
-          description: Client IDs associated with the user
-      additionalProperties: false
-      description: In-house translator creation model
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-      additionalProperties: {}
     Specialization:
       enum:
       - education
@@ -661,44 +702,3 @@ components:
       type: string
       description: Text specialization
       format: int32
-    ServiceModel:
-      type: object
-      properties:
-        serviceType:
-          $ref: '#/components/schemas/FreelancerServiceType'
-        sourceLanguage:
-          type:
-          - string
-          - 'null'
-          description: Source language
-        targetLanguage:
-          type:
-          - string
-          - 'null'
-          description: Target language
-        pricePerUnit:
-          type:
-          - number
-          - 'null'
-          description: Price per unit
-          format: double
-        performancePerDay:
-          type:
-          - number
-          - 'null'
-          description: User's daily performance per service
-          format: double
-        currency:
-          type:
-          - string
-          - 'null'
-          description: Currency
-        specializations:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Specialization'
-          description: Specializations for a written service
-      additionalProperties: false
-      description: Service model

@@ -66,6 +66,21 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    DirectoryItemModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name
+      additionalProperties: false
+      description: Directory entry model
     DirectoryModel:
       type: object
       properties:
@@ -126,18 +141,3 @@ components:
       type: string
       description: Directory type
       format: int32
-    DirectoryItemModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: ID
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name
-      additionalProperties: false
-      description: Directory entry model

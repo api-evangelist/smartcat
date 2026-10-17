@@ -143,6 +143,18 @@ components:
           description: Documents for export
       additionalProperties: false
       description: Export document task model
+    SoftwareLocalizationDocumentFormat:
+      enum:
+      - json
+      - ios-strings
+      - android-xml
+      - yaml
+      - structured-json
+      - structured-yaml
+      - qt-ts
+      type: string
+      description: Software localization document format
+      format: int32
     SegmentExportMode:
       enum:
       - current
@@ -150,21 +162,6 @@ components:
       - complete
       type: string
       description: Document export mode
-      format: int32
-    ExportDocumentRequestType:
-      enum:
-      - source
-      - target
-      - xliff
-      - multilangCsv
-      - documentWithMetadata
-      - sourceInNewFormat
-      - subtitlesBurningSource
-      - subtitlesBurningTarget
-      - imageSourceText
-      - imageTargetText
-      type: string
-      description: Document download request type
       format: int32
     ProblemDetails:
       type: object
@@ -191,15 +188,18 @@ components:
           - string
           - 'null'
       additionalProperties: {}
-    SoftwareLocalizationDocumentFormat:
+    ExportDocumentRequestType:
       enum:
-      - json
-      - ios-strings
-      - android-xml
-      - yaml
-      - structured-json
-      - structured-yaml
-      - qt-ts
+      - source
+      - target
+      - xliff
+      - multilangCsv
+      - documentWithMetadata
+      - sourceInNewFormat
+      - subtitlesBurningSource
+      - subtitlesBurningTarget
+      - imageSourceText
+      - imageTargetText
       type: string
-      description: Software localization document format
+      description: Document download request type
       format: int32

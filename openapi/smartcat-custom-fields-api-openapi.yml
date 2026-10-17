@@ -35,32 +35,12 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    SelectFieldOption:
-      type: object
-      properties:
-        key:
-          type: string
-          description: The unique identifier of the option.
-          format: uuid
-        value:
-          type:
-          - string
-          - 'null'
-          description: The display value associated with the option.
-      additionalProperties: false
-      description: 'Represents a single selectable option for a custom field of selection type,
-
-        pairing a unique key with its display value.'
-    EntityType:
+    FieldType:
       enum:
-      - project
-      - freelancer
-      - vendor
-      - client
-      - tM
-      - tMUnit
+      - text
+      - select
       type: string
-      description: Specifies the type of entity that a custom field can be attached to.
+      description: Specifies the data type of a custom field, determining how its value is entered and stored.
       format: int32
     CustomField:
       type: object
@@ -104,10 +84,30 @@ components:
       description: 'Represents a custom field defined within an account, used to attach
 
         additional structured data to entities such as projects or assignments.'
-    FieldType:
+    EntityType:
       enum:
-      - text
-      - select
+      - project
+      - freelancer
+      - vendor
+      - client
+      - tM
+      - tMUnit
       type: string
-      description: Specifies the data type of a custom field, determining how its value is entered and stored.
+      description: Specifies the type of entity that a custom field can be attached to.
       format: int32
+    SelectFieldOption:
+      type: object
+      properties:
+        key:
+          type: string
+          description: The unique identifier of the option.
+          format: uuid
+        value:
+          type:
+          - string
+          - 'null'
+          description: The display value associated with the option.
+      additionalProperties: false
+      description: 'Represents a single selectable option for a custom field of selection type,
+
+        pairing a unique key with its display value.'

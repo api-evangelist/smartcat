@@ -163,6 +163,36 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    FileDisassemblingAlgorithmPresetCreatedModel:
+      type: object
+      properties:
+        presetId:
+          type: string
+          description: Preset ID
+          format: uuid
+      additionalProperties: false
+      description: Created preset details
+    FileDisassemblingAlgorithmPresetViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID
+          format: uuid
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name
+        algorithmName:
+          type:
+          - string
+          - 'null'
+          description: Algorithm
+        settings:
+          description: Settings
+      additionalProperties: false
+      description: Preset view model
     ProblemDetails:
       type: object
       properties:
@@ -188,27 +218,6 @@ components:
           - string
           - 'null'
       additionalProperties: {}
-    FileDisassemblingAlgorithmPresetViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID
-          format: uuid
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name
-        algorithmName:
-          type:
-          - string
-          - 'null'
-          description: Algorithm
-        settings:
-          description: Settings
-      additionalProperties: false
-      description: Preset view model
     FileDisassemblingAlgorithmPresetEditModel:
       type: object
       properties:
@@ -226,12 +235,3 @@ components:
           description: Settings
       additionalProperties: false
       description: Preset edit model
-    FileDisassemblingAlgorithmPresetCreatedModel:
-      type: object
-      properties:
-        presetId:
-          type: string
-          description: Preset ID
-          format: uuid
-      additionalProperties: false
-      description: Created preset details
