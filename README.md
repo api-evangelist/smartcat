@@ -64,6 +64,188 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Smartcat is a company surfaced as a portfolio company of matrix-partners and added to the API Evangelist network as a stub for enrichment. Sector: ai. This profile is a lead awaiting the enrichment pipeline.
+Smartcat is an AI-powered translation and localization platform that lets teams translate content instantly and at scale across 280+ languages, combining machine translation, AI agents, human linguist workflows, translation memories, and glossaries. Its integration API (/api/integration/v1) provides programmatic access to projects, documents, translation memories, glossaries, quotes, invoices, vendors, teams, and status callbacks, and is designed as a full-fledged equivalent and extension of the Smartcat web UI. The API spans 176 operations across 27 resource groups, uses HTTP Basic authentication (Account ID + API key), is rate limited to four requests per second, and is served from regional hosts for Europe (smartcat.com), the Americas (us.smartcat.com) and Asia (ea.smartcat.com). The company was surfaced as a portfolio company of Matrix Partners and has been enriched from its public developer surface.
 
-Backed by: matrix-partners — https://smartcat.com
+**Areas:** Company · Artificial Intelligence · Translation · Localization · Language · Machine Translation · Content · Translation Management
+
+## Smartcat on APIs.io
+
+Everything profiled for Smartcat is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/smartcat/](https://apis.io/providers/smartcat/)** — or go straight to one of the APIs or properties below.
+
+### APIs (29)
+
+- [Smartcat Account API](https://apis.io/apis/smartcat/smartcat-account-api/) — The Account API from Smartcat — 2 operation(s) for account.
+- [Smartcat AssignmentTemplates API](https://apis.io/apis/smartcat/smartcat-assignmenttemplates-api/) — The AssignmentTemplates API from Smartcat — 2 operation(s) for assignmenttemplates.
+- [Smartcat Audit API](https://apis.io/apis/smartcat/smartcat-audit-api/) — The Audit API from Smartcat — 1 operation(s) for audit.
+- [Smartcat Callback API](https://apis.io/apis/smartcat/smartcat-callback-api/) — The Callback API from Smartcat — 2 operation(s) for callback.
+- [Smartcat Client API](https://apis.io/apis/smartcat/smartcat-client-api/) — The Client API from Smartcat — 5 operation(s) for client.
+- [Smartcat ClientIndustry API](https://apis.io/apis/smartcat/smartcat-clientindustry-api/) — The ClientIndustry API from Smartcat — 3 operation(s) for clientindustry.
+- [Smartcat Directories API](https://apis.io/apis/smartcat/smartcat-directories-api/) — The Directories API from Smartcat — 2 operation(s) for directories.
+- [Smartcat Document API](https://apis.io/apis/smartcat/smartcat-document-api/) — The Document API from Smartcat — 16 operation(s) for document.
+- [Smartcat DocumentExport API](https://apis.io/apis/smartcat/smartcat-documentexport-api/) — The DocumentExport API from Smartcat — 2 operation(s) for documentexport.
+- [Smartcat FileDisassemblingAlgorithmPresets API](https://apis.io/apis/smartcat/smartcat-filedisassemblingalgorithmpresets-api/) — The FileDisassemblingAlgorithmPresets API from Smartcat — 2 operation(s) for filedisassemblingalgorithmpresets.
+- [Smartcat Glossary API](https://apis.io/apis/smartcat/smartcat-glossary-api/) — The Glossary API from Smartcat — 7 operation(s) for glossary.
+- [Smartcat Invoice API](https://apis.io/apis/smartcat/smartcat-invoice-api/) — The Invoice API from Smartcat — 9 operation(s) for invoice.
+- [Smartcat Job API](https://apis.io/apis/smartcat/smartcat-job-api/) — The Job API from Smartcat — 2 operation(s) for job.
+- [Smartcat LspPrices API](https://apis.io/apis/smartcat/smartcat-lspprices-api/) — The LspPrices API from Smartcat — 4 operation(s) for lspprices.
+- [Smartcat LspService API](https://apis.io/apis/smartcat/smartcat-lspservice-api/) — The LspService API from Smartcat — 4 operation(s) for lspservice.
+- [Smartcat MyTeam API](https://apis.io/apis/smartcat/smartcat-myteam-api/) — The MyTeam API from Smartcat — 6 operation(s) for myteam.
+- [Smartcat PlaceholderFormatApi API](https://apis.io/apis/smartcat/smartcat-placeholderformatapi-api/) — The PlaceholderFormatApi API from Smartcat — 2 operation(s) for placeholderformatapi.
+- [Smartcat Project API](https://apis.io/apis/smartcat/smartcat-project-api/) — The Project API from Smartcat — 32 operation(s) for project.
+- [Smartcat ProjectTask API](https://apis.io/apis/smartcat/smartcat-projecttask-api/) — The ProjectTask API from Smartcat — 11 operation(s) for projecttask.
+- [Smartcat Quote API](https://apis.io/apis/smartcat/smartcat-quote-api/) — The Quote API from Smartcat — 9 operation(s) for quote.
+- [Smartcat SegmentConfirmationStatistics API](https://apis.io/apis/smartcat/smartcat-segmentconfirmationstatistics-api/) — The SegmentConfirmationStatistics API from Smartcat — 2 operation(s) for segmentconfirmationstatistics.
+- [Smartcat SmartTranslation API](https://apis.io/apis/smartcat/smartcat-smarttranslation-api/) — The SmartTranslation API from Smartcat — 1 operation(s) for smarttranslation.
+- [Smartcat Smartwords API](https://apis.io/apis/smartcat/smartcat-smartwords-api/) — The Smartwords API from Smartcat — 1 operation(s) for smartwords.
+- [Smartcat Template API](https://apis.io/apis/smartcat/smartcat-template-api/) — The Template API from Smartcat — 1 operation(s) for template.
+- [Smartcat TranslationMemories API](https://apis.io/apis/smartcat/smartcat-translationmemories-api/) — The TranslationMemories API from Smartcat — 7 operation(s) for translationmemories.
+- [Smartcat UserDeletionRequests API](https://apis.io/apis/smartcat/smartcat-userdeletionrequests-api/) — The UserDeletionRequests API from Smartcat — 2 operation(s) for userdeletionrequests.
+- [Smartcat Vendor API](https://apis.io/apis/smartcat/smartcat-vendor-api/) — The Vendor API from Smartcat — 2 operation(s) for vendor.
+- [Smartcat Custom Fields API](https://apis.io/apis/smartcat/smartcat-custom-fields-api/) — The Custom Fields API from Smartcat — 1 operation(s) for custom fields.
+- [Smartcat File Management API](https://apis.io/apis/smartcat/smartcat-file-management-api/) — The File Management API from Smartcat — 4 operation(s) for file management.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Smartcat Callbacks Webhooks](https://apis.io/asyncapis/smartcat/smartcat-callbacks-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [smartcat](https://apis.io/servers/smartcat/smartcat/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Smartcat Agentic Access](https://apis.io/agentic-access/smartcat/smartcat-agentic-access/)
+
+#### Collections (29)
+
+Postman and Open Collection request collections.
+
+- [Smartcat Account API](https://apis.io/collections/smartcat/open-smartcat-account-api/)
+- [Smartcat Account AssignmentTemplates API](https://apis.io/collections/smartcat/open-smartcat-assignmenttemplates-api/)
+- [Smartcat Account Audit API](https://apis.io/collections/smartcat/open-smartcat-audit-api/)
+- [Smartcat Account Callback API](https://apis.io/collections/smartcat/open-smartcat-callback-api/)
+- [Smartcat Account Client API](https://apis.io/collections/smartcat/open-smartcat-client-api/)
+- [Smartcat Account ClientIndustry API](https://apis.io/collections/smartcat/open-smartcat-clientindustry-api/)
+- [Smartcat Account CustomFields API](https://apis.io/collections/smartcat/open-smartcat-customfields-api/)
+- [Smartcat Account Directories API](https://apis.io/collections/smartcat/open-smartcat-directories-api/)
+- [Smartcat Account Document API](https://apis.io/collections/smartcat/open-smartcat-document-api/)
+- [Smartcat Account DocumentExport API](https://apis.io/collections/smartcat/open-smartcat-documentexport-api/)
+- [Smartcat Account FileDisassemblingAlgorithmPresets API](https://apis.io/collections/smartcat/open-smartcat-filedisassemblingalgorithmpresets-api/)
+- [Smartcat Account FileManagement API](https://apis.io/collections/smartcat/open-smartcat-filemanagement-api/)
+- [Smartcat Account Glossary API](https://apis.io/collections/smartcat/open-smartcat-glossary-api/)
+- [Smartcat Account Invoice API](https://apis.io/collections/smartcat/open-smartcat-invoice-api/)
+- [Smartcat Account Job API](https://apis.io/collections/smartcat/open-smartcat-job-api/)
+- [Smartcat Account LspPrices API](https://apis.io/collections/smartcat/open-smartcat-lspprices-api/)
+- [Smartcat Account LspService API](https://apis.io/collections/smartcat/open-smartcat-lspservice-api/)
+- [Smartcat Account MyTeam API](https://apis.io/collections/smartcat/open-smartcat-myteam-api/)
+- [Smartcat Account PlaceholderFormatApi API](https://apis.io/collections/smartcat/open-smartcat-placeholderformatapi-api/)
+- [Smartcat Account Project API](https://apis.io/collections/smartcat/open-smartcat-project-api/)
+- [Smartcat Account ProjectTask API](https://apis.io/collections/smartcat/open-smartcat-projecttask-api/)
+- [Smartcat Account Quote API](https://apis.io/collections/smartcat/open-smartcat-quote-api/)
+- [Smartcat Account SegmentConfirmationStatistics API](https://apis.io/collections/smartcat/open-smartcat-segmentconfirmationstatistics-api/)
+- [Smartcat Account SmartTranslation API](https://apis.io/collections/smartcat/open-smartcat-smarttranslation-api/)
+- [Smartcat Account Smartwords API](https://apis.io/collections/smartcat/open-smartcat-smartwords-api/)
+- …and 4 more published on APIs.io
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Smartcat Openapi Overlay](https://apis.io/overlays/smartcat/smartcat-openapi-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Smartcat Authentication](https://apis.io/security/smartcat/smartcat-authentication/)
+- [Smartcat Domain Security](https://apis.io/security/smartcat/smartcat-domain-security/)
+- [Smartcat Trust Center](https://apis.io/security/smartcat/smartcat-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Smartcat Plans Pricing](https://apis.io/plans/smartcat/smartcat-plans-pricing/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://smartcat.com)
+- [Documentation](https://developers.smartcat.com/api-guides/)
+- [Getting started](https://developers.smartcat.com/api-guides/)
+- [API reference](https://developers.smartcat.com/api/)
+- [Pricing](https://smartcat.com/pricing/)
+- [Sign up](https://smartcat.com/sign-up)
+- [Support](https://help.smartcat.com/)
+- [Blog](https://www.smartcat.com/blog/)
+- [Compliance](https://www.smartcat.com/security/)
+- [Terms of service](https://www.smartcat.com/legal/terms/)
+- [Privacy policy](https://www.smartcat.com/legal/privacy-policy/)
+- [GitHub](https://github.com/smartcatai)
+- [Status](https://status.smartcat.com/)
+
+## API Evangelist rating
+
+**Kin Score 66.1** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 45.7 |
+| Contract governance | 4.5 |
+| Operational transparency | 50.0 |
+| Developer ergonomics | 73.2 |
+| Access clarity | 92.1 |
+
+**Agent readiness 33.8** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | — |
+
+**Regulatory alignment 27.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/smartcat/](https://apis.io/providers/smartcat/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Smartcat: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/smartcat/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
